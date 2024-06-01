@@ -61,7 +61,7 @@ const QuestionBtn = (props: Props) => {
               stroke="#a855f7"
               strokeWidth={5}
             />
-            <circle cx="85" cy="75" r="15" fill="#65a30d" strokeWidth={5} />
+            <circle cx="85" cy="80" r="15" fill="#65a30d" strokeWidth={5} />
           </>
         );
 
@@ -71,7 +71,6 @@ const QuestionBtn = (props: Props) => {
   };
 
   const textColor = props.status === 0 ? "black" : "white";
-  console.log(textColor);
 
   React.useEffect(() => {
     setCount(props.count);
@@ -92,7 +91,7 @@ const QuestionBtn = (props: Props) => {
         y="50%"
         dominant-baseline="middle"
         text-anchor="middle"
-        fontSize="2rem"
+        fontSize="2.4rem"
         fill={textColor}
       >
         {count}

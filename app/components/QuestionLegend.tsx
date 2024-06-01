@@ -28,7 +28,7 @@ const QuestionLegend = (props: Props) => {
   const legendOrder = [2, 1, 0, 3, 4];
 
   return (
-    <div className="bg-white flex-0 p-1 outline outline-1 outline-neutral-400">
+    <div className="bg-white flex-0 p-1">
       <div className="flex flex-col items-start gap-1">
         {legendOrder.map((e, i) => {
           return (
