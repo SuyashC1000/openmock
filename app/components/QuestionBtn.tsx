@@ -34,10 +34,35 @@ const QuestionBtn = (props: Props) => {
         return (
           <polygon
             points="50 10, 70 10, 110 40, 110 90, 10 90, 10 40, 50 10"
-            fill="#15803d"
-            stroke="#4ade80"
+            fill="#65a30d"
+            stroke="#a3e635"
             strokeWidth={5}
           />
+        );
+      case 3:
+        return (
+          <circle
+            cx="60"
+            cy="50"
+            r="40"
+            fill="#7e22ce"
+            stroke="#a855f7"
+            strokeWidth={5}
+          />
+        );
+      case 4:
+        return (
+          <>
+            <circle
+              cx="60"
+              cy="50"
+              r="40"
+              fill="#7e22ce"
+              stroke="#a855f7"
+              strokeWidth={5}
+            />
+            <circle cx="85" cy="75" r="15" fill="#65a30d" strokeWidth={5} />
+          </>
         );
 
       default:
@@ -45,7 +70,7 @@ const QuestionBtn = (props: Props) => {
     }
   };
 
-  const textColor = [1, 2, 3].includes(props.status) ? "white" : "black";
+  const textColor = props.status === 0 ? "black" : "white";
   console.log(textColor);
 
   React.useEffect(() => {
@@ -57,8 +82,9 @@ const QuestionBtn = (props: Props) => {
     <svg
       width={"100%"}
       height={"100%"}
-      style={{ margin: "10px" }}
       viewBox="0 0 120 100"
+      className="select-none"
+      xmlns="http://www.w3.org/2000/svg"
     >
       <ButtonAccent />
       <text
