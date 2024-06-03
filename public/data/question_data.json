@@ -1,5 +1,10 @@
 {
-  "q_id": "q123456789",
-  "q_type_name": "",
-  "q_data_type": 0
+  "id": "q123456789",
+  "qTypeName": "",
+  "qDataType": 0,
+  "markingScheme": [
+    [4, 1],
+    [-1, 1],
+    [0, 1]
+  ]
 }

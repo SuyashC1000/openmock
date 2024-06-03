@@ -5,7 +5,7 @@ const TestBottombar = () => {
   return (
     <div
       className="h-16 w-screen bg-white flex flex-0 justify-between
-       items-center px-4 gap-4 outline outline-2 outline-neutral-400 "
+       items-center px-4 gap-4 outline outline-1 outline-neutral-400 "
     >
       <ButtonGroup>
         <Button fontWeight={"400"} variant="outline" colorScheme="blue">

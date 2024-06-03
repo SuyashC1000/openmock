@@ -1,0 +1,34 @@
+{
+  "id": "t1234567890",
+  "name": "Test Paper",
+  "timestamp": 1717324690,
+  "authors": ["Test", "test@test.com"],
+  "maxTime": 180,
+  "subjects": ["General Aptitude"],
+  "languages": ["English"],
+  "instructions": "",
+  "usefulData": "",
+  "body": [
+    {
+      "groupName": "General Aptitude",
+      "sections": [
+        {
+          "sectionName": "GA Section A",
+          "consolidateSubject": "General Aptitude",
+          "questions": [
+            {
+              "id": "q123456789",
+              "qTypeName": "",
+              "qDataType": [0, 4],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1],
+                [0, 1]
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -89,8 +89,8 @@ const QuestionBtn = (props: Props) => {
       <text
         x="50%"
         y="50%"
-        dominant-baseline="middle"
-        text-anchor="middle"
+        dominantBaseline="middle"
+        textAnchor="middle"
         fontSize="2.4rem"
         fill={textColor}
       >
