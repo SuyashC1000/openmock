@@ -18,10 +18,12 @@ import {
 } from "@chakra-ui/react";
 import QuestionLegend from "../components/QuestionLegend";
 import marks from "../formatters/marks";
+import numberToWords from "../formatters/numberToWords";
 
 interface Props {
   markingScheme: [[number, number], [number, number], [number, number], ...[]];
   qDataType: [number, number];
+  qTypeName: string;
 }
 
 const QuestionView = () => {
@@ -57,17 +59,60 @@ const QuestionView = () => {
       ],
     };
 
+    const questionTypeMessages = [
+      `This question has ${numberToWords(
+        props.qDataType[1]
+      ).toUpperCase()} options. ONLY ONE of these ${numberToWords(
+        props.qDataType[1]
+      ).toLowerCase()} options is the correct answer.`,
+      `This question has ${numberToWords(
+        props.qDataType[1]
+      ).toUpperCase()} options. ONE OR MORE THAN ONE of these ${numberToWords(
+        props.qDataType[1]
+      ).toLowerCase()} option(s) is/are the correct answer(s).`,
+      `The answer to the question is a${
+        props.qDataType[1] == 0 ? "n integer" : " numerical value"
+      }. If the numerical value has ${
+        props.qDataType[1] == 0
+          ? ""
+          : "more than " + numberToWords(props.qDataType[1]).toLowerCase()
+      } decimal place${
+        props.qDataType[1] != 1 ? "s" : ""
+      }, round off the value to ${
+        props.qDataType[1] == 0
+          ? "the nearest integer"
+          : numberToWords(props.qDataType[1]).toUpperCase() +
+            " decimal place" +
+            (props.qDataType[1] != 1 ? "s" : "")
+      }.`,
+    ];
+
     return (
       <Popover placement="bottom-end" trigger="hover" openDelay={400}>
         <PopoverContent>
-          <PopoverHeader>Marking Scheme</PopoverHeader>
           <PopoverBody className="text-sm">
+            <Text className="font-semibold text-base">Question Details</Text>
+            <Text> {questionTypeMessages[props.qDataType[0]]}</Text>
+            <br />
+
             <Text>
               <strong>Correct: </strong>
+              {marks(props.markingScheme[0], "element")}{" "}
+              {markingSchemeMessages.correct[props.qDataType[0]]}
+            </Text>
+            <Text>
+              <strong>Unanswered: </strong>
               <span className="text-green-600">
-                {marks(props.markingScheme[0])}
-              </span>{" "}
-              if ONLY the correct option(s) is/are chosen
+                {marks(props.markingScheme[2], "element")}{" "}
+              </span>
+              {markingSchemeMessages.unanswered[props.qDataType[0]]}
+            </Text>
+            <Text>
+              <strong>Incorrect: </strong>
+              <span className="text-green-600">
+                {marks(props.markingScheme[1], "element")}{" "}
+              </span>
+              {markingSchemeMessages.incorrect[props.qDataType[0]]}
             </Text>
           </PopoverBody>
         </PopoverContent>
@@ -94,13 +139,15 @@ const QuestionView = () => {
     return (
       <div className=" outline outline-1 outline-neutral-400 p-1 px-2 flex justify-between">
         <Text className="text-sm font-semibold">Question Type: MCQ</Text>
+
         <MarkingSchemeDisplay
           markingScheme={[
             [4, 1],
             [-1, 1],
             [0, 1],
           ]}
-          qDataType={[0, 0]}
+          qDataType={[2, 1]}
+          qTypeName="MSQ"
         />
       </div>
     );

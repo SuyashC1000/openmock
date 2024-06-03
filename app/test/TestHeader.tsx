@@ -5,6 +5,7 @@ import {
   Avatar,
   Button,
   ButtonGroup,
+  Checkbox,
   IconButton,
   Modal,
   ModalBody,
@@ -39,6 +40,17 @@ import QuestionLegend from "../components/QuestionLegend";
 
 interface Props {
   type: number;
+}
+
+interface SectionButtonProps {
+  optional: boolean;
+  sectionName: string;
+  active: boolean;
+}
+interface GroupButtonProps {
+  optional: boolean;
+  groupName: string;
+  active: boolean;
 }
 
 const TestHeader = () => {
@@ -108,14 +120,91 @@ const TestHeader = () => {
     );
   }
 
+  function SectionSelect() {
+    return (
+      <div
+        className=" bg-neutral-200 flex p-1 gap-2 items-center overflow-x-auto overflow-y-hidden"
+        style={{ scrollbarWidth: "thin" }}
+      >
+        <SectionButton
+          optional={false}
+          sectionName="Mathematics Section A"
+          active={true}
+        />
+        <SectionButton
+          optional={false}
+          sectionName="Mathematics Section B"
+          active={false}
+        />
+        <SectionButton
+          optional={false}
+          sectionName="Mathematics Section C"
+          active={false}
+        />
+        <SectionButton
+          optional={false}
+          sectionName="Mathematics Section D"
+          active={false}
+        />
+        <SectionButton
+          optional={false}
+          sectionName="Mathematics Section E"
+          active={false}
+        />
+        <SectionButton
+          optional={false}
+          sectionName="Mathematics Section F"
+          active={false}
+        />
+        <SectionButton
+          optional={false}
+          sectionName="Mathematics Section G"
+          active={false}
+        />
+        {/* <SectionButton optional={false} sectionName="Mathematics Section H" /> */}
+        {/* <SectionButton optional={false} sectionName="Mathematics Section I" /> */}
+      </div>
+    );
+
+    function SectionButton(props: SectionButtonProps) {
+      return (
+        <Popover placement="bottom" trigger="hover" openDelay={400}>
+          <PopoverContent>
+            <PopoverBody>
+              <strong>{props.sectionName}</strong>
+              <QuestionLegend legendCounts={[1, 2, 3, 4, 5]} viewMode={0} />
+            </PopoverBody>
+          </PopoverContent>
+
+          <PopoverAnchor>
+            <div
+              className={
+                (props.active ? "bg-blue-900 text-white" : "bg-white") +
+                ` flex items-center gap-0.5 p-1 rounded-md my-1 text-sm h-7 min-w-fit`
+              }
+            >
+              {props.optional && <Checkbox size={"sm"} />}
+              <Text>{props.sectionName}</Text>
+              <PopoverTrigger>
+                <TbInfoCircleFilled className="text-sky-600 text-base" />
+              </PopoverTrigger>
+            </div>
+          </PopoverAnchor>
+        </Popover>
+      );
+    }
+  }
+
   function HeaderDashboard() {
     return (
-      <div className="bg-red-200 h-auto flex">
+      <div className="h-auto flex">
         <div className=" flex-1 flex flex-box flex-col">
           <GroupSelect />
+          <TimerBar />
+          <SectionSelect />
         </div>
         <div
-          className="w-64 bg-white flex-0 flex flex-box items-start justify-start
+          className="w-64 bg-white flex-0 flex flex-box flex-col items-center justify-start
         gap-3 p-2 outline outline-1 outline-neutral-400"
         >
           <Avatar size={"lg"} className="flex-0 self-center" />
@@ -125,9 +214,29 @@ const TestHeader = () => {
     );
   }
 
+  function TimerBar() {
+    return (
+      <div className="bg-white h-8 flex justify-between items-center p-1 text-sm">
+        <Text>Sections</Text>
+        <Timer />
+      </div>
+    );
+  }
+
+  function Timer() {
+    return (
+      <div>
+        <Text className="font-semibold">
+          Time Left:{" "}
+          <span className="bg-neutral-300 p-1 rounded-lg">180:00</span>
+        </Text>
+      </div>
+    );
+  }
+
   function GroupSelect() {
     return (
-      <div className="h-10 bg-neutral-200 flex justify-between px-2">
+      <div className="h-10 bg-neutral-300 flex justify-between px-2">
         <GroupButtonGroup />
         <ToolsButtons />
       </div>
@@ -135,25 +244,30 @@ const TestHeader = () => {
 
     function GroupButtonGroup() {
       return (
-        <div className="flex">
-          <GroupButton />
+        <div className=" flex gap-2 items-center overflow-x-auto overflow-y-hidden">
+          <GroupButton active={true} groupName="Paper" optional={false} />
         </div>
       );
     }
 
-    function GroupButton() {
+    function GroupButton(props: GroupButtonProps) {
       return (
         <Popover placement="bottom" trigger="hover" openDelay={400}>
           <PopoverContent>
-            <PopoverHeader>Group</PopoverHeader>
             <PopoverBody>
+              <strong>{props.groupName}</strong>
               <QuestionLegend legendCounts={[1, 2, 3, 4, 5]} viewMode={0} />
             </PopoverBody>
           </PopoverContent>
 
           <PopoverAnchor>
-            <div className="bg-white flex items-center gap-1 p-1 rounded-lg my-1 text-sm">
-              Hello
+            <div
+              className={
+                (props.active ? "bg-blue-400 text-white" : "bg-white") +
+                ` flex items-center gap-0.5 p-1 rounded-md my-1 text-sm h-7 min-w-fit`
+              }
+            >
+              {props.groupName}
               <PopoverTrigger>
                 <TbInfoCircleFilled className="text-sky-700 text-base" />
               </PopoverTrigger>

@@ -11,6 +11,7 @@ import testData from "../../public/data/testData.json";
 
 const TestPage = () => {
   const testCache = testData;
+
   function reducer(state: Object, action: Object) {
     console.log(state);
     console.log(action);

@@ -11,6 +11,7 @@
   "body": [
     {
       "groupName": "General Aptitude",
+      "maxQuestions": 0,
       "sections": [
         {
           "sectionName": "GA Section A",
@@ -24,7 +25,15 @@
                 [4, 1],
                 [-1, 1],
                 [0, 1]
-              ]
+              ],
+              "question": ["What is the powerhouse of the cell?"],
+              "options": [
+                ["Mitochondria"],
+                ["RNA"],
+                ["Ribosome"],
+                ["Lysosome"]
+              ],
+              "answer": 0
             }
           ]
         }

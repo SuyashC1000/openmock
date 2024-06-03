@@ -23,9 +23,9 @@ export default function marks(
               : "text-neutral-400"
           }
         >
-          {rawMarks[0] >= 0 ? "+" : ""}
+          {rawMarks[0] > 0 ? "+" : ""}
           {rawMarks[0]}
-          {rawMarks[1] === 1 ? "" : "/" + rawMarks[1]}`
+          {rawMarks[1] === 1 ? "" : "/" + rawMarks[1]}
         </span>
       );
   }
