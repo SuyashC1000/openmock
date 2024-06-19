@@ -37,6 +37,7 @@ import rehypeKatex from "rehype-katex";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 import QuestionLegend from "../components/QuestionLegend";
+import { TestPaper } from "../interface/testData";
 
 interface Props {
   type: number;
@@ -51,9 +52,10 @@ interface GroupButtonProps {
   optional: boolean;
   groupName: string;
   active: boolean;
+  questionLegend: [number, number, number, number, number];
 }
 
-const TestHeader = () => {
+const TestHeader = (props: TestPaper) => {
   function PaperOptionsGroup() {
     return (
       <div className="flex text-white gap-2">
@@ -199,7 +201,11 @@ const TestHeader = () => {
     return (
       <div className="h-auto flex">
         <div className=" flex-1 flex flex-box flex-col">
-          <GroupSelect />
+          <GroupSelect
+            groupInstances={[
+              { groupName: "Main Group", legendCount: [1, 2, 3, 4, 5] },
+            ]}
+          />
           <TimerBar />
           <SectionSelect />
         </div>
@@ -233,22 +239,34 @@ const TestHeader = () => {
       </div>
     );
   }
+  interface GroupSelectProps {
+    groupInstances: [
+      {
+        groupName: string;
+        legendCount: [number, number, number, number, number];
+      }
+    ];
+  }
 
-  function GroupSelect() {
+  function GroupSelect(props: GroupSelectProps) {
     return (
       <div className="h-10 bg-neutral-300 flex justify-between px-2">
-        <GroupButtonGroup />
+        <div className=" flex gap-2 items-center overflow-x-auto overflow-y-hidden">
+          {props.groupInstances.map((e, i) => {
+            return (
+              <GroupButton
+                key={i}
+                active={false}
+                optional={false}
+                groupName={e.groupName}
+                questionLegend={e.legendCount}
+              />
+            );
+          })}
+        </div>
         <ToolsButtons />
       </div>
     );
-
-    function GroupButtonGroup() {
-      return (
-        <div className=" flex gap-2 items-center overflow-x-auto overflow-y-hidden">
-          <GroupButton active={true} groupName="Paper" optional={false} />
-        </div>
-      );
-    }
 
     function GroupButton(props: GroupButtonProps) {
       return (

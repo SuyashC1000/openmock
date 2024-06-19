@@ -1,0 +1,197 @@
+{
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "$ref": "#/definitions/TestData",
+  "definitions": {
+    "TestData": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "default": "Unnamed Test"
+        },
+        "timeCreated": {
+          "type": "integer"
+        },
+        "authors": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minLength": 1
+        },
+        "maxTime": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 999
+        },
+        "subjects": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "default": ["Uncategorised"]
+        },
+        "languages": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "default": ["English"]
+        },
+        "instructions": {
+          "type": "string"
+        },
+        "additionalTools": {
+          "$ref": "#/definitions/AdditionalTools"
+        },
+        "usefulData": {
+          "type": "string"
+        },
+        "body": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Body"
+          }
+        }
+      },
+      "required": [
+        "additionalTools",
+        "authors",
+        "body",
+        "id",
+        "instructions",
+        "languages",
+        "maxTime",
+        "name",
+        "subjects",
+        "timeCreated",
+        "usefulData"
+      ],
+      "title": "TestData"
+    },
+    "AdditionalTools": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "scientificCalculator": {
+          "type": "boolean"
+        }
+      },
+      "required": ["scientificCalculator"],
+      "title": "AdditionalTools"
+    },
+    "Body": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "groupName": {
+          "type": "string"
+        },
+        "sections": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Section"
+          }
+        }
+      },
+      "required": ["groupName", "sections"],
+      "title": "Body"
+    },
+    "Section": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "sectionName": {
+          "type": "string"
+        },
+        "maxQuestions": {
+          "type": "integer"
+        },
+        "consolidateSubject": {
+          "type": "string"
+        },
+        "questions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Question"
+          }
+        }
+      },
+      "required": [
+        "consolidateSubject",
+        "maxQuestions",
+        "questions",
+        "sectionName"
+      ],
+      "title": "Section"
+    },
+    "Question": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "qTypeName": {
+          "type": "string"
+        },
+        "qDataType": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        },
+        "markingScheme": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          }
+        },
+        "question": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "options": {
+          "type": ["array", "null"],
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "tags": {
+          "type": "array",
+          "items": {}
+        },
+        "answer": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "answer",
+        "id",
+        "markingScheme",
+        "options",
+        "qDataType",
+        "qTypeName",
+        "question",
+        "tags"
+      ],
+      "title": "Question"
+    }
+  }
+}

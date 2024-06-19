@@ -1,20 +1,23 @@
 {
   "id": "t1234567890",
   "name": "Test Paper",
-  "timestamp": 1717324690,
+  "timeCreated": 1717324690,
   "authors": ["Test", "test@test.com"],
   "maxTime": 180,
   "subjects": ["General Aptitude"],
   "languages": ["English"],
   "instructions": "",
+  "additionalTools": {
+    "scientificCalculator": false
+  },
   "usefulData": "",
   "body": [
     {
       "groupName": "General Aptitude",
-      "maxQuestions": 0,
       "sections": [
         {
           "sectionName": "GA Section A",
+          "maxQuestions": 0,
           "consolidateSubject": "General Aptitude",
           "questions": [
             {
@@ -33,6 +36,7 @@
                 ["Ribosome"],
                 ["Lysosome"]
               ],
+              "tags": [],
               "answer": 0
             }
           ]

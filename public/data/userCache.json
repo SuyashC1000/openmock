@@ -1,0 +1,28 @@
+{
+  "username": "John Doe",
+  "testId": "t1234567890",
+  "testStartTime": 1234567890,
+  "currentLanguageIndex": 0,
+  "body": [
+    {
+      "groupName": "Paper",
+      "active": false,
+      "sections": [
+        {
+          "sectionName": "General Aptitude",
+          "maxQuestions": 0,
+          "active": false,
+          "questions": [
+            {
+              "id": "q123456789",
+              "status": 0,
+              "submit": null,
+              "timeSpent": 0,
+              "lastAnswered": 12345667890
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

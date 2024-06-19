@@ -18,15 +18,14 @@ const TestPage = () => {
     return state;
   }
 
-  const [state, dispatch] = React.useReducer(reducer, testCache);
-
+  const userCache = {};
   React.useEffect(() => {
     console.log(testData);
   }, []);
 
   return (
     <div className="bg-slate-800 flex flex-box flex-col h-screen max-h-screen select-none">
-      <TestHeader />
+      <TestHeader {...testData} />
       <div className="h-auto flex flex-1 w-screen overflow-hidden">
         <TestMainWindow />
         <TestSidebar />
