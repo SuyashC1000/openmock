@@ -1,7 +1,8 @@
 import { Button, ButtonGroup } from "@chakra-ui/react";
 import React from "react";
+import { TestProps } from "../interface/testProps";
 
-const TestBottombar = () => {
+const TestBottombar = (props: TestProps) => {
   return (
     <div
       className="h-16 w-screen bg-white flex flex-0 justify-between

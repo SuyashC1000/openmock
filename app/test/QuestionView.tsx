@@ -19,20 +19,32 @@ import {
 import QuestionLegend from "../components/QuestionLegend";
 import marks from "../formatters/marks";
 import numberToWords from "../formatters/numberToWords";
+import {
+  UserCache,
+  UserCacheQuestion,
+  UserCacheSection,
+} from "../interface/userCache";
+import { TestProps } from "../interface/testProps";
+import { getActiveSection } from "../formatters/getFunctions";
+import UserAnswer from "./UserAnswer";
 
-interface Props {
+interface MarkingSchemeProps {
   markingScheme: [[number, number], [number, number], [number, number], ...[]];
   qDataType: [number, number];
   qTypeName: string;
 }
 
-const QuestionView = () => {
-  const [markdown, setMarkdown] = React.useState(`
-  # Hello
-  this is a *question* with **formatting**
+const QuestionView = (props: TestProps) => {
+  let activeSection: UserCacheSection = getActiveSection(props.state);
 
-  $$1 + 1 = 2$$
-  `);
+  let activeQuestion: UserCacheQuestion =
+    activeSection.questions[activeSection.qIndex];
+
+  const [markdown, setMarkdown] = React.useState(
+    props.testPaper.body[props.state.activeGroupIndex].sections[
+      props.state.body[props.state.activeGroupIndex].activeSectionIndex
+    ].questions[activeSection.qIndex].question[props.state.currentLanguageIndex]
+  );
 
   // React.useEffect(() => {
   //   fetch(sampleRaw)
@@ -40,7 +52,7 @@ const QuestionView = () => {
   //     .then((text) => setMarkdown(text));
   // }, []);
 
-  function MarkingSchemeDisplay(props: Props) {
+  function MarkingSchemeDisplay(props: MarkingSchemeProps) {
     const markingSchemeMessages = {
       correct: [
         "ONLY if the correct option is chosen",
@@ -153,10 +165,6 @@ const QuestionView = () => {
     );
   }
 
-  function UserAnswer() {
-    return <div>hi</div>;
-  }
-
   return (
     <div className="flex flex-col">
       <QuestionInfoHeader />
@@ -168,7 +176,7 @@ const QuestionView = () => {
       >
         {markdown}
       </Markdown>
-      <UserAnswer />
+      <UserAnswer {...props} />
     </div>
   );
 };

@@ -6,32 +6,40 @@ export interface TestPaper {
   maxTime: number;
   subjects: string[];
   languages: string[];
+  instructions: string;
   additionalTools: {
     scientificCalculator: boolean;
+    [k: string]: unknown;
   };
-  instructions: string;
-  usefulData: string | null;
-  body: Group[];
+  usefulData: string;
+  body: TestPaperGroup[];
+  [k: string]: unknown;
 }
 
-export interface Group {
-  groupName: string;
-  sections: Section[];
-}
-
-export interface Section {
-  sectionName: string;
-  consolidateSubject: string;
-  maxQuestions: number;
-  questions: Question[];
-}
-
-export interface Question {
+type TestPaperQuestion = {
   id: string;
   qTypeName: string;
   qDataType: number[];
-  markingScheme: Array<number[]>;
+  markingScheme: number[][];
   question: string[];
-  options: Array<string[]>;
+  options: string[][];
+  tags: unknown[];
   answer: number;
+  [k: string]: unknown;
+};
+
+type TestPaperSection = {
+  sectionName: string;
+  maxQuestions: number;
+  consolidateSubject: string;
+  optional: boolean;
+  questions: TestPaperQuestion[];
+  [k: string]: unknown;
+};
+
+export interface TestPaperGroup {
+  groupName: string;
+  constraints?: Object;
+  sections: TestPaperSection[];
+  [k: string]: unknown;
 }

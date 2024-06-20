@@ -5,15 +5,17 @@ export default function userCacheGenerator(
   testPaper: TestPaper,
   username: string
 ): UserCache {
+  //
   let newBody = testPaper.body.map((e, i) => {
     return {
       groupName: e.groupName,
-      active: false,
+      activeSectionIndex: 0,
       sections: e.sections.map((f, j) => {
         return {
           sectionName: f.sectionName,
           maxQuestions: f.maxQuestions,
-          active: false,
+          optional: f.optional,
+          qIndex: 0,
           questions: f.questions.map((g, k) => {
             return {
               id: g.id,
@@ -27,8 +29,12 @@ export default function userCacheGenerator(
       }),
     };
   });
+
+  console.log(newBody);
+
   let foundation: UserCache = {
     body: newBody,
+    activeGroupIndex: 0,
     testId: testPaper.id,
     username: username,
     currentLanguageIndex: 0,

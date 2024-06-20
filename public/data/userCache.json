@@ -12,6 +12,7 @@
           "sectionName": "General Aptitude",
           "maxQuestions": 0,
           "active": false,
+          "qIndex": 0,
           "questions": [
             {
               "id": "q123456789",

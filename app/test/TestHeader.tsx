@@ -38,8 +38,15 @@ import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 import QuestionLegend from "../components/QuestionLegend";
 import { TestPaper } from "../interface/testData";
+import { TestProps } from "../interface/testProps";
+import {
+  getActiveGroup,
+  getGroupQuestionLegend,
+  getSectionQuestionLegend,
+} from "../formatters/getFunctions";
+import { UserCacheGroup } from "../interface/userCache";
 
-interface Props {
+interface PaperOptionsProps {
   type: number;
 }
 
@@ -47,15 +54,16 @@ interface SectionButtonProps {
   optional: boolean;
   sectionName: string;
   active: boolean;
+  questionLegend: number[];
 }
 interface GroupButtonProps {
   optional: boolean;
   groupName: string;
   active: boolean;
-  questionLegend: [number, number, number, number, number];
+  questionLegend: number[];
 }
 
-const TestHeader = (props: TestPaper) => {
+const TestHeader = (props: TestProps) => {
   function PaperOptionsGroup() {
     return (
       <div className="flex text-white gap-2">
@@ -66,7 +74,7 @@ const TestHeader = (props: TestPaper) => {
     );
   }
 
-  function PaperOptions(props: Props) {
+  function PaperOptions(props: PaperOptionsProps) {
     const { isOpen, onOpen, onClose } = useDisclosure();
 
     const paperOptionsContent = [
@@ -123,48 +131,24 @@ const TestHeader = (props: TestPaper) => {
   }
 
   function SectionSelect() {
+    let activeGroup: UserCacheGroup = getActiveGroup(props.state);
+
     return (
       <div
         className=" bg-neutral-200 flex p-1 gap-2 items-center overflow-x-auto overflow-y-hidden"
         style={{ scrollbarWidth: "thin" }}
       >
-        <SectionButton
-          optional={false}
-          sectionName="Mathematics Section A"
-          active={true}
-        />
-        <SectionButton
-          optional={false}
-          sectionName="Mathematics Section B"
-          active={false}
-        />
-        <SectionButton
-          optional={false}
-          sectionName="Mathematics Section C"
-          active={false}
-        />
-        <SectionButton
-          optional={false}
-          sectionName="Mathematics Section D"
-          active={false}
-        />
-        <SectionButton
-          optional={false}
-          sectionName="Mathematics Section E"
-          active={false}
-        />
-        <SectionButton
-          optional={false}
-          sectionName="Mathematics Section F"
-          active={false}
-        />
-        <SectionButton
-          optional={false}
-          sectionName="Mathematics Section G"
-          active={false}
-        />
-        {/* <SectionButton optional={false} sectionName="Mathematics Section H" /> */}
-        {/* <SectionButton optional={false} sectionName="Mathematics Section I" /> */}
+        {activeGroup.sections.map((e, i) => {
+          return (
+            <SectionButton
+              key={i}
+              optional={e.optional}
+              active={i == activeGroup.activeSectionIndex}
+              sectionName={e.sectionName}
+              questionLegend={getSectionQuestionLegend(e)}
+            ></SectionButton>
+          );
+        })}
       </div>
     );
 
@@ -174,7 +158,10 @@ const TestHeader = (props: TestPaper) => {
           <PopoverContent>
             <PopoverBody>
               <strong>{props.sectionName}</strong>
-              <QuestionLegend legendCounts={[1, 2, 3, 4, 5]} viewMode={0} />
+              <QuestionLegend
+                legendCounts={props.questionLegend}
+                viewMode={0}
+              />
             </PopoverBody>
           </PopoverContent>
 
@@ -201,11 +188,7 @@ const TestHeader = (props: TestPaper) => {
     return (
       <div className="h-auto flex">
         <div className=" flex-1 flex flex-box flex-col">
-          <GroupSelect
-            groupInstances={[
-              { groupName: "Main Group", legendCount: [1, 2, 3, 4, 5] },
-            ]}
-          />
+          <GroupSelect {...props} />
           <TimerBar />
           <SectionSelect />
         </div>
@@ -239,27 +222,19 @@ const TestHeader = (props: TestPaper) => {
       </div>
     );
   }
-  interface GroupSelectProps {
-    groupInstances: [
-      {
-        groupName: string;
-        legendCount: [number, number, number, number, number];
-      }
-    ];
-  }
 
-  function GroupSelect(props: GroupSelectProps) {
+  function GroupSelect(props: TestProps) {
     return (
       <div className="h-10 bg-neutral-300 flex justify-between px-2">
         <div className=" flex gap-2 items-center overflow-x-auto overflow-y-hidden">
-          {props.groupInstances.map((e, i) => {
+          {props.state.body.map((e, i) => {
             return (
               <GroupButton
                 key={i}
-                active={false}
+                active={i == e.activeSectionIndex}
                 optional={false}
                 groupName={e.groupName}
-                questionLegend={e.legendCount}
+                questionLegend={getGroupQuestionLegend(e)}
               />
             );
           })}
@@ -274,7 +249,10 @@ const TestHeader = (props: TestPaper) => {
           <PopoverContent>
             <PopoverBody>
               <strong>{props.groupName}</strong>
-              <QuestionLegend legendCounts={[1, 2, 3, 4, 5]} viewMode={0} />
+              <QuestionLegend
+                legendCounts={props.questionLegend}
+                viewMode={0}
+              />
             </PopoverBody>
           </PopoverContent>
 
@@ -327,7 +305,7 @@ const TestHeader = (props: TestPaper) => {
         className="h-8 w-screen bg-neutral-800 flex flex-0 justify-between
       items-center px-4 gap-4 outline-1 outline-slate-600 grow-0"
       >
-        <Text color={"white"}>Test Paper Name</Text>
+        <Text color={"white"}>{props.testPaper.name}</Text>
         <PaperOptionsGroup />
       </div>
       <HeaderDashboard />

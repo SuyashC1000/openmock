@@ -174,7 +174,9 @@
         },
         "tags": {
           "type": "array",
-          "items": {}
+          "items": {
+            "type": "string"
+          }
         },
         "answer": {
           "type": "integer",

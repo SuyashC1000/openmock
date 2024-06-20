@@ -3,7 +3,7 @@ import React from "react";
 import QuestionBtn from "./QuestionBtn";
 
 interface Props {
-  legendCounts: [number, number, number, number, number];
+  legendCounts: number[];
   viewMode: number;
 }
 

@@ -4,7 +4,7 @@
   "timeCreated": 1717324690,
   "authors": ["Test", "test@test.com"],
   "maxTime": 180,
-  "subjects": ["General Aptitude"],
+  "subjects": ["General Aptitude", "Science"],
   "languages": ["English"],
   "instructions": "",
   "additionalTools": {
@@ -16,8 +16,106 @@
       "groupName": "General Aptitude",
       "sections": [
         {
+          "sectionName": "General Knowledge",
+          "maxQuestions": 0,
+          "optional": false,
+          "consolidateSubject": "General Aptitude",
+          "questions": [
+            {
+              "id": "q123456789",
+              "qTypeName": "",
+              "qDataType": [0, 4],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1],
+                [0, 1]
+              ],
+              "question": ["What is the powerhouse of the cell?"],
+              "options": [
+                ["Mitochondria"],
+                ["RNA"],
+                ["Ribosome"],
+                ["Lysosome"]
+              ],
+              "tags": [],
+              "answer": 0
+            },
+            {
+              "id": "q123456790",
+              "qTypeName": "",
+              "qDataType": [0, 4],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1],
+                [0, 1]
+              ],
+              "question": ["What is the powerhouse of the cell?"],
+              "options": [
+                ["Mitochondria"],
+                ["RNA"],
+                ["Ribosome"],
+                ["Lysosome"]
+              ],
+              "tags": [],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "sectionName": "Logical Reasoning",
+          "maxQuestions": 0,
+          "optional": false,
+          "consolidateSubject": "General Aptitude",
+          "questions": [
+            {
+              "id": "q123456789",
+              "qTypeName": "",
+              "qDataType": [0, 4],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1],
+                [0, 1]
+              ],
+              "question": ["What is the powerhouse of the cell?"],
+              "options": [
+                ["Mitochondria"],
+                ["RNA"],
+                ["Ribosome"],
+                ["Lysosome"]
+              ],
+              "tags": [],
+              "answer": 0
+            },
+            {
+              "id": "q123456790",
+              "qTypeName": "",
+              "qDataType": [0, 4],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1],
+                [0, 1]
+              ],
+              "question": ["What is the powerhouse of the cell?"],
+              "options": [
+                ["Mitochondria"],
+                ["RNA"],
+                ["Ribosome"],
+                ["Lysosome"]
+              ],
+              "tags": [],
+              "answer": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "groupName": "Science",
+      "sections": [
+        {
           "sectionName": "GA Section A",
           "maxQuestions": 0,
+          "optional": false,
           "consolidateSubject": "General Aptitude",
           "questions": [
             {

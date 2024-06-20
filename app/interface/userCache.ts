@@ -1,28 +1,34 @@
+export interface UserCacheQuestion {
+  id: string;
+  status: number;
+  submit: unknown;
+  timeSpent: number;
+  lastAnswered: number | null;
+  [k: string]: unknown;
+}
+
+export interface UserCacheSection {
+  sectionName: string;
+  qIndex: number;
+  maxQuestions: number;
+  optional: boolean;
+  questions: UserCacheQuestion[];
+  [k: string]: unknown;
+}
+
+export interface UserCacheGroup {
+  groupName: string;
+  activeSectionIndex: number;
+  sections: UserCacheSection[];
+  [k: string]: unknown;
+}
+
 export interface UserCache {
   username: string;
   testId: string;
   testStartTime: number;
   currentLanguageIndex: number;
-  body: UserCacheBody[];
-}
-
-export interface UserCacheBody {
-  groupName: string;
-  active: boolean;
-  sections: UserCacheSection[];
-}
-
-export interface UserCacheSection {
-  sectionName: string;
-  maxQuestions: number;
-  active: boolean;
-  questions: UserCacheQuestion[];
-}
-
-export interface UserCacheQuestion {
-  id: string;
-  status: number;
-  submit: any;
-  timeSpent: number;
-  lastAnswered: number | null;
+  activeGroupIndex: number;
+  body: UserCacheGroup[];
+  [k: string]: unknown;
 }
