@@ -40,7 +40,7 @@ import QuestionLegend from "../components/QuestionLegend";
 import { TestPaper } from "../interface/testData";
 import { TestProps } from "../interface/testProps";
 import {
-  getActiveGroup,
+  getActiveGroupCache,
   getGroupQuestionLegend,
   getSectionQuestionLegend,
 } from "../formatters/getFunctions";
@@ -131,7 +131,7 @@ const TestHeader = (props: TestProps) => {
   }
 
   function SectionSelect() {
-    let activeGroup: UserCacheGroup = getActiveGroup(props.state);
+    let activeGroup: UserCacheGroup = getActiveGroupCache(props.state);
 
     return (
       <div

@@ -6,7 +6,7 @@ import { TestProps } from "../interface/testProps";
 
 const TestMainWindow = (props: TestProps) => {
   return (
-    <div className="bg-white flex-1 ">
+    <div className="bg-white flex-1 overflow-y-auto">
       <QuestionView {...props} />
     </div>
   );

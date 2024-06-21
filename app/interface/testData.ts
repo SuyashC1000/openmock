@@ -16,26 +16,26 @@ export interface TestPaper {
   [k: string]: unknown;
 }
 
-type TestPaperQuestion = {
+export interface TestPaperQuestion {
   id: string;
   qTypeName: string;
   qDataType: number[];
   markingScheme: number[][];
   question: string[];
-  options: string[][];
+  options: string[][] | null;
   tags: unknown[];
   answer: number;
   [k: string]: unknown;
-};
+}
 
-type TestPaperSection = {
+export interface TestPaperSection {
   sectionName: string;
   maxQuestions: number;
   consolidateSubject: string;
   optional: boolean;
   questions: TestPaperQuestion[];
   [k: string]: unknown;
-};
+}
 
 export interface TestPaperGroup {
   groupName: string;

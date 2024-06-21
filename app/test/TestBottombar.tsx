@@ -21,7 +21,12 @@ const TestBottombar = (props: TestProps) => {
         <Button fontWeight={"400"} variant="outline" colorScheme="blue">
           Previous
         </Button>
-        <Button fontWeight={"400"} variant="outline" colorScheme="blue">
+        <Button
+          fontWeight={"400"}
+          variant="outline"
+          colorScheme="blue"
+          form="userAnswer"
+        >
           Save & Next
         </Button>
         <Button fontWeight={"400"} colorScheme="blue" className="justify-end">

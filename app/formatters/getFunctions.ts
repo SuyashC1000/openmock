@@ -1,3 +1,4 @@
+import { TestPaper, TestPaperQuestion } from "../interface/testData";
 import {
   UserCache,
   UserCacheGroup,
@@ -16,7 +17,6 @@ export function getGroupQuestionLegend(state: UserCacheGroup): number[] {
 }
 export function getSectionQuestionLegend(state: UserCacheSection): number[] {
   let tally = [0, 0, 0, 0, 0];
-  console.log(state);
 
   state.questions.forEach((e, i) => {
     tally[e.status]++;
@@ -24,16 +24,26 @@ export function getSectionQuestionLegend(state: UserCacheSection): number[] {
   return tally;
 }
 
-export function getActiveGroup(state: UserCache): UserCacheGroup {
+export function getActiveGroupCache(state: UserCache): UserCacheGroup {
   return state.body[state.activeGroupIndex];
 }
 
-export function getActiveSection(state: UserCache): UserCacheSection {
-  const activeGroup = getActiveGroup(state);
-  return activeGroup.sections[activeGroup.activeSectionIndex];
+export function getActiveSectionCache(state: UserCache): UserCacheSection {
+  const activeGroupCache = getActiveGroupCache(state);
+  return activeGroupCache.sections[activeGroupCache.activeSectionIndex];
 }
 
-export function getActiveQuestion(state: UserCache): UserCacheQuestion {
-  const activeSection = getActiveSection(state);
-  return activeSection.questions[activeSection.qIndex];
+export function getActiveQuestionCache(state: UserCache): UserCacheQuestion {
+  const activeSectionCache = getActiveSectionCache(state);
+  return activeSectionCache.questions[activeSectionCache.qIndex];
+}
+
+export function getActiveQuestion(
+  testPaper: TestPaper,
+  state: UserCache
+): TestPaperQuestion {
+  let activeGroup = testPaper.body[state.activeGroupIndex];
+  let activeSection =
+    activeGroup.sections[getActiveGroupCache(state).activeSectionIndex];
+  return activeSection.questions[getActiveSectionCache(state).qIndex];
 }

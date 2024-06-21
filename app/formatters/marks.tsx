@@ -1,9 +1,6 @@
 import React from "react";
 
-export default function marks(
-  rawMarks: [...[number, number]],
-  type: string = "number"
-) {
+export default function marks(rawMarks: number[], type: string = "number") {
   switch (type) {
     case "number":
       return rawMarks[0] / rawMarks[1];
@@ -19,8 +16,8 @@ export default function marks(
             rawMarks[0] > 0
               ? "text-green-600"
               : rawMarks[0] < 0
-              ? "text-red-600"
-              : "text-neutral-400"
+                ? "text-red-600"
+                : "text-neutral-400"
           }
         >
           {rawMarks[0] > 0 ? "+" : ""}

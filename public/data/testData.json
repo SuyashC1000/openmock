@@ -22,27 +22,22 @@
           "consolidateSubject": "General Aptitude",
           "questions": [
             {
-              "id": "q123456789",
+              "id": "q123456790",
               "qTypeName": "",
-              "qDataType": [0, 4],
+              "qDataType": [2, 1],
               "markingScheme": [
                 [4, 1],
                 [-1, 1],
                 [0, 1]
               ],
-              "question": ["What is the powerhouse of the cell?"],
-              "options": [
-                ["Mitochondria"],
-                ["RNA"],
-                ["Ribosome"],
-                ["Lysosome"]
-              ],
+              "question": ["How many states are there in the USA?"],
+              "options": null,
               "tags": [],
               "answer": 0
             },
             {
-              "id": "q123456790",
-              "qTypeName": "",
+              "id": "q123456789",
+              "qTypeName": "SCQ",
               "qDataType": [0, 4],
               "markingScheme": [
                 [4, 1],

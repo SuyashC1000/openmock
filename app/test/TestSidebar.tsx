@@ -13,12 +13,12 @@ import {
 } from "../interface/userCache";
 import { TestProps } from "../interface/testProps";
 import {
-  getActiveSection,
+  getActiveSectionCache,
   getSectionQuestionLegend,
 } from "../formatters/getFunctions";
 
 const TestSidebar = (props: TestProps) => {
-  let activeSection: UserCacheSection = getActiveSection(props.state);
+  let activeSection: UserCacheSection = getActiveSectionCache(props.state);
 
   function SectionHeading() {
     return (

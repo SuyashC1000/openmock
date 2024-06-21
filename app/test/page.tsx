@@ -12,8 +12,8 @@ import userCacheGenerator from "../formatters/userCacheGenerator";
 import userCacheReducer from "../formatters/userCacheReducer";
 import { TestProps } from "../interface/testProps";
 
+const testCache = testData;
 const TestPage = () => {
-  const testCache = testData;
   const [state, dispatch] = React.useReducer(
     userCacheReducer,
     userCacheGenerator(testData, "Hello")
@@ -24,9 +24,6 @@ const TestPage = () => {
     console.log(action);
     return state;
   }
-  React.useEffect(() => {
-    console.log(testData);
-  }, []);
 
   const essentials: TestProps = {
     testPaper: testCache,

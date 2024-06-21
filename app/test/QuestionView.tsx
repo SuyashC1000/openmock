@@ -25,20 +25,27 @@ import {
   UserCacheSection,
 } from "../interface/userCache";
 import { TestProps } from "../interface/testProps";
-import { getActiveSection } from "../formatters/getFunctions";
+import {
+  getActiveQuestion,
+  getActiveSectionCache,
+} from "../formatters/getFunctions";
 import UserAnswer from "./UserAnswer";
+import { TestPaperQuestion } from "../interface/testData";
+import { log } from "console";
 
 interface MarkingSchemeProps {
-  markingScheme: [[number, number], [number, number], [number, number], ...[]];
-  qDataType: [number, number];
+  markingScheme: number[][];
+  qDataType: number[];
   qTypeName: string;
 }
 
 const QuestionView = (props: TestProps) => {
-  let activeSection: UserCacheSection = getActiveSection(props.state);
+  let activeSection: UserCacheSection = getActiveSectionCache(props.state);
 
-  let activeQuestion: UserCacheQuestion =
-    activeSection.questions[activeSection.qIndex];
+  let activeQuestion: TestPaperQuestion = getActiveQuestion(
+    props.testPaper,
+    props.state
+  );
 
   const [markdown, setMarkdown] = React.useState(
     props.testPaper.body[props.state.activeGroupIndex].sections[
@@ -150,16 +157,14 @@ const QuestionView = (props: TestProps) => {
   function QuestionInfoHeader() {
     return (
       <div className=" outline outline-1 outline-neutral-400 p-1 px-2 flex justify-between">
-        <Text className="text-sm font-semibold">Question Type: MCQ</Text>
+        <Text className="text-sm font-semibold">
+          Question Type: {activeQuestion.qTypeName}
+        </Text>
 
         <MarkingSchemeDisplay
-          markingScheme={[
-            [4, 1],
-            [-1, 1],
-            [0, 1],
-          ]}
-          qDataType={[2, 1]}
-          qTypeName="MSQ"
+          markingScheme={activeQuestion.markingScheme}
+          qDataType={activeQuestion.qDataType}
+          qTypeName={activeQuestion.qTypeName}
         />
       </div>
     );
@@ -168,7 +173,9 @@ const QuestionView = (props: TestProps) => {
   return (
     <div className="flex flex-col">
       <QuestionInfoHeader />
-      <Text className="font-semibold p-1">Question No. 1</Text>
+      <Text className="font-semibold p-1">
+        Question No. {getActiveSectionCache(props.state).qIndex + 1}
+      </Text>
       <Markdown
         className="p-4 font-serif"
         remarkPlugins={[remarkGfm, remarkMath]}
