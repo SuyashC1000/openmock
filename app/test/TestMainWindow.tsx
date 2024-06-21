@@ -4,10 +4,10 @@ import QuestionView from "./QuestionView";
 import { UserCache } from "../interface/userCache";
 import { TestProps } from "../interface/testProps";
 
-const TestMainWindow = (props: TestProps) => {
+const TestMainWindow = () => {
   return (
     <div className="bg-white flex-1 overflow-y-auto">
-      <QuestionView {...props} />
+      <QuestionView />
     </div>
   );
 };

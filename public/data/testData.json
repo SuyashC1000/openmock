@@ -23,7 +23,7 @@
           "questions": [
             {
               "id": "q123456790",
-              "qTypeName": "",
+              "qTypeName": "NNI",
               "qDataType": [2, 1],
               "markingScheme": [
                 [4, 1],

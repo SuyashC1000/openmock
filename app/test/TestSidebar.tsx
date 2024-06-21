@@ -16,9 +16,12 @@ import {
   getActiveSectionCache,
   getSectionQuestionLegend,
 } from "../formatters/getFunctions";
+import { StateContext } from "./page";
 
-const TestSidebar = (props: TestProps) => {
-  let activeSection: UserCacheSection = getActiveSectionCache(props.state);
+const TestSidebar = () => {
+  const state = React.useContext(StateContext);
+
+  let activeSection: UserCacheSection = getActiveSectionCache(state);
 
   function SectionHeading() {
     return (

@@ -32,6 +32,7 @@ import {
 import UserAnswer from "./UserAnswer";
 import { TestPaperQuestion } from "../interface/testData";
 import { log } from "console";
+import { StateContext, TestPaperContext } from "./page";
 
 interface MarkingSchemeProps {
   markingScheme: number[][];
@@ -39,18 +40,17 @@ interface MarkingSchemeProps {
   qTypeName: string;
 }
 
-const QuestionView = (props: TestProps) => {
-  let activeSection: UserCacheSection = getActiveSectionCache(props.state);
+const QuestionView = () => {
+  const testPaper = React.useContext(TestPaperContext);
+  const state = React.useContext(StateContext);
 
-  let activeQuestion: TestPaperQuestion = getActiveQuestion(
-    props.testPaper,
-    props.state
-  );
+  let activeSection: UserCacheSection = getActiveSectionCache(state);
+  let activeQuestion: TestPaperQuestion = getActiveQuestion(testPaper, state);
 
   const [markdown, setMarkdown] = React.useState(
-    props.testPaper.body[props.state.activeGroupIndex].sections[
-      props.state.body[props.state.activeGroupIndex].activeSectionIndex
-    ].questions[activeSection.qIndex].question[props.state.currentLanguageIndex]
+    testPaper.body[state.activeGroupIndex].sections[
+      state.body[state.activeGroupIndex].activeSectionIndex
+    ].questions[activeSection.qIndex].question[state.currentLanguageIndex]
   );
 
   // React.useEffect(() => {
@@ -174,7 +174,7 @@ const QuestionView = (props: TestProps) => {
     <div className="flex flex-col">
       <QuestionInfoHeader />
       <Text className="font-semibold p-1">
-        Question No. {getActiveSectionCache(props.state).qIndex + 1}
+        Question No. {getActiveSectionCache(state).qIndex + 1}
       </Text>
       <Markdown
         className="p-4 font-serif"
@@ -183,7 +183,7 @@ const QuestionView = (props: TestProps) => {
       >
         {markdown}
       </Markdown>
-      <UserAnswer {...props} />
+      <UserAnswer />
     </div>
   );
 };

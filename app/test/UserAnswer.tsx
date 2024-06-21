@@ -22,15 +22,19 @@ import {
   RadioGroup,
 } from "@chakra-ui/react";
 import { log } from "console";
+import { StateContext, TestPaperContext } from "./page";
 
 interface UserAnswerInputProps {
   question: TestPaperQuestion;
   state: UserCacheQuestion;
 }
 
-const UserAnswer = (props: TestProps) => {
-  let activeQuestion = getActiveQuestion(props.testPaper, props.state);
-  let activeQuestionCache = getActiveQuestionCache(props.state);
+const UserAnswer = () => {
+  const testPaper = React.useContext(TestPaperContext);
+  const state = React.useContext(StateContext);
+
+  let activeQuestion = getActiveQuestion(testPaper, state);
+  let activeQuestionCache = getActiveQuestionCache(state);
 
   const SingleCorrectChoices = (userAnswerInputProps: UserAnswerInputProps) => {
     return (
@@ -44,7 +48,7 @@ const UserAnswer = (props: TestProps) => {
                   remarkPlugins={[remarkGfm, remarkMath]}
                   rehypePlugins={[rehypeKatex]}
                 >
-                  {activeQuestion.options![i][props.state.currentLanguageIndex]}
+                  {activeQuestion.options![i][state.currentLanguageIndex]}
                 </Markdown>
               </Radio>
             );
@@ -67,7 +71,7 @@ const UserAnswer = (props: TestProps) => {
                   remarkPlugins={[remarkGfm, remarkMath]}
                   rehypePlugins={[rehypeKatex]}
                 >
-                  {activeQuestion.options![i][props.state.currentLanguageIndex]}
+                  {activeQuestion.options![i][state.currentLanguageIndex]}
                 </Markdown>
               </Checkbox>
             );

@@ -1,8 +1,10 @@
 import { Button, ButtonGroup } from "@chakra-ui/react";
 import React from "react";
-import { TestProps } from "../interface/testProps";
+import { DispatchContext } from "./page";
 
-const TestBottombar = (props: TestProps) => {
+const TestBottombar = () => {
+  const dispatch = React.useContext(DispatchContext);
+
   return (
     <div
       className="h-16 w-screen bg-white flex flex-0 justify-between
@@ -16,6 +18,25 @@ const TestBottombar = (props: TestProps) => {
           Clear Response
         </Button>
       </ButtonGroup>
+
+      <Button
+        onClick={() => {
+          console.log("Logged");
+
+          dispatch({ type: "set_active_question", payload: 1 });
+        }}
+      >
+        Tester1
+      </Button>
+      <Button
+        onClick={() => {
+          console.log("Logged");
+
+          dispatch({ type: "update_question_status", payload: 4 });
+        }}
+      >
+        Tester2
+      </Button>
 
       <ButtonGroup>
         <Button fontWeight={"400"} variant="outline" colorScheme="blue">

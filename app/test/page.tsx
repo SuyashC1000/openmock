@@ -9,8 +9,17 @@ import TestMainWindow from "./TestMainWindow";
 import TestBottombar from "./TestBottombar";
 import testData from "../../public/data/testData.json";
 import userCacheGenerator from "../formatters/userCacheGenerator";
-import userCacheReducer from "../formatters/userCacheReducer";
+import userCacheReducer, { Action } from "../formatters/userCacheReducer";
 import { TestProps } from "../interface/testProps";
+import { emptyTestPaper, emptyUserCache } from "./empty";
+
+interface DispatchFunction {
+  (action: Action): void;
+}
+
+export const StateContext = React.createContext(emptyUserCache);
+export const DispatchContext = React.createContext(function noop({}) {});
+export const TestPaperContext = React.createContext(emptyTestPaper);
 
 const testCache = testData;
 const TestPage = () => {
@@ -18,32 +27,23 @@ const TestPage = () => {
     userCacheReducer,
     userCacheGenerator(testData, "Hello")
   );
-
-  function reducer(state: Object, action: Object) {
-    console.log(state);
-    console.log(action);
-    return state;
-  }
-
-  const essentials: TestProps = {
-    testPaper: testCache,
-    dispatch: dispatch,
-    state: state,
-  };
+  console.log(dispatch);
 
   return (
-    <div className="bg-slate-800 flex flex-box flex-col h-screen max-h-screen select-none">
-      <TestHeader {...essentials} />
-      <div className="h-auto flex flex-1 w-screen overflow-hidden">
-        <TestMainWindow
-          testPaper={testData}
-          state={state}
-          dispatch={dispatch}
-        />
-        <TestSidebar {...essentials} />
-      </div>
-      <TestBottombar {...essentials} />
-    </div>
+    <TestPaperContext.Provider value={testData}>
+      <StateContext.Provider value={state}>
+        <DispatchContext.Provider value={dispatch}>
+          <div className="bg-slate-800 flex flex-box flex-col h-screen max-h-screen select-none">
+            <TestHeader />
+            <div className="h-auto flex flex-1 w-screen overflow-hidden">
+              <TestMainWindow />
+              <TestSidebar />
+            </div>
+            <TestBottombar />
+          </div>
+        </DispatchContext.Provider>
+      </StateContext.Provider>
+    </TestPaperContext.Provider>
   );
 };
 

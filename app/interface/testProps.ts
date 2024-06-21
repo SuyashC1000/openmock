@@ -6,3 +6,7 @@ export interface TestProps {
   dispatch: Function;
   testPaper: TestPaper;
 }
+
+interface DispatchFunc {
+  (type: string, payload: any): void;
+}

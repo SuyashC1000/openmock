@@ -45,6 +45,7 @@ import {
   getSectionQuestionLegend,
 } from "../formatters/getFunctions";
 import { UserCacheGroup } from "../interface/userCache";
+import { StateContext, TestPaperContext } from "./page";
 
 interface PaperOptionsProps {
   type: number;
@@ -63,7 +64,10 @@ interface GroupButtonProps {
   questionLegend: number[];
 }
 
-const TestHeader = (props: TestProps) => {
+const TestHeader = () => {
+  const state = React.useContext(StateContext);
+  const testPaper = React.useContext(TestPaperContext);
+
   function PaperOptionsGroup() {
     return (
       <div className="flex text-white gap-2">
@@ -131,7 +135,7 @@ const TestHeader = (props: TestProps) => {
   }
 
   function SectionSelect() {
-    let activeGroup: UserCacheGroup = getActiveGroupCache(props.state);
+    let activeGroup: UserCacheGroup = getActiveGroupCache(state);
 
     return (
       <div
@@ -188,7 +192,7 @@ const TestHeader = (props: TestProps) => {
     return (
       <div className="h-auto flex">
         <div className=" flex-1 flex flex-box flex-col">
-          <GroupSelect {...props} />
+          <GroupSelect />
           <TimerBar />
           <SectionSelect />
         </div>
@@ -223,11 +227,11 @@ const TestHeader = (props: TestProps) => {
     );
   }
 
-  function GroupSelect(props: TestProps) {
+  function GroupSelect() {
     return (
       <div className="h-10 bg-neutral-300 flex justify-between px-2">
         <div className=" flex gap-2 items-center overflow-x-auto overflow-y-hidden">
-          {props.state.body.map((e, i) => {
+          {state.body.map((e, i) => {
             return (
               <GroupButton
                 key={i}
@@ -305,7 +309,7 @@ const TestHeader = (props: TestProps) => {
         className="h-8 w-screen bg-neutral-800 flex flex-0 justify-between
       items-center px-4 gap-4 outline-1 outline-slate-600 grow-0"
       >
-        <Text color={"white"}>{props.testPaper.name}</Text>
+        <Text color={"white"}>{testPaper.name}</Text>
         <PaperOptionsGroup />
       </div>
       <HeaderDashboard />
