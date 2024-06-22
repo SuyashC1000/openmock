@@ -27,7 +27,6 @@ const TestPage = () => {
     userCacheReducer,
     userCacheGenerator(testData, "Hello")
   );
-  console.log(dispatch);
 
   return (
     <TestPaperContext.Provider value={testData}>

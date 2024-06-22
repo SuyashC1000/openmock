@@ -47,6 +47,7 @@ const TestBottombar = () => {
           variant="outline"
           colorScheme="blue"
           form="userAnswer"
+          type="submit"
         >
           Save & Next
         </Button>

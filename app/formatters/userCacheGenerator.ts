@@ -6,6 +6,7 @@ export default function userCacheGenerator(
   username: string
 ): UserCache {
   //
+
   let newBody = testPaper.body.map((e, i) => {
     return {
       groupName: e.groupName,
@@ -19,7 +20,7 @@ export default function userCacheGenerator(
           questions: f.questions.map((g, k) => {
             return {
               id: g.id,
-              status: 0,
+              status: i === 0 && j === 0 && k === 0 ? 1 : 0,
               submit: null,
               timeSpent: 0,
               lastAnswered: null,
@@ -30,7 +31,7 @@ export default function userCacheGenerator(
     };
   });
 
-  console.log(newBody);
+  // console.log(newBody);
 
   let foundation: UserCache = {
     body: newBody,

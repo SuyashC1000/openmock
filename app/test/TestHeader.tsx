@@ -41,11 +41,13 @@ import { TestPaper } from "../interface/testData";
 import { TestProps } from "../interface/testProps";
 import {
   getActiveGroupCache,
+  getActiveQuestionCache,
+  getActiveSectionCache,
   getGroupQuestionLegend,
   getSectionQuestionLegend,
 } from "../formatters/getFunctions";
 import { UserCacheGroup } from "../interface/userCache";
-import { StateContext, TestPaperContext } from "./page";
+import { DispatchContext, StateContext, TestPaperContext } from "./page";
 
 interface PaperOptionsProps {
   type: number;
@@ -56,17 +58,20 @@ interface SectionButtonProps {
   sectionName: string;
   active: boolean;
   questionLegend: number[];
+  onClick: Function;
 }
 interface GroupButtonProps {
   optional: boolean;
   groupName: string;
   active: boolean;
   questionLegend: number[];
+  onClick: Function;
 }
 
 const TestHeader = () => {
   const state = React.useContext(StateContext);
   const testPaper = React.useContext(TestPaperContext);
+  const dispatch = React.useContext(DispatchContext);
 
   function PaperOptionsGroup() {
     return (
@@ -150,6 +155,15 @@ const TestHeader = () => {
               active={i == activeGroup.activeSectionIndex}
               sectionName={e.sectionName}
               questionLegend={getSectionQuestionLegend(e)}
+              onClick={() => {
+                dispatch({ type: "set_active_section", payload: i });
+                if (e.questions[e.qIndex].status === 0 && e.qIndex === 0) {
+                  dispatch({
+                    type: "update_question_status",
+                    payload: { qIndex: 0, newStatus: 1 },
+                  });
+                }
+              }}
             ></SectionButton>
           );
         })}
@@ -175,6 +189,9 @@ const TestHeader = () => {
                 (props.active ? "bg-blue-900 text-white" : "bg-white") +
                 ` flex items-center gap-0.5 p-1 rounded-md my-1 text-sm h-7 min-w-fit`
               }
+              onClick={() => {
+                props.onClick();
+              }}
             >
               {props.optional && <Checkbox size={"sm"} />}
               <Text>{props.sectionName}</Text>
@@ -232,13 +249,28 @@ const TestHeader = () => {
       <div className="h-10 bg-neutral-300 flex justify-between px-2">
         <div className=" flex gap-2 items-center overflow-x-auto overflow-y-hidden">
           {state.body.map((e, i) => {
+            const activeQuestionIndex = e.sections[e.activeSectionIndex].qIndex;
             return (
               <GroupButton
                 key={i}
-                active={i == e.activeSectionIndex}
+                active={i == state.activeGroupIndex}
                 optional={false}
                 groupName={e.groupName}
                 questionLegend={getGroupQuestionLegend(e)}
+                onClick={() => {
+                  dispatch({ type: "set_active_group", payload: i });
+                  if (
+                    e.sections[e.activeSectionIndex].questions[
+                      activeQuestionIndex
+                    ].status == 0 &&
+                    activeQuestionIndex === 0
+                  ) {
+                    dispatch({
+                      type: "update_question_status",
+                      payload: { qIndex: 0, newStatus: 1 },
+                    });
+                  }
+                }}
               />
             );
           })}
@@ -266,6 +298,7 @@ const TestHeader = () => {
                 (props.active ? "bg-blue-400 text-white" : "bg-white") +
                 ` flex items-center gap-0.5 p-1 rounded-md my-1 text-sm h-7 min-w-fit`
               }
+              onClick={() => props.onClick()}
             >
               {props.groupName}
               <PopoverTrigger>

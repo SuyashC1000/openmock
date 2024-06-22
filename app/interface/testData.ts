@@ -24,7 +24,7 @@ export interface TestPaperQuestion {
   question: string[];
   options: string[][] | null;
   tags: unknown[];
-  answer: number;
+  answer: number | number[];
   [k: string]: unknown;
 }
 

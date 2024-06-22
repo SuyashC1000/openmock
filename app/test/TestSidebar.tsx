@@ -13,13 +13,15 @@ import {
 } from "../interface/userCache";
 import { TestProps } from "../interface/testProps";
 import {
+  getActiveQuestionCache,
   getActiveSectionCache,
   getSectionQuestionLegend,
 } from "../formatters/getFunctions";
-import { StateContext } from "./page";
+import { DispatchContext, StateContext } from "./page";
 
 const TestSidebar = () => {
   const state = React.useContext(StateContext);
+  const dispatch = React.useContext(DispatchContext);
 
   let activeSection: UserCacheSection = getActiveSectionCache(state);
 
@@ -40,7 +42,23 @@ const TestSidebar = () => {
         <div className="grid grid-flow-row grid-cols-5">
           {activeSection.questions.map((e, i) => {
             return (
-              <span className="h-12 w-12" key={i}>
+              <span
+                className="h-12 w-12"
+                key={i}
+                onClick={() => {
+                  dispatch({
+                    type: "update_question_status",
+                    payload: {
+                      qIndex: i,
+                      newStatus: e.status == 0 ? 1 : e.status,
+                    },
+                  });
+                  dispatch({
+                    type: "set_active_question",
+                    payload: i,
+                  });
+                }}
+              >
                 <QuestionBtn status={e.status} count={i + 1} />
               </span>
             );

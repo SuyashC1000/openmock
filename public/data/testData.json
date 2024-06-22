@@ -98,7 +98,7 @@
                 ["Lysosome"]
               ],
               "tags": [],
-              "answer": 0
+              "answer": 52
             }
           ]
         }
@@ -108,29 +108,114 @@
       "groupName": "Science",
       "sections": [
         {
-          "sectionName": "GA Section A",
+          "sectionName": "Physics",
           "maxQuestions": 0,
           "optional": false,
-          "consolidateSubject": "General Aptitude",
+          "consolidateSubject": "Science",
           "questions": [
             {
-              "id": "q123456789",
-              "qTypeName": "",
+              "id": "q2001",
+              "qTypeName": "SCQ",
               "qDataType": [0, 4],
               "markingScheme": [
                 [4, 1],
                 [-1, 1],
                 [0, 1]
               ],
-              "question": ["What is the powerhouse of the cell?"],
+              "question": [
+                "If a piece of conducting wire is stretched, its resistivity:"
+              ],
               "options": [
-                ["Mitochondria"],
-                ["RNA"],
-                ["Ribosome"],
-                ["Lysosome"]
+                ["Increases"],
+                ["Decreases"],
+                ["Stays the same"],
+                ["Cannot be determined"]
               ],
               "tags": [],
-              "answer": 0
+              "answer": 2
+            }
+          ]
+        },
+        {
+          "sectionName": "Chemistry",
+          "maxQuestions": 0,
+          "optional": false,
+          "consolidateSubject": "Science",
+          "questions": [
+            {
+              "id": "q2101",
+              "qTypeName": "MCQ",
+              "qDataType": [1, 4],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1],
+                [0, 1]
+              ],
+              "question": [
+                "Which of these elements is/are metallic in nature?"
+              ],
+              "options": [["Barium"], ["Nitrogen"], ["Mercury"], ["Germanium"]],
+              "tags": [],
+              "answer": [0, 2]
+            },
+            {
+              "id": "q2102",
+              "qTypeName": "",
+              "qDataType": [2, 2],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1],
+                [0, 1]
+              ],
+              "question": ["What is the average molecular mass of NaCl?"],
+              "options": null,
+              "tags": [],
+              "answer": 29.25
+            }
+          ]
+        },
+        {
+          "sectionName": "Maths",
+          "maxQuestions": 0,
+          "optional": false,
+          "consolidateSubject": "Science",
+          "questions": [
+            {
+              "id": "q2201",
+              "qTypeName": "SCQ",
+              "qDataType": [0, 4],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1],
+                [0, 1]
+              ],
+              "question": [
+                "Which of the following expression is equal to $ \\cosec{x} - \\sin{x} $?"
+              ],
+              "options": [
+                ["$\\sin{x} \\cot{x}$"],
+                ["$\\cos{x} \\cot{x}$"],
+                ["$\\sin{x} \\tan{x}$"],
+                ["$\\cos{x} \\tan{x}$"]
+              ],
+              "tags": [],
+              "answer": 1
+            },
+            {
+              "id": "q2202",
+              "qTypeName": "NNI",
+              "qDataType": [2, 1],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1],
+                [0, 1]
+              ],
+              "question": [
+                "What is the smallest natural number that is both a perfect square and a perfect cube?"
+              ],
+              "options": null,
+              "tags": [],
+              "answer": 1
             }
           ]
         }

@@ -47,11 +47,10 @@ const QuestionView = () => {
   let activeSection: UserCacheSection = getActiveSectionCache(state);
   let activeQuestion: TestPaperQuestion = getActiveQuestion(testPaper, state);
 
-  const [markdown, setMarkdown] = React.useState(
+  const markdown =
     testPaper.body[state.activeGroupIndex].sections[
       state.body[state.activeGroupIndex].activeSectionIndex
-    ].questions[activeSection.qIndex].question[state.currentLanguageIndex]
-  );
+    ].questions[activeSection.qIndex].question[state.currentLanguageIndex];
 
   // React.useEffect(() => {
   //   fetch(sampleRaw)

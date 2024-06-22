@@ -7,6 +7,7 @@ import {
 } from "../formatters/getFunctions";
 import { TestPaperQuestion } from "../interface/testData";
 import { UserCacheQuestion } from "../interface/userCache";
+import { Form, Formik } from "formik";
 
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
@@ -38,11 +39,16 @@ const UserAnswer = () => {
 
   const SingleCorrectChoices = (userAnswerInputProps: UserAnswerInputProps) => {
     return (
-      <RadioGroup>
+      <RadioGroup name="input">
         <div className="flex flex-col">
           {userAnswerInputProps.question.options!.map((e, i) => {
             return (
-              <Radio className="flex items-center" key={i} value={`${i}`}>
+              <Radio
+                className="flex items-center"
+                key={i}
+                value={`${i}`}
+                name="picked"
+              >
                 <Markdown
                   className="p-4 font-serif"
                   remarkPlugins={[remarkGfm, remarkMath]}
@@ -65,7 +71,12 @@ const UserAnswer = () => {
         <div className="flex flex-col">
           {userAnswerInputProps.question.options!.map((e, i) => {
             return (
-              <Checkbox className="flex items-center" key={i} value={`${i}`}>
+              <Checkbox
+                className="flex items-center"
+                key={i}
+                value={`${i}`}
+                name="picked"
+              >
                 <Markdown
                   className="p-4 font-serif"
                   remarkPlugins={[remarkGfm, remarkMath]}
@@ -142,6 +153,7 @@ const UserAnswer = () => {
     return (
       <div>
         <NumberInput
+          name="picked"
           value={numInput}
           onChange={(e) => {
             setCursor(cursor + (e.length - numInput.length));
@@ -251,9 +263,23 @@ const UserAnswer = () => {
   }
 
   return (
-    <form className="m-2 p-2 flex flex-col" id="userAnswer">
-      {userAnswerInput(activeQuestion.qDataType[0])}
-    </form>
+    <Formik
+      initialValues={{ picked: undefined }}
+      onSubmit={(values) => {
+        console.log(values);
+      }}
+    >
+      {({ handleSubmit, values }) => (
+        <Form
+          className="m-2 p-2 flex flex-col"
+          id="userAnswer"
+          onSubmit={handleSubmit}
+        >
+          {userAnswerInput(activeQuestion.qDataType[0])}
+          {"Hi"}
+        </Form>
+      )}
+    </Formik>
   );
 };
 
