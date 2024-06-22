@@ -4,6 +4,7 @@ import React from "react";
 interface Props {
   count: number;
   status: number;
+  active?: boolean;
 }
 
 const QuestionBtn = (props: Props) => {
@@ -82,7 +83,7 @@ const QuestionBtn = (props: Props) => {
       width={"100%"}
       height={"100%"}
       viewBox="0 0 120 100"
-      className="select-none"
+      className={`select-none ${props.active && "brightness-150"}`}
       xmlns="http://www.w3.org/2000/svg"
     >
       <ButtonAccent />

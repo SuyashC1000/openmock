@@ -22,20 +22,6 @@
           "consolidateSubject": "General Aptitude",
           "questions": [
             {
-              "id": "q123456790",
-              "qTypeName": "NNI",
-              "qDataType": [2, 1],
-              "markingScheme": [
-                [4, 1],
-                [-1, 1],
-                [0, 1]
-              ],
-              "question": ["How many states are there in the USA?"],
-              "options": null,
-              "tags": [],
-              "answer": 0
-            },
-            {
               "id": "q123456789",
               "qTypeName": "SCQ",
               "qDataType": [0, 4],
@@ -53,6 +39,20 @@
               ],
               "tags": [],
               "answer": 0
+            },
+            {
+              "id": "q123456790",
+              "qTypeName": "NNI",
+              "qDataType": [2, 1],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1],
+                [0, 1]
+              ],
+              "question": ["How many states are there in the USA?"],
+              "options": null,
+              "tags": [],
+              "answer": 0
             }
           ]
         },
@@ -63,40 +63,34 @@
           "consolidateSubject": "General Aptitude",
           "questions": [
             {
-              "id": "q123456789",
-              "qTypeName": "",
+              "id": "q123456889",
+              "qTypeName": "SCQ",
               "qDataType": [0, 4],
               "markingScheme": [
                 [4, 1],
                 [-1, 1],
                 [0, 1]
               ],
-              "question": ["What is the powerhouse of the cell?"],
-              "options": [
-                ["Mitochondria"],
-                ["RNA"],
-                ["Ribosome"],
-                ["Lysosome"]
+              "question": [
+                "If it was Monday on February 1, 2008, then what day was it on March 1, 2008?"
               ],
+              "options": [["Sunday"], ["Monday"], ["Tuesday"], ["Wednesday"]],
               "tags": [],
-              "answer": 0
+              "answer": 2
             },
             {
               "id": "q123456790",
-              "qTypeName": "",
-              "qDataType": [0, 4],
+              "qTypeName": "Numerical",
+              "qDataType": [2, 1],
               "markingScheme": [
                 [4, 1],
                 [-1, 1],
                 [0, 1]
               ],
-              "question": ["What is the powerhouse of the cell?"],
-              "options": [
-                ["Mitochondria"],
-                ["RNA"],
-                ["Ribosome"],
-                ["Lysosome"]
+              "question": [
+                "If a person walks 6m north then turns right and walks another 8m, then how far is he from his initial position (in m)?"
               ],
+              "options": null,
               "tags": [],
               "answer": 52
             }
@@ -133,6 +127,27 @@
               ],
               "tags": [],
               "answer": 2
+            },
+            {
+              "id": "q2001",
+              "qTypeName": "SCQ",
+              "qDataType": [0, 4],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1],
+                [0, 1]
+              ],
+              "question": [
+                "If $r$ is the distance between two masses, gravitational force is proportional to:"
+              ],
+              "options": [
+                ["$r$"],
+                ["$r^2$"],
+                ["$\\frac{1}{r}$"],
+                ["$\\frac{1}{r^2}$"]
+              ],
+              "tags": [],
+              "answer": 2
             }
           ]
         },
@@ -160,7 +175,7 @@
             },
             {
               "id": "q2102",
-              "qTypeName": "",
+              "qTypeName": "Numerical",
               "qDataType": [2, 2],
               "markingScheme": [
                 [4, 1],
@@ -204,7 +219,7 @@
             {
               "id": "q2202",
               "qTypeName": "NNI",
-              "qDataType": [2, 1],
+              "qDataType": [2, 0],
               "markingScheme": [
                 [4, 1],
                 [-1, 1],

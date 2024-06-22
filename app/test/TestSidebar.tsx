@@ -43,7 +43,7 @@ const TestSidebar = () => {
           {activeSection.questions.map((e, i) => {
             return (
               <span
-                className="h-12 w-12"
+                className={`h-12 w-12`}
                 key={i}
                 onClick={() => {
                   dispatch({
@@ -59,7 +59,11 @@ const TestSidebar = () => {
                   });
                 }}
               >
-                <QuestionBtn status={e.status} count={i + 1} />
+                <QuestionBtn
+                  status={e.status}
+                  count={i + 1}
+                  active={activeSection.qIndex === i}
+                />
               </span>
             );
           })}
