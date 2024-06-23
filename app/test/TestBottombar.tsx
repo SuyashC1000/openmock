@@ -9,7 +9,13 @@ import {
 import {
   handleClearResponse,
   handleSubmitQuestion,
+  moveToPrevQuestion,
 } from "../handlers/handleActionButton";
+import {
+  getActiveGroupCache,
+  getActiveQuestionCache,
+  getActiveSectionCache,
+} from "../formatters/getFunctions";
 
 const TestBottombar = () => {
   const state = useContext(StateContext);
@@ -56,7 +62,20 @@ const TestBottombar = () => {
       </ButtonGroup>
 
       <ButtonGroup>
-        <Button fontWeight={"400"} variant="outline" colorScheme="blue">
+        <Button
+          fontWeight={"400"}
+          variant="outline"
+          colorScheme="blue"
+          visibility={
+            getActiveGroupCache(state).activeSectionIndex === 0 &&
+            getActiveSectionCache(state).qIndex == 0
+              ? "hidden"
+              : "visible"
+          }
+          onClick={() => {
+            moveToPrevQuestion(state, dispatch);
+          }}
+        >
           Previous
         </Button>
         <Button

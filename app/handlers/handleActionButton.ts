@@ -1,4 +1,5 @@
 import {
+  getActiveGroupCache,
   getActiveQuestion,
   getActiveQuestionCache,
   getActiveSectionCache,
@@ -8,6 +9,7 @@ import { TestPaper, TestPaperQuestion } from "../interface/testData";
 import { DispatchFunc, SetResponseDataFunc } from "../interface/testProps";
 import {
   UserCache,
+  UserCacheGroup,
   UserCacheQuestion,
   UserCacheSection,
 } from "../interface/userCache";
@@ -23,7 +25,8 @@ export function handleSubmitQuestion(
   mark: boolean
 ) {
   const activeQuestionCache: UserCacheQuestion = getActiveQuestionCache(state);
-  const activeSection: UserCacheSection = getActiveSectionCache(state);
+  const activeGroupCache: UserCacheGroup = getActiveGroupCache(state);
+  const activeSectionCache: UserCacheSection = getActiveSectionCache(state);
   const activeQuestion: TestPaperQuestion = getActiveQuestion(testPaper, state);
 
   const userResponse = getUserResponse(
@@ -44,8 +47,19 @@ export function handleSubmitQuestion(
 
   dispatch({
     type: "update_question_status",
-    payload: { qIndex: activeSection.qIndex, newStatus: newStatus },
+    payload: { qIndex: activeSectionCache.qIndex, newStatus: newStatus },
   });
+
+  const activeAndTotal = {
+    group: [state.activeGroupIndex, state.body.length],
+    section: [
+      activeGroupCache.activeSectionIndex,
+      activeGroupCache.sections.length,
+    ],
+    question: [activeSectionCache.qIndex, activeSectionCache.questions.length],
+  };
+
+  moveToNextQuestion(activeAndTotal, state, dispatch);
 }
 
 export function handleClearResponse(
@@ -68,4 +82,82 @@ export function handleClearResponse(
   });
 }
 
-function moveToNextQuestion() {}
+function moveToNextQuestion(
+  activeAndTotal: {
+    group: number[];
+    section: number[];
+    question: number[];
+  },
+  state: UserCache,
+  dispatch: DispatchFunc
+) {
+  if (activeAndTotal.question[0] < activeAndTotal.question[1] - 1) {
+    dispatch({
+      type: "set_active_question",
+      payload: activeAndTotal.question[0] + 1,
+    });
+    if (
+      getActiveSectionCache(state).questions[activeAndTotal.question[0] + 1]
+        .status === 0
+    )
+      dispatch({
+        type: "update_question_status",
+        payload: { qIndex: activeAndTotal.question[0] + 1, newStatus: 1 },
+      });
+  } else if (activeAndTotal.section[0] < activeAndTotal.section[1] - 1) {
+    dispatch({
+      type: "set_active_section",
+      payload: activeAndTotal.section[0] + 1,
+    });
+    dispatch({
+      type: "set_active_question",
+      payload: 0,
+    });
+    dispatch({
+      type: "update_question_status",
+      payload: { qIndex: 0, newStatus: 1 },
+    });
+  }
+}
+
+export function moveToPrevQuestion(state: UserCache, dispatch: DispatchFunc) {
+  const activeQuestionCache: UserCacheQuestion = getActiveQuestionCache(state);
+  const activeGroupCache: UserCacheGroup = getActiveGroupCache(state);
+  const activeSectionCache: UserCacheSection = getActiveSectionCache(state);
+
+  const activeAndTotal = {
+    group: [state.activeGroupIndex, state.body.length],
+    section: [
+      activeGroupCache.activeSectionIndex,
+      activeGroupCache.sections.length,
+    ],
+    question: [activeSectionCache.qIndex, activeSectionCache.questions.length],
+  };
+
+  if (activeAndTotal.question[0] > 0) {
+    dispatch({
+      type: "set_active_question",
+      payload: activeAndTotal.question[0] - 1,
+    });
+    if (
+      getActiveSectionCache(state).questions[activeAndTotal.question[0] - 1]
+        .status === 0
+    )
+      dispatch({
+        type: "update_question_status",
+        payload: { qIndex: activeAndTotal.question[0] - 1, newStatus: 1 },
+      });
+  } else if (activeAndTotal.section[0] > 0) {
+    const lastIndex =
+      getActiveGroupCache(state).sections[activeAndTotal.section[0] - 1]
+        .questions.length - 1;
+    dispatch({
+      type: "set_active_section",
+      payload: activeAndTotal.section[0] - 1,
+    });
+    dispatch({
+      type: "set_active_question",
+      payload: lastIndex,
+    });
+  }
+}

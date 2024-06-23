@@ -19,7 +19,16 @@ export default function userCacheReducer(
         activeGroupCache.sections[activeGroupCache.activeSectionIndex];
 
       activeSectionCache.qIndex = action.payload;
-      newState.formData = [];
+
+      // let activeQuestionStatus =
+      //   activeSectionCache.questions[activeSectionCache.qIndex].status;
+
+      // console.log("status: " + activeQuestionStatus);
+      // console.log(activeQuestionStatus == 0);
+
+      // activeQuestionStatus =
+      //   activeQuestionStatus == 0 ? 1 : activeQuestionStatus;
+      // console.log("status: " + activeQuestionStatus);
 
       return newState;
     }
@@ -27,14 +36,12 @@ export default function userCacheReducer(
     case "set_active_section": {
       let activeGroupCache = newState.body[state.activeGroupIndex];
       activeGroupCache.activeSectionIndex = action.payload;
-      newState.formData = [];
 
       return newState;
     }
 
     case "set_active_group": {
       newState.activeGroupIndex = action.payload;
-      newState.formData = [];
 
       return newState;
     }
@@ -51,8 +58,6 @@ export default function userCacheReducer(
     }
 
     case "update_question_useranswer": {
-      let newState = structuredClone(state);
-
       let activeGroupCache = newState.body[state.activeGroupIndex];
       let activeSectionCache =
         activeGroupCache.sections[activeGroupCache.activeSectionIndex];
