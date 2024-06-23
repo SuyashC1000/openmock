@@ -5,7 +5,6 @@ import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
-import sampleRaw from "./sample.md";
 import "katex/dist/katex.min.css";
 import {
   Popover,
@@ -16,7 +15,6 @@ import {
   PopoverTrigger,
   Text,
 } from "@chakra-ui/react";
-import QuestionLegend from "../components/QuestionLegend";
 import marks from "../formatters/marks";
 import numberToWords from "../formatters/numberToWords";
 import {
@@ -24,14 +22,12 @@ import {
   UserCacheQuestion,
   UserCacheSection,
 } from "../interface/userCache";
-import { TestProps } from "../interface/testProps";
 import {
   getActiveQuestion,
   getActiveSectionCache,
 } from "../formatters/getFunctions";
-import UserAnswer from "./UserAnswer";
+import UserResponse from "./UserResponse";
 import { TestPaperQuestion } from "../interface/testData";
-import { log } from "console";
 import { StateContext, TestPaperContext } from "./page";
 
 interface MarkingSchemeProps {
@@ -182,7 +178,7 @@ const QuestionView = () => {
       >
         {markdown}
       </Markdown>
-      <UserAnswer />
+      <UserResponse />
     </div>
   );
 };

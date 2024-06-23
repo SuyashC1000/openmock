@@ -41,8 +41,6 @@ import { TestPaper } from "../interface/testData";
 import { TestProps } from "../interface/testProps";
 import {
   getActiveGroupCache,
-  getActiveQuestionCache,
-  getActiveSectionCache,
   getGroupQuestionLegend,
   getSectionQuestionLegend,
 } from "../formatters/getFunctions";

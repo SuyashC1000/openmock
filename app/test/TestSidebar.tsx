@@ -13,7 +13,6 @@ import {
 } from "../interface/userCache";
 import { TestProps } from "../interface/testProps";
 import {
-  getActiveQuestionCache,
   getActiveSectionCache,
   getSectionQuestionLegend,
 } from "../formatters/getFunctions";

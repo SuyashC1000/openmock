@@ -1,9 +1,11 @@
 import React from "react";
 import { TestProps } from "../interface/testProps";
 import {
+  getActiveGroupCache,
   getActiveQuestion,
   getActiveQuestionCache,
   getActiveSectionCache,
+  getDefaultOptions,
 } from "../formatters/getFunctions";
 import { TestPaperQuestion } from "../interface/testData";
 import { UserCacheQuestion } from "../interface/userCache";
@@ -22,32 +24,48 @@ import {
   Radio,
   RadioGroup,
 } from "@chakra-ui/react";
-import { log } from "console";
-import { StateContext, TestPaperContext } from "./page";
 
-interface UserAnswerInputProps {
+import {
+  DispatchContext,
+  ResponseDataContext,
+  StateContext,
+  TestPaperContext,
+} from "./page";
+import handleUserAnswerSubmit from "../handlers/handleUserAnswerSubmit";
+
+interface UserResponseInputProps {
   question: TestPaperQuestion;
   state: UserCacheQuestion;
 }
 
-const UserAnswer = () => {
+const UserResponse = () => {
   const testPaper = React.useContext(TestPaperContext);
   const state = React.useContext(StateContext);
+  const dispatch = React.useContext(DispatchContext);
+  const { responseData, setResponseData } =
+    React.useContext(ResponseDataContext);
 
   let activeQuestion = getActiveQuestion(testPaper, state);
   let activeQuestionCache = getActiveQuestionCache(state);
 
-  const SingleCorrectChoices = (userAnswerInputProps: UserAnswerInputProps) => {
+  const SingleCorrectChoices = (
+    userResponseInputProps: UserResponseInputProps
+  ) => {
     return (
-      <RadioGroup name="input">
+      <RadioGroup
+        name="input"
+        // defaultValue={getDefaultOptions(0, activeQuestionCache.submit)}
+        value={responseData[0]}
+      >
         <div className="flex flex-col">
-          {userAnswerInputProps.question.options!.map((e, i) => {
+          {userResponseInputProps.question.options!.map((e, i) => {
+            console.log(`${i}` === responseData[0]);
             return (
               <Radio
                 className="flex items-center"
                 key={i}
                 value={`${i}`}
-                name="picked"
+                name="user_answer"
               >
                 <Markdown
                   className="p-4 font-serif"
@@ -64,18 +82,18 @@ const UserAnswer = () => {
     );
   };
   const MultipleCorrectChoices = (
-    userAnswerInputProps: UserAnswerInputProps
+    userResponseInputProps: UserResponseInputProps
   ) => {
     return (
-      <CheckboxGroup>
+      <CheckboxGroup value={responseData}>
         <div className="flex flex-col">
-          {userAnswerInputProps.question.options!.map((e, i) => {
+          {userResponseInputProps.question.options!.map((e, i) => {
             return (
               <Checkbox
                 className="flex items-center"
                 key={i}
                 value={`${i}`}
-                name="picked"
+                name="user_answer"
               >
                 <Markdown
                   className="p-4 font-serif"
@@ -92,15 +110,22 @@ const UserAnswer = () => {
     );
   };
 
-  const NumeralValue = (userAnswerInputProps: UserAnswerInputProps) => {
-    const [numInput, setNumInput] = React.useState("");
-    const [cursor, setCursor] = React.useState(0);
+  const NumeralValue = (userResponseInputProps: UserResponseInputProps) => {
+    const numInput = responseData as string;
+    const setNumInput = setResponseData;
+    console.log(numInput, typeof numInput);
+
+    const [cursor, setCursor] = React.useState(numInput.length);
 
     function numpadInput(type: number, payload: string = "") {
       switch (type) {
         case 0:
           {
-            if (payload === "." && numInput.includes(".")) break;
+            if (
+              payload === "." &&
+              (numInput.includes(".") || numInput.length === 0)
+            )
+              break;
             let newInput = [
               numInput.slice(0, cursor),
               payload,
@@ -153,11 +178,10 @@ const UserAnswer = () => {
     return (
       <div>
         <NumberInput
-          name="picked"
+          name="user_answer"
           value={numInput}
           onChange={(e) => {
             setCursor(cursor + (e.length - numInput.length));
-            setNumInput(e);
           }}
         >
           <NumberInputField />
@@ -262,25 +286,35 @@ const UserAnswer = () => {
     }
   }
 
+  React.useEffect(() => {
+    setResponseData(
+      getDefaultOptions(activeQuestion.qDataType[0], activeQuestionCache.submit)
+    );
+  }, [
+    activeQuestion.qDataType,
+    activeQuestionCache.id,
+    activeQuestionCache.submit,
+    setResponseData,
+  ]);
+
   return (
-    <Formik
-      initialValues={{ picked: undefined }}
-      onSubmit={(values) => {
-        console.log(values);
+    <form
+      className="m-2 p-2 flex flex-col"
+      id="userResponseForm"
+      onChange={(d) => {
+        let e = new FormData(d.currentTarget);
+        setResponseData(e.getAll("user_answer"));
+      }}
+      onSubmit={(d) => {
+        d.preventDefault();
       }}
     >
-      {({ handleSubmit, values }) => (
-        <Form
-          className="m-2 p-2 flex flex-col"
-          id="userAnswer"
-          onSubmit={handleSubmit}
-        >
-          {userAnswerInput(activeQuestion.qDataType[0])}
-          {"Hi"}
-        </Form>
-      )}
-    </Formik>
+      {userAnswerInput(activeQuestion.qDataType[0])}
+      {"Your Answer: " + getActiveQuestionCache(state).submit}
+      <br />
+      {"Current Answer: " + responseData}
+    </form>
   );
 };
 
-export default UserAnswer;
+export default UserResponse;

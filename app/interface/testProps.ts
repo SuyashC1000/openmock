@@ -7,6 +7,10 @@ export interface TestProps {
   testPaper: TestPaper;
 }
 
-interface DispatchFunc {
-  (type: string, payload: any): void;
+export interface DispatchFunc {
+  (action: { type: string; payload: any }): void;
+}
+
+export interface SetResponseDataFunc {
+  (value: any[]): void;
 }

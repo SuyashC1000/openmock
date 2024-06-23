@@ -7,7 +7,7 @@ interface Props {
   active?: boolean;
 }
 
-const QuestionBtn = (props: Props) => {
+const QuestionBtn = React.memo(function QuestionBtn(props: Props) {
   const [count, setCount] = React.useState(props.count);
   const [status, setStatus] = React.useState(props.status);
 
@@ -99,6 +99,6 @@ const QuestionBtn = (props: Props) => {
       </text>
     </svg>
   );
-};
+});
 
 export default QuestionBtn;

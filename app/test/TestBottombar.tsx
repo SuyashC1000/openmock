@@ -1,9 +1,18 @@
 import { Button, ButtonGroup } from "@chakra-ui/react";
-import React from "react";
-import { DispatchContext } from "./page";
+import React, { useContext } from "react";
+import {
+  DispatchContext,
+  ResponseDataContext,
+  StateContext,
+  TestPaperContext,
+} from "./page";
+import { handleSaveNext } from "../handlers/handleSubmitButton";
 
 const TestBottombar = () => {
-  const dispatch = React.useContext(DispatchContext);
+  const state = useContext(StateContext);
+  const testPaper = useContext(TestPaperContext);
+  const dispatch = useContext(DispatchContext);
+  const responseDataState = useContext(ResponseDataContext);
 
   return (
     <div
@@ -11,10 +20,22 @@ const TestBottombar = () => {
        items-center px-4 gap-4 outline outline-1 outline-neutral-400 "
     >
       <ButtonGroup>
-        <Button fontWeight={"400"} variant="outline" colorScheme="blue">
+        <Button
+          fontWeight={"400"}
+          variant="outline"
+          colorScheme="blue"
+          form="userResponseForm"
+          type="submit"
+        >
           Mark for Review & Next
         </Button>
-        <Button fontWeight={"400"} variant="outline" colorScheme="blue">
+        <Button
+          fontWeight={"400"}
+          variant="outline"
+          colorScheme="blue"
+          form="userResponseForm"
+          type="reset"
+        >
           Clear Response
         </Button>
       </ButtonGroup>
@@ -46,8 +67,12 @@ const TestBottombar = () => {
           fontWeight={"400"}
           variant="outline"
           colorScheme="blue"
-          form="userAnswer"
+          form="userResponseForm"
           type="submit"
+          // onClick={(e) => console.log(e.currentTarget)}
+          onClick={(e) => {
+            handleSaveNext(state, dispatch, testPaper, responseDataState);
+          }}
         >
           Save & Next
         </Button>

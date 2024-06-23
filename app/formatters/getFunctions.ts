@@ -47,3 +47,32 @@ export function getActiveQuestion(
     activeGroup.sections[getActiveGroupCache(state).activeSectionIndex];
   return activeSection.questions[getActiveSectionCache(state).qIndex];
 }
+
+export function getDefaultOptions(type: number, payload: any) {
+  switch (type) {
+    case 0: {
+      if (payload === null) {
+        return "";
+      } else {
+        return payload.toString();
+      }
+    }
+    case 1: {
+      if (payload === null) {
+        return [""];
+      } else {
+        return (payload as string[]).map((e) => +e);
+      }
+    }
+    case 2: {
+      if (payload === null) {
+        return "";
+      } else {
+        return payload.toString();
+      }
+    }
+
+    default:
+      return;
+  }
+}

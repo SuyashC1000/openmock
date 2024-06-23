@@ -1,7 +1,7 @@
 export interface UserCacheQuestion {
   id: string;
   status: number;
-  submit: unknown;
+  submit: number | number[] | null;
   timeSpent: number;
   lastAnswered: number | null;
   [k: string]: unknown;
@@ -30,5 +30,6 @@ export interface UserCache {
   currentLanguageIndex: number;
   activeGroupIndex: number;
   body: UserCacheGroup[];
+
   [k: string]: unknown;
 }
