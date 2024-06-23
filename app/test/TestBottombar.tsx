@@ -6,7 +6,10 @@ import {
   StateContext,
   TestPaperContext,
 } from "./page";
-import { handleSubmitButton } from "../handlers/handleSubmitButton";
+import {
+  handleClearResponse,
+  handleSubmitQuestion,
+} from "../handlers/handleActionButton";
 
 const TestBottombar = () => {
   const state = useContext(StateContext);
@@ -27,7 +30,7 @@ const TestBottombar = () => {
           form="userResponseForm"
           type="submit"
           onClick={(e) => {
-            handleSubmitButton(
+            handleSubmitQuestion(
               state,
               dispatch,
               testPaper,
@@ -44,6 +47,9 @@ const TestBottombar = () => {
           colorScheme="blue"
           form="userResponseForm"
           type="reset"
+          onClick={() => {
+            handleClearResponse(state, dispatch, responseDataState);
+          }}
         >
           Clear Response
         </Button>
@@ -61,7 +67,7 @@ const TestBottombar = () => {
           type="submit"
           // onClick={(e) => console.log(e.currentTarget)}
           onClick={(e) => {
-            handleSubmitButton(
+            handleSubmitQuestion(
               state,
               dispatch,
               testPaper,

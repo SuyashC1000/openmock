@@ -12,7 +12,7 @@ import {
   UserCacheSection,
 } from "../interface/userCache";
 
-export function handleSubmitButton(
+export function handleSubmitQuestion(
   state: UserCache,
   dispatch: DispatchFunc,
   testPaper: TestPaper,
@@ -46,5 +46,25 @@ export function handleSubmitButton(
   dispatch({
     type: "update_question_status",
     payload: { qIndex: activeSection.qIndex, newStatus: newStatus },
+  });
+}
+
+export function handleClearResponse(
+  state: UserCache,
+  dispatch: DispatchFunc,
+  responseDataState: {
+    responseData: any[];
+    setResponseData: SetResponseDataFunc;
+  }
+) {
+  const activeQuestionCache: UserCacheQuestion = getActiveQuestionCache(state);
+  const activeSection: UserCacheSection = getActiveSectionCache(state);
+
+  dispatch({ type: "update_question_useranswer", payload: null });
+
+  responseDataState.setResponseData([]);
+  dispatch({
+    type: "update_question_status",
+    payload: { qIndex: activeSection.qIndex, newStatus: 1 },
   });
 }
