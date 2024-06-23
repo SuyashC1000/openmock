@@ -12,6 +12,7 @@ import userCacheGenerator from "../formatters/userCacheGenerator";
 import userCacheReducer, { Action } from "../formatters/userCacheReducer";
 import { TestProps } from "../interface/testProps";
 import { emptyTestPaper, emptyUserCache } from "./empty";
+import { PreTestModal } from "./TestModals";
 
 interface DispatchFunction {
   (action: Action): void;
@@ -26,7 +27,9 @@ export const DispatchContext = React.createContext(function example(
 export const TestPaperContext = React.createContext(emptyTestPaper);
 export const ResponseDataContext = React.createContext({
   responseData: [],
-  setResponseData: (value) => {},
+  setResponseData: (value: string[]) => {
+    value;
+  },
 });
 
 const testCache = testData;
@@ -48,6 +51,7 @@ const TestPage = () => {
             }}
           >
             <div className="bg-slate-800 flex flex-box flex-col h-screen max-h-screen select-none">
+              <PreTestModal />
               <TestHeader />
               <div className="h-auto flex flex-1 w-screen overflow-hidden">
                 <TestMainWindow />

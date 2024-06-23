@@ -1,4 +1,15 @@
-import { Button, ButtonGroup } from "@chakra-ui/react";
+import {
+  Button,
+  ButtonGroup,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
+  useDisclosure,
+} from "@chakra-ui/react";
 import React, { useContext } from "react";
 import {
   DispatchContext,
@@ -97,10 +108,40 @@ const TestBottombar = () => {
         >
           Save & Next
         </Button>
-        <Button fontWeight={"400"} colorScheme="blue" className="justify-end">
+
+        <Button
+          fontWeight={"400"}
+          colorScheme="blue"
+          className="justify-end"
+          // onClick={onOpen}
+        >
           Submit
         </Button>
       </ButtonGroup>
+
+      {/* <Modal
+        isOpen={state.testStatus === "submitting"}
+        onClose={() => {}}
+        size={"full"}
+      >
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Modal Title</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            Hello
+            <Button
+              onClick={() => {
+                dispatch({ type: "set_test_status", payload: "ongoing" });
+              }}
+            >
+              Click me
+            </Button>
+          </ModalBody>
+
+          <ModalFooter></ModalFooter>
+        </ModalContent>
+      </Modal> */}
     </div>
   );
 };

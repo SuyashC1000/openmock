@@ -26,6 +26,7 @@ export interface UserCacheGroup {
 export interface UserCache {
   username: string;
   testId: string;
+  testStatus: "starting" | "ongoing" | "submitting" | "finished";
   testStartTime: number;
   currentLanguageIndex: number;
   activeGroupIndex: number;

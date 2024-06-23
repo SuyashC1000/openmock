@@ -13,6 +13,11 @@ export default function userCacheReducer(
   let newState = structuredClone(state);
 
   switch (action.type) {
+    case "set_test_status": {
+      newState.testStatus = action.payload;
+      return newState;
+    }
+
     case "set_active_question": {
       let activeGroupCache = newState.body[state.activeGroupIndex];
       let activeSectionCache =
@@ -36,6 +41,18 @@ export default function userCacheReducer(
     case "set_active_section": {
       let activeGroupCache = newState.body[state.activeGroupIndex];
       activeGroupCache.activeSectionIndex = action.payload;
+
+      return newState;
+    }
+
+    case "set_default_language": {
+      newState.currentLanguageIndex = action.payload;
+
+      return newState;
+    }
+
+    case "set_start_time": {
+      newState.testStartTime = action.payload;
 
       return newState;
     }

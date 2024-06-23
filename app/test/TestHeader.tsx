@@ -46,6 +46,7 @@ import {
 } from "../formatters/getFunctions";
 import { UserCacheGroup } from "../interface/userCache";
 import { DispatchContext, StateContext, TestPaperContext } from "./page";
+import GeneralInstructions from "./GeneralInstructions";
 
 interface PaperOptionsProps {
   type: number;
@@ -99,6 +100,35 @@ const TestHeader = () => {
       },
     ];
 
+    function PaperOptionDisplayCases() {
+      switch (props.type) {
+        case 0: {
+          const specificInstructions =
+            testPaper.instructions.length === 0
+              ? "There are no other specific instructions."
+              : testPaper.instructions;
+          return (
+            <>
+              <Text className="font-bold text-lg underline text-center mb-3">
+                General Instructions
+              </Text>
+              <GeneralInstructions testDuration={testPaper.maxTime} />
+              <br />
+              <Text className="font-bold text-lg underline text-center mb-3">
+                Other Specific Instructions
+              </Text>
+              <Markdown
+                remarkPlugins={[remarkGfm, remarkMath]}
+                rehypePlugins={[rehypeKatex]}
+              >
+                {specificInstructions}
+              </Markdown>
+            </>
+          );
+        }
+      }
+    }
+
     return (
       <>
         <div
@@ -111,7 +141,12 @@ const TestHeader = () => {
           </Text>
         </div>
 
-        <Modal isOpen={isOpen} onClose={onClose} size="6xl">
+        <Modal
+          isOpen={isOpen}
+          onClose={onClose}
+          size="6xl"
+          scrollBehavior="inside"
+        >
           <ModalOverlay />
           <ModalContent>
             <ModalHeader>{paperOptionsContent[props.type].text}</ModalHeader>
@@ -124,12 +159,9 @@ const TestHeader = () => {
                   this page to return to answering the questions.
                 </AlertDescription>
               </Alert>
-              <Markdown
-                remarkPlugins={[remarkGfm, remarkMath]}
-                rehypePlugins={[rehypeKatex]}
-              >
-                {"Hello this is **Patrick**"}
-              </Markdown>
+              <div className="m-2 mt-5">
+                <PaperOptionDisplayCases />
+              </div>
             </ModalBody>
           </ModalContent>
         </Modal>

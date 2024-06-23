@@ -35,11 +35,12 @@ export default function userCacheGenerator(
 
   let foundation: UserCache = {
     body: newBody,
+    testStatus: "starting",
     activeGroupIndex: 0,
     testId: testPaper.id,
     username: username,
     currentLanguageIndex: 0,
-    testStartTime: Date.now(),
+    testStartTime: 0,
   };
 
   return foundation;
