@@ -44,8 +44,6 @@ export default function userCacheReducer(
       let activeSectionCache =
         activeGroupCache.sections[activeGroupCache.activeSectionIndex];
 
-      console.log(activeSectionCache);
-
       activeSectionCache.questions[action.payload.qIndex].status =
         action.payload.newStatus;
 

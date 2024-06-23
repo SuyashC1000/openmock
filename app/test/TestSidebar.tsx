@@ -11,7 +11,6 @@ import {
   UserCacheQuestion,
   UserCacheSection,
 } from "../interface/userCache";
-import { TestProps } from "../interface/testProps";
 import {
   getActiveSectionCache,
   getSectionQuestionLegend,

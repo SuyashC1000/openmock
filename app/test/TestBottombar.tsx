@@ -6,7 +6,7 @@ import {
   StateContext,
   TestPaperContext,
 } from "./page";
-import { handleSaveNext } from "../handlers/handleSubmitButton";
+import { handleSubmitButton } from "../handlers/handleSubmitButton";
 
 const TestBottombar = () => {
   const state = useContext(StateContext);
@@ -26,6 +26,15 @@ const TestBottombar = () => {
           colorScheme="blue"
           form="userResponseForm"
           type="submit"
+          onClick={(e) => {
+            handleSubmitButton(
+              state,
+              dispatch,
+              testPaper,
+              responseDataState,
+              true
+            );
+          }}
         >
           Mark for Review & Next
         </Button>
@@ -40,25 +49,6 @@ const TestBottombar = () => {
         </Button>
       </ButtonGroup>
 
-      <Button
-        onClick={() => {
-          console.log("Logged");
-
-          dispatch({ type: "set_active_question", payload: 1 });
-        }}
-      >
-        Tester1
-      </Button>
-      <Button
-        onClick={() => {
-          console.log("Logged");
-
-          dispatch({ type: "update_question_status", payload: 4 });
-        }}
-      >
-        Tester2
-      </Button>
-
       <ButtonGroup>
         <Button fontWeight={"400"} variant="outline" colorScheme="blue">
           Previous
@@ -71,7 +61,13 @@ const TestBottombar = () => {
           type="submit"
           // onClick={(e) => console.log(e.currentTarget)}
           onClick={(e) => {
-            handleSaveNext(state, dispatch, testPaper, responseDataState);
+            handleSubmitButton(
+              state,
+              dispatch,
+              testPaper,
+              responseDataState,
+              false
+            );
           }}
         >
           Save & Next

@@ -31,7 +31,6 @@ import {
   StateContext,
   TestPaperContext,
 } from "./page";
-import handleUserAnswerSubmit from "../handlers/handleUserAnswerSubmit";
 
 interface UserResponseInputProps {
   question: TestPaperQuestion;
@@ -55,11 +54,10 @@ const UserResponse = () => {
       <RadioGroup
         name="input"
         // defaultValue={getDefaultOptions(0, activeQuestionCache.submit)}
-        value={responseData[0]}
+        value={getDefaultOptions(0, responseData)[0]}
       >
         <div className="flex flex-col">
           {userResponseInputProps.question.options!.map((e, i) => {
-            console.log(`${i}` === responseData[0]);
             return (
               <Radio
                 className="flex items-center"
@@ -84,8 +82,10 @@ const UserResponse = () => {
   const MultipleCorrectChoices = (
     userResponseInputProps: UserResponseInputProps
   ) => {
+    console.log(responseData);
+
     return (
-      <CheckboxGroup value={responseData}>
+      <CheckboxGroup value={getDefaultOptions(1, responseData)}>
         <div className="flex flex-col">
           {userResponseInputProps.question.options!.map((e, i) => {
             return (
@@ -310,7 +310,7 @@ const UserResponse = () => {
       }}
     >
       {userAnswerInput(activeQuestion.qDataType[0])}
-      {"Your Answer: " + getActiveQuestionCache(state).submit}
+      {"Saved Answer: " + getActiveQuestionCache(state).submit}
       <br />
       {"Current Answer: " + responseData}
     </form>

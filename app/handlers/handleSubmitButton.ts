@@ -2,41 +2,49 @@ import {
   getActiveQuestion,
   getActiveQuestionCache,
   getActiveSectionCache,
+  getUserResponse,
 } from "../formatters/getFunctions";
-import { TestPaper } from "../interface/testData";
+import { TestPaper, TestPaperQuestion } from "../interface/testData";
 import { DispatchFunc, SetResponseDataFunc } from "../interface/testProps";
 import {
   UserCache,
   UserCacheQuestion,
   UserCacheSection,
 } from "../interface/userCache";
-import handleUserAnswerSubmit from "./handleUserAnswerSubmit";
 
-export function handleSaveNext(
+export function handleSubmitButton(
   state: UserCache,
   dispatch: DispatchFunc,
   testPaper: TestPaper,
   responseDataState: {
     responseData: any[];
     setResponseData: SetResponseDataFunc;
-  }
+  },
+  mark: boolean
 ) {
-  handleUserAnswerSubmit(
-    dispatch,
+  const activeQuestionCache: UserCacheQuestion = getActiveQuestionCache(state);
+  const activeSection: UserCacheSection = getActiveSectionCache(state);
+  const activeQuestion: TestPaperQuestion = getActiveQuestion(testPaper, state);
+
+  const userResponse = getUserResponse(
     state,
-    getActiveQuestion(testPaper, state),
+    activeQuestion.qDataType[0],
     responseDataState.responseData
   );
-  const activeSection: UserCacheSection = getActiveSectionCache(state);
+  if (userResponse !== undefined)
+    dispatch({ type: "update_question_useranswer", payload: userResponse });
 
-  const activeQuestionCache: UserCacheQuestion = getActiveQuestionCache(state);
+  let newStatus = activeQuestionCache.status;
+  if (userResponse !== activeQuestionCache.submit) {
+    if (userResponse === null) {
+      newStatus = !mark ? 1 : 3;
+    } else {
+      newStatus = !mark ? 2 : 4;
+    }
+  }
 
-  const isAnswered = activeQuestionCache.submit !== null;
   dispatch({
     type: "update_question_status",
-    payload: { qIndex: activeSection.qIndex, newStatus: isAnswered ? 2 : 1 },
+    payload: { qIndex: activeSection.qIndex, newStatus: newStatus },
   });
-  console.log(activeQuestionCache);
 }
-
-export function handleMarkext(state: UserCache, dispatch: DispatchFunc) {}

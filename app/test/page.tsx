@@ -35,7 +35,7 @@ const TestPage = () => {
     userCacheReducer,
     userCacheGenerator(testData, "Hello")
   );
-  const [responseData, setResponseData] = React.useState([]);
+  const [responseData, setResponseData] = React.useState<string[]>([]);
 
   return (
     <TestPaperContext.Provider value={testData}>

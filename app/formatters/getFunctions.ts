@@ -48,31 +48,65 @@ export function getActiveQuestion(
   return activeSection.questions[getActiveSectionCache(state).qIndex];
 }
 
-export function getDefaultOptions(type: number, payload: any) {
+export function getDefaultOptions(
+  type: number,
+  payload: number | number[] | null
+): string[] {
   switch (type) {
     case 0: {
       if (payload === null) {
-        return "";
+        return [];
       } else {
-        return payload.toString();
+        return [payload.toString()];
       }
     }
     case 1: {
       if (payload === null) {
-        return [""];
+        return [];
       } else {
-        return (payload as string[]).map((e) => +e);
+        return (payload as number[]).map((e) => e.toString());
       }
     }
     case 2: {
       if (payload === null) {
-        return "";
+        return [""];
       } else {
-        return payload.toString();
+        return [payload.toString()];
       }
     }
 
     default:
-      return;
+      return [];
   }
+}
+
+export function getUserResponse(
+  state: UserCache,
+  qDataType: number,
+  responseData: string[]
+): number | number[] | null {
+  const userAnswer = responseData;
+  const questionCache = getActiveQuestionCache(state);
+  let payload;
+  switch (qDataType) {
+    case 0:
+      {
+        payload = userAnswer.length === 0 ? null : +userAnswer[0];
+      }
+      break;
+
+    case 1:
+      {
+        payload = userAnswer.length === 0 ? null : userAnswer.map((e) => +e);
+      }
+      break;
+
+    case 2:
+      {
+        payload = userAnswer.length === 0 ? null : +userAnswer;
+      }
+      break;
+  }
+
+  return payload!;
 }
