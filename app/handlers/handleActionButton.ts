@@ -35,12 +35,11 @@ export function handleSubmitQuestion(
     dispatch({ type: "update_question_useranswer", payload: userResponse });
 
   let newStatus = activeQuestionCache.status;
-  if (userResponse !== activeQuestionCache.submit) {
-    if (userResponse === null) {
-      newStatus = !mark ? 1 : 3;
-    } else {
-      newStatus = !mark ? 2 : 4;
-    }
+
+  if (userResponse === null) {
+    newStatus = !mark ? 1 : 3;
+  } else {
+    newStatus = !mark ? 2 : 4;
   }
 
   dispatch({
@@ -68,3 +67,5 @@ export function handleClearResponse(
     payload: { qIndex: activeSection.qIndex, newStatus: 1 },
   });
 }
+
+function moveToNextQuestion() {}

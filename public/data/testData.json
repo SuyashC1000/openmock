@@ -52,7 +52,7 @@
               "question": ["How many states are there in the USA?"],
               "options": null,
               "tags": [],
-              "answer": 0
+              "answer": 50
             }
           ]
         },
@@ -92,7 +92,7 @@
               ],
               "options": null,
               "tags": [],
-              "answer": 52
+              "answer": 10
             }
           ]
         }
@@ -147,7 +147,7 @@
                 ["$\\frac{1}{r^2}$"]
               ],
               "tags": [],
-              "answer": 2
+              "answer": 3
             }
           ]
         },

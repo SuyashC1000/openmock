@@ -86,6 +86,8 @@ export function getUserResponse(
   responseData: string[]
 ): number | number[] | null {
   const userAnswer = responseData;
+  console.log("user-answer " + userAnswer + " " + typeof userAnswer);
+
   const questionCache = getActiveQuestionCache(state);
   let payload;
   switch (qDataType) {
@@ -103,7 +105,7 @@ export function getUserResponse(
 
     case 2:
       {
-        payload = userAnswer.length === 0 ? null : +userAnswer;
+        payload = userAnswer[0].length === 0 ? null : +userAnswer;
       }
       break;
   }
