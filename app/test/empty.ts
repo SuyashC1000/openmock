@@ -1,5 +1,5 @@
-import { TestPaper } from "../interface/testData";
-import { UserCache } from "../interface/userCache";
+import { TestPaper } from "../_interface/testData";
+import { UserCache } from "../_interface/userCache";
 
 export const emptyTestPaper: TestPaper = {
   additionalTools: {

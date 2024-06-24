@@ -1,7 +1,7 @@
-import { getActiveQuestionCache } from "../formatters/getFunctions";
-import { TestPaperQuestion } from "../interface/testData";
-import { DispatchFunc } from "../interface/testProps";
-import { UserCache, UserCacheQuestion } from "../interface/userCache";
+import { getActiveQuestionCache } from "../_formatters/getFunctions";
+import { TestPaperQuestion } from "../_interface/testData";
+import { DispatchFunc } from "../_interface/testProps";
+import { UserCache, UserCacheQuestion } from "../_interface/userCache";
 import { StateContext } from "../test/page";
 
 export default function handleUserAnswerSubmit(

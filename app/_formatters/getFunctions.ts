@@ -1,10 +1,10 @@
-import { TestPaper, TestPaperQuestion } from "../interface/testData";
+import { TestPaper, TestPaperQuestion } from "../_interface/testData";
 import {
   UserCache,
   UserCacheGroup,
   UserCacheQuestion,
   UserCacheSection,
-} from "../interface/userCache";
+} from "../_interface/userCache";
 
 export function getGroupQuestionLegend(state: UserCacheGroup): number[] {
   let tally = [0, 0, 0, 0, 0];
@@ -81,14 +81,12 @@ export function getDefaultOptions(
 }
 
 export function getUserResponse(
-  state: UserCache,
   qDataType: number,
   responseData: string[]
 ): number | number[] | null {
   const userAnswer = responseData;
   console.log("user-answer " + userAnswer + " " + typeof userAnswer);
 
-  const questionCache = getActiveQuestionCache(state);
   let payload;
   switch (qDataType) {
     case 0:

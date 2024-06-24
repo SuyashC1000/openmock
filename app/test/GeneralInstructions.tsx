@@ -6,7 +6,7 @@ import {
   UnorderedList,
 } from "@chakra-ui/react";
 import React from "react";
-import QuestionBtn from "../components/QuestionBtn";
+import QuestionBtn from "../_components/QuestionBtn";
 import { StringXor } from "next/dist/compiled/webpack/webpack";
 
 interface Props {

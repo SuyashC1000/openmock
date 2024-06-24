@@ -1,4 +1,4 @@
-import { UserCache } from "../interface/userCache";
+import { UserCache } from "../_interface/userCache";
 import example from "../../public/data/userCache.json";
 
 export interface Action {

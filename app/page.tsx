@@ -3,7 +3,7 @@
 import { TbWriting } from "react-icons/tb";
 
 import Image from "next/image";
-import QuestionBtn from "./components/QuestionBtn";
+import QuestionBtn from "./_components/QuestionBtn";
 import { Button, Heading, Link, Text } from "@chakra-ui/react";
 
 export default function Home() {

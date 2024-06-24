@@ -1,8 +1,8 @@
 import React from "react";
-import QuestionBtn from "../components/QuestionBtn";
+import QuestionBtn from "../_components/QuestionBtn";
 import QuestionView from "./QuestionView";
-import { UserCache } from "../interface/userCache";
-import { TestProps } from "../interface/testProps";
+import { UserCache } from "../_interface/userCache";
+import { TestProps } from "../_interface/testProps";
 
 const TestMainWindow = () => {
   return (

@@ -1,8 +1,13 @@
-import { Text } from "@chakra-ui/react";
+import { Button, Text } from "@chakra-ui/react";
 import React from "react";
-import { DispatchContext, StateContext, TestPaperContext } from "./page";
+import {
+  DispatchContext,
+  StateContext,
+  TestPaperContext,
+  TimeLeftContext,
+} from "./page";
 
-const Timer = () => {
+const Timer = React.memo(function Timer() {
   const state = React.useContext(StateContext);
   const testPaper = React.useContext(TestPaperContext);
   const dispatch = React.useContext(DispatchContext);
@@ -12,8 +17,10 @@ const Timer = () => {
   const getTimeLeft = () => {
     if (state.testStatus === "finished") return [0, 0];
 
-    let timeDiff = state.testLoginTime - state.testStartTime;
-    if (timeDiff < 0) timeDiff = 0;
+    const timeDiff =
+      state.testLoginTime - state.testStartTime < 0
+        ? 0
+        : state.testLoginTime - state.testStartTime;
     const totalTimeLeft =
       testPaper.maxTime * MINUTES_IN_MILLISECONDS - timeDiff;
     const totalSeconds = Math.floor(totalTimeLeft / 1000);
@@ -21,7 +28,10 @@ const Timer = () => {
     return [totalMinutes, totalSeconds % 60];
   };
 
-  const [timeLeft, setTimeLeft] = React.useState(getTimeLeft());
+  // const timeLeftState = React.useContext(TimeLeftContext);
+  const timeLeftState = React.useState([testPaper.maxTime, 0]);
+  const timeLeft = timeLeftState[0] as number[];
+  const setTimeLeft = timeLeftState[1] as (e: any) => {};
 
   function decrementCountdown(timeLeft: number[]) {
     let newSeconds, newMinutes;
@@ -44,7 +54,6 @@ const Timer = () => {
       if (state.testStatus === "ongoing" || state.testStatus === "submitting") {
         setTimeLeft(decrementCountdown(timeLeft));
       } else if (state.testStatus === "finished") {
-        console.log("Yeehaw");
       }
     }, 1000);
 
@@ -61,6 +70,5 @@ const Timer = () => {
       </Text>
     </div>
   );
-};
-
+});
 export default Timer;

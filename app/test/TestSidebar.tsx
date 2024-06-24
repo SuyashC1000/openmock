@@ -3,18 +3,18 @@
 import { Text } from "@chakra-ui/react";
 
 import React from "react";
-import QuestionLegend from "../components/QuestionLegend";
-import QuestionBtn from "../components/QuestionBtn";
+import QuestionLegend from "../_components/QuestionLegend";
+import QuestionBtn from "../_components/QuestionBtn";
 import {
   UserCache,
   UserCacheGroup,
   UserCacheQuestion,
   UserCacheSection,
-} from "../interface/userCache";
+} from "../_interface/userCache";
 import {
   getActiveSectionCache,
   getSectionQuestionLegend,
-} from "../formatters/getFunctions";
+} from "../_formatters/getFunctions";
 import { DispatchContext, StateContext } from "./page";
 
 const TestSidebar = () => {

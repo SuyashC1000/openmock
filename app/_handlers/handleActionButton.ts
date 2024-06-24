@@ -4,15 +4,15 @@ import {
   getActiveQuestionCache,
   getActiveSectionCache,
   getUserResponse,
-} from "../formatters/getFunctions";
-import { TestPaper, TestPaperQuestion } from "../interface/testData";
-import { DispatchFunc, SetResponseDataFunc } from "../interface/testProps";
+} from "../_formatters/getFunctions";
+import { TestPaper, TestPaperQuestion } from "../_interface/testData";
+import { DispatchFunc, SetResponseDataFunc } from "../_interface/testProps";
 import {
   UserCache,
   UserCacheGroup,
   UserCacheQuestion,
   UserCacheSection,
-} from "../interface/userCache";
+} from "../_interface/userCache";
 
 export function handleSubmitQuestion(
   state: UserCache,
@@ -30,7 +30,6 @@ export function handleSubmitQuestion(
   const activeQuestion: TestPaperQuestion = getActiveQuestion(testPaper, state);
 
   const userResponse = getUserResponse(
-    state,
     activeQuestion.qDataType[0],
     responseDataState.responseData
   );

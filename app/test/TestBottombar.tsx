@@ -21,12 +21,12 @@ import {
   handleClearResponse,
   handleSubmitQuestion,
   moveToPrevQuestion,
-} from "../handlers/handleActionButton";
+} from "../_handlers/handleActionButton";
 import {
   getActiveGroupCache,
   getActiveQuestionCache,
   getActiveSectionCache,
-} from "../formatters/getFunctions";
+} from "../_formatters/getFunctions";
 
 const TestBottombar = () => {
   const state = useContext(StateContext);
@@ -113,35 +113,13 @@ const TestBottombar = () => {
           fontWeight={"400"}
           colorScheme="blue"
           className="justify-end"
-          // onClick={onOpen}
+          onClick={() => {
+            dispatch({ type: "set_test_status", payload: "submitting" });
+          }}
         >
           Submit
         </Button>
       </ButtonGroup>
-
-      {/* <Modal
-        isOpen={state.testStatus === "submitting"}
-        onClose={() => {}}
-        size={"full"}
-      >
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Modal Title</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            Hello
-            <Button
-              onClick={() => {
-                dispatch({ type: "set_test_status", payload: "ongoing" });
-              }}
-            >
-              Click me
-            </Button>
-          </ModalBody>
-
-          <ModalFooter></ModalFooter>
-        </ModalContent>
-      </Modal> */}
     </div>
   );
 };

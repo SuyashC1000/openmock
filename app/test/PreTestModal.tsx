@@ -1,23 +1,12 @@
-import {
-  Avatar,
-  Button,
-  Checkbox,
-  Heading,
-  Select,
-  Text,
-} from "@chakra-ui/react";
+import { Avatar, Button, Checkbox, Heading, Text } from "@chakra-ui/react";
 import React from "react";
 import { DispatchContext, StateContext, TestPaperContext } from "./page";
-import { TbArrowLeft, TbChevronLeft, TbChevronRight } from "react-icons/tb";
+import { TbChevronLeft, TbChevronRight } from "react-icons/tb";
 import GeneralInstructions from "./GeneralInstructions";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
-
-export const SubmitModal = () => {
-  return <div>TestModals</div>;
-};
 
 export const PreTestModal = () => {
   const state = React.useContext(StateContext);

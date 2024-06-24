@@ -17,19 +17,19 @@ import {
   PopoverTrigger,
   Text,
 } from "@chakra-ui/react";
-import marks from "../formatters/marks";
-import numberToWords from "../formatters/numberToWords";
+import marks from "../_formatters/marks";
+import numberToWords from "../_formatters/numberToWords";
 import {
   UserCache,
   UserCacheQuestion,
   UserCacheSection,
-} from "../interface/userCache";
+} from "../_interface/userCache";
 import {
   getActiveQuestion,
   getActiveSectionCache,
-} from "../formatters/getFunctions";
+} from "../_formatters/getFunctions";
 import UserResponse from "./UserResponse";
-import { TestPaperQuestion } from "../interface/testData";
+import { TestPaperQuestion } from "../_interface/testData";
 import { StateContext, TestPaperContext } from "./page";
 
 interface MarkingSchemeProps {
@@ -180,6 +180,7 @@ const QuestionView = () => {
       >
         {markdown}
       </Markdown>
+      {}
       <UserResponse />
     </div>
   );
