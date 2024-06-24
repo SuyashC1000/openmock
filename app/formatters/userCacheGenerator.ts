@@ -41,6 +41,7 @@ export default function userCacheGenerator(
     username: username,
     currentLanguageIndex: 0,
     testStartTime: 0,
+    testLoginTime: 0,
   };
 
   return foundation;

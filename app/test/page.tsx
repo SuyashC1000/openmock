@@ -40,6 +40,10 @@ const TestPage = () => {
   );
   const [responseData, setResponseData] = React.useState<string[]>([]);
 
+  React.useEffect(() => {
+    dispatch({ type: "set_login_time", payload: Date.now() });
+  }, []);
+
   return (
     <TestPaperContext.Provider value={testData}>
       <StateContext.Provider value={state}>

@@ -56,6 +56,11 @@ export default function userCacheReducer(
 
       return newState;
     }
+    case "set_login_time": {
+      newState.testLoginTime = action.payload;
+
+      return newState;
+    }
 
     case "set_active_group": {
       newState.activeGroupIndex = action.payload;

@@ -41,7 +41,7 @@ const TestSidebar = () => {
           {activeSection.questions.map((e, i) => {
             return (
               <span
-                className={`h-12 w-12`}
+                className={`h-12 w-12 cursor-pointer`}
                 key={i}
                 onClick={() => {
                   dispatch({

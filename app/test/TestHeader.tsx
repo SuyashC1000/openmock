@@ -47,6 +47,8 @@ import {
 import { UserCacheGroup } from "../interface/userCache";
 import { DispatchContext, StateContext, TestPaperContext } from "./page";
 import GeneralInstructions from "./GeneralInstructions";
+import Timer from "./Timer";
+import test from "node:test";
 
 interface PaperOptionsProps {
   type: number;
@@ -89,14 +91,17 @@ const TestHeader = () => {
       {
         text: "View Instructions",
         icon: <TbInfoCircleFilled className="text-sky-700 text-base" />,
+        warning: "the instructions",
       },
       {
         text: "Question Paper",
         icon: <TbNotes className="text-emerald-500 text-base" />,
+        warning: "this question paper",
       },
       {
         text: "Useful Data",
         icon: <TbQuestionMark className="text-orange-500 text-base" />,
+        warning: "this data",
       },
     ];
 
@@ -155,8 +160,9 @@ const TestHeader = () => {
               <Alert status="error">
                 <AlertIcon />
                 <AlertDescription>
-                  Note that the timer is ticking while you read the page. Close
-                  this page to return to answering the questions.
+                  Note that the timer is ticking while you read{" "}
+                  {paperOptionsContent[props.type].warning}. Close this page to
+                  return to answering the questions.
                 </AlertDescription>
               </Alert>
               <div className="m-2 mt-5">
@@ -258,18 +264,10 @@ const TestHeader = () => {
     return (
       <div className="bg-white h-8 flex justify-between items-center p-1 text-sm">
         <Text>Sections</Text>
+        {state.testStatus === "finished" && (
+          <Text textColor={"red"}>Test Finished</Text>
+        )}
         <Timer />
-      </div>
-    );
-  }
-
-  function Timer() {
-    return (
-      <div>
-        <Text className="font-semibold">
-          Time Left:{" "}
-          <span className="bg-neutral-300 p-1 rounded-lg">180:00</span>
-        </Text>
       </div>
     );
   }

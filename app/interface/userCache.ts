@@ -28,6 +28,7 @@ export interface UserCache {
   testId: string;
   testStatus: "starting" | "ongoing" | "submitting" | "finished";
   testStartTime: number;
+  testLoginTime: number;
   currentLanguageIndex: number;
   activeGroupIndex: number;
   body: UserCacheGroup[];
