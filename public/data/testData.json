@@ -15,9 +15,11 @@
   "body": [
     {
       "groupName": "General Aptitude",
+      "optional": false,
       "constraints": {
-        "maxQuestionsAnswered": 3,
-        "maxOptionalSectionsAnswered": 1
+        "maxQuestionsAnswered": 5,
+        "maxOptionalSectionsAnswered": 1,
+        "permissionOnSubmit": "none"
       },
       "sections": [
         {
@@ -25,7 +27,7 @@
           "optional": false,
           "consolidateSubject": "General Aptitude",
           "constraints": {
-            "maxQuestionsAnswered": 2
+            "maxQuestionsAnswered": 3
           },
           "questions": [
             {
@@ -223,6 +225,8 @@
     },
     {
       "groupName": "Science",
+      "optional": false,
+
       "sections": [
         {
           "sectionName": "Physics",

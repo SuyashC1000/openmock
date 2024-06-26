@@ -92,7 +92,7 @@ const QuestionView = () => {
               Question Locked
             </AlertTitle>
             <AlertDescription maxWidth="sm">
-              You can no longer view the question or edit the response.
+              You can no longer revisit this question or edit the response.
             </AlertDescription>
           </Alert>
         </div>

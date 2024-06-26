@@ -52,6 +52,21 @@ export const masterConstraint = (
     final.canClear = false;
   }
 
+  if (activeGroupCache.status === "submitted") {
+    if (activeGroupCache.permissions === "view") {
+      final.canSet = false;
+      final.canClear = false;
+      final.messages.push(
+        `You can no longer edit your responses in this group.`
+      );
+    } else if (activeGroupCache.permissions === "none") {
+      final.canSet = false;
+      final.canClear = false;
+      final.canView = false;
+    }
+    return final;
+  }
+
   if (activeSection.optional && !activeSectionCache.selected) {
     if (
       activeGroup.constraints?.maxOptionalSectionsAnswered ===

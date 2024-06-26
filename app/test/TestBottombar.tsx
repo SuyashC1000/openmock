@@ -36,6 +36,8 @@ const TestBottombar = () => {
   const dispatch = useContext(DispatchContext);
   const responseDataState = useContext(ResponseDataContext);
 
+  const activeGroupCache = getActiveGroupCache(state);
+
   return (
     <div
       className="h-16 w-screen bg-white flex flex-0 justify-between
@@ -119,6 +121,7 @@ const TestBottombar = () => {
           onClick={() => {
             dispatch({ type: "set_test_status", payload: "submitting" });
           }}
+          isDisabled={activeGroupCache.status === "submitted"}
         >
           Submit
         </Button>

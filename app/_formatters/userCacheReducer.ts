@@ -118,11 +118,12 @@ export default function userCacheReducer(
       let sectionCache = activeGroupCache.sections[action.payload];
       let isSelected = sectionCache.selected;
       sectionCache.selected = !isSelected;
+      return newState;
+    }
 
-      // console.log(isSelected);
-
-      // isSelected = !isSelected;
-      // console.log(isSelected);
+    case "update_group_status": {
+      let activeGroupCache = newState.body[newState.activeGroupIndex];
+      activeGroupCache.status = action.payload;
 
       return newState;
     }

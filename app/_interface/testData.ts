@@ -41,13 +41,13 @@ export interface TestPaperSection {
 
 export interface TestPaperGroup {
   groupName: string;
+  optional: boolean;
   constraints?: TestPaperGroupConstraints;
   sections: TestPaperSection[];
   [k: string]: unknown;
 }
 
 interface TestPaperGroupConstraints {
-  optional?: boolean;
   permissionOnSubmit?: "all" | "view" | "none" | undefined;
   maxQuestionsAnswered?: number;
   maxOptionalSectionsAnswered?: number;

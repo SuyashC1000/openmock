@@ -14,6 +14,7 @@ import { TbInfoCircleFilled } from "react-icons/tb";
 interface SectionButtonProps {
   optional: boolean;
   isSelected: boolean;
+  isDisabled: boolean;
   sectionName: string;
   active: boolean;
   questionLegend: number[];
@@ -43,6 +44,7 @@ function SectionButton(props: SectionButtonProps) {
               size={"md"}
               isChecked={props.isSelected}
               onChange={() => props.onCheckboxSelect()}
+              isDisabled={props.isDisabled}
             />
           )}
           <Text

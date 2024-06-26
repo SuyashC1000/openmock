@@ -16,6 +16,8 @@ export default function userCacheGenerator(
     return {
       groupName: e.groupName,
       activeSectionIndex: 0,
+      status: i === 0 ? "ongoing" : "upcoming",
+      permissions: e.constraints?.permissionOnSubmit ?? "all",
       sections: e.sections.map((f, j) => {
         return {
           sectionName: f.sectionName,

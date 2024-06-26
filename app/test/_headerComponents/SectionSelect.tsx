@@ -35,6 +35,10 @@ function SectionSelect() {
             optional={activeGroup.sections[i].optional}
             active={i == activeGroupCache.activeSectionIndex}
             isSelected={e.selected!}
+            isDisabled={
+              activeGroupCache.permissions === "view" &&
+              activeGroupCache.status === "submitted"
+            }
             sectionName={e.sectionName}
             questionLegend={getSectionQuestionLegend(e)}
             onClick={() => {
