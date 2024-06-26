@@ -4,6 +4,7 @@ export interface UserCacheQuestion {
   submit: number | number[] | null;
   timeSpent: number;
   lastAnswered: number | null;
+  permissions: "all" | "view" | "none";
   [k: string]: unknown;
 }
 

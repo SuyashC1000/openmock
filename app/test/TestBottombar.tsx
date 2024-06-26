@@ -26,7 +26,8 @@ import {
   getActiveGroupCache,
   getActiveQuestionCache,
   getActiveSectionCache,
-} from "../_formatters/getFunctions";
+} from "../_formatters/getActiveCache";
+import { masterConstraint } from "../_formatters/masterConstraint";
 
 const TestBottombar = () => {
   const state = useContext(StateContext);
@@ -64,6 +65,11 @@ const TestBottombar = () => {
           colorScheme="blue"
           form="userResponseForm"
           type="reset"
+          isDisabled={
+            getActiveQuestionCache(state).permissions !== "none"
+              ? false
+              : !masterConstraint(state, testPaper).canClear
+          }
           onClick={() => {
             handleClearResponse(state, dispatch, responseDataState);
           }}
@@ -84,14 +90,13 @@ const TestBottombar = () => {
               : "visible"
           }
           onClick={() => {
-            moveToPrevQuestion(state, dispatch);
+            moveToPrevQuestion(state, dispatch, testPaper);
           }}
         >
           Previous
         </Button>
         <Button
           fontWeight={"400"}
-          variant="outline"
           colorScheme="blue"
           form="userResponseForm"
           type="submit"
@@ -111,7 +116,8 @@ const TestBottombar = () => {
 
         <Button
           fontWeight={"400"}
-          colorScheme="blue"
+          colorScheme="cyan"
+          textColor={"white"}
           className="justify-end"
           onClick={() => {
             dispatch({ type: "set_test_status", payload: "submitting" });

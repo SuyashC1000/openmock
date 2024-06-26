@@ -1,9 +1,10 @@
 import React from "react";
+import { getDefaultOptions } from "../_formatters/getFunctions";
 import {
+  getActiveGroupCache,
   getActiveQuestion,
   getActiveQuestionCache,
-  getDefaultOptions,
-} from "../_formatters/getFunctions";
+} from "../_formatters/getActiveCache";
 import { TestPaperQuestion } from "../_interface/testData";
 import { UserCacheQuestion } from "../_interface/userCache";
 
@@ -17,6 +18,8 @@ import {
 import NumeralValue from "./_userResponseTypes/NumeralValue";
 import SingleCorrectChoices from "./_userResponseTypes/SingleCorrectChoices";
 import MultipleCorrectChoices from "./_userResponseTypes/MultipleCorrectChoices";
+import { masterConstraint } from "../_formatters/masterConstraint";
+import useRenderingTrace from "./Diagnostic";
 
 interface UserResponseInputProps {
   question: TestPaperQuestion;
@@ -30,8 +33,12 @@ const UserResponse = () => {
   const { responseData, setResponseData } =
     React.useContext(ResponseDataContext);
 
+  let activeGroupCache = getActiveGroupCache(state);
+
   let activeQuestion = getActiveQuestion(testPaper, state);
   let activeQuestionCache = getActiveQuestionCache(state);
+
+  useRenderingTrace("BottomBar", responseData);
 
   function userAnswerInput(type: number) {
     switch (type) {
@@ -68,22 +75,29 @@ const UserResponse = () => {
     activeQuestion.qDataType,
     activeQuestionCache.id,
     activeQuestionCache.submit,
+    activeQuestionCache.lastAnswered,
     setResponseData,
   ]);
 
   return (
     <form
-      className="m-2 p-2 flex flex-col"
+      className=" flex flex-col"
       id="userResponseForm"
       onChange={(d) => {
         let e = new FormData(d.currentTarget);
-        setResponseData(e.getAll("user_answer"));
+        setResponseData(
+          e.getAll("user_answer").map((e) => {
+            return e.toString();
+          })
+        );
       }}
       onSubmit={(d) => {
         d.preventDefault();
       }}
     >
-      {userAnswerInput(activeQuestion.qDataType[0])}
+      <fieldset disabled={!masterConstraint(state, testPaper).canSet}>
+        {userAnswerInput(activeQuestion.qDataType[0])}
+      </fieldset>
       {"Saved Answer: " + getActiveQuestionCache(state).submit}
       <br />
       {"Current Answer: " + responseData}

@@ -51,7 +51,7 @@ export const PreTestModal = () => {
 
   const UserDeclaration = () => {
     return (
-      <div className="flex-0 border border-t-2 border-neutral-400 p-4">
+      <div className="flex-0 border border-t-2 border-neutral-400 p-4 max-h-52 overflow-y-auto">
         <Text fontSize={"sm"}>
           Choose your default language:{" "}
           <span>

@@ -15,6 +15,7 @@ import { emptyTestPaper, emptyUserCache } from "./empty";
 import { PreTestModal } from "./PreTestModal";
 import SubmitTestModal from "./SubmitTestModal";
 import MultiProvider from "../_components/MultiProvider";
+import useRenderingTrace from "./Diagnostic";
 
 interface DispatchFunction {
   (action: Action): void;
@@ -49,9 +50,11 @@ const TestPage = () => {
   const [responseData, setResponseData] = React.useState<string[]>([""]);
   const timeLeft = React.useState([testCache.maxTime, 0]);
 
-  // React.useEffect(() => {
-  //   dispatch({ type: "set_login_time", payload: Date.now() });
-  // }, []);
+  React.useEffect(() => {
+    dispatch({ type: "set_login_time", payload: Date.now() });
+  }, []);
+
+  // useRenderingTrace("QuestionView", state);
 
   const providers = [
     <TestPaperContext.Provider value={testData} key={0} />,

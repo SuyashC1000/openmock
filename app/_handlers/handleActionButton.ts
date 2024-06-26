@@ -1,10 +1,11 @@
+import { getUserResponse } from "../_formatters/getFunctions";
 import {
   getActiveGroupCache,
   getActiveQuestion,
   getActiveQuestionCache,
   getActiveSectionCache,
-  getUserResponse,
-} from "../_formatters/getFunctions";
+} from "../_formatters/getActiveCache";
+import { masterConstraint } from "../_formatters/masterConstraint";
 import { TestPaper, TestPaperQuestion } from "../_interface/testData";
 import { DispatchFunc, SetResponseDataFunc } from "../_interface/testProps";
 import {
@@ -13,6 +14,14 @@ import {
   UserCacheQuestion,
   UserCacheSection,
 } from "../_interface/userCache";
+import {
+  decrementQuestionIndex,
+  incrementQuestionIndex,
+} from "../_formatters/deviateQuestionIndex";
+import {
+  getActiveCacheByIndex,
+  getActiveIndex,
+} from "../_formatters/getActiveCacheAdvanced";
 
 export function handleSubmitQuestion(
   state: UserCache,
@@ -33,32 +42,67 @@ export function handleSubmitQuestion(
     activeQuestion.qDataType[0],
     responseDataState.responseData
   );
-  if (userResponse !== undefined)
-    dispatch({ type: "update_question_useranswer", payload: userResponse });
+  if (
+    activeQuestionCache.permissions !== "all"
+      ? false
+      : masterConstraint(state, testPaper).canSet
+  ) {
+    let newStatus = activeQuestionCache.status;
 
-  let newStatus = activeQuestionCache.status;
+    if (userResponse === null) {
+      newStatus = !mark ? 1 : 3;
+    } else {
+      newStatus = !mark ? 2 : 4;
+    }
 
-  if (userResponse === null) {
-    newStatus = !mark ? 1 : 3;
-  } else {
-    newStatus = !mark ? 2 : 4;
+    if (userResponse !== undefined) {
+      dispatch({ type: "update_question_useranswer", payload: userResponse });
+    }
+
+    dispatch({
+      type: "update_question_status",
+      payload: { qIndex: activeSectionCache.qIndex, newStatus: newStatus },
+    });
+
+    dispatch({
+      type: "update_question_lastanswered",
+      payload: Date.now(),
+    });
+
+    if (activeQuestion.constraints?.permissionOnAttempt !== undefined) {
+      dispatch({
+        type: "update_question_permissions",
+        payload: activeQuestion.constraints?.permissionOnAttempt,
+      });
+    }
   }
 
+  const oldIndexList = getActiveIndex(state);
+  const newIndexList = incrementQuestionIndex(state);
+  console.log(oldIndexList, newIndexList);
+
   dispatch({
-    type: "update_question_status",
-    payload: { qIndex: activeSectionCache.qIndex, newStatus: newStatus },
+    type: "set_active_elements",
+    payload: newIndexList,
   });
 
-  const activeAndTotal = {
-    group: [state.activeGroupIndex, state.body.length],
-    section: [
-      activeGroupCache.activeSectionIndex,
-      activeGroupCache.sections.length,
-    ],
-    question: [activeSectionCache.qIndex, activeSectionCache.questions.length],
-  };
+  const newActiveQuestion: UserCacheQuestion = getActiveCacheByIndex(
+    state,
+    newIndexList
+  ) as UserCacheQuestion;
 
-  moveToNextQuestion(activeAndTotal, state, dispatch);
+  console.log(newActiveQuestion);
+
+  if (oldIndexList !== newIndexList) {
+    dispatch({
+      type: "update_question_status",
+      payload: {
+        qIndex: newIndexList[2],
+        newStatus:
+          newActiveQuestion.status === 0 ? 1 : newActiveQuestion.status,
+      },
+    });
+  }
 }
 
 export function handleClearResponse(
@@ -81,82 +125,33 @@ export function handleClearResponse(
   });
 }
 
-function moveToNextQuestion(
-  activeAndTotal: {
-    group: number[];
-    section: number[];
-    question: number[];
-  },
+export function moveToPrevQuestion(
   state: UserCache,
-  dispatch: DispatchFunc
+  dispatch: DispatchFunc,
+  testPaper: TestPaper
 ) {
-  if (activeAndTotal.question[0] < activeAndTotal.question[1] - 1) {
-    dispatch({
-      type: "set_active_question",
-      payload: activeAndTotal.question[0] + 1,
-    });
-    if (
-      getActiveSectionCache(state).questions[activeAndTotal.question[0] + 1]
-        .status === 0
-    )
-      dispatch({
-        type: "update_question_status",
-        payload: { qIndex: activeAndTotal.question[0] + 1, newStatus: 1 },
-      });
-  } else if (activeAndTotal.section[0] < activeAndTotal.section[1] - 1) {
-    dispatch({
-      type: "set_active_section",
-      payload: activeAndTotal.section[0] + 1,
-    });
-    dispatch({
-      type: "set_active_question",
-      payload: 0,
-    });
-    dispatch({
-      type: "update_question_status",
-      payload: { qIndex: 0, newStatus: 1 },
-    });
-  }
-}
-
-export function moveToPrevQuestion(state: UserCache, dispatch: DispatchFunc) {
   const activeQuestionCache: UserCacheQuestion = getActiveQuestionCache(state);
   const activeGroupCache: UserCacheGroup = getActiveGroupCache(state);
   const activeSectionCache: UserCacheSection = getActiveSectionCache(state);
+  const activeQuestion: TestPaperQuestion = getActiveQuestion(testPaper, state);
 
-  const activeAndTotal = {
-    group: [state.activeGroupIndex, state.body.length],
-    section: [
-      activeGroupCache.activeSectionIndex,
-      activeGroupCache.sections.length,
-    ],
-    question: [activeSectionCache.qIndex, activeSectionCache.questions.length],
-  };
-
-  if (activeAndTotal.question[0] > 0) {
+  if (masterConstraint(state, testPaper).canSet) {
     dispatch({
-      type: "set_active_question",
-      payload: activeAndTotal.question[0] - 1,
-    });
-    if (
-      getActiveSectionCache(state).questions[activeAndTotal.question[0] - 1]
-        .status === 0
-    )
-      dispatch({
-        type: "update_question_status",
-        payload: { qIndex: activeAndTotal.question[0] - 1, newStatus: 1 },
-      });
-  } else if (activeAndTotal.section[0] > 0) {
-    const lastIndex =
-      getActiveGroupCache(state).sections[activeAndTotal.section[0] - 1]
-        .questions.length - 1;
-    dispatch({
-      type: "set_active_section",
-      payload: activeAndTotal.section[0] - 1,
-    });
-    dispatch({
-      type: "set_active_question",
-      payload: lastIndex,
+      type: "update_question_lastanswered",
+      payload: Date.now(),
     });
   }
+
+  if (activeQuestion.constraints?.permissionOnAttempt !== undefined) {
+    dispatch({
+      type: "update_question_permissions",
+      payload: activeQuestion.constraints?.permissionOnAttempt,
+    });
+  }
+
+  const newIndexList = decrementQuestionIndex(state);
+  dispatch({
+    type: "set_active_elements",
+    payload: newIndexList,
+  });
 }

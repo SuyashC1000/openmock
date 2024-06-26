@@ -2,10 +2,8 @@ import React from "react";
 import SectionButton from "./SectionButton";
 import { UserCacheGroup } from "@/app/_interface/userCache";
 import { DispatchContext, StateContext } from "../page";
-import {
-  getActiveGroupCache,
-  getSectionQuestionLegend,
-} from "@/app/_formatters/getFunctions";
+import { getSectionQuestionLegend } from "@/app/_formatters/getFunctions";
+import { getActiveGroupCache } from "@/app/_formatters/getActiveCache";
 
 function SectionSelect() {
   const state = React.useContext(StateContext);

@@ -14,12 +14,17 @@
   "body": [
     {
       "groupName": "General Aptitude",
+      "constraints": {
+        "maxQuestionsAnswered": 3
+      },
       "sections": [
         {
           "sectionName": "General Knowledge",
-          "maxQuestions": 0,
           "optional": false,
           "consolidateSubject": "General Aptitude",
+          "constraints": {
+            "maxQuestionsAnswered": 2
+          },
           "questions": [
             {
               "id": "q123456789",
@@ -42,6 +47,20 @@
             },
             {
               "id": "q123456790",
+              "qTypeName": "SCQ",
+              "qDataType": [0, 4],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1],
+                [0, 1]
+              ],
+              "question": ["How many countries were part of G20 in 2023?"],
+              "options": [["18"], ["19"], ["20"], ["21"]],
+              "tags": [],
+              "answer": 2
+            },
+            {
+              "id": "q123456791",
               "qTypeName": "NNI",
               "qDataType": [2, 1],
               "markingScheme": [
@@ -53,12 +72,75 @@
               "options": null,
               "tags": [],
               "answer": 50
+            },
+            {
+              "id": "q123456792",
+              "qTypeName": "MCQ",
+              "qDataType": [1, 4],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1],
+                [0, 1]
+              ],
+              "question": [
+                "Which states in India have different capitals for summer and winter?"
+              ],
+              "options": [
+                ["Jammu & Kashmir"],
+                ["Assam"],
+                ["Himachal Pradesh"],
+                ["Andhra Pradesh"]
+              ],
+              "tags": [],
+              "answer": [0, 2]
+            },
+            {
+              "id": "q123456793",
+              "qTypeName": "MCQ",
+              "qDataType": [1, 4],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1],
+                [0, 1]
+              ],
+              "question": [
+                "Which of the following were part of the Allied forces in World War II?"
+              ],
+              "options": [["France"], ["Spain"], ["UK"], ["Soviet Union"]],
+              "tags": [],
+              "answer": [0, 2, 3],
+              "constraints": {
+                "permissionOnAttempt": "view"
+              }
+            },
+            {
+              "id": "q123456794",
+              "qTypeName": "MCQ",
+              "qDataType": [1, 4],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1],
+                [0, 1]
+              ],
+              "question": [
+                "Which is the largest public sector undertaking in India?"
+              ],
+              "options": [
+                ["Railways"],
+                ["Roadways"],
+                ["Airways"],
+                ["Iron & Steel Plants"]
+              ],
+              "tags": [],
+              "answer": 0,
+              "constraints": {
+                "permissionOnAttempt": "none"
+              }
             }
           ]
         },
         {
           "sectionName": "Logical Reasoning",
-          "maxQuestions": 0,
           "optional": false,
           "consolidateSubject": "General Aptitude",
           "questions": [
@@ -103,7 +185,6 @@
       "sections": [
         {
           "sectionName": "Physics",
-          "maxQuestions": 0,
           "optional": false,
           "consolidateSubject": "Science",
           "questions": [
@@ -129,7 +210,7 @@
               "answer": 2
             },
             {
-              "id": "q2001",
+              "id": "q2002",
               "qTypeName": "SCQ",
               "qDataType": [0, 4],
               "markingScheme": [
@@ -153,7 +234,6 @@
         },
         {
           "sectionName": "Chemistry",
-          "maxQuestions": 0,
           "optional": false,
           "consolidateSubject": "Science",
           "questions": [
@@ -191,7 +271,6 @@
         },
         {
           "sectionName": "Maths",
-          "maxQuestions": 0,
           "optional": false,
           "consolidateSubject": "Science",
           "questions": [

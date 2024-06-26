@@ -1,8 +1,6 @@
-import { TestPaper, TestPaperQuestion } from "../_interface/testData";
 import {
   UserCache,
   UserCacheGroup,
-  UserCacheQuestion,
   UserCacheSection,
 } from "../_interface/userCache";
 
@@ -22,30 +20,6 @@ export function getSectionQuestionLegend(state: UserCacheSection): number[] {
     tally[e.status]++;
   });
   return tally;
-}
-
-export function getActiveGroupCache(state: UserCache): UserCacheGroup {
-  return state.body[state.activeGroupIndex];
-}
-
-export function getActiveSectionCache(state: UserCache): UserCacheSection {
-  const activeGroupCache = getActiveGroupCache(state);
-  return activeGroupCache.sections[activeGroupCache.activeSectionIndex];
-}
-
-export function getActiveQuestionCache(state: UserCache): UserCacheQuestion {
-  const activeSectionCache = getActiveSectionCache(state);
-  return activeSectionCache.questions[activeSectionCache.qIndex];
-}
-
-export function getActiveQuestion(
-  testPaper: TestPaper,
-  state: UserCache
-): TestPaperQuestion {
-  let activeGroup = testPaper.body[state.activeGroupIndex];
-  let activeSection =
-    activeGroup.sections[getActiveGroupCache(state).activeSectionIndex];
-  return activeSection.questions[getActiveSectionCache(state).qIndex];
 }
 
 export function getDefaultOptions(
@@ -109,4 +83,35 @@ export function getUserResponse(
   }
 
   return payload!;
+}
+
+export function getQuestionsAttemptedTally(
+  type: "group" | "section" | "paper",
+  state: UserCache | UserCacheGroup | UserCacheSection
+): number {
+  let tally: number = 0;
+
+  function totalSectionQuestionsAttempted(section: UserCacheSection): void {
+    section.questions.forEach((e, i) => {
+      if (e.submit !== null) tally++;
+    });
+  }
+  if (type === "section") {
+    totalSectionQuestionsAttempted(state as UserCacheSection);
+    return tally;
+  }
+
+  function totalGroupQuestionsAttempted(group: UserCacheGroup): void {
+    group.sections.forEach((e) => totalSectionQuestionsAttempted(e));
+  }
+  if (type === "group") {
+    totalGroupQuestionsAttempted(state as UserCacheGroup);
+    return tally;
+  }
+
+  if (type === "paper") {
+    (state as UserCache).body.forEach((e) => totalGroupQuestionsAttempted(e));
+  }
+
+  return tally;
 }

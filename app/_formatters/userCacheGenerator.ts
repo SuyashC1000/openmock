@@ -1,5 +1,10 @@
 import { TestPaper } from "../_interface/testData";
-import { UserCache } from "../_interface/userCache";
+import {
+  UserCache,
+  UserCacheGroup,
+  UserCacheQuestion,
+  UserCacheSection,
+} from "../_interface/userCache";
 
 export default function userCacheGenerator(
   testPaper: TestPaper,
@@ -24,11 +29,12 @@ export default function userCacheGenerator(
               submit: null,
               timeSpent: 0,
               lastAnswered: null,
-            };
+              permissions: "all",
+            } as UserCacheQuestion;
           }),
-        };
+        } as UserCacheSection;
       }),
-    };
+    } as UserCacheGroup;
   });
 
   // console.log(newBody);

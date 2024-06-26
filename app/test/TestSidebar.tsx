@@ -11,17 +11,23 @@ import {
   UserCacheQuestion,
   UserCacheSection,
 } from "../_interface/userCache";
+import { getSectionQuestionLegend } from "../_formatters/getFunctions";
 import {
+  getActiveQuestion,
+  getActiveQuestionCache,
   getActiveSectionCache,
-  getSectionQuestionLegend,
-} from "../_formatters/getFunctions";
-import { DispatchContext, StateContext } from "./page";
+} from "../_formatters/getActiveCache";
+import { DispatchContext, StateContext, TestPaperContext } from "./page";
+import { TestPaperQuestion } from "../_interface/testData";
+import QuestionsGrid from "./_sidebarComponents/QuestionsGrid";
 
 const TestSidebar = () => {
   const state = React.useContext(StateContext);
   const dispatch = React.useContext(DispatchContext);
+  const testPaper = React.useContext(TestPaperContext);
 
   let activeSection: UserCacheSection = getActiveSectionCache(state);
+  let activeQuestion: TestPaperQuestion = getActiveQuestion(testPaper, state);
 
   function SectionHeading() {
     return (
@@ -29,43 +35,6 @@ const TestSidebar = () => {
         <Text className="text-white font-semibold">
           {activeSection.sectionName}
         </Text>
-      </div>
-    );
-  }
-
-  function QuestionsGrid() {
-    return (
-      <div className="bg-cyan-100 flex flex-1 p-1 flex-col">
-        <Text className="font-semibold text-sm">Choose a Question</Text>
-        <div className="grid grid-flow-row grid-cols-5">
-          {activeSection.questions.map((e, i) => {
-            return (
-              <span
-                className={`h-12 w-12 cursor-pointer`}
-                key={i}
-                onClick={() => {
-                  dispatch({
-                    type: "update_question_status",
-                    payload: {
-                      qIndex: i,
-                      newStatus: e.status == 0 ? 1 : e.status,
-                    },
-                  });
-                  dispatch({
-                    type: "set_active_question",
-                    payload: i,
-                  });
-                }}
-              >
-                <QuestionBtn
-                  status={e.status}
-                  count={i + 1}
-                  active={activeSection.qIndex === i}
-                />
-              </span>
-            );
-          })}
-        </div>
       </div>
     );
   }

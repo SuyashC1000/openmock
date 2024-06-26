@@ -1,3 +1,4 @@
+import { Tooltip } from "@chakra-ui/react";
 import { color } from "framer-motion";
 import React from "react";
 
@@ -5,14 +6,20 @@ interface Props {
   count: number;
   status: number;
   active?: boolean;
+  disabled?: boolean;
 }
 
-const QuestionBtn = React.memo(function QuestionBtn(props: Props) {
-  const [count, setCount] = React.useState(props.count);
-  const [status, setStatus] = React.useState(props.status);
+const QuestionBtn = ({
+  count,
+  status,
+  active = false,
+  disabled = false,
+}: Props) => {
+  const [stateCount, setStateCount] = React.useState(count);
+  const [stateStatus, setStateStatus] = React.useState(status);
 
   const ButtonAccent = () => {
-    switch (props.status) {
+    switch (status) {
       case 0:
         return (
           <polygon
@@ -71,34 +78,48 @@ const QuestionBtn = React.memo(function QuestionBtn(props: Props) {
     }
   };
 
-  const textColor = props.status === 0 ? "black" : "white";
+  const textColor = status === 0 ? "black" : "white";
 
   React.useEffect(() => {
-    setCount(props.count);
-    setStatus(props.status);
-  }, [props.count, props.status]);
+    setStateCount(count);
+    setStateStatus(status);
+  }, [count, status]);
+
+  const tooltipMessages = [
+    "Not Visited",
+    "Not Answered",
+    "Answered",
+    "Marked for Review",
+    "Answered & Marked for Review",
+  ];
 
   return (
-    <svg
-      width={"100%"}
-      height={"100%"}
-      viewBox="0 0 120 100"
-      className={`select-none ${props.active && "brightness-150"}`}
-      xmlns="http://www.w3.org/2000/svg"
+    <Tooltip
+      label={tooltipMessages[status] + (disabled ? " (Locked)" : "")}
+      fontSize={"sm"}
+      openDelay={800}
     >
-      <ButtonAccent />
-      <text
-        x="50%"
-        y="50%"
-        dominantBaseline="middle"
-        textAnchor="middle"
-        fontSize="2.4rem"
-        fill={textColor}
+      <svg
+        width={"100%"}
+        height={"100%"}
+        viewBox="0 0 120 100"
+        className={`select-none ${active && "brightness-125 drop-shadow-lg"} ${disabled && " opacity-50"}`}
+        xmlns="http://www.w3.org/2000/svg"
       >
-        {count}
-      </text>
-    </svg>
+        <ButtonAccent />
+        <text
+          x="50%"
+          y="50%"
+          dominantBaseline="middle"
+          textAnchor="middle"
+          fontSize="2.4rem"
+          fill={textColor}
+        >
+          {stateCount}
+        </text>
+      </svg>
+    </Tooltip>
   );
-});
+};
 
 export default QuestionBtn;

@@ -33,7 +33,7 @@ const QuestionLegend = (props: Props) => {
         {legendOrder.map((e, i) => {
           return (
             <div key={i} className="h-9 flex flex-box justify-start gap-1">
-              <span className="flex-0">
+              <span className="flex-0 max-w-10">
                 <QuestionBtn count={props.legendCounts[e]} status={e} />
               </span>
               <Text className="text-xs flex-1 self-center">

@@ -67,6 +67,18 @@ export default function userCacheReducer(
 
       return newState;
     }
+    case "set_active_elements": {
+      newState.activeGroupIndex = action.payload[0];
+
+      let activeGroupCache = newState.body[newState.activeGroupIndex];
+      activeGroupCache.activeSectionIndex = action.payload[1];
+
+      let activeSectionCache =
+        activeGroupCache.sections[activeGroupCache.activeSectionIndex];
+      activeSectionCache.qIndex = action.payload[2];
+
+      return newState;
+    }
 
     case "update_question_status": {
       let activeGroupCache = newState.body[state.activeGroupIndex];
@@ -85,6 +97,28 @@ export default function userCacheReducer(
         activeGroupCache.sections[activeGroupCache.activeSectionIndex];
 
       activeSectionCache.questions[activeSectionCache.qIndex].submit =
+        action.payload;
+
+      return newState;
+    }
+
+    case "update_question_lastanswered": {
+      let activeGroupCache = newState.body[state.activeGroupIndex];
+      let activeSectionCache =
+        activeGroupCache.sections[activeGroupCache.activeSectionIndex];
+
+      activeSectionCache.questions[activeSectionCache.qIndex].lastAnswered =
+        action.payload;
+
+      return newState;
+    }
+
+    case "update_question_permissions": {
+      let activeGroupCache = newState.body[state.activeGroupIndex];
+      let activeSectionCache =
+        activeGroupCache.sections[activeGroupCache.activeSectionIndex];
+
+      activeSectionCache.questions[activeSectionCache.qIndex].permissions =
         action.payload;
 
       return newState;

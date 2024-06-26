@@ -7,7 +7,7 @@ import {
   TimeLeftContext,
 } from "./page";
 
-const Timer = React.memo(function Timer() {
+const Timer = () => {
   const state = React.useContext(StateContext);
   const testPaper = React.useContext(TestPaperContext);
   const dispatch = React.useContext(DispatchContext);
@@ -70,5 +70,5 @@ const Timer = React.memo(function Timer() {
       </Text>
     </div>
   );
-});
+};
 export default Timer;
