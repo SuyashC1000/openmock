@@ -8,14 +8,16 @@
   "languages": ["English"],
   "instructions": "",
   "additionalTools": {
-    "scientificCalculator": false
+    "calculator": "none",
+    "magnifyingGlass": false
   },
   "usefulData": "",
   "body": [
     {
       "groupName": "General Aptitude",
       "constraints": {
-        "maxQuestionsAnswered": 3
+        "maxQuestionsAnswered": 3,
+        "maxOptionalSectionsAnswered": 1
       },
       "sections": [
         {
@@ -141,7 +143,7 @@
         },
         {
           "sectionName": "Logical Reasoning",
-          "optional": false,
+          "optional": true,
           "consolidateSubject": "General Aptitude",
           "questions": [
             {
@@ -161,7 +163,7 @@
               "answer": 2
             },
             {
-              "id": "q123456790",
+              "id": "q123456890",
               "qTypeName": "Numerical",
               "qDataType": [2, 1],
               "markingScheme": [
@@ -175,6 +177,45 @@
               "options": null,
               "tags": [],
               "answer": 10
+            }
+          ]
+        },
+        {
+          "sectionName": "Mathematical Ability",
+          "optional": true,
+          "consolidateSubject": "General Aptitude",
+          "questions": [
+            {
+              "id": "q123457789",
+              "qTypeName": "Numerical",
+              "qDataType": [2, 0],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1],
+                [0, 1]
+              ],
+              "question": [
+                "If the present ages of X and Y are in the ratio of 3:4 and five years ago they were in the ratio of 2:3, what is the present age of Y?"
+              ],
+              "options": null,
+              "tags": [],
+              "answer": 20
+            },
+            {
+              "id": "q123457790",
+              "qTypeName": "SCQ",
+              "qDataType": [0, 4],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1],
+                [0, 1]
+              ],
+              "question": [
+                "If it was Monday on February 1, 2008, then what day was it on March 1, 2008?"
+              ],
+              "options": [["Sunday"], ["Monday"], ["Tuesday"], ["Wednesday"]],
+              "tags": [],
+              "answer": 2
             }
           ]
         }

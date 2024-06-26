@@ -11,6 +11,7 @@ import {
   getActiveQuestion,
   getActiveSectionCache,
 } from "@/app/_formatters/getActiveCache";
+import { getIsQuestionDisabled } from "@/app/_formatters/getFunctions";
 
 const QuestionsGrid = () => {
   const state = React.useContext(StateContext);
@@ -32,11 +33,6 @@ const QuestionsGrid = () => {
         newStatus: e.status == 0 ? 1 : e.status,
       },
     });
-    if (activeQuestion.constraints?.permissionOnAttempt !== undefined)
-      dispatch({
-        type: "update_question_permissions",
-        payload: activeQuestion.constraints?.permissionOnAttempt,
-      });
     dispatch({
       type: "set_active_question",
       payload: i,
@@ -49,18 +45,20 @@ const QuestionsGrid = () => {
         {activeSection.questions.map((e, i) => {
           return (
             <button
-              className={`h-12 w-12 ${e.permissions !== "none" ? "cursor-pointer" : "cursor-not-allowed"}`}
+              className={`h-12 w-12 ${!getIsQuestionDisabled(e) ? "cursor-pointer" : "cursor-not-allowed"}`}
               key={i}
-              disabled={e.permissions === "none"}
+              // disabled={getIsQuestionDisabled(e)}
               onClick={() => {
-                handleQuestionGridButtonSubmit(i, e);
+                if (activeSection.qIndex !== i) {
+                  handleQuestionGridButtonSubmit(i, e);
+                }
               }}
             >
               <QuestionBtn
                 status={e.status}
                 count={i + 1}
                 active={activeSection.qIndex === i}
-                disabled={e.permissions === "none"}
+                disabled={getIsQuestionDisabled(e)}
               />
             </button>
           );

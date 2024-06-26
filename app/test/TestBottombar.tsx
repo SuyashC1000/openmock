@@ -28,6 +28,7 @@ import {
   getActiveSectionCache,
 } from "../_formatters/getActiveCache";
 import { masterConstraint } from "../_formatters/masterConstraint";
+import { log } from "console";
 
 const TestBottombar = () => {
   const state = useContext(StateContext);
@@ -65,11 +66,7 @@ const TestBottombar = () => {
           colorScheme="blue"
           form="userResponseForm"
           type="reset"
-          isDisabled={
-            getActiveQuestionCache(state).permissions !== "none"
-              ? false
-              : !masterConstraint(state, testPaper).canClear
-          }
+          isDisabled={!masterConstraint(state, testPaper).canClear}
           onClick={() => {
             handleClearResponse(state, dispatch, responseDataState);
           }}

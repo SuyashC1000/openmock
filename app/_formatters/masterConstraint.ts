@@ -1,4 +1,7 @@
-import { getQuestionsAttemptedTally } from "../_formatters/getFunctions";
+import {
+  getQuestionsAttemptedTally,
+  getTotalSectionsSelected,
+} from "../_formatters/getFunctions";
 import {
   getActiveGroup,
   getActiveGroupCache,
@@ -14,7 +17,6 @@ interface Final {
   canView: boolean;
   canSet: boolean;
   canClear: boolean;
-  canSkip: boolean;
   messages: string[];
 }
 
@@ -34,13 +36,35 @@ export const masterConstraint = (
     canView: true,
     canSet: true,
     canClear: true,
-    canSkip: true,
     messages: [],
   };
 
-  if (activeQuestionCache.permissions === "none") {
+  if (
+    activeQuestionCache.permissions === "none" &&
+    activeQuestionCache.lastAnswered !== null
+  ) {
     final.canView = false;
-  } else if (activeQuestionCache.permissions === "view") {
+  } else if (
+    activeQuestionCache.permissions === "view" &&
+    activeQuestionCache.lastAnswered !== null
+  ) {
+    final.canSet = false;
+    final.canClear = false;
+  }
+
+  if (activeSection.optional && !activeSectionCache.selected) {
+    if (
+      activeGroup.constraints?.maxOptionalSectionsAnswered ===
+      getTotalSectionsSelected(state)
+    ) {
+      final.messages.push(
+        `Your responses in this section will not be evaluated unless you click on the checkbox of this section above.`
+      );
+    } else {
+      final.messages.push(
+        `Your responses in this section will not be evaluated unless you click on the checkbox of this section above.`
+      );
+    }
     final.canSet = false;
     final.canClear = false;
   }
@@ -49,7 +73,6 @@ export const masterConstraint = (
     "section",
     activeSectionCache
   );
-
   if (
     activeSection.constraints?.maxQuestionsAnswered ===
     sectionQuestionsAttempted

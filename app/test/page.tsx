@@ -12,8 +12,8 @@ import userCacheGenerator from "../_formatters/userCacheGenerator";
 import userCacheReducer, { Action } from "../_formatters/userCacheReducer";
 import { TestProps } from "../_interface/testProps";
 import { emptyTestPaper, emptyUserCache } from "./empty";
-import { PreTestModal } from "./PreTestModal";
-import SubmitTestModal from "./SubmitTestModal";
+import { PreTestModal } from "./_modals/PreTestModal";
+import SubmitTestModal from "./_modals/SubmitTestModal";
 import MultiProvider from "../_components/MultiProvider";
 import useRenderingTrace from "./Diagnostic";
 

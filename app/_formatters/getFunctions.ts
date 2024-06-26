@@ -1,8 +1,10 @@
 import {
   UserCache,
   UserCacheGroup,
+  UserCacheQuestion,
   UserCacheSection,
 } from "../_interface/userCache";
+import { getActiveGroupCache, getActiveSectionCache } from "./getActiveCache";
 
 export function getGroupQuestionLegend(state: UserCacheGroup): number[] {
   let tally = [0, 0, 0, 0, 0];
@@ -114,4 +116,24 @@ export function getQuestionsAttemptedTally(
   }
 
   return tally;
+}
+
+export function getTotalSectionsSelected(state: UserCache): number {
+  let tally = 0;
+
+  const activeGroup = getActiveGroupCache(state);
+  activeGroup.sections.forEach((e) => {
+    if (e.selected) {
+      tally++;
+    }
+  });
+
+  return tally;
+}
+
+export function getIsQuestionDisabled(
+  question: UserCacheQuestion,
+  permission: string = "none"
+) {
+  return question.permissions === permission && question.lastAnswered != null;
 }

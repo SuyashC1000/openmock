@@ -42,11 +42,7 @@ export function handleSubmitQuestion(
     activeQuestion.qDataType[0],
     responseDataState.responseData
   );
-  if (
-    activeQuestionCache.permissions !== "all"
-      ? false
-      : masterConstraint(state, testPaper).canSet
-  ) {
+  if (masterConstraint(state, testPaper).canSet) {
     let newStatus = activeQuestionCache.status;
 
     if (userResponse === null) {
@@ -68,13 +64,6 @@ export function handleSubmitQuestion(
       type: "update_question_lastanswered",
       payload: Date.now(),
     });
-
-    if (activeQuestion.constraints?.permissionOnAttempt !== undefined) {
-      dispatch({
-        type: "update_question_permissions",
-        payload: activeQuestion.constraints?.permissionOnAttempt,
-      });
-    }
   }
 
   const oldIndexList = getActiveIndex(state);
@@ -149,9 +138,28 @@ export function moveToPrevQuestion(
     });
   }
 
+  const oldIndexList = getActiveIndex(state);
   const newIndexList = decrementQuestionIndex(state);
   dispatch({
     type: "set_active_elements",
     payload: newIndexList,
   });
+
+  const newActiveQuestion: UserCacheQuestion = getActiveCacheByIndex(
+    state,
+    newIndexList
+  ) as UserCacheQuestion;
+
+  console.log(newActiveQuestion);
+
+  if (oldIndexList !== newIndexList) {
+    dispatch({
+      type: "update_question_status",
+      payload: {
+        qIndex: newIndexList[2],
+        newStatus:
+          newActiveQuestion.status === 0 ? 1 : newActiveQuestion.status,
+      },
+    });
+  }
 }

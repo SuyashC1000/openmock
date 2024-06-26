@@ -19,27 +19,16 @@ export default function userCacheReducer(
     }
 
     case "set_active_question": {
-      let activeGroupCache = newState.body[state.activeGroupIndex];
+      let activeGroupCache = newState.body[newState.activeGroupIndex];
       let activeSectionCache =
         activeGroupCache.sections[activeGroupCache.activeSectionIndex];
 
       activeSectionCache.qIndex = action.payload;
-
-      // let activeQuestionStatus =
-      //   activeSectionCache.questions[activeSectionCache.qIndex].status;
-
-      // console.log("status: " + activeQuestionStatus);
-      // console.log(activeQuestionStatus == 0);
-
-      // activeQuestionStatus =
-      //   activeQuestionStatus == 0 ? 1 : activeQuestionStatus;
-      // console.log("status: " + activeQuestionStatus);
-
       return newState;
     }
 
     case "set_active_section": {
-      let activeGroupCache = newState.body[state.activeGroupIndex];
+      let activeGroupCache = newState.body[newState.activeGroupIndex];
       activeGroupCache.activeSectionIndex = action.payload;
 
       return newState;
@@ -81,7 +70,7 @@ export default function userCacheReducer(
     }
 
     case "update_question_status": {
-      let activeGroupCache = newState.body[state.activeGroupIndex];
+      let activeGroupCache = newState.body[newState.activeGroupIndex];
       let activeSectionCache =
         activeGroupCache.sections[activeGroupCache.activeSectionIndex];
 
@@ -92,7 +81,7 @@ export default function userCacheReducer(
     }
 
     case "update_question_useranswer": {
-      let activeGroupCache = newState.body[state.activeGroupIndex];
+      let activeGroupCache = newState.body[newState.activeGroupIndex];
       let activeSectionCache =
         activeGroupCache.sections[activeGroupCache.activeSectionIndex];
 
@@ -103,7 +92,7 @@ export default function userCacheReducer(
     }
 
     case "update_question_lastanswered": {
-      let activeGroupCache = newState.body[state.activeGroupIndex];
+      let activeGroupCache = newState.body[newState.activeGroupIndex];
       let activeSectionCache =
         activeGroupCache.sections[activeGroupCache.activeSectionIndex];
 
@@ -114,12 +103,26 @@ export default function userCacheReducer(
     }
 
     case "update_question_permissions": {
-      let activeGroupCache = newState.body[state.activeGroupIndex];
+      let activeGroupCache = newState.body[newState.activeGroupIndex];
       let activeSectionCache =
         activeGroupCache.sections[activeGroupCache.activeSectionIndex];
 
       activeSectionCache.questions[activeSectionCache.qIndex].permissions =
         action.payload;
+
+      return newState;
+    }
+
+    case "toggle_section_isselected": {
+      let activeGroupCache = newState.body[newState.activeGroupIndex];
+      let sectionCache = activeGroupCache.sections[action.payload];
+      let isSelected = sectionCache.selected;
+      sectionCache.selected = !isSelected;
+
+      // console.log(isSelected);
+
+      // isSelected = !isSelected;
+      // console.log(isSelected);
 
       return newState;
     }

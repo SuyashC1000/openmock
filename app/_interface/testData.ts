@@ -8,7 +8,8 @@ export interface TestPaper {
   languages: string[];
   instructions: string;
   additionalTools: {
-    scientificCalculator: boolean;
+    calculator: "normal" | "scientific" | "none";
+    magnifyingGlass: boolean;
     [k: string]: unknown;
   };
   usefulData: string;
@@ -49,13 +50,10 @@ interface TestPaperGroupConstraints {
   optional?: boolean;
   permissionOnSubmit?: "all" | "view" | "none" | undefined;
   maxQuestionsAnswered?: number;
-  maxSectionsAnswered?: number;
-  minSectionsAnswered?: number;
+  maxOptionalSectionsAnswered?: number;
 }
 interface TestPaperSectionConstraints {
-  optional?: boolean;
   maxQuestionsAnswered?: number;
-  minQuestionsAnswered?: number;
 }
 interface TestPaperQuestionConstraints {
   optional?: boolean;

@@ -1,8 +1,8 @@
 import { Avatar, Button, Checkbox, Heading, Text } from "@chakra-ui/react";
 import React from "react";
-import { DispatchContext, StateContext, TestPaperContext } from "./page";
+import { DispatchContext, StateContext, TestPaperContext } from "../page";
 import { TbChevronLeft, TbChevronRight } from "react-icons/tb";
-import GeneralInstructions from "./GeneralInstructions";
+import GeneralInstructions from "../GeneralInstructions";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";

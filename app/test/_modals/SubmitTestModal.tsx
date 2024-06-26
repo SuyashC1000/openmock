@@ -12,7 +12,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 import React from "react";
-import { DispatchContext, StateContext, TestPaperContext } from "./page";
+import { DispatchContext, StateContext, TestPaperContext } from "../page";
 
 export const SubmitTestModal = () => {
   const state = React.useContext(StateContext);

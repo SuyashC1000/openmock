@@ -12,7 +12,7 @@ export interface UserCacheSection {
   sectionName: string;
   qIndex: number;
   maxQuestions: number;
-  optional: boolean;
+  selected?: boolean;
   questions: UserCacheQuestion[];
   [k: string]: unknown;
 }

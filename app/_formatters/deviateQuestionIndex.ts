@@ -9,21 +9,12 @@ import {
   getActiveCacheByIndex,
   getActiveIndex,
 } from "./getActiveCacheAdvanced";
+import { getIsQuestionDisabled } from "./getFunctions";
 
 export function incrementQuestionIndex(
   state: UserCache
 ): [number, number, number] {
   let currentIndexList: [number, number, number] = getActiveIndex(state);
-
-  function checkIfCorrect() {
-    const sample = getActiveCacheByIndex(
-      state,
-      currentIndexList
-    ) as UserCacheQuestion;
-    console.log(sample);
-
-    return sample.permissions === "none";
-  }
 
   do {
     const numOfQuestions = (
@@ -48,7 +39,11 @@ export function incrementQuestionIndex(
       currentIndexList[2] = 0;
       currentIndexList[1] += 1;
     }
-  } while (checkIfCorrect());
+  } while (
+    getIsQuestionDisabled(
+      getActiveCacheByIndex(state, currentIndexList) as UserCacheQuestion
+    )
+  );
 
   return currentIndexList;
 }
@@ -57,16 +52,6 @@ export function decrementQuestionIndex(
   state: UserCache
 ): [number, number, number] {
   let currentIndexList: [number, number, number] = getActiveIndex(state);
-
-  function checkIfCorrect() {
-    const sample = getActiveCacheByIndex(
-      state,
-      currentIndexList
-    ) as UserCacheQuestion;
-    console.log(sample);
-
-    return sample.permissions === "none";
-  }
 
   do {
     const numOfQuestions = (
@@ -98,7 +83,11 @@ export function decrementQuestionIndex(
       currentIndexList[2] = lastSection.questions.length - 1;
       currentIndexList[1] -= 1;
     }
-  } while (checkIfCorrect());
+  } while (
+    getIsQuestionDisabled(
+      getActiveCacheByIndex(state, currentIndexList) as UserCacheQuestion
+    )
+  );
 
   return currentIndexList;
 }

@@ -20,7 +20,7 @@ export default function userCacheGenerator(
         return {
           sectionName: f.sectionName,
           maxQuestions: f.maxQuestions,
-          optional: f.optional,
+          selected: f.optional ? false : undefined,
           qIndex: 0,
           questions: f.questions.map((g, k) => {
             return {
@@ -29,7 +29,7 @@ export default function userCacheGenerator(
               submit: null,
               timeSpent: 0,
               lastAnswered: null,
-              permissions: "all",
+              permissions: g.constraints?.permissionOnAttempt ?? "all",
             } as UserCacheQuestion;
           }),
         } as UserCacheSection;
