@@ -118,6 +118,41 @@ export function getQuestionsAttemptedTally(
   return tally;
 }
 
+export function getNumOfQuestionStatuses(
+  type: "group" | "section" | "paper",
+  statuses: number[],
+  state: UserCache | UserCacheGroup | UserCacheSection
+): number {
+  let tally = 0;
+
+  function sectionQuestionStatuses(section: UserCacheSection) {
+    section.questions.forEach((e, i) => {
+      if (statuses.includes(e.status)) tally++;
+    });
+  }
+  if (type === "section") {
+    sectionQuestionStatuses(state as UserCacheSection);
+    return tally;
+  }
+
+  function groupQuestionStatuses(group: UserCacheGroup) {
+    group.sections.forEach((e, i) => {
+      sectionQuestionStatuses(e);
+    });
+  }
+  if (type === "group") {
+    groupQuestionStatuses(state as UserCacheGroup);
+    return tally;
+  }
+
+  if (type === "paper") {
+    (state as UserCache).body.forEach((e) => groupQuestionStatuses(e));
+    return tally;
+  }
+
+  return tally;
+}
+
 export function getTotalSectionsSelected(state: UserCache): number {
   let tally = 0;
 

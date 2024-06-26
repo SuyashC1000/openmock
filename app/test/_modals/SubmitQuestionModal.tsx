@@ -12,8 +12,11 @@ import {
   Text,
 } from "@chakra-ui/react";
 import React from "react";
+import { StateContext } from "../page";
 
 const SubmitQuestionModal = (props: { state: UserCache; isOpen: boolean }) => {
+  const state = React.useContext(StateContext);
+
   return (
     <Modal isOpen={props.isOpen} onClose={() => {}} size={"full"}>
       <ModalOverlay />
