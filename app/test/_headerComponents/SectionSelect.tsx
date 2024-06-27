@@ -86,7 +86,7 @@ function SectionSelect() {
                 const sample = await confirm(
                   "Leave this question?",
                   `You will no longer be able to ${activeQuestionCache.permissions == "view" ? "edit" : "revisit or edit"} \n
-                  your response in this question in the future upon navigating.`
+                  your response in this question in the future upon navigating further.`
                 );
                 console.log(sample);
                 if (!sample) return;

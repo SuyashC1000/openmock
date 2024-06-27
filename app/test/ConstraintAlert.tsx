@@ -23,11 +23,17 @@ const ConstraintAlert = () => {
 
   const allMessages = masterConstraint(state, testPaper);
 
+  const zoomLevel = state.toolsPreferences.zoomLevel;
+
   return (
     <>
       {allMessages.messages.map((e, i) => {
         return (
-          <Alert status="warning" fontSize={"sm"} key={i}>
+          <Alert
+            status="warning"
+            fontSize={zoomLevel === 3 ? "lg" : zoomLevel === 2 ? "md" : "sm"}
+            key={i}
+          >
             <AlertIcon />
             <AlertDescription>
               <strong>Note:</strong> {e}

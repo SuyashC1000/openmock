@@ -1,12 +1,20 @@
 import { Button } from "@chakra-ui/react";
 import React from "react";
 
-const Numpad = (props: { numpadInput: Function }) => {
+interface NumpadProps {
+  numpadInput: Function;
+  zoomLevel: number;
+}
+
+const Numpad = (props: NumpadProps) => {
   return (
-    <div className="bg-neutral-100 m-2 p-2 w-52 flex flex-col items-center gap-1">
+    <div className="bg-neutral-100 m-2 p-2 w-fit px-16 flex flex-col items-center gap-1">
       <Button
         className="border border-1 border-neutral-600"
         size={"sm"}
+        fontSize={
+          props.zoomLevel === 3 ? "xl" : props.zoomLevel === 2 ? "lg" : "sm"
+        }
         bgColor={"lightgrey"}
         onClick={() => props.numpadInput(2)}
       >
@@ -19,6 +27,13 @@ const Numpad = (props: { numpadInput: Function }) => {
               key={i}
               className="border border-1 border-neutral-600"
               size={"sm"}
+              fontSize={
+                props.zoomLevel === 3
+                  ? "xl"
+                  : props.zoomLevel === 2
+                    ? "lg"
+                    : "sm"
+              }
               onClick={() => props.numpadInput(0, `${e}`)}
             >
               {e}
@@ -29,6 +44,9 @@ const Numpad = (props: { numpadInput: Function }) => {
         <Button
           className="border border-1 border-neutral-600"
           size={"sm"}
+          fontSize={
+            props.zoomLevel === 3 ? "xl" : props.zoomLevel === 2 ? "lg" : "sm"
+          }
           onClick={() => props.numpadInput(0, `.`)}
         >
           .
@@ -36,6 +54,9 @@ const Numpad = (props: { numpadInput: Function }) => {
         <Button
           className="border border-1 border-neutral-600"
           size={"sm"}
+          fontSize={
+            props.zoomLevel === 3 ? "xl" : props.zoomLevel === 2 ? "lg" : "sm"
+          }
           onClick={() => props.numpadInput(3)}
         >
           -
@@ -45,6 +66,9 @@ const Numpad = (props: { numpadInput: Function }) => {
         <Button
           className="border border-1 border-neutral-600"
           size={"sm"}
+          fontSize={
+            props.zoomLevel === 3 ? "xl" : props.zoomLevel === 2 ? "lg" : "sm"
+          }
           bgColor={"lightgrey"}
           onClick={() => props.numpadInput(4, "left")}
         >
@@ -53,6 +77,9 @@ const Numpad = (props: { numpadInput: Function }) => {
         <Button
           className="border border-1 border-neutral-600"
           size={"sm"}
+          fontSize={
+            props.zoomLevel === 3 ? "xl" : props.zoomLevel === 2 ? "lg" : "sm"
+          }
           bgColor={"lightgrey"}
           onClick={() => props.numpadInput(4, "right")}
         >
@@ -62,6 +89,9 @@ const Numpad = (props: { numpadInput: Function }) => {
       <Button
         className="border border-1 border-neutral-600"
         size={"sm"}
+        fontSize={
+          props.zoomLevel === 3 ? "xl" : props.zoomLevel === 2 ? "lg" : "sm"
+        }
         bgColor={"lightgrey"}
         onClick={() => props.numpadInput(1)}
       >

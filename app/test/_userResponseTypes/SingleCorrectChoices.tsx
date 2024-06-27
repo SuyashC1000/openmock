@@ -21,6 +21,8 @@ const SingleCorrectChoices = (props: UserResponseInputProps) => {
   const testPaper = React.useContext(TestPaperContext);
   const state = React.useContext(StateContext);
 
+  const zoomLevel = state.toolsPreferences.zoomLevel;
+
   return (
     <RadioGroup
       name="input"
@@ -37,7 +39,7 @@ const SingleCorrectChoices = (props: UserResponseInputProps) => {
               name="user_answer"
             >
               <Markdown
-                className="p-4 font-serif"
+                className={`p-4 font-serif text-${zoomLevel === 3 ? "xl" : zoomLevel === 2 ? "lg" : "base"}`}
                 remarkPlugins={[remarkGfm, remarkMath]}
                 rehypePlugins={[rehypeKatex]}
               >

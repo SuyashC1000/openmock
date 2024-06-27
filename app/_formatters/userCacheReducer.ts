@@ -141,6 +141,12 @@ export default function userCacheReducer(
       return newState;
     }
 
+    case "set_zoom_level": {
+      newState.toolsPreferences.zoomLevel = action.payload;
+
+      return newState;
+    }
+
     default:
       return state;
   }

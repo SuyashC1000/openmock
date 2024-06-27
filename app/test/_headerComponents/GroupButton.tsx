@@ -20,7 +20,7 @@ interface GroupButtonProps {
 
 function GroupButton(props: GroupButtonProps) {
   return (
-    <Popover placement="bottom" trigger="hover" openDelay={400}>
+    <Popover placement="bottom" trigger="hover" openDelay={400} isLazy>
       <PopoverContent>
         <PopoverBody>
           <strong>{props.groupName}</strong>

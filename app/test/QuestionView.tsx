@@ -44,6 +44,8 @@ const QuestionView = () => {
       state.body[state.activeGroupIndex].activeSectionIndex
     ].questions[activeSection.qIndex].question[state.currentLanguageIndex];
 
+  const zoomLevel = state.toolsPreferences.zoomLevel;
+
   return (
     <div className="flex flex-col">
       {!getIsQuestionDisabled(activeQuestionCache) && (
@@ -60,13 +62,15 @@ const QuestionView = () => {
             />
           </div>
           <div className="flex flex-col px-4 py-2 gap-2">
-            <Text className="font-semibold p-1">
+            <Text
+              className="font-semibold p-1"
+              fontSize={`${1 + (zoomLevel - 1) * 0.25}rem`}
+            >
               Question No. {getActiveSectionCache(state).qIndex + 1}
             </Text>
             <ConstraintAlert />
-            {"Last answered: " + getActiveQuestionCache(state).lastAnswered}
             <Markdown
-              className="font-serif"
+              className={`font-serif text-${zoomLevel === 3 ? "xl" : zoomLevel === 2 ? "lg" : "base"}`}
               remarkPlugins={[remarkGfm, remarkMath]}
               rehypePlugins={[rehypeKatex]}
             >

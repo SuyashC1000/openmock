@@ -43,12 +43,19 @@ export default function userCacheGenerator(
 
   let foundation: UserCache = {
     body: newBody,
+    toolsPreferences: {
+      zoomLevel: 1,
+      calculator: false,
+    },
     testStatus: "starting",
     activeGroupIndex: 0,
     testId: testPaper.id,
     username: username,
     currentLanguageIndex: 0,
     testStartTime: 0,
+    userDetails: {
+      name: "User",
+    },
     testLoginTime: 0,
   };
 

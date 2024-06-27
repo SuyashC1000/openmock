@@ -1,28 +1,77 @@
-import { ButtonGroup, IconButton } from "@chakra-ui/react";
+import {
+  Button,
+  ButtonGroup,
+  Icon,
+  IconButton,
+  Tooltip,
+  chakra,
+} from "@chakra-ui/react";
 import React from "react";
 import { TbCalculator, TbZoomIn, TbZoomOut } from "react-icons/tb";
+import { DispatchContext, StateContext, TestPaperContext } from "../page";
 
 function ToolsButtons() {
+  const state = React.useContext(StateContext);
+  const dispatch = React.useContext(DispatchContext);
+  const testPaper = React.useContext(TestPaperContext);
+
+  function incDecZoomLevel(i: number): void {
+    const newZoomLevel = (state.toolsPreferences.zoomLevel += i);
+    if (newZoomLevel >= 1 && newZoomLevel <= 3)
+      dispatch({ type: "set_zoom_level", payload: newZoomLevel });
+  }
+
   return (
-    <ButtonGroup className="text-orange-500">
-      <IconButton
-        icon={<TbZoomIn />}
-        aria-label="Zoom in"
-        fontSize={"xl"}
-        className="text-lg"
-      />
-      <IconButton
-        icon={<TbZoomOut />}
-        aria-label="Zoom out"
-        fontSize={"xl"}
-        className="text-lg"
-      />
-      <IconButton
-        icon={<TbCalculator />}
-        aria-label="Scientific calculator"
-        fontSize={"xl"}
-        className="text-lg"
-      />
+    <ButtonGroup>
+      {testPaper.additionalTools.magnifyingGlass && (
+        <Tooltip label="Zoom in" openDelay={400}>
+          <Button
+            fontSize={"2xl"}
+            isDisabled={state.toolsPreferences.zoomLevel === 3}
+            px={2}
+            bgColor={"transparent"}
+            aria-label="Zoom in"
+            color={"#db7f00"}
+            mx={0}
+            _hover={{ bgColor: "#c1c1c1" }}
+            onClick={() => incDecZoomLevel(1)}
+          >
+            <Icon as={TbZoomIn} />
+          </Button>
+        </Tooltip>
+      )}
+      {testPaper.additionalTools.magnifyingGlass && (
+        <Tooltip label="Zoom out" openDelay={400}>
+          <Button
+            fontSize={"2xl"}
+            isDisabled={state.toolsPreferences.zoomLevel === 1}
+            px={2}
+            bgColor={"transparent"}
+            aria-label="Zoom out"
+            color={"#db7f00"}
+            mx={0}
+            _hover={{ bgColor: "#c1c1c1" }}
+            onClick={() => incDecZoomLevel(-1)}
+          >
+            <Icon as={TbZoomOut} />
+          </Button>
+        </Tooltip>
+      )}
+      {testPaper.additionalTools.calculator !== "none" && (
+        <Tooltip label="Toggle Calculator" openDelay={400}>
+          <Button
+            fontSize={"2xl"}
+            px={2}
+            bgColor={"transparent"}
+            aria-label="Toggle Calculator"
+            color={"#db7f00"}
+            mx={0}
+            _hover={{ bgColor: "#c1c1c1" }}
+          >
+            <Icon as={TbCalculator} />
+          </Button>
+        </Tooltip>
+      )}
     </ButtonGroup>
   );
 }

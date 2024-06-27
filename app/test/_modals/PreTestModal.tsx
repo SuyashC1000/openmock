@@ -157,7 +157,7 @@ export const PreTestModal = () => {
         <div className="w-64 grow-1 h-screen bg-white outline outline-1 outline-neutral-400 flex flex-col items-center">
           <div className="flex items-center flex-col m-8 gap-2">
             <Avatar size={"xl"} />
-            <Text className="font-semibold">User</Text>
+            <Text className="font-semibold">{state.userDetails.name}</Text>
           </div>
         </div>
       </div>

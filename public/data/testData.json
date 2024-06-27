@@ -8,8 +8,8 @@
   "languages": ["English"],
   "instructions": "",
   "additionalTools": {
-    "calculator": "none",
-    "magnifyingGlass": false
+    "calculator": "normal",
+    "magnifyingGlass": true
   },
   "usefulData": "",
   "body": [
@@ -213,11 +213,11 @@
                 [0, 1]
               ],
               "question": [
-                "If it was Monday on February 1, 2008, then what day was it on March 1, 2008?"
+                "if 25% of 35% of x equals square of 7, what is the value of x?"
               ],
-              "options": [["Sunday"], ["Monday"], ["Tuesday"], ["Wednesday"]],
+              "options": [["140"], ["280"], ["420"], ["560"]],
               "tags": [],
-              "answer": 2
+              "answer": 3
             }
           ]
         }

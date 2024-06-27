@@ -98,9 +98,14 @@ const UserResponse = () => {
       <fieldset disabled={!masterConstraint(state, testPaper).canSet}>
         {userAnswerInput(activeQuestion.qDataType[0])}
       </fieldset>
-      {"Saved Answer: " + getActiveQuestionCache(state).submit}
+      {"Saved Answer: " + activeQuestionCache.submit}
       <br />
       {"Current Answer: " + responseData}
+      <br />
+      {"Last answered: " + activeQuestionCache.lastAnswered}
+      <br />
+      {"Response correct: " +
+        (activeQuestionCache.submit === activeQuestion.answer ? "Yes" : "No")}
     </form>
   );
 };

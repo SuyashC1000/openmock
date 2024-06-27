@@ -1,14 +1,26 @@
 import React from "react";
 import GroupSelect from "./GroupSelect";
 import SectionSelect from "./SectionSelect";
-import { Avatar, Text } from "@chakra-ui/react";
+import {
+  Avatar,
+  Button,
+  Popover,
+  PopoverAnchor,
+  PopoverArrow,
+  PopoverBody,
+  PopoverContent,
+  PopoverTrigger,
+  Select,
+  Text,
+} from "@chakra-ui/react";
 import Timer from "../Timer";
-import { StateContext, TestPaperContext } from "../page";
+import { DispatchContext, StateContext, TestPaperContext } from "../page";
 import { getActiveGroup } from "@/app/_formatters/getActiveCache";
 
 function HeaderDashboard() {
   const state = React.useContext(StateContext);
   const testPaper = React.useContext(TestPaperContext);
+  const dispatch = React.useContext(DispatchContext);
 
   const activeGroup = getActiveGroup(testPaper, state);
 
@@ -36,13 +48,55 @@ function HeaderDashboard() {
         </div>
         <SectionSelect />
       </div>
-      <div
-        className="w-64 bg-white flex-0 flex flex-box flex-col items-center justify-start
-      gap-3 p-2 outline outline-1 outline-neutral-400"
+      <Popover
+        placement="left-start"
+        offset={[0, 10]}
+        trigger="hover"
+        closeDelay={800}
+        arrowPadding={1}
+        arrowSize={15}
       >
-        <Avatar size={"lg"} className="flex-0 self-center" />
-        <Text className="font-semibold flex-1 text-center">User</Text>
-      </div>
+        <PopoverAnchor>
+          <PopoverTrigger>
+            <div
+              className="w-64 bg-white flex-0 flex flex-box flex-col items-center justify-start
+            gap-3 p-2 outline outline-1 outline-neutral-400"
+            >
+              <Avatar size={"lg"} className="flex-0 self-center" />
+              <Text className="font-semibold flex-1 text-center">
+                {state.userDetails.name}
+              </Text>
+            </div>
+          </PopoverTrigger>
+        </PopoverAnchor>
+        <PopoverContent>
+          <PopoverArrow />
+          <PopoverBody>
+            <Text>
+              Your name: <strong>{state.userDetails.name}</strong>
+            </Text>
+            <br />
+            <Text>Select language:</Text>
+            <Select
+              value={state.currentLanguageIndex}
+              onChange={(e) => {
+                dispatch({
+                  type: "set_default_language",
+                  payload: e.target.value,
+                });
+              }}
+            >
+              {testPaper.languages.map((e, i) => {
+                return (
+                  <option value={i} key={i}>
+                    {e}
+                  </option>
+                );
+              })}
+            </Select>
+          </PopoverBody>
+        </PopoverContent>
+      </Popover>
     </div>
   );
 }

@@ -34,7 +34,18 @@ export interface UserCache {
   testLoginTime: number;
   currentLanguageIndex: number;
   activeGroupIndex: number;
+  toolsPreferences: ToolsPreferences;
+  userDetails: UserTestDetails;
   body: UserCacheGroup[];
 
   [k: string]: unknown;
+}
+
+interface ToolsPreferences {
+  zoomLevel: number;
+  calculator: boolean;
+}
+
+export interface UserTestDetails {
+  name: "User";
 }

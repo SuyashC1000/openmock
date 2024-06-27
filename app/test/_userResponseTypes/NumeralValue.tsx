@@ -3,7 +3,7 @@ import { TestPaperQuestion } from "@/app/_interface/testData";
 import { UserCacheQuestion } from "@/app/_interface/userCache";
 import { NumberInput, NumberInputField } from "@chakra-ui/react";
 import React from "react";
-import { ResponseDataContext } from "../page";
+import { ResponseDataContext, StateContext } from "../page";
 import { getDefaultOptions } from "@/app/_formatters/getFunctions";
 
 interface UserResponseInputProps {
@@ -12,6 +12,10 @@ interface UserResponseInputProps {
 }
 
 const NumeralValue = (userResponseInputProps: UserResponseInputProps) => {
+  const state = React.useContext(StateContext);
+
+  const zoomLevel = state.toolsPreferences.zoomLevel;
+
   const { responseData, setResponseData } =
     React.useContext(ResponseDataContext);
 
@@ -90,9 +94,13 @@ const NumeralValue = (userResponseInputProps: UserResponseInputProps) => {
         onChange={(e) => {
           setCursor(cursor + (e.length - numInput.length));
         }}
+        size={"md"}
       >
-        <NumberInputField />
-        <Numpad numpadInput={numpadInput} />
+        <NumberInputField
+          maxW={200 + zoomLevel * 50}
+          fontSize={zoomLevel === 3 ? "xl" : zoomLevel === 2 ? "lg" : "sm"}
+        />
+        <Numpad numpadInput={numpadInput} zoomLevel={zoomLevel} />
       </NumberInput>
     </div>
   );
