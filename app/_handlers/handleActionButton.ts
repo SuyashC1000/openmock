@@ -22,8 +22,9 @@ import {
   getActiveCacheByIndex,
   getActiveIndex,
 } from "../_formatters/getActiveCacheAdvanced";
+import useConfirm from "@/lib/useConfirm";
 
-export function handleSubmitQuestion(
+export async function handleSubmitQuestion(
   state: UserCache,
   dispatch: DispatchFunc,
   testPaper: TestPaper,
@@ -31,9 +32,24 @@ export function handleSubmitQuestion(
     responseData: any[];
     setResponseData: SetResponseDataFunc;
   },
+  confirm: (title?: string, message?: string) => Promise<unknown>,
   mark: boolean
 ) {
   const activeQuestionCache: UserCacheQuestion = getActiveQuestionCache(state);
+
+  if (
+    activeQuestionCache.permissions !== "all" &&
+    activeQuestionCache.lastAnswered === null
+  ) {
+    const sample = await confirm(
+      "Leave this question?",
+      `You will no longer be able to ${activeQuestionCache.permissions == "view" ? "edit" : "revisit or edit"} \n
+      your response in this question in the future upon navigating.`
+    );
+    console.log(sample);
+    if (!sample) return;
+  }
+
   const activeGroupCache: UserCacheGroup = getActiveGroupCache(state);
   const activeSectionCache: UserCacheSection = getActiveSectionCache(state);
   const activeQuestion: TestPaperQuestion = getActiveQuestion(testPaper, state);
@@ -114,15 +130,29 @@ export function handleClearResponse(
   });
 }
 
-export function moveToPrevQuestion(
+export async function moveToPrevQuestion(
   state: UserCache,
   dispatch: DispatchFunc,
-  testPaper: TestPaper
+  testPaper: TestPaper,
+  confirm: (title?: string, message?: string) => Promise<unknown>
 ) {
   const activeQuestionCache: UserCacheQuestion = getActiveQuestionCache(state);
   const activeGroupCache: UserCacheGroup = getActiveGroupCache(state);
   const activeSectionCache: UserCacheSection = getActiveSectionCache(state);
   const activeQuestion: TestPaperQuestion = getActiveQuestion(testPaper, state);
+
+  if (
+    activeQuestionCache.permissions !== "all" &&
+    activeQuestionCache.lastAnswered === null
+  ) {
+    const sample = await confirm(
+      "Leave this question?",
+      `You will no longer be able to ${activeQuestionCache.permissions == "view" ? "edit" : "revisit or edit"} \n
+      your response in this question in the future upon navigating.`
+    );
+    console.log(sample);
+    if (!sample) return;
+  }
 
   if (masterConstraint(state, testPaper).canSet) {
     dispatch({

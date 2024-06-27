@@ -96,7 +96,10 @@
                 ["Andhra Pradesh"]
               ],
               "tags": [],
-              "answer": [0, 2]
+              "answer": [0, 2],
+              "constraints": {
+                "permissionOnAttempt": "view"
+              }
             },
             {
               "id": "q123456793",
@@ -112,10 +115,7 @@
               ],
               "options": [["France"], ["Spain"], ["UK"], ["Soviet Union"]],
               "tags": [],
-              "answer": [0, 2, 3],
-              "constraints": {
-                "permissionOnAttempt": "view"
-              }
+              "answer": [0, 2, 3]
             },
             {
               "id": "q123456794",

@@ -5,14 +5,19 @@ import { DispatchContext, StateContext } from "../page";
 import { getGroupQuestionLegend } from "@/app/_formatters/getFunctions";
 import { UserCacheGroup } from "@/app/_interface/userCache";
 import { useToast } from "@chakra-ui/react";
+import { getActiveQuestionCache } from "@/app/_formatters/getActiveCache";
+import useConfirm from "@/lib/useConfirm";
 
 function GroupSelect() {
   const state = React.useContext(StateContext);
   const dispatch = React.useContext(DispatchContext);
 
   const toast = useToast();
+  const { confirm } = useConfirm();
 
-  function handleGroupSelect(
+  const activeQuestionCache = getActiveQuestionCache(state);
+
+  async function handleGroupSelect(
     e: UserCacheGroup,
     i: number,
     activeQuestionIndex: number
@@ -37,6 +42,19 @@ function GroupSelect() {
         variant: "subtle",
       });
     } else {
+      if (
+        activeQuestionCache.permissions !== "all" &&
+        activeQuestionCache.lastAnswered === null
+      ) {
+        const sample = await confirm(
+          "Leave this question?",
+          `You will no longer be able to ${activeQuestionCache.permissions == "view" ? "edit" : "revisit or edit"} \n
+          your response in this question in the future upon navigating.`
+        );
+        console.log(sample);
+        if (!sample) return;
+      }
+
       dispatch({ type: "set_active_group", payload: i });
       if (
         e.sections[e.activeSectionIndex].questions[activeQuestionIndex]
@@ -56,6 +74,9 @@ function GroupSelect() {
       <div className=" flex gap-2 items-center overflow-x-auto overflow-y-hidden">
         {state.body.map((e, i) => {
           const activeQuestionIndex = e.sections[e.activeSectionIndex].qIndex;
+          const isDisabled =
+            e.status === "upcoming" ||
+            (e.status === "submitted" && e.permissions === "none");
           return (
             <GroupButton
               key={i}
@@ -66,6 +87,7 @@ function GroupSelect() {
               onClick={() => {
                 handleGroupSelect(e, i, activeQuestionIndex);
               }}
+              isDisabled={isDisabled}
             />
           );
         })}

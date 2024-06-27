@@ -14,6 +14,7 @@ import { PreTestModal } from "./_modals/PreTestModal";
 import SubmitTestModal from "./_modals/SubmitTestModal";
 import MultiProvider from "../_components/MultiProvider";
 import useRenderingTrace from "./Diagnostic";
+import ConfirmationModal from "./_modals/ConfirmationModal";
 
 interface DispatchFunction {
   (action: Action): void;
@@ -32,6 +33,17 @@ export const ResponseDataContext = React.createContext({
     value;
   },
 });
+
+export const DialogDataContext = React.createContext([
+  {
+    active: false,
+    title: "",
+    message: "",
+  },
+  (e: any) => {
+    e;
+  },
+]);
 export const TimeLeftContext = React.createContext([
   [0, 0],
   (e: any) => {
@@ -47,6 +59,11 @@ const TestPage = () => {
   );
   const [responseData, setResponseData] = React.useState<string[]>([""]);
   const timeLeft = React.useState([testCache.maxTime, 0]);
+  const dialogData = React.useState({
+    active: false,
+    title: "",
+    message: "",
+  });
 
   React.useEffect(() => {
     dispatch({ type: "set_login_time", payload: Date.now() });
@@ -66,6 +83,7 @@ const TestPage = () => {
       key={3}
     />,
     <TimeLeftContext.Provider value={timeLeft} key={3} />,
+    <DialogDataContext.Provider value={dialogData} key={4} />,
   ];
 
   return (
@@ -73,7 +91,7 @@ const TestPage = () => {
       <div className="bg-slate-800 flex flex-box flex-col h-screen max-h-screen select-none">
         <PreTestModal />
         <SubmitTestModal />
-
+        <ConfirmationModal />
         <TestHeader />
         <div className="h-auto flex flex-1 w-screen overflow-hidden">
           <TestMainWindow />

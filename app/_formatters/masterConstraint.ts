@@ -59,12 +59,13 @@ export const masterConstraint = (
       final.messages.push(
         `You can no longer edit your responses in this group.`
       );
+      return final;
     } else if (activeGroupCache.permissions === "none") {
       final.canSet = false;
       final.canClear = false;
       final.canView = false;
+      return final;
     }
-    return final;
   }
 
   if (activeSection.optional && !activeSectionCache.selected) {

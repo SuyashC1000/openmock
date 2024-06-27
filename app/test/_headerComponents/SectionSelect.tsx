@@ -1,6 +1,10 @@
 import React from "react";
 import SectionButton from "./SectionButton";
-import { UserCacheGroup } from "@/app/_interface/userCache";
+import {
+  UserCacheGroup,
+  UserCacheQuestion,
+  UserCacheSection,
+} from "@/app/_interface/userCache";
 import { DispatchContext, StateContext, TestPaperContext } from "../page";
 import {
   getSectionQuestionLegend,
@@ -9,9 +13,11 @@ import {
 import {
   getActiveGroup,
   getActiveGroupCache,
+  getActiveQuestionCache,
 } from "@/app/_formatters/getActiveCache";
 import { TestPaperGroup } from "@/app/_interface/testData";
 import { useToast } from "@chakra-ui/react";
+import useConfirm from "@/lib/useConfirm";
 
 function SectionSelect() {
   const state = React.useContext(StateContext);
@@ -20,8 +26,39 @@ function SectionSelect() {
 
   const toast = useToast();
 
+  const { confirm } = useConfirm();
+
   let activeGroupCache: UserCacheGroup = getActiveGroupCache(state);
+  let activeQuestionCache: UserCacheQuestion = getActiveQuestionCache(state);
   let activeGroup: TestPaperGroup = getActiveGroup(testPaper, state);
+
+  async function handleOnCheckboxSelect(e: UserCacheSection, i: number) {
+    if (
+      activeGroup.constraints?.maxOptionalSectionsAnswered ===
+        getTotalSectionsSelected(state) &&
+      !e.selected
+    ) {
+      toast({
+        status: "error",
+        title: "Maximum sections selected!",
+        description: `You cannot select more than ${getTotalSectionsSelected(state)} sections at a time.`,
+        position: "top",
+        isClosable: true,
+        variant: "subtle",
+      });
+    } else {
+      if (e.selected) {
+        const isConfirmed = await confirm(
+          "Delete section responses?",
+          "Deselecting the checkbox will reset ALL of your responses in that section."
+        );
+        if (isConfirmed) {
+          dispatch({ type: "reset_section_attempts", payload: i });
+        } else return;
+      }
+      dispatch({ type: "toggle_section_isselected", payload: i });
+    }
+  }
 
   return (
     <div
@@ -41,7 +78,20 @@ function SectionSelect() {
             }
             sectionName={e.sectionName}
             questionLegend={getSectionQuestionLegend(e)}
-            onClick={() => {
+            onClick={async () => {
+              if (
+                activeQuestionCache.permissions !== "all" &&
+                activeQuestionCache.lastAnswered === null
+              ) {
+                const sample = await confirm(
+                  "Leave this question?",
+                  `You will no longer be able to ${activeQuestionCache.permissions == "view" ? "edit" : "revisit or edit"} \n
+                  your response in this question in the future upon navigating.`
+                );
+                console.log(sample);
+                if (!sample) return;
+              }
+
               dispatch({
                 type: "update_question_lastanswered",
                 payload: Date.now(),
@@ -55,22 +105,7 @@ function SectionSelect() {
               }
             }}
             onCheckboxSelect={() => {
-              if (
-                activeGroup.constraints?.maxOptionalSectionsAnswered ===
-                  getTotalSectionsSelected(state) &&
-                !e.selected
-              ) {
-                toast({
-                  status: "error",
-                  title: "Maximum sections selected!",
-                  description: `You cannot select more than ${getTotalSectionsSelected(state)} sections at a time.`,
-                  position: "top",
-                  isClosable: true,
-                  variant: "subtle",
-                });
-              } else {
-                dispatch({ type: "toggle_section_isselected", payload: i });
-              }
+              handleOnCheckboxSelect(e, i);
             }}
           />
         );

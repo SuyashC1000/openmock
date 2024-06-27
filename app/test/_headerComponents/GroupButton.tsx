@@ -15,6 +15,7 @@ interface GroupButtonProps {
   active: boolean;
   questionLegend: number[];
   onClick: Function;
+  isDisabled: boolean;
 }
 
 function GroupButton(props: GroupButtonProps) {
@@ -31,7 +32,7 @@ function GroupButton(props: GroupButtonProps) {
         <div
           className={
             (props.active ? "bg-blue-400 text-white" : "bg-white") +
-            ` flex items-center gap-0.5 p-1 rounded-md my-1 text-sm h-7 min-w-fit`
+            ` flex items-center gap-0.5 p-1 rounded-md my-1 text-sm h-7 min-w-fit ${props.isDisabled ? "cursor-not-allowed" : "cursor-pointer"}`
           }
           onClick={() => props.onClick()}
         >

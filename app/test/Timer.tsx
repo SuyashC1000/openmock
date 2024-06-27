@@ -64,7 +64,7 @@ const Timer = () => {
     <div>
       <Text className="font-semibold">
         Time Left:{" "}
-        <span className="bg-neutral-300 p-1 rounded-lg">
+        <span className="bg-neutral-300 p-1 rounded-lg font-mono">
           {timeLeft[0]}:{(timeLeft[1] < 10 ? "0" : "") + timeLeft[1]}
         </span>
       </Text>

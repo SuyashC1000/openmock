@@ -29,6 +29,7 @@ import {
 } from "../_formatters/getActiveCache";
 import { masterConstraint } from "../_formatters/masterConstraint";
 import { log } from "console";
+import useConfirm from "@/lib/useConfirm";
 
 const TestBottombar = () => {
   const state = useContext(StateContext);
@@ -36,7 +37,10 @@ const TestBottombar = () => {
   const dispatch = useContext(DispatchContext);
   const responseDataState = useContext(ResponseDataContext);
 
+  const { confirm } = useConfirm();
+
   const activeGroupCache = getActiveGroupCache(state);
+  const activeQuestionCache = getActiveQuestionCache(state);
 
   return (
     <div
@@ -56,6 +60,7 @@ const TestBottombar = () => {
               dispatch,
               testPaper,
               responseDataState,
+              confirm,
               true
             );
           }}
@@ -89,7 +94,7 @@ const TestBottombar = () => {
               : "visible"
           }
           onClick={() => {
-            moveToPrevQuestion(state, dispatch, testPaper);
+            moveToPrevQuestion(state, dispatch, testPaper, confirm);
           }}
         >
           Previous
@@ -100,12 +105,13 @@ const TestBottombar = () => {
           form="userResponseForm"
           type="submit"
           // onClick={(e) => console.log(e.currentTarget)}
-          onClick={(e) => {
+          onClick={async (e) => {
             handleSubmitQuestion(
               state,
               dispatch,
               testPaper,
               responseDataState,
+              confirm,
               false
             );
           }}

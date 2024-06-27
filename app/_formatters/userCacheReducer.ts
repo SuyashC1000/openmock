@@ -128,6 +128,19 @@ export default function userCacheReducer(
       return newState;
     }
 
+    case "reset_section_attempts": {
+      let activeGroupCache = newState.body[newState.activeGroupIndex];
+      let questions = activeGroupCache.sections[action.payload].questions;
+      for (let i = 0; i < questions.length; i++) {
+        let oldStatus = questions[i].status;
+        let newStatus = oldStatus === 2 ? 1 : oldStatus === 4 ? 3 : oldStatus;
+        questions[i].status = newStatus;
+        questions[i].submit = null;
+      }
+
+      return newState;
+    }
+
     default:
       return state;
   }

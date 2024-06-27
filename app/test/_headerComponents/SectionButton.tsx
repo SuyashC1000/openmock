@@ -36,7 +36,7 @@ function SectionButton(props: SectionButtonProps) {
         <div
           className={
             (props.active ? "bg-blue-900 text-white" : "bg-white") +
-            ` flex items-center gap-1 px-1 rounded-md my-1 text-sm h-7 min-w-fit`
+            ` flex items-center gap-1 px-1 rounded-md my-1 text-sm h-7 min-w-fit cursor-pointer`
           }
         >
           {props.optional && (
