@@ -96,11 +96,7 @@ const TestPage = () => {
         <SubmitTestModal />
         <ConfirmationModal />
         <TestHeader />
-        <div className="h-auto flex flex-1 w-screen overflow-hidden">
-          <TestMainWindow />
-          <TestSidebar />
-        </div>
-        <TestBottombar />
+        <TestMainWindow /> <TestBottombar />
       </div>
     </MultiProvider>
   );

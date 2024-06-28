@@ -73,6 +73,7 @@ export async function handleSubmitQuestion(
     } else {
       newStatus = !mark ? 2 : 4;
     }
+    console.log(newStatus);
 
     if (userResponse !== undefined) {
       dispatch({ type: UPDATE_QUESTION_USERANSWER, payload: userResponse });
@@ -91,7 +92,6 @@ export async function handleSubmitQuestion(
 
   const oldIndexList = getActiveIndex(state);
   const newIndexList = incrementQuestionIndex(state);
-  console.log(oldIndexList, newIndexList);
 
   dispatch({
     type: SET_ACTIVE_ELEMENTS,
@@ -103,9 +103,7 @@ export async function handleSubmitQuestion(
     newIndexList
   ) as UserCacheQuestion;
 
-  console.log(newActiveQuestion);
-
-  if (oldIndexList !== newIndexList) {
+  if (oldIndexList.toString() !== newIndexList.toLocaleString()) {
     dispatch({
       type: UPDATE_QUESTION_STATUS,
       payload: {
@@ -189,7 +187,7 @@ export async function moveToPrevQuestion(
 
   console.log(newActiveQuestion);
 
-  if (oldIndexList !== newIndexList) {
+  if (oldIndexList.toString() !== newIndexList.toString()) {
     dispatch({
       type: UPDATE_QUESTION_STATUS,
       payload: {

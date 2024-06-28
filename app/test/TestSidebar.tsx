@@ -1,6 +1,6 @@
 "use client";
 
-import { Text } from "@chakra-ui/react";
+import { Button, IconButton, Text } from "@chakra-ui/react";
 
 import React from "react";
 import QuestionLegend from "../_components/QuestionLegend";
@@ -23,7 +23,6 @@ import QuestionsGrid from "./_sidebarComponents/QuestionsGrid";
 
 const TestSidebar = () => {
   const state = React.useContext(StateContext);
-  const dispatch = React.useContext(DispatchContext);
   const testPaper = React.useContext(TestPaperContext);
 
   let activeSection: UserCacheSection = getActiveSectionCache(state);
@@ -42,7 +41,7 @@ const TestSidebar = () => {
   return (
     <div
       className="w-64 bg-slate-400 flex flex-box flex-col outline outline-1 outline-neutral-400
-    border border-t-1 border-t-neutral-400"
+      border border-t-1 border-t-neutral-400"
     >
       <QuestionLegend
         legendCounts={getSectionQuestionLegend(activeSection)}

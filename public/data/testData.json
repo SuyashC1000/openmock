@@ -4,7 +4,7 @@
   "timeCreated": 1717324690,
   "authors": ["Test", "test@test.com"],
   "maxTime": 180,
-  "subjects": ["General Aptitude", "Science"],
+  "subjects": ["General Aptitude", "Science", "Social Science"],
   "languages": ["English"],
   "instructions": "",
   "additionalTools": {
@@ -120,7 +120,7 @@
             {
               "id": "q123456794",
               "qTypeName": "MCQ",
-              "qDataType": [1, 4],
+              "qDataType": [0, 4],
               "markingScheme": [
                 [4, 1],
                 [-1, 1],
@@ -353,6 +353,187 @@
                 "What is the smallest natural number that is both a perfect square and a perfect cube?"
               ],
               "options": null,
+              "tags": [],
+              "answer": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "groupName": "Social Science",
+      "optional": true,
+      "constraints": {
+        "minPreviousQuestionsAnswered": [5, 3]
+      },
+      "sections": [
+        {
+          "sectionName": "History",
+          "optional": false,
+          "consolidateSubject": "Social Science",
+          "questions": [
+            {
+              "id": "q3001",
+              "qTypeName": "SCQ",
+              "qDataType": [0, 4],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1],
+                [0, 1]
+              ],
+              "question": [
+                "Which area became the scene of big power rivalry after 1871?"
+              ],
+              "options": [["Balkans"], ["Austria"], ["Poland"], ["Turkey"]],
+              "tags": [],
+              "answer": 0
+            },
+            {
+              "id": "q3002",
+              "qTypeName": "NNI",
+              "qDataType": [2, 0],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1],
+                [0, 1]
+              ],
+              "question": [
+                "How many demands did Gandhi state in his letter to Lord Irwin?"
+              ],
+              "options": null,
+              "tags": [],
+              "answer": 11
+            }
+          ]
+        },
+        {
+          "sectionName": "Political Science",
+          "optional": false,
+          "consolidateSubject": "Social Science",
+          "questions": [
+            {
+              "id": "q3101",
+              "qTypeName": "NNI",
+              "qDataType": [2, 0],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1],
+                [0, 1]
+              ],
+              "question": [
+                "As of 2024, how many national parties are there in India?"
+              ],
+              "options": null,
+              "tags": [],
+              "answer": 7
+            },
+            {
+              "id": "q3102",
+              "qTypeName": "SCQ",
+              "qDataType": [0, 2],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1],
+                [0, 1]
+              ],
+              "question": ["What type of governance does India follow?"],
+              "options": [["Federal"], ["Quasi-federal"]],
+              "tags": [],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "sectionName": "Geography",
+          "optional": false,
+          "consolidateSubject": "Social Science",
+          "questions": [
+            {
+              "id": "q3201",
+              "qTypeName": "SCQ",
+              "qDataType": [0, 4],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1],
+                [0, 1]
+              ],
+              "question": [
+                "How much energy does India generate through hydroelectric power plants?"
+              ],
+              "options": [["52%"], ["42%"], ["32%"], ["22%"]],
+              "tags": [],
+              "answer": 3
+            },
+            {
+              "id": "q3202",
+              "qTypeName": "SCQ",
+              "qDataType": [0, 3],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1],
+                [0, 1]
+              ],
+              "question": [
+                "Which among these was first included in the amendment of Wildlife Protection Act in 1981?"
+              ],
+              "options": [
+                ["7 species of beetles"],
+                ["6 species of plants"],
+                ["6 species of butterflies"]
+              ],
+              "tags": [],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "sectionName": "Economics",
+          "optional": false,
+          "consolidateSubject": "Social Science",
+          "questions": [
+            {
+              "id": "q3301",
+              "qTypeName": "MCQ",
+              "qDataType": [1, 4],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1],
+                [0, 1]
+              ],
+              "question": [
+                "Which of the following are true for self-help groups?"
+              ],
+              "options": [
+                ["They mostly consist of women"],
+                ["They can obtain bank loans when in need"],
+                [
+                  "They provide a platform to discuss issues such as domestic violence, irrigation etc."
+                ],
+                [
+                  "Members can use the group's money to buy agricultural products, release mortgaged lands etc."
+                ]
+              ],
+              "tags": [],
+              "answer": [0, 2, 3]
+            },
+            {
+              "id": "q3302",
+              "qTypeName": "SCQ",
+              "qDataType": [0, 4],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1],
+                [0, 1]
+              ],
+              "question": [
+                "Which state in India has the highest literacy rate?"
+              ],
+              "options": [
+                ["Maharashtra"],
+                ["Kerala"],
+                ["Tamil Nadu"],
+                ["Telangana"]
+              ],
               "tags": [],
               "answer": 1
             }

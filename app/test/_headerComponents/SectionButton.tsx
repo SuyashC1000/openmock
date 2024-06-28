@@ -56,7 +56,7 @@ function SectionButton(props: SectionButtonProps) {
             {props.sectionName}
           </Text>
           <PopoverTrigger>
-            <TbInfoCircleFilled className="text-sky-600 text-base" />
+            <TbInfoCircleFilled className="text-sky-600 text-base cursor-pointer" />
           </PopoverTrigger>
         </div>
       </PopoverAnchor>

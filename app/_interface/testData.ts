@@ -51,6 +51,7 @@ interface TestPaperGroupConstraints {
   permissionOnSubmit?: "all" | "view" | "none" | undefined;
   maxQuestionsAnswered?: number;
   maxOptionalSectionsAnswered?: number;
+  minPreviousQuestionsAnswered?: number[];
 }
 interface TestPaperSectionConstraints {
   maxQuestionsAnswered?: number;

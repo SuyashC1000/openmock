@@ -19,9 +19,10 @@ export interface UserCacheSection {
 
 export interface UserCacheGroup {
   groupName: string;
-  status: "upcoming" | "ongoing" | "submitted";
+  status: "upcoming" | "ongoing" | "submitted" | "rejected";
   activeSectionIndex: number;
   permissions: "all" | "view" | "none";
+  hasOpted?: boolean;
   sections: UserCacheSection[];
   [k: string]: unknown;
 }

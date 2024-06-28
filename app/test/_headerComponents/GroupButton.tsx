@@ -38,7 +38,7 @@ function GroupButton(props: GroupButtonProps) {
         >
           {props.groupName}
           <PopoverTrigger>
-            <TbInfoCircleFilled className="text-sky-700 text-base" />
+            <TbInfoCircleFilled className="text-sky-700 text-base cursor-pointer" />
           </PopoverTrigger>
         </div>
       </PopoverAnchor>

@@ -22,6 +22,7 @@ export const TOGGLE_SECTION_ISSELECTED = "TOGGLE_SECTION_ISSELECTED";
 export const UPDATE_GROUP_STATUS = "UPDATE_GROUP_STATUS";
 export const RESET_SECTION_ATTEMPTS = "RESET_SECTION_ATTEMPTS";
 export const SET_ZOOM_LEVEL = "SET_ZOOM_LEVEL";
+export const SET_GROUP_HASOPTED = "SET_GROUP_HASOPTED";
 
 export default function userCacheReducer(
   state: UserCache,
@@ -160,6 +161,13 @@ export default function userCacheReducer(
 
     case SET_ZOOM_LEVEL: {
       newState.toolsPreferences.zoomLevel = action.payload;
+
+      return newState;
+    }
+
+    case SET_GROUP_HASOPTED: {
+      let activeGroupCache = newState.body[newState.activeGroupIndex];
+      activeGroupCache.hasOpted = action.payload;
 
       return newState;
     }

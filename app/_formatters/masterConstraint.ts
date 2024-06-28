@@ -16,6 +16,7 @@ import { UserCache } from "../_interface/userCache";
 interface Final {
   canView: boolean;
   canSet: boolean;
+  canSkip: boolean;
   canClear: boolean;
   messages: string[];
 }
@@ -36,6 +37,7 @@ export const masterConstraint = (
     canView: true,
     canSet: true,
     canClear: true,
+    canSkip: true,
     messages: [],
   };
 
@@ -50,6 +52,14 @@ export const masterConstraint = (
   ) {
     final.canSet = false;
     final.canClear = false;
+  }
+
+  if (activeGroup.optional && activeGroupCache.hasOpted === false) {
+    (final.canClear = false),
+      (final.canSet = false),
+      (final.canSkip = false),
+      (final.canView = false);
+    return final;
   }
 
   if (activeGroupCache.status === "submitted") {

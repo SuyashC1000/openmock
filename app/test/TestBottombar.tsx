@@ -45,7 +45,7 @@ const TestBottombar = () => {
 
   return (
     <div
-      className="h-16 w-screen bg-white flex flex-0 justify-between
+      className="h-16 min-h-16 w-screen bg-white flex flex-0 justify-between
        items-center px-4 gap-4 outline outline-1 outline-neutral-400 "
     >
       <ButtonGroup>
@@ -55,6 +55,7 @@ const TestBottombar = () => {
           colorScheme="blue"
           form="userResponseForm"
           type="submit"
+          isDisabled={!masterConstraint(state, testPaper).canSkip}
           onClick={(e) => {
             handleSubmitQuestion(
               state,
@@ -94,6 +95,7 @@ const TestBottombar = () => {
               ? "hidden"
               : "visible"
           }
+          isDisabled={!masterConstraint(state, testPaper).canSkip}
           onClick={() => {
             moveToPrevQuestion(state, dispatch, testPaper, confirm);
           }}
@@ -105,6 +107,7 @@ const TestBottombar = () => {
           colorScheme="blue"
           form="userResponseForm"
           type="submit"
+          isDisabled={!masterConstraint(state, testPaper).canSkip}
           // onClick={(e) => console.log(e.currentTarget)}
           onClick={async (e) => {
             handleSubmitQuestion(

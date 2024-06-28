@@ -83,9 +83,8 @@ export const SubmitTestModal = () => {
       size={"full"}
     >
       <ModalOverlay />
-      <ModalContent>
-        <ModalHeader>
-          <Heading size={"md"}>Exam Summary</Heading>
+      <ModalContent className="flex flex-col h-screen">
+        <ModalHeader className="flex-0 h-fit p-0">
           {state.testStatus === "finished" && (
             <Alert
               status="error"
@@ -99,7 +98,9 @@ export const SubmitTestModal = () => {
             </Alert>
           )}
         </ModalHeader>
-        <ModalBody>
+        <ModalBody className="flex flex-col flex-1 overflow-y-auto">
+          <Heading size={"lg"}>Exam Summary</Heading>
+
           {state.body.map((e, i) => {
             return (
               <div key={i} className="my-6 flex flex-col gap-1">

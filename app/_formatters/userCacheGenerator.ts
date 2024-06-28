@@ -15,6 +15,7 @@ export default function userCacheGenerator(
   let newBody = testPaper.body.map((e, i) => {
     return {
       groupName: e.groupName,
+      hasOpted: e.optional ? false : undefined,
       activeSectionIndex: 0,
       status: i === 0 ? "ongoing" : "upcoming",
       permissions: e.constraints?.permissionOnSubmit ?? "all",
