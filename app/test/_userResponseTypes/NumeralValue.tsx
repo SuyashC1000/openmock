@@ -5,6 +5,7 @@ import { NumberInput, NumberInputField } from "@chakra-ui/react";
 import React from "react";
 import { ResponseDataContext, StateContext } from "../page";
 import { getDefaultOptions } from "@/app/_formatters/getFunctions";
+import { getActiveQuestionCache } from "@/app/_formatters/getActiveCache";
 
 interface UserResponseInputProps {
   question: TestPaperQuestion;
@@ -16,18 +17,20 @@ const NumeralValue = (userResponseInputProps: UserResponseInputProps) => {
 
   const zoomLevel = state.toolsPreferences.zoomLevel;
 
+  const activeQuestion = getActiveQuestionCache(state);
+
   const { responseData, setResponseData } =
     React.useContext(ResponseDataContext);
 
-  console.log(responseData);
-
-  const numInput: string = responseData[0];
+  const numInput: string =
+    responseData[0] ??
+    (activeQuestion.submit !== null ? activeQuestion.submit!.toString() : "");
   const setNumInput = (e: string) => {
     setResponseData([e]);
   };
 
   // const [cursor, setCursor] = React.useState(numInput.length);
-  const [cursor, setCursor] = React.useState(0);
+  const [cursor, setCursor] = React.useState(numInput.length);
 
   function numpadInput(type: number, payload: string = "") {
     switch (type) {

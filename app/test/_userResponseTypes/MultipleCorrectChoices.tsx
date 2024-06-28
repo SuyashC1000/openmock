@@ -25,7 +25,7 @@ const MultipleCorrectChoices = (props: UserResponseInputProps) => {
 
   return (
     <CheckboxGroup
-      value={responseData}
+      value={responseData ?? [""]}
       isDisabled={!masterConstraint(state, testPaper).canSet}
     >
       <div className="flex flex-col">

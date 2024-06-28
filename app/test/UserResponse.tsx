@@ -68,9 +68,11 @@ const UserResponse = () => {
   }
 
   React.useEffect(() => {
-    setResponseData(
-      getDefaultOptions(activeQuestion.qDataType[0], activeQuestionCache.submit)
+    const newDefaultResponse = getDefaultOptions(
+      activeQuestion.qDataType[0],
+      activeQuestionCache.submit
     );
+    setResponseData(newDefaultResponse);
   }, [
     activeQuestion.qDataType,
     activeQuestionCache.id,

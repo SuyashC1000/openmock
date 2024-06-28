@@ -26,7 +26,7 @@ const SingleCorrectChoices = (props: UserResponseInputProps) => {
   return (
     <RadioGroup
       name="input"
-      value={responseData[0]}
+      value={responseData[0] ?? ""}
       isDisabled={!masterConstraint(state, testPaper).canSet}
     >
       <div className="flex flex-col">

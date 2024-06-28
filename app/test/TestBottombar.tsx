@@ -75,7 +75,7 @@ const TestBottombar = () => {
           colorScheme="blue"
           form="userResponseForm"
           type="reset"
-          isDisabled={!masterConstraint(state, testPaper).canClear}
+          isDisabled={!masterConstraint(state, testPaper).canSet}
           onClick={() => {
             handleClearResponse(state, dispatch, responseDataState);
           }}

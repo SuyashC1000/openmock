@@ -17,7 +17,7 @@ interface Final {
   canView: boolean;
   canSet: boolean;
   canSkip: boolean;
-  canClear: boolean;
+  // canClear: boolean;
   messages: string[];
 }
 
@@ -36,7 +36,7 @@ export const masterConstraint = (
   let final: Final = {
     canView: true,
     canSet: true,
-    canClear: true,
+    // canClear: true,
     canSkip: true,
     messages: [],
   };
@@ -51,28 +51,22 @@ export const masterConstraint = (
     activeQuestionCache.lastAnswered !== null
   ) {
     final.canSet = false;
-    final.canClear = false;
   }
 
   if (activeGroup.optional && activeGroupCache.hasOpted === false) {
-    (final.canClear = false),
-      (final.canSet = false),
-      (final.canSkip = false),
-      (final.canView = false);
+    (final.canSet = false), (final.canSkip = false), (final.canView = false);
     return final;
   }
 
   if (activeGroupCache.status === "submitted") {
     if (activeGroupCache.permissions === "view") {
       final.canSet = false;
-      final.canClear = false;
       final.messages.push(
         `You can no longer edit your responses in this group.`
       );
       return final;
     } else if (activeGroupCache.permissions === "none") {
       final.canSet = false;
-      final.canClear = false;
       final.canView = false;
       return final;
     }
@@ -92,7 +86,6 @@ export const masterConstraint = (
       );
     }
     final.canSet = false;
-    final.canClear = false;
   }
 
   const sectionQuestionsAttempted = getQuestionsAttemptedTally(
@@ -129,7 +122,7 @@ export const masterConstraint = (
   if (activeQuestion.constraints?.permissionOnAttempt !== "all") {
     if (activeQuestion.constraints?.permissionOnAttempt === "view") {
       if (activeQuestionCache.lastAnswered !== null) {
-        (final.canSet = false), (final.canClear = false);
+        final.canSet = false;
         final.messages.push(
           `You can no longer edit the response for this question.`
         );
@@ -141,9 +134,7 @@ export const masterConstraint = (
       }
     } else if (activeQuestion.constraints?.permissionOnAttempt === "none") {
       if (activeQuestionCache.lastAnswered !== null) {
-        (final.canSet = false),
-          (final.canClear = false),
-          (final.canView = false);
+        (final.canSet = false), (final.canView = false);
       } else {
         final.messages.push(
           `You will not be able to come back to this question upon navigating. \n
