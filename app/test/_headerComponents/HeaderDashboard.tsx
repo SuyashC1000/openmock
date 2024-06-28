@@ -16,6 +16,7 @@ import {
 import Timer from "../Timer";
 import { DispatchContext, StateContext, TestPaperContext } from "../page";
 import { getActiveGroup } from "@/app/_formatters/getActiveCache";
+import { SET_DEFAULT_LANGUAGE } from "@/app/_formatters/userCacheReducer";
 
 function HeaderDashboard() {
   const state = React.useContext(StateContext);
@@ -81,7 +82,7 @@ function HeaderDashboard() {
               value={state.currentLanguageIndex}
               onChange={(e) => {
                 dispatch({
-                  type: "set_default_language",
+                  type: SET_DEFAULT_LANGUAGE,
                   payload: e.target.value,
                 });
               }}

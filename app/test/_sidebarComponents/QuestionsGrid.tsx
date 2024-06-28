@@ -14,6 +14,11 @@ import {
 } from "@/app/_formatters/getActiveCache";
 import { getIsQuestionDisabled } from "@/app/_formatters/getFunctions";
 import useConfirm from "@/lib/useConfirm";
+import {
+  SET_ACTIVE_QUESTION,
+  UPDATE_QUESTION_LASTANSWERED,
+  UPDATE_QUESTION_STATUS,
+} from "@/app/_formatters/userCacheReducer";
 
 const QuestionsGrid = () => {
   const state = React.useContext(StateContext);
@@ -43,18 +48,18 @@ const QuestionsGrid = () => {
     }
 
     dispatch({
-      type: "update_question_lastanswered",
+      type: UPDATE_QUESTION_LASTANSWERED,
       payload: Date.now(),
     });
     dispatch({
-      type: "update_question_status",
+      type: UPDATE_QUESTION_STATUS,
       payload: {
         qIndex: i,
         newStatus: e.status == 0 ? 1 : e.status,
       },
     });
     dispatch({
-      type: "set_active_question",
+      type: SET_ACTIVE_QUESTION,
       payload: i,
     });
   }

@@ -8,7 +8,7 @@ interface NumpadProps {
 
 const Numpad = (props: NumpadProps) => {
   return (
-    <div className="bg-neutral-100 m-2 p-2 w-fit px-16 flex flex-col items-center gap-1">
+    <div className="bg-neutral-100 m-2 p-2 w-fit px-14 flex flex-col items-center gap-1">
       <Button
         className="border border-1 border-neutral-600"
         size={"sm"}

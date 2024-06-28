@@ -1,4 +1,5 @@
 import { getActiveQuestionCache } from "../_formatters/getActiveCache";
+import { UPDATE_QUESTION_USERANSWER } from "../_formatters/userCacheReducer";
 import { TestPaperQuestion } from "../_interface/testData";
 import { DispatchFunc } from "../_interface/testProps";
 import { UserCache, UserCacheQuestion } from "../_interface/userCache";
@@ -18,7 +19,7 @@ export default function handleUserAnswerSubmit(
       {
         if (userAnswer[0] === questionCache.submit) break;
         let payload = userAnswer.length === 0 ? null : +userAnswer[0];
-        dispatch({ type: "update_question_useranswer", payload: payload });
+        dispatch({ type: UPDATE_QUESTION_USERANSWER, payload: payload });
       }
       break;
 
@@ -28,7 +29,7 @@ export default function handleUserAnswerSubmit(
         let payload =
           userAnswer.length === 0 ? null : userAnswer.map((e) => +e);
 
-        dispatch({ type: "update_question_useranswer", payload: payload });
+        dispatch({ type: UPDATE_QUESTION_USERANSWER, payload: payload });
       }
 
       break;
@@ -36,7 +37,7 @@ export default function handleUserAnswerSubmit(
     case 2:
       {
         let payload = userAnswer.length === 0 ? null : +userAnswer;
-        dispatch({ type: "update_question_useranswer", payload: payload });
+        dispatch({ type: UPDATE_QUESTION_USERANSWER, payload: payload });
       }
       break;
 

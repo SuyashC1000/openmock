@@ -8,7 +8,10 @@ import TestMainWindow from "./TestMainWindow";
 import TestBottombar from "./TestBottombar";
 import testData from "../../public/data/testData.json";
 import userCacheGenerator from "../_formatters/userCacheGenerator";
-import userCacheReducer, { Action } from "../_formatters/userCacheReducer";
+import userCacheReducer, {
+  Action,
+  SET_LOGIN_TIME,
+} from "../_formatters/userCacheReducer";
 import { emptyTestPaper, emptyUserCache } from "./empty";
 import { PreTestModal } from "./_modals/PreTestModal";
 import SubmitTestModal from "./_modals/SubmitTestModal";
@@ -66,7 +69,7 @@ const TestPage = () => {
   });
 
   React.useEffect(() => {
-    dispatch({ type: "set_login_time", payload: Date.now() });
+    dispatch({ type: SET_LOGIN_TIME, payload: Date.now() });
   }, []);
 
   // useRenderingTrace("QuestionView", state);

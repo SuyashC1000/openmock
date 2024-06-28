@@ -25,6 +25,12 @@ import { DispatchContext, StateContext, TestPaperContext } from "../page";
 import { getNumOfQuestionStatuses } from "@/app/_formatters/getFunctions";
 import { UserCacheGroup } from "@/app/_interface/userCache";
 import { getActiveGroupCache } from "@/app/_formatters/getActiveCache";
+import {
+  SET_ACTIVE_GROUP,
+  SET_TEST_STATUS,
+  UPDATE_GROUP_STATUS,
+  UPDATE_QUESTION_STATUS,
+} from "@/app/_formatters/userCacheReducer";
 
 // function array_move(arr, old_index, new_index) {
 //   if (new_index >= arr.length) {
@@ -53,12 +59,12 @@ export const SubmitTestModal = () => {
     alert("Hooray! You submitted the test!");
   }
   function handleSubmitGroup() {
-    dispatch({ type: "update_group_status", payload: "submitted" });
-    dispatch({ type: "set_active_group", payload: state.activeGroupIndex + 1 });
-    dispatch({ type: "update_group_status", payload: "ongoing" });
-    dispatch({ type: "set_test_status", payload: "ongoing" });
+    dispatch({ type: UPDATE_GROUP_STATUS, payload: "submitted" });
+    dispatch({ type: SET_ACTIVE_GROUP, payload: state.activeGroupIndex + 1 });
+    dispatch({ type: UPDATE_GROUP_STATUS, payload: "ongoing" });
+    dispatch({ type: SET_TEST_STATUS, payload: "ongoing" });
     dispatch({
-      type: "update_question_status",
+      type: UPDATE_QUESTION_STATUS,
       payload: { qIndex: 0, newStatus: 1 },
     });
   }
@@ -218,7 +224,7 @@ export const SubmitTestModal = () => {
               ref={noBtnRef}
               isDisabled={state.testStatus === "finished"}
               onClick={() =>
-                dispatch({ type: "set_test_status", payload: "ongoing" })
+                dispatch({ type: SET_TEST_STATUS, payload: "ongoing" })
               }
             >
               No

@@ -105,7 +105,10 @@ const UserResponse = () => {
       {"Last answered: " + activeQuestionCache.lastAnswered}
       <br />
       {"Response correct: " +
-        (activeQuestionCache.submit === activeQuestion.answer ? "Yes" : "No")}
+        (activeQuestionCache.submit?.toString() ===
+        activeQuestion.answer.toString()
+          ? "Yes"
+          : "No")}
     </form>
   );
 };

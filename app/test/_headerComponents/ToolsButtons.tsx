@@ -9,6 +9,7 @@ import {
 import React from "react";
 import { TbCalculator, TbZoomIn, TbZoomOut } from "react-icons/tb";
 import { DispatchContext, StateContext, TestPaperContext } from "../page";
+import { SET_ZOOM_LEVEL } from "@/app/_formatters/userCacheReducer";
 
 function ToolsButtons() {
   const state = React.useContext(StateContext);
@@ -18,7 +19,7 @@ function ToolsButtons() {
   function incDecZoomLevel(i: number): void {
     const newZoomLevel = (state.toolsPreferences.zoomLevel += i);
     if (newZoomLevel >= 1 && newZoomLevel <= 3)
-      dispatch({ type: "set_zoom_level", payload: newZoomLevel });
+      dispatch({ type: SET_ZOOM_LEVEL, payload: newZoomLevel });
   }
 
   return (

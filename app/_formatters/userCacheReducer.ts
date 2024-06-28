@@ -6,6 +6,23 @@ export interface Action {
   payload: any;
 }
 
+export const SET_TEST_STATUS = "SET_TEST_STATUS";
+export const SET_ACTIVE_QUESTION = "SET_ACTIVE_QUESTION";
+export const SET_ACTIVE_SECTION = "SET_ACTIVE_SECTION";
+export const SET_DEFAULT_LANGUAGE = "SET_DEFAULT_LANGUAGE";
+export const SET_START_TIME = "SET_START_TIME";
+export const SET_LOGIN_TIME = "SET_LOGIN_TIME";
+export const SET_ACTIVE_GROUP = "SET_ACTIVE_GROUP";
+export const SET_ACTIVE_ELEMENTS = "SET_ACTIVE_ELEMENTS";
+export const UPDATE_QUESTION_STATUS = "UPDATE_QUESTION_STATUS";
+export const UPDATE_QUESTION_USERANSWER = "UPDATE_QUESTION_USERANSWER";
+export const UPDATE_QUESTION_LASTANSWERED = "UPDATE_QUESTION_LASTANSWERED";
+export const UPDATE_QUESTION_PERMISSIONS = "UPDATE_QUESTION_PERMISSIONS";
+export const TOGGLE_SECTION_ISSELECTED = "TOGGLE_SECTION_ISSELECTED";
+export const UPDATE_GROUP_STATUS = "UPDATE_GROUP_STATUS";
+export const RESET_SECTION_ATTEMPTS = "RESET_SECTION_ATTEMPTS";
+export const SET_ZOOM_LEVEL = "SET_ZOOM_LEVEL";
+
 export default function userCacheReducer(
   state: UserCache,
   action: Action
@@ -13,12 +30,12 @@ export default function userCacheReducer(
   let newState = structuredClone(state);
 
   switch (action.type) {
-    case "set_test_status": {
+    case SET_TEST_STATUS: {
       newState.testStatus = action.payload;
       return newState;
     }
 
-    case "set_active_question": {
+    case SET_ACTIVE_QUESTION: {
       let activeGroupCache = newState.body[newState.activeGroupIndex];
       let activeSectionCache =
         activeGroupCache.sections[activeGroupCache.activeSectionIndex];
@@ -27,36 +44,36 @@ export default function userCacheReducer(
       return newState;
     }
 
-    case "set_active_section": {
+    case SET_ACTIVE_SECTION: {
       let activeGroupCache = newState.body[newState.activeGroupIndex];
       activeGroupCache.activeSectionIndex = action.payload;
 
       return newState;
     }
 
-    case "set_default_language": {
+    case SET_DEFAULT_LANGUAGE: {
       newState.currentLanguageIndex = action.payload;
 
       return newState;
     }
 
-    case "set_start_time": {
+    case SET_START_TIME: {
       newState.testStartTime = action.payload;
 
       return newState;
     }
-    case "set_login_time": {
+    case SET_LOGIN_TIME: {
       newState.testLoginTime = action.payload;
 
       return newState;
     }
 
-    case "set_active_group": {
+    case SET_ACTIVE_GROUP: {
       newState.activeGroupIndex = action.payload;
 
       return newState;
     }
-    case "set_active_elements": {
+    case SET_ACTIVE_ELEMENTS: {
       newState.activeGroupIndex = action.payload[0];
 
       let activeGroupCache = newState.body[newState.activeGroupIndex];
@@ -69,7 +86,7 @@ export default function userCacheReducer(
       return newState;
     }
 
-    case "update_question_status": {
+    case UPDATE_QUESTION_STATUS: {
       let activeGroupCache = newState.body[newState.activeGroupIndex];
       let activeSectionCache =
         activeGroupCache.sections[activeGroupCache.activeSectionIndex];
@@ -80,7 +97,7 @@ export default function userCacheReducer(
       return newState;
     }
 
-    case "update_question_useranswer": {
+    case UPDATE_QUESTION_USERANSWER: {
       let activeGroupCache = newState.body[newState.activeGroupIndex];
       let activeSectionCache =
         activeGroupCache.sections[activeGroupCache.activeSectionIndex];
@@ -91,7 +108,7 @@ export default function userCacheReducer(
       return newState;
     }
 
-    case "update_question_lastanswered": {
+    case UPDATE_QUESTION_LASTANSWERED: {
       let activeGroupCache = newState.body[newState.activeGroupIndex];
       let activeSectionCache =
         activeGroupCache.sections[activeGroupCache.activeSectionIndex];
@@ -102,7 +119,7 @@ export default function userCacheReducer(
       return newState;
     }
 
-    case "update_question_permissions": {
+    case UPDATE_QUESTION_PERMISSIONS: {
       let activeGroupCache = newState.body[newState.activeGroupIndex];
       let activeSectionCache =
         activeGroupCache.sections[activeGroupCache.activeSectionIndex];
@@ -113,7 +130,7 @@ export default function userCacheReducer(
       return newState;
     }
 
-    case "toggle_section_isselected": {
+    case TOGGLE_SECTION_ISSELECTED: {
       let activeGroupCache = newState.body[newState.activeGroupIndex];
       let sectionCache = activeGroupCache.sections[action.payload];
       let isSelected = sectionCache.selected;
@@ -121,14 +138,14 @@ export default function userCacheReducer(
       return newState;
     }
 
-    case "update_group_status": {
+    case UPDATE_GROUP_STATUS: {
       let activeGroupCache = newState.body[newState.activeGroupIndex];
       activeGroupCache.status = action.payload;
 
       return newState;
     }
 
-    case "reset_section_attempts": {
+    case RESET_SECTION_ATTEMPTS: {
       let activeGroupCache = newState.body[newState.activeGroupIndex];
       let questions = activeGroupCache.sections[action.payload].questions;
       for (let i = 0; i < questions.length; i++) {
@@ -141,13 +158,13 @@ export default function userCacheReducer(
       return newState;
     }
 
-    case "set_zoom_level": {
+    case SET_ZOOM_LEVEL: {
       newState.toolsPreferences.zoomLevel = action.payload;
 
       return newState;
     }
 
     default:
-      return state;
+      throw new Error(`Unknown action type: ${action.type}`);
   }
 }

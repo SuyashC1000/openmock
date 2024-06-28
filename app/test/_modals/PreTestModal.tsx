@@ -7,6 +7,11 @@ import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
+import {
+  SET_DEFAULT_LANGUAGE,
+  SET_START_TIME,
+  SET_TEST_STATUS,
+} from "@/app/_formatters/userCacheReducer";
 
 export const PreTestModal = () => {
   const state = React.useContext(StateContext);
@@ -60,7 +65,7 @@ export const PreTestModal = () => {
               value={state.currentLanguageIndex}
               onChange={(e) => {
                 dispatch({
-                  type: "set_default_language",
+                  type: SET_DEFAULT_LANGUAGE,
                   payload: e.target.value,
                 });
               }}
@@ -106,8 +111,8 @@ export const PreTestModal = () => {
   };
 
   function handleBeginTest() {
-    dispatch({ type: "set_test_status", payload: "ongoing" });
-    dispatch({ type: "set_start_time", payload: Date.now() });
+    dispatch({ type: SET_TEST_STATUS, payload: "ongoing" });
+    dispatch({ type: SET_START_TIME, payload: Date.now() });
   }
 
   return (

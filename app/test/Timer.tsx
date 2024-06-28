@@ -6,6 +6,7 @@ import {
   TestPaperContext,
   TimeLeftContext,
 } from "./page";
+import { SET_TEST_STATUS } from "../_formatters/userCacheReducer";
 
 const Timer = () => {
   const state = React.useContext(StateContext);
@@ -44,7 +45,7 @@ const Timer = () => {
       newMinutes = timeLeft[0] - 1;
       return [newMinutes, newSeconds] as number[];
     } else {
-      dispatch({ type: "set_test_status", payload: "finished" });
+      dispatch({ type: SET_TEST_STATUS, payload: "finished" });
       return timeLeft;
     }
   }

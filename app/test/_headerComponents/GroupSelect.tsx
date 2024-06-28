@@ -7,6 +7,10 @@ import { UserCacheGroup } from "@/app/_interface/userCache";
 import { useToast } from "@chakra-ui/react";
 import { getActiveQuestionCache } from "@/app/_formatters/getActiveCache";
 import useConfirm from "@/lib/useConfirm";
+import {
+  SET_ACTIVE_GROUP,
+  UPDATE_QUESTION_STATUS,
+} from "@/app/_formatters/userCacheReducer";
 
 function GroupSelect() {
   const state = React.useContext(StateContext);
@@ -55,14 +59,14 @@ function GroupSelect() {
         if (!sample) return;
       }
 
-      dispatch({ type: "set_active_group", payload: i });
+      dispatch({ type: SET_ACTIVE_GROUP, payload: i });
       if (
         e.sections[e.activeSectionIndex].questions[activeQuestionIndex]
           .status == 0 &&
         activeQuestionIndex === 0
       ) {
         dispatch({
-          type: "update_question_status",
+          type: UPDATE_QUESTION_STATUS,
           payload: { qIndex: 0, newStatus: 1 },
         });
       }

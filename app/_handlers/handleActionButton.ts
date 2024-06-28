@@ -23,6 +23,13 @@ import {
   getActiveIndex,
 } from "../_formatters/getActiveCacheAdvanced";
 import useConfirm from "@/lib/useConfirm";
+import {
+  SET_ACTIVE_ELEMENTS,
+  UPDATE_QUESTION_LASTANSWERED,
+  UPDATE_QUESTION_PERMISSIONS,
+  UPDATE_QUESTION_STATUS,
+  UPDATE_QUESTION_USERANSWER,
+} from "../_formatters/userCacheReducer";
 
 export async function handleSubmitQuestion(
   state: UserCache,
@@ -68,16 +75,16 @@ export async function handleSubmitQuestion(
     }
 
     if (userResponse !== undefined) {
-      dispatch({ type: "update_question_useranswer", payload: userResponse });
+      dispatch({ type: UPDATE_QUESTION_USERANSWER, payload: userResponse });
     }
 
     dispatch({
-      type: "update_question_status",
+      type: UPDATE_QUESTION_STATUS,
       payload: { qIndex: activeSectionCache.qIndex, newStatus: newStatus },
     });
 
     dispatch({
-      type: "update_question_lastanswered",
+      type: UPDATE_QUESTION_LASTANSWERED,
       payload: Date.now(),
     });
   }
@@ -87,7 +94,7 @@ export async function handleSubmitQuestion(
   console.log(oldIndexList, newIndexList);
 
   dispatch({
-    type: "set_active_elements",
+    type: SET_ACTIVE_ELEMENTS,
     payload: newIndexList,
   });
 
@@ -100,7 +107,7 @@ export async function handleSubmitQuestion(
 
   if (oldIndexList !== newIndexList) {
     dispatch({
-      type: "update_question_status",
+      type: UPDATE_QUESTION_STATUS,
       payload: {
         qIndex: newIndexList[2],
         newStatus:
@@ -121,11 +128,11 @@ export function handleClearResponse(
   const activeQuestionCache: UserCacheQuestion = getActiveQuestionCache(state);
   const activeSection: UserCacheSection = getActiveSectionCache(state);
 
-  dispatch({ type: "update_question_useranswer", payload: null });
+  dispatch({ type: UPDATE_QUESTION_USERANSWER, payload: null });
 
   responseDataState.setResponseData([]);
   dispatch({
-    type: "update_question_status",
+    type: UPDATE_QUESTION_STATUS,
     payload: { qIndex: activeSection.qIndex, newStatus: 1 },
   });
 }
@@ -156,22 +163,22 @@ export async function moveToPrevQuestion(
 
   if (masterConstraint(state, testPaper).canSet) {
     dispatch({
-      type: "update_question_lastanswered",
+      type: UPDATE_QUESTION_LASTANSWERED,
       payload: Date.now(),
     });
   }
 
-  if (activeQuestion.constraints?.permissionOnAttempt !== undefined) {
-    dispatch({
-      type: "update_question_permissions",
-      payload: activeQuestion.constraints?.permissionOnAttempt,
-    });
-  }
+  // if (activeQuestion.constraints?.permissionOnAttempt !== undefined) {
+  //   dispatch({
+  //     type: UPDATE_QUESTION_PERMISSIONS,
+  //     payload: activeQuestion.constraints?.permissionOnAttempt,
+  //   });
+  // }
 
   const oldIndexList = getActiveIndex(state);
   const newIndexList = decrementQuestionIndex(state);
   dispatch({
-    type: "set_active_elements",
+    type: SET_ACTIVE_ELEMENTS,
     payload: newIndexList,
   });
 
@@ -184,7 +191,7 @@ export async function moveToPrevQuestion(
 
   if (oldIndexList !== newIndexList) {
     dispatch({
-      type: "update_question_status",
+      type: UPDATE_QUESTION_STATUS,
       payload: {
         qIndex: newIndexList[2],
         newStatus:

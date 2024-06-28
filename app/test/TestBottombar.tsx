@@ -30,6 +30,7 @@ import {
 import { masterConstraint } from "../_formatters/masterConstraint";
 import { log } from "console";
 import useConfirm from "@/lib/useConfirm";
+import { SET_TEST_STATUS } from "../_formatters/userCacheReducer";
 
 const TestBottombar = () => {
   const state = useContext(StateContext);
@@ -125,7 +126,7 @@ const TestBottombar = () => {
           textColor={"white"}
           className="justify-end"
           onClick={() => {
-            dispatch({ type: "set_test_status", payload: "submitting" });
+            dispatch({ type: SET_TEST_STATUS, payload: "submitting" });
           }}
           isDisabled={activeGroupCache.status === "submitted"}
         >

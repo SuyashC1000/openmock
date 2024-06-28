@@ -18,6 +18,13 @@ import {
 import { TestPaperGroup } from "@/app/_interface/testData";
 import { useToast } from "@chakra-ui/react";
 import useConfirm from "@/lib/useConfirm";
+import {
+  RESET_SECTION_ATTEMPTS,
+  SET_ACTIVE_SECTION,
+  TOGGLE_SECTION_ISSELECTED,
+  UPDATE_QUESTION_LASTANSWERED,
+  UPDATE_QUESTION_STATUS,
+} from "@/app/_formatters/userCacheReducer";
 
 function SectionSelect() {
   const state = React.useContext(StateContext);
@@ -53,10 +60,10 @@ function SectionSelect() {
           "Deselecting the checkbox will reset ALL of your responses in that section."
         );
         if (isConfirmed) {
-          dispatch({ type: "reset_section_attempts", payload: i });
+          dispatch({ type: RESET_SECTION_ATTEMPTS, payload: i });
         } else return;
       }
-      dispatch({ type: "toggle_section_isselected", payload: i });
+      dispatch({ type: TOGGLE_SECTION_ISSELECTED, payload: i });
     }
   }
 
@@ -93,13 +100,13 @@ function SectionSelect() {
               }
 
               dispatch({
-                type: "update_question_lastanswered",
+                type: UPDATE_QUESTION_LASTANSWERED,
                 payload: Date.now(),
               });
-              dispatch({ type: "set_active_section", payload: i });
+              dispatch({ type: SET_ACTIVE_SECTION, payload: i });
               if (e.questions[e.qIndex].status === 0 && e.qIndex === 0) {
                 dispatch({
-                  type: "update_question_status",
+                  type: UPDATE_QUESTION_STATUS,
                   payload: { qIndex: 0, newStatus: 1 },
                 });
               }
