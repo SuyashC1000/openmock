@@ -6,13 +6,13 @@ export interface TestPaper {
   maxTime: number;
   subjects: string[];
   languages: string[];
-  instructions: string;
+  instructions: string[];
   additionalTools: {
     calculator: "normal" | "scientific" | "none";
     magnifyingGlass: boolean;
     [k: string]: unknown;
   };
-  usefulData: string;
+  usefulData?: string[];
   body: TestPaperGroup[];
   [k: string]: unknown;
 }
@@ -34,6 +34,7 @@ export interface TestPaperSection {
   sectionName: string;
   consolidateSubject: string;
   optional: boolean;
+  instructions?: string[];
   questions: TestPaperQuestion[];
   constraints?: TestPaperSectionConstraints;
   [k: string]: unknown;
@@ -42,6 +43,7 @@ export interface TestPaperSection {
 export interface TestPaperGroup {
   groupName: string;
   optional: boolean;
+  instructions?: string[];
   constraints?: TestPaperGroupConstraints;
   sections: TestPaperSection[];
   [k: string]: unknown;

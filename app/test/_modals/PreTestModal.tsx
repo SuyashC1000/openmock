@@ -22,9 +22,9 @@ export const PreTestModal = () => {
   const [hasAgreed, setHasAgreed] = React.useState(false);
 
   const specificInstructions =
-    testPaper.instructions.length === 0
+    testPaper.instructions[state.currentLanguageIndex].length === 0
       ? "There are no other specific instructions."
-      : testPaper.instructions;
+      : testPaper.instructions[state.currentLanguageIndex];
 
   const InstructionsHandler = () => {
     if (pageIndex === 1) {
