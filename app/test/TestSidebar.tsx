@@ -1,38 +1,20 @@
 "use client";
 
-import { Button, IconButton, Text } from "@chakra-ui/react";
+import { Text } from "@chakra-ui/react";
 
-import React from "react";
 import QuestionLegend from "../_components/QuestionLegend";
-import QuestionBtn from "../_components/QuestionBtn";
-import {
-  UserCache,
-  UserCacheGroup,
-  UserCacheQuestion,
-  UserCacheSection,
-} from "../_interface/userCache";
 import { getSectionQuestionLegend } from "../_formatters/getFunctions";
-import {
-  getActiveQuestion,
-  getActiveQuestionCache,
-  getActiveSectionCache,
-} from "../_formatters/getActiveCache";
-import { DispatchContext, StateContext, TestPaperContext } from "./page";
-import { TestPaperQuestion } from "../_interface/testData";
 import QuestionsGrid from "./_sidebarComponents/QuestionsGrid";
+import useActiveElements from "@/lib/useActiveElements";
 
 const TestSidebar = () => {
-  const state = React.useContext(StateContext);
-  const testPaper = React.useContext(TestPaperContext);
-
-  let activeSection: UserCacheSection = getActiveSectionCache(state);
-  let activeQuestion: TestPaperQuestion = getActiveQuestion(testPaper, state);
+  const { activeSectionCache } = useActiveElements();
 
   function SectionHeading() {
     return (
       <div className="h-auto px-2 py-1  bg-sky-700">
         <Text className="text-white font-semibold">
-          {activeSection.sectionName}
+          {activeSectionCache.sectionName}
         </Text>
       </div>
     );
@@ -44,7 +26,7 @@ const TestSidebar = () => {
       border border-t-1 border-t-neutral-400"
     >
       <QuestionLegend
-        legendCounts={getSectionQuestionLegend(activeSection)}
+        legendCounts={getSectionQuestionLegend(activeSectionCache)}
         viewMode={0}
       />
       <SectionHeading />

@@ -9,21 +9,18 @@ import {
   UnorderedList,
 } from "@chakra-ui/react";
 import React from "react";
-import { DispatchContext, StateContext, TestPaperContext } from "./page";
-import {
-  getActiveGroup,
-  getActiveGroupCache,
-} from "../_formatters/getActiveCache";
-import { getQuestionsAttemptedTally } from "../_formatters/getFunctions";
-import { SET_GROUP_HASOPTED } from "../_formatters/userCacheReducer";
+
+import { DispatchContext, StateContext, TestPaperContext } from "../page";
+import { SET_GROUP_HASOPTED } from "@/app/_formatters/userCacheReducer";
+import { getQuestionsAttemptedTally } from "@/app/_formatters/getFunctions";
+import useActiveElements from "@/lib/useActiveElements";
 
 const OptionalGroupAlert = () => {
   const state = React.useContext(StateContext);
   const testPaper = React.useContext(TestPaperContext);
   const dispatch = React.useContext(DispatchContext);
 
-  const activeGroup = getActiveGroup(testPaper, state);
-  const activeGroupCache = getActiveGroupCache(state);
+  const { activeGroup } = useActiveElements();
 
   interface FinalProps {
     isEligible: boolean;
@@ -81,7 +78,7 @@ const OptionalGroupAlert = () => {
             <>
               <Text>
                 You can decide to attempt this group by clicking on the button
-                below or skip this group by clicking on the &apos;Submit&apos;
+                below or skip this group by clicking the &apos;Submit&apos;
                 button.
               </Text>
               <UnorderedList className="text-left p-2">
@@ -124,8 +121,7 @@ const OptionalGroupAlert = () => {
               </UnorderedList>
               <Text>
                 You can decide to try to satisfy the above criteria to attempt
-                this group or move on by clicking on the &apos;Submit&apos;
-                button.{" "}
+                this group or move on by clicking the &apos;Submit&apos; button.{" "}
               </Text>
             </>
           )}

@@ -22,7 +22,6 @@ import { StateContext, TestPaperContext } from "../page";
 import GroupQuestionPaper from "./GroupQuestionPaper";
 import {
   getActiveGroup,
-  getActiveGroupCache,
   getActiveSection,
 } from "@/app/_formatters/getActiveCache";
 

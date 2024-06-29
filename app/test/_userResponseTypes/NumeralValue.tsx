@@ -4,7 +4,6 @@ import { UserCacheQuestion } from "@/app/_interface/userCache";
 import { NumberInput, NumberInputField } from "@chakra-ui/react";
 import React from "react";
 import { ResponseDataContext, StateContext } from "../page";
-import { getDefaultOptions } from "@/app/_formatters/getFunctions";
 import { getActiveQuestionCache } from "@/app/_formatters/getActiveCache";
 
 interface UserResponseInputProps {

@@ -1,16 +1,5 @@
-import {
-  Button,
-  ButtonGroup,
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
-  ModalOverlay,
-  useDisclosure,
-} from "@chakra-ui/react";
-import React, { useContext } from "react";
+import { Button, ButtonGroup } from "@chakra-ui/react";
+import { useContext } from "react";
 import {
   DispatchContext,
   ResponseDataContext,
@@ -24,13 +13,12 @@ import {
 } from "../_handlers/handleActionButton";
 import {
   getActiveGroupCache,
-  getActiveQuestionCache,
   getActiveSectionCache,
 } from "../_formatters/getActiveCache";
 import { masterConstraint } from "../_formatters/masterConstraint";
-import { log } from "console";
-import useConfirm from "@/lib/useConfirm";
 import { SET_TEST_STATUS } from "../_formatters/userCacheReducer";
+import useSubmit from "@/lib/useSubmit";
+import useActiveElements from "@/lib/useActiveElements";
 
 const TestBottombar = () => {
   const state = useContext(StateContext);
@@ -38,10 +26,8 @@ const TestBottombar = () => {
   const dispatch = useContext(DispatchContext);
   const responseDataState = useContext(ResponseDataContext);
 
-  const { confirm } = useConfirm();
-
-  const activeGroupCache = getActiveGroupCache(state);
-  const activeQuestionCache = getActiveQuestionCache(state);
+  const { submitQuestion } = useSubmit();
+  const { activeGroupCache } = useActiveElements();
 
   return (
     <div
@@ -59,10 +45,9 @@ const TestBottombar = () => {
           onClick={(e) => {
             handleSubmitQuestion(
               state,
-              dispatch,
               testPaper,
               responseDataState,
-              confirm,
+              submitQuestion,
               true
             );
           }}
@@ -97,7 +82,7 @@ const TestBottombar = () => {
           }
           isDisabled={!masterConstraint(state, testPaper).canSkip}
           onClick={() => {
-            moveToPrevQuestion(state, dispatch, testPaper, confirm);
+            moveToPrevQuestion(state, submitQuestion);
           }}
         >
           Previous
@@ -112,10 +97,9 @@ const TestBottombar = () => {
           onClick={async (e) => {
             handleSubmitQuestion(
               state,
-              dispatch,
               testPaper,
               responseDataState,
-              confirm,
+              submitQuestion,
               false
             );
           }}

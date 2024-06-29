@@ -14,35 +14,26 @@ import {
   AlertTitle,
   Text,
 } from "@chakra-ui/react";
-import {
-  UserCache,
-  UserCacheQuestion,
-  UserCacheSection,
-} from "../_interface/userCache";
-import {
-  getActiveQuestion,
-  getActiveQuestionCache,
-  getActiveSectionCache,
-} from "../_formatters/getActiveCache";
+import { getActiveSectionCache } from "../_formatters/getActiveCache";
 import UserResponse from "./UserResponse";
-import { TestPaperQuestion } from "../_interface/testData";
 import { StateContext, TestPaperContext } from "./page";
-import ConstraintAlert from "./ConstraintAlert";
+
 import MarkingSchemeDisplay from "./_mainViewComponents/MarkingSchemeDisplay";
 import { getIsQuestionDisabled } from "../_formatters/getFunctions";
+import useActiveElements from "@/lib/useActiveElements";
+import ConstraintAlert from "./_alerts/ConstraintAlert";
 
 const QuestionView = () => {
   const testPaper = React.useContext(TestPaperContext);
   const state = React.useContext(StateContext);
 
-  let activeSection: UserCacheSection = getActiveSectionCache(state);
-  let activeQuestion: TestPaperQuestion = getActiveQuestion(testPaper, state);
-  const activeQuestionCache: UserCacheQuestion = getActiveQuestionCache(state);
+  const { activeQuestionCache, activeSectionCache, activeQuestion } =
+    useActiveElements();
 
   const markdown =
     testPaper.body[state.activeGroupIndex].sections[
       state.body[state.activeGroupIndex].activeSectionIndex
-    ].questions[activeSection.qIndex].question[state.currentLanguageIndex];
+    ].questions[activeSectionCache.qIndex].question[state.currentLanguageIndex];
 
   const zoomLevel = state.toolsPreferences.zoomLevel;
 
@@ -96,7 +87,7 @@ const QuestionView = () => {
               Question Locked
             </AlertTitle>
             <AlertDescription maxWidth="sm">
-              You can no longer revisit this question or edit the response.
+              You can no longer revisit or edit the response of this question.
             </AlertDescription>
           </Alert>
         </div>

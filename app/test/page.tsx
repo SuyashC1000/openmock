@@ -53,6 +53,12 @@ export const TimeLeftContext = React.createContext([
     e;
   },
 ]);
+export const QuestionTimeContext = React.createContext([
+  0,
+  (e: any) => {
+    e;
+  },
+]);
 
 const testCache = testData;
 const TestPage = () => {
@@ -67,6 +73,7 @@ const TestPage = () => {
     title: "",
     message: "",
   });
+  const questionTime = React.useState(0);
 
   React.useEffect(() => {
     dispatch({ type: SET_LOGIN_TIME, payload: Date.now() });
@@ -87,6 +94,7 @@ const TestPage = () => {
     />,
     <TimeLeftContext.Provider value={timeLeft} key={3} />,
     <DialogDataContext.Provider value={dialogData} key={4} />,
+    <QuestionTimeContext.Provider value={questionTime} key={5} />,
   ];
 
   return (

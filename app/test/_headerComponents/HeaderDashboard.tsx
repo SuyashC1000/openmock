@@ -3,7 +3,6 @@ import GroupSelect from "./GroupSelect";
 import SectionSelect from "./SectionSelect";
 import {
   Avatar,
-  Button,
   Popover,
   PopoverAnchor,
   PopoverArrow,
@@ -15,15 +14,15 @@ import {
 } from "@chakra-ui/react";
 import Timer from "../Timer";
 import { DispatchContext, StateContext, TestPaperContext } from "../page";
-import { getActiveGroup } from "@/app/_formatters/getActiveCache";
 import { SET_DEFAULT_LANGUAGE } from "@/app/_formatters/userCacheReducer";
+import useActiveElements from "@/lib/useActiveElements";
 
 function HeaderDashboard() {
   const state = React.useContext(StateContext);
   const testPaper = React.useContext(TestPaperContext);
   const dispatch = React.useContext(DispatchContext);
 
-  const activeGroup = getActiveGroup(testPaper, state);
+  const { activeGroup } = useActiveElements();
 
   const totalOptionalSections = activeGroup.sections.reduce(
     (p, c) => (c.optional ? (p = p + 1) : p),

@@ -2,7 +2,7 @@ import { Text } from "@chakra-ui/react";
 
 import React from "react";
 
-import { DispatchContext, StateContext, TestPaperContext } from "./page";
+import { TestPaperContext } from "./page";
 
 import HeaderDashboard from "./_headerComponents/HeaderDashboard";
 import PaperOptionsGroup from "./_headerComponents/PaperOptionsGroup";

@@ -7,7 +7,6 @@ import {
   Heading,
   Modal,
   ModalBody,
-  ModalCloseButton,
   ModalContent,
   ModalFooter,
   ModalHeader,
@@ -23,32 +22,20 @@ import {
 import React from "react";
 import { DispatchContext, StateContext, TestPaperContext } from "../page";
 import { getNumOfQuestionStatuses } from "@/app/_formatters/getFunctions";
-import { UserCacheGroup } from "@/app/_interface/userCache";
-import { getActiveGroupCache } from "@/app/_formatters/getActiveCache";
 import {
   SET_ACTIVE_GROUP,
   SET_TEST_STATUS,
   UPDATE_GROUP_STATUS,
   UPDATE_QUESTION_STATUS,
 } from "@/app/_formatters/userCacheReducer";
-
-// function array_move(arr, old_index, new_index) {
-//   if (new_index >= arr.length) {
-//     var k = new_index - arr.length + 1;
-//     while (k--) {
-//       arr.push(undefined);
-//     }
-//   }
-//   arr.splice(new_index, 0, arr.splice(old_index, 1)[0]);
-//   return arr;
-// }
+import useActiveElements from "@/lib/useActiveElements";
 
 export const SubmitTestModal = () => {
   const state = React.useContext(StateContext);
   const testPaper = React.useContext(TestPaperContext);
   const dispatch = React.useContext(DispatchContext);
 
-  const activeGroupCache = getActiveGroupCache(state);
+  const { activeGroupCache, activeGroup } = useActiveElements();
 
   const noBtnRef = React.useRef(null);
   const isFinal =
@@ -68,11 +55,6 @@ export const SubmitTestModal = () => {
       payload: { qIndex: 0, newStatus: 1 },
     });
   }
-  // const modifiedGroupList: UserCacheGroup[] = array_move(
-  //   state.body,
-  //   state.activeGroupIndex,
-  //   0
-  // );
 
   return (
     <Modal
@@ -112,6 +94,14 @@ export const SubmitTestModal = () => {
                       (Current Group)
                     </span>
                   )}
+                  {e.status !== "upcoming" &&
+                    testPaper.body[i].optional &&
+                    !e.hasOpted && (
+                      <span className="text-red-500 text-sm font-semibold ml-1">
+                        {" "}
+                        (Will not be evaulated)
+                      </span>
+                    )}
                   {e.status === "submitted" && (
                     <>
                       <span className="text-neutral-400 text-sm font-semibold ml-1">

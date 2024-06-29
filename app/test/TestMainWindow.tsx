@@ -1,23 +1,11 @@
 import React from "react";
-import QuestionBtn from "../_components/QuestionBtn";
 import QuestionView from "./QuestionView";
-import { UserCache } from "../_interface/userCache";
-import { TestProps } from "../_interface/testProps";
-import ConstraintAlert from "./ConstraintAlert";
 import TestSidebar from "./TestSidebar";
-import { StateContext, TestPaperContext } from "./page";
-import {
-  getActiveGroup,
-  getActiveGroupCache,
-} from "../_formatters/getActiveCache";
-import OptionalGroupAlert from "./OptionalGroupAlert";
+import OptionalGroupAlert from "./_alerts/OptionalGroupAlert";
+import useActiveElements from "@/lib/useActiveElements";
 
 const TestMainWindow = () => {
-  const state = React.useContext(StateContext);
-  const testPaper = React.useContext(TestPaperContext);
-
-  const activeGroup = getActiveGroup(testPaper, state);
-  const activeGroupCache = getActiveGroupCache(state);
+  const { activeGroup, activeGroupCache } = useActiveElements();
 
   return (
     <>

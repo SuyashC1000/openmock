@@ -20,6 +20,7 @@ import SingleCorrectChoices from "./_userResponseTypes/SingleCorrectChoices";
 import MultipleCorrectChoices from "./_userResponseTypes/MultipleCorrectChoices";
 import { masterConstraint } from "../_formatters/masterConstraint";
 import useRenderingTrace from "./Diagnostic";
+import useActiveElements from "@/lib/useActiveElements";
 
 interface UserResponseInputProps {
   question: TestPaperQuestion;
@@ -29,14 +30,10 @@ interface UserResponseInputProps {
 const UserResponse = () => {
   const testPaper = React.useContext(TestPaperContext);
   const state = React.useContext(StateContext);
-  const dispatch = React.useContext(DispatchContext);
   const { responseData, setResponseData } =
     React.useContext(ResponseDataContext);
 
-  let activeGroupCache = getActiveGroupCache(state);
-
-  let activeQuestion = getActiveQuestion(testPaper, state);
-  let activeQuestionCache = getActiveQuestionCache(state);
+  const { activeQuestion, activeQuestionCache } = useActiveElements();
 
   useRenderingTrace("BottomBar", responseData);
 

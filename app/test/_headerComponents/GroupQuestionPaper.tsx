@@ -1,13 +1,6 @@
 import Marks from "@/app/_components/Marks";
 import { TestPaperGroup } from "@/app/_interface/testData";
-import {
-  Divider,
-  Heading,
-  ListItem,
-  OrderedList,
-  Text,
-} from "@chakra-ui/react";
-import React from "react";
+import { Heading, ListItem, OrderedList, Text } from "@chakra-ui/react";
 import Markdown from "react-markdown";
 import rehypeKatex from "rehype-katex";
 import remarkGfm from "remark-gfm";

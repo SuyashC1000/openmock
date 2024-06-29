@@ -1,19 +1,12 @@
 import React from "react";
 import PaperOptions from "./PaperOptions";
-import { StateContext, TestPaperContext } from "../page";
-import {
-  getActiveGroup,
-  getActiveGroupCache,
-  getActiveSection,
-} from "@/app/_formatters/getActiveCache";
+import { TestPaperContext } from "../page";
+import useActiveElements from "@/lib/useActiveElements";
 
 function PaperOptionsGroup() {
-  const state = React.useContext(StateContext);
   const testPaper = React.useContext(TestPaperContext);
 
-  const activeGroup = getActiveGroup(testPaper, state);
-  const activeSection = getActiveSection(testPaper, state);
-  const activeGroupCache = getActiveGroupCache(state);
+  const { activeGroup, activeSection, activeGroupCache } = useActiveElements();
 
   const condition = activeGroup.optional && !activeGroupCache.hasOpted;
   return (

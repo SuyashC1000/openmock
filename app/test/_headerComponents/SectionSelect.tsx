@@ -1,43 +1,31 @@
 import React from "react";
 import SectionButton from "./SectionButton";
-import {
-  UserCacheGroup,
-  UserCacheQuestion,
-  UserCacheSection,
-} from "@/app/_interface/userCache";
-import { DispatchContext, StateContext, TestPaperContext } from "../page";
+import { UserCacheSection } from "@/app/_interface/userCache";
+import { DispatchContext, StateContext } from "../page";
 import {
   getSectionQuestionLegend,
   getTotalSectionsSelected,
 } from "@/app/_formatters/getFunctions";
-import {
-  getActiveGroup,
-  getActiveGroupCache,
-  getActiveQuestionCache,
-} from "@/app/_formatters/getActiveCache";
-import { TestPaperGroup } from "@/app/_interface/testData";
 import { useToast } from "@chakra-ui/react";
 import useConfirm from "@/lib/useConfirm";
 import {
   RESET_SECTION_ATTEMPTS,
-  SET_ACTIVE_SECTION,
   TOGGLE_SECTION_ISSELECTED,
-  UPDATE_QUESTION_LASTANSWERED,
-  UPDATE_QUESTION_STATUS,
 } from "@/app/_formatters/userCacheReducer";
+import useSubmit from "@/lib/useSubmit";
+import { getActiveIndex } from "@/app/_formatters/getActiveCacheAdvanced";
+import useActiveElements from "@/lib/useActiveElements";
 
 function SectionSelect() {
   const state = React.useContext(StateContext);
   const dispatch = React.useContext(DispatchContext);
-  const testPaper = React.useContext(TestPaperContext);
 
   const toast = useToast();
-
+  const { submitQuestion } = useSubmit();
   const { confirm } = useConfirm();
+  const currentIndex = getActiveIndex(state);
 
-  let activeGroupCache: UserCacheGroup = getActiveGroupCache(state);
-  let activeQuestionCache: UserCacheQuestion = getActiveQuestionCache(state);
-  let activeGroup: TestPaperGroup = getActiveGroup(testPaper, state);
+  const { activeGroupCache, activeGroup } = useActiveElements();
 
   async function handleOnCheckboxSelect(e: UserCacheSection, i: number) {
     if (
@@ -86,30 +74,7 @@ function SectionSelect() {
             sectionName={e.sectionName}
             questionLegend={getSectionQuestionLegend(e)}
             onClick={async () => {
-              if (
-                activeQuestionCache.permissions !== "all" &&
-                activeQuestionCache.lastAnswered === null
-              ) {
-                const sample = await confirm(
-                  "Leave this question?",
-                  `You will no longer be able to ${activeQuestionCache.permissions == "view" ? "edit" : "revisit or edit"} \n
-                  your response in this question in the future upon navigating further.`
-                );
-                console.log(sample);
-                if (!sample) return;
-              }
-
-              dispatch({
-                type: UPDATE_QUESTION_LASTANSWERED,
-                payload: Date.now(),
-              });
-              dispatch({ type: SET_ACTIVE_SECTION, payload: i });
-              if (e.questions[e.qIndex].status === 0 && e.qIndex === 0) {
-                dispatch({
-                  type: UPDATE_QUESTION_STATUS,
-                  payload: { qIndex: 0, newStatus: 1 },
-                });
-              }
+              submitQuestion([currentIndex[0], i]);
             }}
             onCheckboxSelect={() => {
               handleOnCheckboxSelect(e, i);

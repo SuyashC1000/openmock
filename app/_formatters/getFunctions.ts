@@ -61,8 +61,6 @@ export function getUserResponse(
   responseData: string[]
 ): number | number[] | null {
   const userAnswer = responseData;
-  console.log("user-answer " + userAnswer + " " + typeof userAnswer);
-
   let payload;
   switch (qDataType) {
     case 0:

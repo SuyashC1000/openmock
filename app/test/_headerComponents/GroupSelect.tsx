@@ -1,25 +1,16 @@
 import React from "react";
 import ToolsButtons from "./ToolsButtons";
 import GroupButton from "./GroupButton";
-import { DispatchContext, StateContext } from "../page";
+import { StateContext } from "../page";
 import { getGroupQuestionLegend } from "@/app/_formatters/getFunctions";
 import { UserCacheGroup } from "@/app/_interface/userCache";
 import { useToast } from "@chakra-ui/react";
-import { getActiveQuestionCache } from "@/app/_formatters/getActiveCache";
-import useConfirm from "@/lib/useConfirm";
-import {
-  SET_ACTIVE_GROUP,
-  UPDATE_QUESTION_STATUS,
-} from "@/app/_formatters/userCacheReducer";
+import useSubmit from "@/lib/useSubmit";
 
 function GroupSelect() {
   const state = React.useContext(StateContext);
-  const dispatch = React.useContext(DispatchContext);
-
   const toast = useToast();
-  const { confirm } = useConfirm();
-
-  const activeQuestionCache = getActiveQuestionCache(state);
+  const { submitQuestion } = useSubmit();
 
   async function handleGroupSelect(
     e: UserCacheGroup,
@@ -46,30 +37,7 @@ function GroupSelect() {
         variant: "subtle",
       });
     } else {
-      if (
-        activeQuestionCache.permissions !== "all" &&
-        activeQuestionCache.lastAnswered === null
-      ) {
-        const sample = await confirm(
-          "Leave this question?",
-          `You will no longer be able to ${activeQuestionCache.permissions == "view" ? "edit" : "revisit or edit"} \n
-          your response in this question in the future upon navigating further.`
-        );
-        console.log(sample);
-        if (!sample) return;
-      }
-
-      dispatch({ type: SET_ACTIVE_GROUP, payload: i });
-      if (
-        e.sections[e.activeSectionIndex].questions[activeQuestionIndex]
-          .status == 0 &&
-        activeQuestionIndex === 0
-      ) {
-        dispatch({
-          type: UPDATE_QUESTION_STATUS,
-          payload: { qIndex: 0, newStatus: 1 },
-        });
-      }
+      submitQuestion([i]);
     }
   }
 

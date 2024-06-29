@@ -1,11 +1,4 @@
-import {
-  Button,
-  ButtonGroup,
-  Icon,
-  IconButton,
-  Tooltip,
-  chakra,
-} from "@chakra-ui/react";
+import { Button, ButtonGroup, Icon, Tooltip } from "@chakra-ui/react";
 import React from "react";
 import { TbCalculator, TbZoomIn, TbZoomOut } from "react-icons/tb";
 import { DispatchContext, StateContext, TestPaperContext } from "../page";

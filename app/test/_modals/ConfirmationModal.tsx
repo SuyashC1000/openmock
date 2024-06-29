@@ -1,5 +1,4 @@
 import {
-  AlertDescription,
   AlertDialog,
   AlertDialogBody,
   AlertDialogContent,
@@ -9,7 +8,6 @@ import {
   Button,
 } from "@chakra-ui/react";
 import React from "react";
-import { DialogDataContext } from "../page";
 import useConfirm from "@/lib/useConfirm";
 
 export interface DialogDataProps {

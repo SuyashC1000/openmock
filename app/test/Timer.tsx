@@ -1,11 +1,6 @@
-import { Button, Text } from "@chakra-ui/react";
+import { Text } from "@chakra-ui/react";
 import React from "react";
-import {
-  DispatchContext,
-  StateContext,
-  TestPaperContext,
-  TimeLeftContext,
-} from "./page";
+import { DispatchContext, StateContext, TestPaperContext } from "./page";
 import { SET_TEST_STATUS } from "../_formatters/userCacheReducer";
 
 const Timer = () => {
