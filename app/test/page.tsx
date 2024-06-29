@@ -54,10 +54,8 @@ export const TimeLeftContext = React.createContext([
   },
 ]);
 export const QuestionTimeContext = React.createContext([
-  0,
-  (e: any) => {
-    e;
-  },
+  null,
+  (e: [number, number]) => {},
 ]);
 
 const testCache = testData;
@@ -73,7 +71,7 @@ const TestPage = () => {
     title: "",
     message: "",
   });
-  const questionTime = React.useState(0);
+  const questionTime = React.useState<[number, number] | null>(null);
 
   React.useEffect(() => {
     dispatch({ type: SET_LOGIN_TIME, payload: Date.now() });

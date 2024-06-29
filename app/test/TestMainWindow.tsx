@@ -3,13 +3,16 @@ import QuestionView from "./QuestionView";
 import TestSidebar from "./TestSidebar";
 import OptionalGroupAlert from "./_alerts/OptionalGroupAlert";
 import useActiveElements from "@/lib/useActiveElements";
+import { groupConstraint } from "../_formatters/groupConstraint";
+import { StateContext, TestPaperContext } from "./page";
 
 const TestMainWindow = () => {
-  const { activeGroup, activeGroupCache } = useActiveElements();
+  const state = React.useContext(StateContext);
+  const testPaper = React.useContext(TestPaperContext);
 
   return (
     <>
-      {activeGroup.optional && !activeGroupCache.hasOpted ? (
+      {!groupConstraint(state, testPaper).canAccess ? (
         <OptionalGroupAlert />
       ) : (
         <div className="h-auto flex flex-1 w-screen overflow-hidden">

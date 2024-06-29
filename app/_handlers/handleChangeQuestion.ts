@@ -1,4 +1,4 @@
-import { masterConstraint } from "../_formatters/masterConstraint";
+import { questionConstraint } from "../_formatters/questionConstraint";
 import { UPDATE_QUESTION_LASTANSWERED } from "../_formatters/userCacheReducer";
 import { TestPaper } from "../_interface/testData";
 import { DispatchFunc } from "../_interface/testProps";
@@ -9,7 +9,7 @@ export function handleChangeQuestion(
   state: UserCache,
   testPaper: TestPaper
 ) {
-  if (masterConstraint(state, testPaper).canSet) {
+  if (questionConstraint(state, testPaper).canSet) {
     dispatch({
       type: UPDATE_QUESTION_LASTANSWERED,
       payload: Date.now(),

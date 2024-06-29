@@ -1,24 +1,14 @@
 import React from "react";
 import { getDefaultOptions } from "../_formatters/getFunctions";
-import {
-  getActiveGroupCache,
-  getActiveQuestion,
-  getActiveQuestionCache,
-} from "../_formatters/getActiveCache";
 import { TestPaperQuestion } from "../_interface/testData";
 import { UserCacheQuestion } from "../_interface/userCache";
 
-import {
-  DispatchContext,
-  ResponseDataContext,
-  StateContext,
-  TestPaperContext,
-} from "./page";
+import { ResponseDataContext, StateContext, TestPaperContext } from "./page";
 
 import NumeralValue from "./_userResponseTypes/NumeralValue";
 import SingleCorrectChoices from "./_userResponseTypes/SingleCorrectChoices";
 import MultipleCorrectChoices from "./_userResponseTypes/MultipleCorrectChoices";
-import { masterConstraint } from "../_formatters/masterConstraint";
+import { questionConstraint } from "../_formatters/questionConstraint";
 import useRenderingTrace from "./Diagnostic";
 import useActiveElements from "@/lib/useActiveElements";
 
@@ -33,7 +23,8 @@ const UserResponse = () => {
   const { responseData, setResponseData } =
     React.useContext(ResponseDataContext);
 
-  const { activeQuestion, activeQuestionCache } = useActiveElements();
+  const { activeQuestion, activeQuestionCache, activeGroupCache } =
+    useActiveElements();
 
   useRenderingTrace("BottomBar", responseData);
 
@@ -94,7 +85,7 @@ const UserResponse = () => {
         d.preventDefault();
       }}
     >
-      <fieldset disabled={!masterConstraint(state, testPaper).canSet}>
+      <fieldset disabled={!questionConstraint(state, testPaper).canSet}>
         {userAnswerInput(activeQuestion.qDataType[0])}
       </fieldset>
       {"Saved Answer: " + activeQuestionCache.submit}
@@ -108,6 +99,12 @@ const UserResponse = () => {
         activeQuestion.answer.toString()
           ? "Yes"
           : "No")}
+      <br />
+      {"Time spent: " +
+        activeQuestionCache.timeSpent +
+        "s | " +
+        activeGroupCache.timeSpent +
+        "s"}
     </form>
   );
 };

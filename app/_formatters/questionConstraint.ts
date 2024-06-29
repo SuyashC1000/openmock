@@ -1,7 +1,7 @@
 import {
   getQuestionsAttemptedTally,
   getTotalSectionsSelected,
-} from "../_formatters/getFunctions";
+} from "./getFunctions";
 import {
   getActiveGroup,
   getActiveGroupCache,
@@ -10,8 +10,19 @@ import {
   getActiveSection,
   getActiveSectionCache,
 } from "./getActiveCache";
-import { TestPaper } from "../_interface/testData";
-import { UserCache } from "../_interface/userCache";
+import {
+  TestPaper,
+  TestPaperGroup,
+  TestPaperQuestion,
+  TestPaperSection,
+} from "../_interface/testData";
+import {
+  UserCache,
+  UserCacheGroup,
+  UserCacheQuestion,
+  UserCacheSection,
+} from "../_interface/userCache";
+import { groupConstraint } from "./groupConstraint";
 
 interface Final {
   canView: boolean;
@@ -21,22 +32,30 @@ interface Final {
   messages: string[];
 }
 
-export const masterConstraint = (
+export const questionConstraint = (
   state: UserCache,
-  testPaper: TestPaper
+  testPaper: TestPaper,
+  indexList?: [number, number, number]
 ): Final => {
-  const activeGroupCache = getActiveGroupCache(state);
-  const activeSectionCache = getActiveSectionCache(state);
-  const activeQuestionCache = getActiveQuestionCache(state);
+  // console.log(state);
 
-  const activeGroup = getActiveGroup(testPaper, state);
-  const activeSection = getActiveSection(testPaper, state);
-  const activeQuestion = getActiveQuestion(testPaper, state);
+  const activeGroupCache = state.body[indexList?.[0] ?? state.activeGroupIndex];
+  const activeSectionCache =
+    activeGroupCache.sections[
+      indexList?.[1] ?? activeGroupCache.activeSectionIndex
+    ];
+  const activeQuestionCache =
+    activeSectionCache.questions[indexList?.[2] ?? activeSectionCache.qIndex];
+
+  const activeGroup = testPaper.body[indexList?.[0] ?? state.activeGroupIndex];
+  const activeSection =
+    activeGroup.sections[indexList?.[1] ?? activeGroupCache.activeSectionIndex];
+  const activeQuestion =
+    activeSection.questions[indexList?.[2] ?? activeSectionCache.qIndex];
 
   let final: Final = {
     canView: true,
     canSet: true,
-    // canClear: true,
     canSkip: true,
     messages: [],
   };
@@ -53,9 +72,22 @@ export const masterConstraint = (
     final.canSet = false;
   }
 
-  if (activeGroup.optional && activeGroupCache.hasOpted === false) {
+  if (!groupConstraint(state, testPaper).canAccess) {
     (final.canSet = false), (final.canSkip = false), (final.canView = false);
     return final;
+  }
+
+  const maxTime = activeQuestion.constraints?.maximumTimeAllowed;
+  if (maxTime !== undefined) {
+    if (activeQuestionCache.timeSpent >= maxTime * 60) {
+      final.canView = false;
+      final.canSet = false;
+      return final;
+    } else {
+      final.messages.push(
+        `You are only allowed ${maxTime} minute${maxTime == 1 ? "" : "s"} to provide a response for this answer, after which this question will be locked.`
+      );
+    }
   }
 
   if (activeGroupCache.status === "submitted") {

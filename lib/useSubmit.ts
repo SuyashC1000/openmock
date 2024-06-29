@@ -1,13 +1,18 @@
-import { masterConstraint } from "@/app/_formatters/masterConstraint";
+import { questionConstraint } from "@/app/_formatters/questionConstraint";
 import {
   SET_ACTIVE_ELEMENTS,
   SET_ACTIVE_GROUP,
+  SET_TEST_STATUS,
+  UPDATE_GROUP_STATUS,
+  UPDATE_GROUP_TIMESPENT,
   UPDATE_QUESTION_LASTANSWERED,
   UPDATE_QUESTION_STATUS,
+  UPDATE_QUESTION_TIMESPENT,
   UPDATE_QUESTION_USERANSWER,
 } from "@/app/_formatters/userCacheReducer";
 import {
   DispatchContext,
+  QuestionTimeContext,
   StateContext,
   TestPaperContext,
 } from "@/app/test/page";
@@ -18,6 +23,9 @@ import {
   getActiveCacheByIndex,
   getActiveIndex,
 } from "@/app/_formatters/getActiveCacheAdvanced";
+import { off } from "process";
+import { UserCacheGroup, UserCacheQuestion } from "@/app/_interface/userCache";
+import { groupConstraint } from "@/app/_formatters/groupConstraint";
 
 export interface SubmitQuestionFunc {
   (
@@ -34,18 +42,23 @@ function useSubmit() {
   const testPaper = React.useContext(TestPaperContext);
   const dispatch = React.useContext(DispatchContext);
 
+  const questionTimeState = React.useContext(QuestionTimeContext);
+  const questionTime = questionTimeState[0] as [number, number] | null;
+  const setQuestionTime = questionTimeState[1] as (e: [number, number]) => void;
+
   const { activeQuestionCache, activeSectionCache } = useActiveElements();
   const { confirm } = useConfirm();
+
+  let newIndex = getActiveIndex(state);
 
   const submitQuestion: SubmitQuestionFunc = async (
     nextIndex?,
     submitData?
   ) => {
-    console.log("I'm running!");
-
     if (
       activeQuestionCache.permissions !== "all" &&
-      activeQuestionCache.lastAnswered === null
+      activeQuestionCache.lastAnswered === null &&
+      groupConstraint(state, testPaper).canAccess
     ) {
       const sample = await confirm(
         "Leave this question?",
@@ -56,6 +69,11 @@ function useSubmit() {
     }
 
     const currentIndex = getActiveIndex(state);
+
+    dispatch({
+      type: UPDATE_QUESTION_TIMESPENT,
+      payload: questionTime![0],
+    });
 
     if (submitData !== undefined) {
       let newStatus = activeQuestionCache.status;
@@ -75,7 +93,7 @@ function useSubmit() {
       });
     }
 
-    if (masterConstraint(state, testPaper).canSet) {
+    if (questionConstraint(state, testPaper).canSet) {
       dispatch({
         type: UPDATE_QUESTION_LASTANSWERED,
         payload: Date.now(),
@@ -83,11 +101,9 @@ function useSubmit() {
     }
 
     if (nextIndex !== undefined) {
-      let newIndex = [0, 0, 0];
-
       switch (nextIndex.length) {
         case 1:
-          // dispatch({ type: SET_ACTIVE_GROUP, payload: nextIndex[0] });
+          dispatch({ type: SET_ACTIVE_GROUP, payload: nextIndex[0] });
           const sectionIndex = state.body[nextIndex[0]].activeSectionIndex;
           const questionIndex1 =
             state.body[nextIndex[0]].sections[sectionIndex].qIndex;
@@ -101,16 +117,21 @@ function useSubmit() {
           break;
 
         case 3:
-          newIndex = nextIndex;
+          newIndex = nextIndex as [number, number, number];
         default:
           break;
       }
 
       if (newIndex.toString() === currentIndex.toString()) return;
 
-      const newActiveQuestion = getActiveCacheByIndex(state, newIndex);
+      const newActiveQuestion = getActiveCacheByIndex(
+        state,
+        newIndex
+      ) as UserCacheQuestion;
       const newQuestionStatus =
         newActiveQuestion.status === 0 ? 1 : newActiveQuestion.status;
+
+      setQuestionTime([newActiveQuestion.timeSpent, questionTime![1]]);
 
       dispatch({ type: SET_ACTIVE_ELEMENTS, payload: newIndex });
       dispatch({
@@ -120,7 +141,32 @@ function useSubmit() {
     }
   };
 
-  return { submitQuestion };
+  function submitGroup(groupIndex: number, official: boolean = false) {
+    dispatch({
+      type: UPDATE_GROUP_TIMESPENT,
+      payload: questionTime![1],
+    });
+    if (official) {
+      dispatch({ type: UPDATE_GROUP_STATUS, payload: "submitted" });
+      submitQuestion([groupIndex]);
+      dispatch({ type: UPDATE_GROUP_STATUS, payload: "ongoing" });
+      dispatch({ type: SET_TEST_STATUS, payload: "ongoing" });
+    } else {
+      submitQuestion([groupIndex]);
+    }
+
+    const newActiveQuestion = getActiveCacheByIndex(
+      state,
+      newIndex
+    ) as UserCacheQuestion;
+    const newActiveGroup = getActiveCacheByIndex(state, [
+      newIndex[0],
+    ]) as UserCacheGroup;
+
+    setQuestionTime([newActiveQuestion.timeSpent, newActiveGroup.timeSpent]);
+  }
+
+  return { submitQuestion, submitGroup };
 }
 
 export default useSubmit;

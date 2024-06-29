@@ -61,9 +61,10 @@ const GeneralInstructions = (props: Props) => {
         <ListItem>
           <Text>
             The duration of the examination is{" "}
-            <strong>{props.testDuration}</strong> minutes. The countdown timer
-            at the top right-hand corner of your screen displays the time
-            available for you to complete the examination.
+            <strong>{props.testDuration}</strong> minute
+            {props.testDuration === 1 ? "" : "s"}. The countdown timer at the
+            top right-hand corner of your screen displays the time available for
+            you to complete the examination.
           </Text>
         </ListItem>
         <ListItem>

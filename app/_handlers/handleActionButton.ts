@@ -32,7 +32,7 @@ export async function handleSubmitQuestion(
     activeQuestion.qDataType[0],
     responseDataState.responseData
   );
-  const newIndexList = incrementQuestionIndex(state);
+  const newIndexList = incrementQuestionIndex(state, testPaper);
 
   submitQuestion(newIndexList, {
     response: userResponse,
@@ -61,8 +61,10 @@ export function handleClearResponse(
 
 export async function moveToPrevQuestion(
   state: UserCache,
+  testPaper: TestPaper,
+
   submitQuestion: SubmitQuestionFunc
 ) {
-  const newIndexList = decrementQuestionIndex(state);
+  const newIndexList = decrementQuestionIndex(state, testPaper);
   submitQuestion(newIndexList);
 }

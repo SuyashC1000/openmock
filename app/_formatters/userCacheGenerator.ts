@@ -17,12 +17,12 @@ export default function userCacheGenerator(
       groupName: e.groupName,
       hasOpted: e.optional ? false : undefined,
       activeSectionIndex: 0,
+      timeSpent: 0,
       status: i === 0 ? "ongoing" : "upcoming",
       permissions: e.constraints?.permissionOnSubmit ?? "all",
       sections: e.sections.map((f, j) => {
         return {
           sectionName: f.sectionName,
-          maxQuestions: f.maxQuestions,
           selected: f.optional ? false : undefined,
           qIndex: 0,
           questions: f.questions.map((g, k) => {

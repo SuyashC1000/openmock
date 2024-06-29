@@ -52,13 +52,17 @@ export interface TestPaperGroup {
 interface TestPaperGroupConstraints {
   permissionOnSubmit?: "all" | "view" | "none" | undefined;
   maxQuestionsAnswered?: number;
+  maximumTimeAllowed?: number;
+  minimumTimeAllowed?: number;
   maxOptionalSectionsAnswered?: number;
   minPreviousQuestionsAnswered?: number[];
+  maxPreviousGroupsAttemptTime?: number[];
 }
 interface TestPaperSectionConstraints {
   maxQuestionsAnswered?: number;
 }
 interface TestPaperQuestionConstraints {
   optional?: boolean;
+  maximumTimeAllowed?: number;
   permissionOnAttempt?: "all" | "view" | "none" | undefined;
 }

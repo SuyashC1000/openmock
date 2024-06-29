@@ -1,3 +1,4 @@
+import { TestPaper } from "../_interface/testData";
 import {
   UserCache,
   UserCacheGroup,
@@ -9,10 +10,11 @@ import {
   getActiveCacheByIndex,
   getActiveIndex,
 } from "./getActiveCacheAdvanced";
-import { getIsQuestionDisabled } from "./getFunctions";
+import { questionConstraint } from "./questionConstraint";
 
 export function incrementQuestionIndex(
-  state: UserCache
+  state: UserCache,
+  testPaper: TestPaper
 ): [number, number, number] {
   let currentIndexList: [number, number, number] = getActiveIndex(state);
 
@@ -39,17 +41,15 @@ export function incrementQuestionIndex(
       currentIndexList[2] = 0;
       currentIndexList[1] += 1;
     }
-  } while (
-    getIsQuestionDisabled(
-      getActiveCacheByIndex(state, currentIndexList) as UserCacheQuestion
-    )
-  );
+    console.log(currentIndexList);
+  } while (!questionConstraint(state, testPaper, currentIndexList).canView);
 
   return currentIndexList;
 }
 
 export function decrementQuestionIndex(
-  state: UserCache
+  state: UserCache,
+  testPaper: TestPaper
 ): [number, number, number] {
   let currentIndexList: [number, number, number] = getActiveIndex(state);
 
@@ -83,11 +83,7 @@ export function decrementQuestionIndex(
       currentIndexList[2] = lastSection.questions.length - 1;
       currentIndexList[1] -= 1;
     }
-  } while (
-    getIsQuestionDisabled(
-      getActiveCacheByIndex(state, currentIndexList) as UserCacheQuestion
-    )
-  );
+  } while (!questionConstraint(state, testPaper).canView);
 
   return currentIndexList;
 }

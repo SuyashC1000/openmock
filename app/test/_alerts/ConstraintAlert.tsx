@@ -1,14 +1,14 @@
 import { Alert, AlertDescription, AlertIcon } from "@chakra-ui/react";
 import React from "react";
 
-import { masterConstraint } from "@/app/_formatters/masterConstraint";
+import { questionConstraint } from "@/app/_formatters/questionConstraint";
 import { StateContext, TestPaperContext } from "../page";
 
 const ConstraintAlert = () => {
   const state = React.useContext(StateContext);
   const testPaper = React.useContext(TestPaperContext);
 
-  const allMessages = masterConstraint(state, testPaper);
+  const allMessages = questionConstraint(state, testPaper);
   const zoomLevel = state.toolsPreferences.zoomLevel;
 
   return (

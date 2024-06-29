@@ -22,7 +22,8 @@
       "constraints": {
         "maxQuestionsAnswered": 5,
         "maxOptionalSectionsAnswered": 1,
-        "permissionOnSubmit": "none"
+        "permissionOnSubmit": "view",
+        "maximumTimeAllowed": 2
       },
       "sections": [
         {
@@ -143,6 +144,25 @@
               "constraints": {
                 "permissionOnAttempt": "none"
               }
+            },
+            {
+              "id": "q123456794",
+              "qTypeName": "SCQ",
+              "qDataType": [0, 4],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1],
+                [0, 1]
+              ],
+              "question": [
+                "What colour is obtained on mixing all colours of a rainbow in an additive manner?"
+              ],
+              "options": [["Black"], ["White"], ["Dark Blue"], ["Brown"]],
+              "tags": [],
+              "answer": 1,
+              "constraints": {
+                "maximumTimeAllowed": 1
+              }
             }
           ]
         },
@@ -231,9 +251,10 @@
       "instructions": [
         "These are instructions for the Science group. Please refer to Useful Data for reference."
       ],
-
+      "constraints": {
+        "minimumTimeAllowed": 1
+      },
       "optional": false,
-
       "sections": [
         {
           "sectionName": "Physics",
@@ -374,7 +395,8 @@
       "groupName": "Social Science",
       "optional": true,
       "constraints": {
-        "minPreviousQuestionsAnswered": [5, 3]
+        "minPreviousQuestionsAnswered": [5, 3],
+        "maxPreviousGroupsAttemptTime": [0, 2]
       },
       "sections": [
         {

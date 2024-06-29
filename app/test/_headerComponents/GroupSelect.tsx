@@ -10,7 +10,7 @@ import useSubmit from "@/lib/useSubmit";
 function GroupSelect() {
   const state = React.useContext(StateContext);
   const toast = useToast();
-  const { submitQuestion } = useSubmit();
+  const { submitQuestion, submitGroup } = useSubmit();
 
   async function handleGroupSelect(
     e: UserCacheGroup,
@@ -37,7 +37,7 @@ function GroupSelect() {
         variant: "subtle",
       });
     } else {
-      submitQuestion([i]);
+      submitGroup(i);
     }
   }
 

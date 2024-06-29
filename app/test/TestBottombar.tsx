@@ -15,10 +15,11 @@ import {
   getActiveGroupCache,
   getActiveSectionCache,
 } from "../_formatters/getActiveCache";
-import { masterConstraint } from "../_formatters/masterConstraint";
+import { questionConstraint } from "../_formatters/questionConstraint";
 import { SET_TEST_STATUS } from "../_formatters/userCacheReducer";
 import useSubmit from "@/lib/useSubmit";
 import useActiveElements from "@/lib/useActiveElements";
+import { groupConstraint } from "../_formatters/groupConstraint";
 
 const TestBottombar = () => {
   const state = useContext(StateContext);
@@ -41,7 +42,7 @@ const TestBottombar = () => {
           colorScheme="blue"
           form="userResponseForm"
           type="submit"
-          isDisabled={!masterConstraint(state, testPaper).canSkip}
+          isDisabled={!questionConstraint(state, testPaper).canSkip}
           onClick={(e) => {
             handleSubmitQuestion(
               state,
@@ -60,7 +61,7 @@ const TestBottombar = () => {
           colorScheme="blue"
           form="userResponseForm"
           type="reset"
-          isDisabled={!masterConstraint(state, testPaper).canSet}
+          isDisabled={!questionConstraint(state, testPaper).canSet}
           onClick={() => {
             handleClearResponse(state, dispatch, responseDataState);
           }}
@@ -80,9 +81,9 @@ const TestBottombar = () => {
               ? "hidden"
               : "visible"
           }
-          isDisabled={!masterConstraint(state, testPaper).canSkip}
+          isDisabled={!questionConstraint(state, testPaper).canSkip}
           onClick={() => {
-            moveToPrevQuestion(state, submitQuestion);
+            moveToPrevQuestion(state, testPaper, submitQuestion);
           }}
         >
           Previous
@@ -92,7 +93,7 @@ const TestBottombar = () => {
           colorScheme="blue"
           form="userResponseForm"
           type="submit"
-          isDisabled={!masterConstraint(state, testPaper).canSkip}
+          isDisabled={!questionConstraint(state, testPaper).canSkip}
           // onClick={(e) => console.log(e.currentTarget)}
           onClick={async (e) => {
             handleSubmitQuestion(
@@ -115,7 +116,7 @@ const TestBottombar = () => {
           onClick={() => {
             dispatch({ type: SET_TEST_STATUS, payload: "submitting" });
           }}
-          isDisabled={activeGroupCache.status === "submitted"}
+          isDisabled={!groupConstraint(state, testPaper).canSubmit}
         >
           Submit
         </Button>

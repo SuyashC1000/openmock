@@ -19,9 +19,9 @@ import UserResponse from "./UserResponse";
 import { StateContext, TestPaperContext } from "./page";
 
 import MarkingSchemeDisplay from "./_mainViewComponents/MarkingSchemeDisplay";
-import { getIsQuestionDisabled } from "../_formatters/getFunctions";
 import useActiveElements from "@/lib/useActiveElements";
 import ConstraintAlert from "./_alerts/ConstraintAlert";
+import { questionConstraint } from "../_formatters/questionConstraint";
 
 const QuestionView = () => {
   const testPaper = React.useContext(TestPaperContext);
@@ -39,7 +39,7 @@ const QuestionView = () => {
 
   return (
     <div className="flex flex-col">
-      {!getIsQuestionDisabled(activeQuestionCache) && (
+      {questionConstraint(state, testPaper).canView && (
         <>
           <div className=" outline outline-1 outline-neutral-400 p-1 px-2 flex justify-between">
             <Text className="text-sm font-semibold">
@@ -71,7 +71,7 @@ const QuestionView = () => {
           </div>
         </>
       )}
-      {getIsQuestionDisabled(activeQuestionCache) && (
+      {!questionConstraint(state, testPaper).canView && (
         <div className="p-3">
           <Alert
             status="error"

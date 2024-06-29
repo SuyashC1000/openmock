@@ -29,6 +29,7 @@ import {
   UPDATE_QUESTION_STATUS,
 } from "@/app/_formatters/userCacheReducer";
 import useActiveElements from "@/lib/useActiveElements";
+import useSubmit from "@/lib/useSubmit";
 
 export const SubmitTestModal = () => {
   const state = React.useContext(StateContext);
@@ -36,6 +37,7 @@ export const SubmitTestModal = () => {
   const dispatch = React.useContext(DispatchContext);
 
   const { activeGroupCache, activeGroup } = useActiveElements();
+  const { submitGroup } = useSubmit();
 
   const noBtnRef = React.useRef(null);
   const isFinal =
@@ -44,16 +46,6 @@ export const SubmitTestModal = () => {
 
   function handleSubmitTest() {
     alert("Hooray! You submitted the test!");
-  }
-  function handleSubmitGroup() {
-    dispatch({ type: UPDATE_GROUP_STATUS, payload: "submitted" });
-    dispatch({ type: SET_ACTIVE_GROUP, payload: state.activeGroupIndex + 1 });
-    dispatch({ type: UPDATE_GROUP_STATUS, payload: "ongoing" });
-    dispatch({ type: SET_TEST_STATUS, payload: "ongoing" });
-    dispatch({
-      type: UPDATE_QUESTION_STATUS,
-      payload: { qIndex: 0, newStatus: 1 },
-    });
   }
 
   return (
@@ -204,7 +196,7 @@ export const SubmitTestModal = () => {
                 if (isFinal) {
                   handleSubmitTest();
                 } else {
-                  handleSubmitGroup();
+                  submitGroup(state.activeGroupIndex + 1, true);
                 }
               }}
             >

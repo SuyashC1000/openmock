@@ -20,6 +20,8 @@ export const UPDATE_QUESTION_LASTANSWERED = "UPDATE_QUESTION_LASTANSWERED";
 export const UPDATE_QUESTION_PERMISSIONS = "UPDATE_QUESTION_PERMISSIONS";
 export const TOGGLE_SECTION_ISSELECTED = "TOGGLE_SECTION_ISSELECTED";
 export const UPDATE_GROUP_STATUS = "UPDATE_GROUP_STATUS";
+export const UPDATE_GROUP_TIMESPENT = "UPDATE_GROUP_TIMESPENT";
+export const UPDATE_QUESTION_TIMESPENT = "UPDATE_QUESTION_TIMESPENT";
 export const RESET_SECTION_ATTEMPTS = "RESET_SECTION_ATTEMPTS";
 export const SET_ZOOM_LEVEL = "SET_ZOOM_LEVEL";
 export const SET_GROUP_HASOPTED = "SET_GROUP_HASOPTED";
@@ -131,6 +133,17 @@ export default function userCacheReducer(
       return newState;
     }
 
+    case UPDATE_QUESTION_TIMESPENT: {
+      let activeGroupCache = newState.body[newState.activeGroupIndex];
+      let activeSectionCache =
+        activeGroupCache.sections[activeGroupCache.activeSectionIndex];
+
+      activeSectionCache.questions[activeSectionCache.qIndex].timeSpent =
+        action.payload;
+
+      return newState;
+    }
+
     case TOGGLE_SECTION_ISSELECTED: {
       let activeGroupCache = newState.body[newState.activeGroupIndex];
       let sectionCache = activeGroupCache.sections[action.payload];
@@ -142,6 +155,13 @@ export default function userCacheReducer(
     case UPDATE_GROUP_STATUS: {
       let activeGroupCache = newState.body[newState.activeGroupIndex];
       activeGroupCache.status = action.payload;
+
+      return newState;
+    }
+
+    case UPDATE_GROUP_TIMESPENT: {
+      let activeGroupCache = newState.body[newState.activeGroupIndex];
+      activeGroupCache.timeSpent = action.payload;
 
       return newState;
     }

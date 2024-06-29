@@ -7,7 +7,7 @@ import rehypeKatex from "rehype-katex";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 import { ResponseDataContext, StateContext, TestPaperContext } from "../page";
-import { masterConstraint } from "@/app/_formatters/masterConstraint";
+import { questionConstraint } from "@/app/_formatters/questionConstraint";
 
 interface UserResponseInputProps {
   question: TestPaperQuestion;
@@ -27,7 +27,7 @@ const SingleCorrectChoices = (props: UserResponseInputProps) => {
     <RadioGroup
       name="input"
       value={responseData[0] ?? ""}
-      isDisabled={!masterConstraint(state, testPaper).canSet}
+      isDisabled={!questionConstraint(state, testPaper).canSet}
     >
       <div className="flex flex-col">
         {props.question.options!.map((e, i) => {
