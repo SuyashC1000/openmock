@@ -3,6 +3,7 @@ export interface UserCacheQuestion {
   status: number;
   submit: number | number[] | null;
   timeSpent: number;
+  optionDisplayList: number[] | null;
   lastAnswered: number | null;
   permissions: "all" | "view" | "none";
   [k: string]: unknown;
@@ -11,6 +12,7 @@ export interface UserCacheQuestion {
 export interface UserCacheSection {
   sectionName: string;
   qIndex: number;
+  questionDisplayList: number[];
   selected?: boolean;
   questions: UserCacheQuestion[];
   [k: string]: unknown;
@@ -28,7 +30,6 @@ export interface UserCacheGroup {
 }
 
 export interface UserCache {
-  username: string;
   testId: string;
   testStatus: "starting" | "ongoing" | "submitting" | "finished";
   testStartTime: number;
@@ -48,5 +49,5 @@ interface ToolsPreferences {
 }
 
 export interface UserTestDetails {
-  name: "User";
+  name: string;
 }

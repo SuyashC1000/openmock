@@ -3,24 +3,59 @@ import { UserCache } from "../_interface/userCache";
 
 export const emptyTestPaper: TestPaper = {
   additionalTools: {
-    scientificCalculator: false,
+    calculator: "none",
+    magnifyingGlass: false,
   },
   authors: [],
   name: "",
   id: "",
   languages: [""],
-  instructions: "",
+  instructions: [""],
   maxTime: 0,
   subjects: [""],
   timeCreated: 0,
-  usefulData: "",
+  usefulData: [""],
   body: [],
 };
 export const emptyUserCache: UserCache = {
-  username: "",
   testId: "",
+  testLoginTime: 0,
+  testStatus: "starting",
+  toolsPreferences: {
+    calculator: false,
+    zoomLevel: 1,
+  },
+  userDetails: {
+    name: "",
+  },
   testStartTime: 0,
   currentLanguageIndex: 0,
   activeGroupIndex: 0,
-  body: [],
+  body: [
+    {
+      activeSectionIndex: 0,
+      groupName: "",
+      permissions: "all",
+      status: "ongoing",
+      timeSpent: 0,
+      sections: [
+        {
+          sectionName: "",
+          questionDisplayList: [0],
+          qIndex: 0,
+          questions: [
+            {
+              id: "",
+              permissions: "all",
+              optionDisplayList: null,
+              lastAnswered: 0,
+              status: 0,
+              submit: null,
+              timeSpent: 0,
+            },
+          ],
+        },
+      ],
+    },
+  ],
 };

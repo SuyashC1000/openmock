@@ -6,6 +6,7 @@ export interface Action {
   payload: any;
 }
 
+export const INITIALIZE_STATE = "INITIALIZE_STATE";
 export const SET_TEST_STATUS = "SET_TEST_STATUS";
 export const SET_ACTIVE_QUESTION = "SET_ACTIVE_QUESTION";
 export const SET_ACTIVE_SECTION = "SET_ACTIVE_SECTION";
@@ -33,6 +34,12 @@ export default function userCacheReducer(
   let newState = structuredClone(state);
 
   switch (action.type) {
+    case INITIALIZE_STATE: {
+      newState = action.payload;
+
+      return newState;
+    }
+
     case SET_TEST_STATUS: {
       newState.testStatus = action.payload;
       return newState;

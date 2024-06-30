@@ -12,6 +12,14 @@ export default function userCacheGenerator(
 ): UserCache {
   //
 
+  function shuffle(unshuffled: any[]) {
+    let shuffled = unshuffled
+      .map((value) => ({ value, sort: Math.random() }))
+      .sort((a, b) => a.sort - b.sort)
+      .map(({ value }) => value);
+    return shuffled;
+  }
+
   let newBody = testPaper.body.map((e, i) => {
     return {
       groupName: e.groupName,
@@ -25,11 +33,21 @@ export default function userCacheGenerator(
           sectionName: f.sectionName,
           selected: f.optional ? false : undefined,
           qIndex: 0,
+          questionDisplayList:
+            f.constraints?.randomizeQuestions === true
+              ? shuffle(Array.from(Array(f.questions.length).keys()))
+              : Array.from(Array(f.questions.length).keys()),
           questions: f.questions.map((g, k) => {
             return {
               id: g.id,
-              status: i === 0 && j === 0 && k === 0 ? 1 : 0,
+              status: 0,
               submit: null,
+              optionDisplayList:
+                g.constraints?.randomizeOptions === true && g.options !== null
+                  ? shuffle(Array.from(Array(g.options.length).keys()))
+                  : g.options !== null
+                    ? Array.from(Array(g.options.length).keys())
+                    : null,
               timeSpent: 0,
               lastAnswered: null,
               permissions: g.constraints?.permissionOnAttempt ?? "all",
@@ -51,11 +69,10 @@ export default function userCacheGenerator(
     testStatus: "starting",
     activeGroupIndex: 0,
     testId: testPaper.id,
-    username: username,
     currentLanguageIndex: 0,
     testStartTime: 0,
     userDetails: {
-      name: "User",
+      name: username,
     },
     testLoginTime: 0,
   };

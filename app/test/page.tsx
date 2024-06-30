@@ -10,6 +10,7 @@ import testData from "../../public/data/testData.json";
 import userCacheGenerator from "../_formatters/userCacheGenerator";
 import userCacheReducer, {
   Action,
+  INITIALIZE_STATE,
   SET_LOGIN_TIME,
 } from "../_formatters/userCacheReducer";
 import { emptyTestPaper, emptyUserCache } from "./empty";
@@ -60,10 +61,7 @@ export const QuestionTimeContext = React.createContext([
 
 const testCache = testData;
 const TestPage = () => {
-  const [state, dispatch] = React.useReducer(
-    userCacheReducer,
-    userCacheGenerator(testData, "Hello")
-  );
+  const [state, dispatch] = React.useReducer(userCacheReducer, emptyUserCache);
   const [responseData, setResponseData] = React.useState<string[]>([""]);
   const timeLeft = React.useState([testCache.maxTime, 0]);
   const dialogData = React.useState({
@@ -74,6 +72,10 @@ const TestPage = () => {
   const questionTime = React.useState<[number, number] | null>(null);
 
   React.useEffect(() => {
+    dispatch({
+      type: INITIALIZE_STATE,
+      payload: userCacheGenerator(testData, "User"),
+    });
     dispatch({ type: SET_LOGIN_TIME, payload: Date.now() });
   }, []);
 

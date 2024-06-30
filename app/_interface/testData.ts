@@ -60,9 +60,11 @@ interface TestPaperGroupConstraints {
 }
 interface TestPaperSectionConstraints {
   maxQuestionsAnswered?: number;
+  randomizeQuestions?: boolean;
 }
 interface TestPaperQuestionConstraints {
   optional?: boolean;
+  randomizeOptions?: boolean;
   maximumTimeAllowed?: number;
   permissionOnAttempt?: "all" | "view" | "none" | undefined;
 }

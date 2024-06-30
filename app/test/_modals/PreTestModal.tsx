@@ -16,6 +16,7 @@ import {
   SET_DEFAULT_LANGUAGE,
   SET_START_TIME,
   SET_TEST_STATUS,
+  UPDATE_QUESTION_STATUS,
 } from "@/app/_formatters/userCacheReducer";
 
 export const PreTestModal = () => {
@@ -122,6 +123,13 @@ export const PreTestModal = () => {
     dispatch({ type: SET_TEST_STATUS, payload: "ongoing" });
     dispatch({ type: SET_START_TIME, payload: Date.now() });
     setQuestionTime([0, 0]);
+    dispatch({
+      type: UPDATE_QUESTION_STATUS,
+      payload: {
+        qIndex: 0,
+        newStatus: 1,
+      },
+    });
   }
 
   return (
