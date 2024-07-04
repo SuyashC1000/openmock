@@ -2,7 +2,10 @@ import { Button, ButtonGroup, Icon, Tooltip } from "@chakra-ui/react";
 import React from "react";
 import { TbCalculator, TbZoomIn, TbZoomOut } from "react-icons/tb";
 import { DispatchContext, StateContext, TestPaperContext } from "../page";
-import { SET_ZOOM_LEVEL } from "@/app/_formatters/userCacheReducer";
+import {
+  SET_CALCULATOR_VISIBILITY,
+  SET_ZOOM_LEVEL,
+} from "@/app/_formatters/userCacheReducer";
 
 function ToolsButtons() {
   const state = React.useContext(StateContext);
@@ -13,6 +16,13 @@ function ToolsButtons() {
     const newZoomLevel = (state.toolsPreferences.zoomLevel += i);
     if (newZoomLevel >= 1 && newZoomLevel <= 3)
       dispatch({ type: SET_ZOOM_LEVEL, payload: newZoomLevel });
+  }
+
+  function toggleCalculator() {
+    dispatch({
+      type: SET_CALCULATOR_VISIBILITY,
+      payload: !state.toolsPreferences.calculator,
+    });
   }
 
   return (
@@ -61,6 +71,7 @@ function ToolsButtons() {
             color={"#db7f00"}
             mx={0}
             _hover={{ bgColor: "#c1c1c1" }}
+            onClick={() => toggleCalculator()}
           >
             <Icon as={TbCalculator} />
           </Button>

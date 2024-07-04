@@ -78,7 +78,10 @@ function PaperOptions(props: PaperOptionsProps) {
             <Text className="font-bold text-lg underline text-center mb-3">
               General Instructions
             </Text>
-            <GeneralInstructions testDuration={testPaper.maxTime} />
+            <GeneralInstructions
+              testDuration={testPaper.maxTime}
+              calculator={testPaper.additionalTools.calculator}
+            />
             <br />
             <Text className="font-bold text-lg underline text-center mb-3">
               Other Specific Instructions

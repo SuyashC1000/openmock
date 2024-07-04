@@ -25,6 +25,7 @@ export const UPDATE_GROUP_TIMESPENT = "UPDATE_GROUP_TIMESPENT";
 export const UPDATE_QUESTION_TIMESPENT = "UPDATE_QUESTION_TIMESPENT";
 export const RESET_SECTION_ATTEMPTS = "RESET_SECTION_ATTEMPTS";
 export const SET_ZOOM_LEVEL = "SET_ZOOM_LEVEL";
+export const SET_CALCULATOR_VISIBILITY = "SET_CALCULATOR_VISIBILITY";
 export const SET_GROUP_HASOPTED = "SET_GROUP_HASOPTED";
 
 export default function userCacheReducer(
@@ -188,6 +189,12 @@ export default function userCacheReducer(
 
     case SET_ZOOM_LEVEL: {
       newState.toolsPreferences.zoomLevel = action.payload;
+
+      return newState;
+    }
+
+    case SET_CALCULATOR_VISIBILITY: {
+      newState.toolsPreferences.calculator = action.payload;
 
       return newState;
     }

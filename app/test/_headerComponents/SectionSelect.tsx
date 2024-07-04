@@ -1,7 +1,7 @@
 import React from "react";
 import SectionButton from "./SectionButton";
 import { UserCacheSection } from "@/app/_interface/userCache";
-import { DispatchContext, StateContext } from "../page";
+import { DispatchContext, StateContext, TestPaperContext } from "../page";
 import {
   getSectionQuestionLegend,
   getTotalSectionsSelected,
@@ -15,9 +15,11 @@ import {
 import useSubmit from "@/lib/useSubmit";
 import { getActiveIndex } from "@/app/_formatters/getActiveCacheAdvanced";
 import useActiveElements from "@/lib/useActiveElements";
+import { groupConstraint } from "@/app/_formatters/groupConstraint";
 
 function SectionSelect() {
   const state = React.useContext(StateContext);
+  const testPaper = React.useContext(TestPaperContext);
   const dispatch = React.useContext(DispatchContext);
 
   const toast = useToast();
@@ -55,6 +57,8 @@ function SectionSelect() {
     }
   }
 
+  const constraintData = groupConstraint(state, testPaper);
+
   return (
     <div
       className=" bg-neutral-200 flex p-1 gap-2 items-center overflow-x-auto overflow-y-hidden"
@@ -67,14 +71,12 @@ function SectionSelect() {
             optional={activeGroup.sections[i].optional}
             active={i == activeGroupCache.activeSectionIndex}
             isSelected={e.selected!}
-            isDisabled={
-              activeGroupCache.permissions === "view" &&
-              activeGroupCache.status === "submitted"
-            }
+            isDisabled={!constraintData.canAccess}
             sectionName={e.sectionName}
             questionLegend={getSectionQuestionLegend(e)}
             onClick={async () => {
-              submitQuestion([currentIndex[0], i]);
+              if (constraintData.canAccess)
+                submitQuestion([currentIndex[0], i]);
             }}
             onCheckboxSelect={() => {
               handleOnCheckboxSelect(e, i);

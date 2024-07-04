@@ -19,6 +19,7 @@ import SubmitTestModal from "./_modals/SubmitTestModal";
 import MultiProvider from "../_components/MultiProvider";
 import useRenderingTrace from "./Diagnostic";
 import ConfirmationModal from "./_modals/ConfirmationModal";
+import OverlayCollection from "./OverlayCollection";
 
 interface DispatchFunction {
   (action: Action): void;
@@ -100,9 +101,7 @@ const TestPage = () => {
   return (
     <MultiProvider providers={providers}>
       <div className="bg-slate-800 flex flex-box flex-col h-screen max-h-screen select-none">
-        <PreTestModal />
-        <SubmitTestModal />
-        <ConfirmationModal />
+        <OverlayCollection />
         <TestHeader />
         <TestMainWindow /> <TestBottombar />
       </div>

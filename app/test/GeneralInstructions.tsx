@@ -9,6 +9,7 @@ import QuestionBtn from "../_components/QuestionBtn";
 
 interface Props {
   testDuration: number;
+  calculator: "none" | "normal" | "scientific";
 }
 
 const QuestionLegendGrid = () => {
@@ -73,6 +74,14 @@ const GeneralInstructions = (props: Props) => {
             You will not be required to submit your examination.
           </Text>
         </ListItem>
+        {props.calculator !== "none" && (
+          <ListItem>
+            <Text>
+              A <strong>{props.calculator} calculator</strong> is available at
+              the top-right-hand side of the screen.
+            </Text>
+          </ListItem>
+        )}
         <ListItem>
           <Text>
             The Question Palette displayed on the right-hand side of the screen
