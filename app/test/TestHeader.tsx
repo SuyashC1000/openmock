@@ -11,7 +11,7 @@ const TestHeader = () => {
   const testPaper = React.useContext(TestPaperContext);
 
   return (
-    <div className="flex flex-col border-b-2 border-neutral-400">
+    <div className="flex flex-col border-b-2 border-neutral-400 ">
       <div
         className="h-8 w-screen bg-neutral-800 flex flex-0 justify-between
       items-center px-4 gap-4 outline-1 outline-slate-600 grow-0"

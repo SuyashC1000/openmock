@@ -21,7 +21,7 @@ export const emptyUserCache: UserCache = {
   testId: "",
   testLoginTime: 0,
   testStatus: "starting",
-  toolsPreferences: {
+  preferences: {
     calculator: false,
     zoomLevel: 1,
   },

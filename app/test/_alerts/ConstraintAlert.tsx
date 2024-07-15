@@ -9,10 +9,10 @@ const ConstraintAlert = () => {
   const testPaper = React.useContext(TestPaperContext);
 
   const allMessages = questionConstraint(state, testPaper);
-  const zoomLevel = state.toolsPreferences.zoomLevel;
+  const zoomLevel = state.preferences.zoomLevel;
 
   return (
-    <>
+    <span className="min-h-fit flex flex-col gap-2">
       {allMessages.messages.map((e, i) => {
         return (
           <Alert
@@ -27,7 +27,7 @@ const ConstraintAlert = () => {
           </Alert>
         );
       })}
-    </>
+    </span>
   );
 };
 

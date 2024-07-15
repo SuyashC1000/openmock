@@ -6,6 +6,8 @@ import { getQuestionsAttemptedTally } from "./getFunctions";
 interface Final {
   optional: boolean;
   canAccess: boolean;
+  canEdit: boolean;
+  canTickTime: boolean;
   canOpt: boolean;
   canSubmit: boolean;
   hasOpted: boolean;
@@ -21,6 +23,8 @@ export const groupConstraint = (
   let final: Final = {
     optional: true,
     canAccess: true,
+    canEdit: true,
+    canTickTime: true,
     canOpt: true,
     hasOpted: false,
     canSubmit: true,
@@ -34,6 +38,10 @@ export const groupConstraint = (
 
   if (activeGroupCache.status === "submitted") {
     final.canSubmit = false;
+    if (activeGroupCache.permissions !== "all") {
+      final.canEdit = false;
+      final.canTickTime = false;
+    }
   }
 
   if (
@@ -55,9 +63,12 @@ export const groupConstraint = (
   const maxTime = activeGroup.constraints?.maximumTimeAllowed;
   if (
     maxTime !== undefined &&
-    activeGroupCache.timeSpent >= maxTime * MIN_IN_SEC
+    activeGroupCache.timeSpent >= maxTime * MIN_IN_SEC &&
+    activeGroupCache.status === "ongoing"
   ) {
     final.canAccess = false;
+    final.canTickTime = false;
+    final.canEdit = false;
     final.messages.push(
       `Maximum time reached to attempt current group (${maxTime} minute${maxTime == 1 ? "" : "s"})`
     );
@@ -80,6 +91,8 @@ export const groupConstraint = (
         ) {
           final.canAccess = false;
           final.canOpt = false;
+          final.canEdit = false;
+          final.canTickTime = false;
           final.messages.push(
             `Minimum ${minQuestionCounts[i]} question attempts required in '${group.groupName}' (${groupQuestionCount} attempted)`
           );
@@ -93,6 +106,9 @@ export const groupConstraint = (
         if (group.timeSpent >= groupMaxTime * MIN_IN_SEC) {
           final.canAccess = false;
           final.canOpt = false;
+          final.canEdit = false;
+          final.canTickTime = false;
+
           final.messages.push(
             `Maximum attempt time of ${groupMaxTime} minute${groupMaxTime == 1 ? "" : "s"} \n
             in '${group.groupName}' (${Math.floor(group.timeSpent / 60)} \n

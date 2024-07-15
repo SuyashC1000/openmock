@@ -6,8 +6,11 @@ import QuestionLegend from "../_components/QuestionLegend";
 import { getSectionQuestionLegend } from "../_formatters/getFunctions";
 import QuestionsGrid from "./_sidebarComponents/QuestionsGrid";
 import useActiveElements from "@/lib/useActiveElements";
+import { StateContext } from "./page";
+import React from "react";
 
 const TestSidebar = () => {
+  const state = React.useContext(StateContext);
   const { activeSectionCache } = useActiveElements();
 
   function SectionHeading() {
@@ -21,17 +24,18 @@ const TestSidebar = () => {
   }
 
   return (
-    <div
-      className="w-64 bg-slate-400 flex flex-box flex-col outline outline-1 outline-neutral-400
-      border border-t-1 border-t-neutral-400"
-    >
-      <QuestionLegend
-        legendCounts={getSectionQuestionLegend(activeSectionCache)}
-        viewMode={0}
-      />
-      <SectionHeading />
-      <QuestionsGrid />
-    </div>
+    <>
+      {!state.preferences.sidebarCollapsed && (
+        <div className="w-64 flex flex-box flex-col outline outline-1 outline-neutral-400">
+          <QuestionLegend
+            legendCounts={getSectionQuestionLegend(activeSectionCache)}
+            viewMode={0}
+          />
+          <SectionHeading />
+          <QuestionsGrid />
+        </div>
+      )}
+    </>
   );
 };
 

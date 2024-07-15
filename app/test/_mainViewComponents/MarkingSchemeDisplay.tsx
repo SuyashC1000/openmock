@@ -1,6 +1,8 @@
 import Marks from "@/app/_components/Marks";
 import numberToWords from "@/app/_formatters/numberToWords";
 import {
+  Card,
+  CardBody,
   Popover,
   PopoverAnchor,
   PopoverBody,
@@ -11,7 +13,12 @@ import {
 import React from "react";
 
 interface MarkingSchemeProps {
-  markingScheme: number[][];
+  markingScheme: {
+    0: [number, number];
+    1: [number, number];
+    2: [number, number];
+    3?: [number, number][];
+  };
   qDataType: number[];
   qTypeName: string;
 }
@@ -64,50 +71,61 @@ function MarkingSchemeDisplay(props: MarkingSchemeProps) {
   ];
 
   return (
-    <Popover placement="bottom-end" trigger="hover" openDelay={400}>
-      <PopoverContent>
-        <PopoverBody className="text-sm">
-          <Text className="font-semibold text-base">Question Details</Text>
-          <Text> {questionTypeMessages[props.qDataType[0]]}</Text>
-          <br />
+    <Card
+      variant={"outline"}
+      borderWidth={3}
+      borderRadius={"0.75rem"}
+      zIndex={2}
+    >
+      <CardBody fontSize={"sm"}>
+        <Text className="font-semibold text-lg">Question Details</Text>
+        <Text> {questionTypeMessages[props.qDataType[0]]}</Text>
+        <br />
 
+        <Text>
+          <strong>Correct: </strong>
+          {Marks(props.markingScheme[0], "element")}{" "}
+          {markingSchemeMessages.correct[props.qDataType[0]]}
+        </Text>
+        {props.qDataType[0] === 1 && props.markingScheme[3] !== undefined && (
+          <>
+            {props.markingScheme[3].map((e, i) => {
+              return (
+                <Text key={i}>
+                  <strong>Partial:</strong> {Marks(e, "element")} if{" "}
+                  {i == 0
+                    ? "all"
+                    : `${numberToWords(props.qDataType[1] - i).toLowerCase()} or
+                    more`}{" "}
+                  options are correct but ONLY{" "}
+                  {numberToWords(props.qDataType[1] - 1 - i).toLowerCase()}{" "}
+                  correct{" "}
+                  {props.qDataType[1] - 1 - i === 1
+                    ? "option is"
+                    : "options are"}{" "}
+                  chosen
+                </Text>
+              );
+            })}
+          </>
+        )}
+        {props.qDataType[0] === 1 && props.markingScheme[3] === undefined && (
           <Text>
-            <strong>Correct: </strong>
-            {Marks(props.markingScheme[0], "element")}{" "}
-            {markingSchemeMessages.correct[props.qDataType[0]]}
+            <strong>Partial:</strong> There is NO partial marking
           </Text>
-          <Text>
-            <strong>Unanswered: </strong>
-            <span className="text-green-600">
-              {Marks(props.markingScheme[2], "element")}{" "}
-            </span>
-            {markingSchemeMessages.unanswered[props.qDataType[0]]}
-          </Text>
-          <Text>
-            <strong>Incorrect: </strong>
-            <span className="text-green-600">
-              {Marks(props.markingScheme[1], "element")}{" "}
-            </span>
-            {markingSchemeMessages.incorrect[props.qDataType[0]]}
-          </Text>
-        </PopoverBody>
-      </PopoverContent>
-
-      <PopoverAnchor>
-        <PopoverTrigger>
-          <div className="text-xs flex gap-2">
-            <Text>
-              Marks for correct answer:{" "}
-              {Marks(props.markingScheme[0], "element")}
-            </Text>
-            <Text>|</Text>
-            <Text>
-              Incorrect answer: {Marks(props.markingScheme[1], "element")}
-            </Text>
-          </div>
-        </PopoverTrigger>
-      </PopoverAnchor>
-    </Popover>
+        )}
+        <Text>
+          <strong>Unanswered: </strong>
+          {Marks(props.markingScheme[2], "element")}{" "}
+          {markingSchemeMessages.unanswered[props.qDataType[0]]}
+        </Text>
+        <Text>
+          <strong>Incorrect: </strong>
+          {Marks(props.markingScheme[1], "element")}{" "}
+          {markingSchemeMessages.incorrect[props.qDataType[0]]}
+        </Text>
+      </CardBody>
+    </Card>
   );
 }
 

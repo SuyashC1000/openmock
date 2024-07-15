@@ -1,11 +1,6 @@
 import { Avatar, Button, Checkbox, Heading, Text } from "@chakra-ui/react";
 import React from "react";
-import {
-  DispatchContext,
-  QuestionTimeContext,
-  StateContext,
-  TestPaperContext,
-} from "../page";
+import { DispatchContext, StateContext, TestPaperContext } from "../page";
 import { TbChevronLeft, TbChevronRight } from "react-icons/tb";
 import GeneralInstructions from "../GeneralInstructions";
 import Markdown from "react-markdown";
@@ -23,9 +18,6 @@ export const PreTestModal = () => {
   const state = React.useContext(StateContext);
   const testPaper = React.useContext(TestPaperContext);
   const dispatch = React.useContext(DispatchContext);
-  const setQuestionTime = React.useContext(QuestionTimeContext)[1] as (
-    e: any
-  ) => void;
 
   const [pageIndex, setPageIndex] = React.useState(2);
   const [hasAgreed, setHasAgreed] = React.useState(true);
@@ -125,7 +117,6 @@ export const PreTestModal = () => {
   function handleBeginTest() {
     dispatch({ type: SET_TEST_STATUS, payload: "ongoing" });
     dispatch({ type: SET_START_TIME, payload: Date.now() });
-    setQuestionTime([0, 0]);
     dispatch({
       type: UPDATE_QUESTION_STATUS,
       payload: {

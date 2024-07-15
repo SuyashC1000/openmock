@@ -36,16 +36,17 @@ export interface UserCache {
   testLoginTime: number;
   currentLanguageIndex: number;
   activeGroupIndex: number;
-  toolsPreferences: ToolsPreferences;
+  preferences: UserCachePreferences;
   userDetails: UserTestDetails;
   body: UserCacheGroup[];
 
   [k: string]: unknown;
 }
 
-interface ToolsPreferences {
+interface UserCachePreferences {
   zoomLevel: number;
   calculator: boolean;
+  sidebarCollapsed: boolean;
 }
 
 export interface UserTestDetails {

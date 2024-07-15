@@ -2,7 +2,6 @@ import React from "react";
 import QuestionView from "./QuestionView";
 import TestSidebar from "./TestSidebar";
 import OptionalGroupAlert from "./_alerts/OptionalGroupAlert";
-import useActiveElements from "@/lib/useActiveElements";
 import { groupConstraint } from "../_formatters/groupConstraint";
 import { StateContext, TestPaperContext } from "./page";
 
@@ -16,9 +15,10 @@ const TestMainWindow = () => {
         <OptionalGroupAlert />
       ) : (
         <div className="h-auto flex flex-1 w-screen overflow-hidden">
-          <div className="bg-white flex-1 overflow-y-auto">
+          <div className="bg-white flex-1">
             <QuestionView />
           </div>
+
           <TestSidebar />
         </div>
       )}

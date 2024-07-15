@@ -266,7 +266,7 @@ const Calculator = () => {
         className="fixed z-50 h-0 w-0 
       "
       >
-        {state.toolsPreferences.calculator && (
+        {state.preferences.calculator && (
           <Draggable
             defaultPosition={{ x: 200, y: 200 }}
             handle=".handle"

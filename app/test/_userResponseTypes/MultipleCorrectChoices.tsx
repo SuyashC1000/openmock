@@ -21,7 +21,7 @@ const MultipleCorrectChoices = (props: UserResponseInputProps) => {
   const testPaper = React.useContext(TestPaperContext);
   const state = React.useContext(StateContext);
 
-  const zoomLevel = state.toolsPreferences.zoomLevel;
+  const zoomLevel = state.preferences.zoomLevel;
 
   return (
     <CheckboxGroup

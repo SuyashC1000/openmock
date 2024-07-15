@@ -5,6 +5,8 @@ import {
   PopoverBody,
   PopoverContent,
   PopoverTrigger,
+  Text,
+  Tooltip,
 } from "@chakra-ui/react";
 import React from "react";
 import { TbInfoCircleFilled } from "react-icons/tb";
@@ -32,13 +34,18 @@ function GroupButton(props: GroupButtonProps) {
         <div
           className={
             (props.active ? "bg-blue-400 text-white" : "bg-white") +
-            ` flex items-center gap-0.5 p-1 rounded-md my-1 text-sm h-7 min-w-fit ${props.isDisabled ? "cursor-not-allowed" : "cursor-pointer"}`
+            ` flex items-center gap-0.5 p-1 rounded-md my-1 text-sm h-7 w-fit overflow-hidden max-w-52
+             ${props.isDisabled ? "cursor-not-allowed" : "cursor-pointer"}`
           }
           onClick={() => props.onClick()}
         >
-          {props.groupName}
+          <Tooltip label={props.groupName} openDelay={500}>
+            <Text className="text-ellipsis line-clamp-1">
+              {props.groupName}
+            </Text>
+          </Tooltip>
           <PopoverTrigger>
-            <TbInfoCircleFilled className="text-sky-700 text-base cursor-pointer" />
+            <TbInfoCircleFilled className="text-sky-700 text-base cursor-pointer min-w-5" />
           </PopoverTrigger>
         </div>
       </PopoverAnchor>

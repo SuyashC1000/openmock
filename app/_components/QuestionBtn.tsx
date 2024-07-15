@@ -1,5 +1,3 @@
-import { Tooltip } from "@chakra-ui/react";
-import { color } from "framer-motion";
 import React from "react";
 
 interface Props {
@@ -94,31 +92,25 @@ const QuestionBtn = ({
   ];
 
   return (
-    <Tooltip
-      label={tooltipMessages[status] + (disabled ? " (Locked)" : "")}
-      fontSize={"sm"}
-      openDelay={800}
+    <svg
+      width={"100%"}
+      height={"100%"}
+      viewBox="0 0 120 100"
+      className={`select-none ${active && "brightness-125 drop-shadow-lg"} ${disabled && " opacity-50"}`}
+      xmlns="http://www.w3.org/2000/svg"
     >
-      <svg
-        width={"100%"}
-        height={"100%"}
-        viewBox="0 0 120 100"
-        className={`select-none ${active && "brightness-125 drop-shadow-lg"} ${disabled && " opacity-50"}`}
-        xmlns="http://www.w3.org/2000/svg"
+      <ButtonAccent />
+      <text
+        x="50%"
+        y="50%"
+        dominantBaseline="middle"
+        textAnchor="middle"
+        fontSize="2.4rem"
+        fill={textColor}
       >
-        <ButtonAccent />
-        <text
-          x="50%"
-          y="50%"
-          dominantBaseline="middle"
-          textAnchor="middle"
-          fontSize="2.4rem"
-          fill={textColor}
-        >
-          {stateCount}
-        </text>
-      </svg>
-    </Tooltip>
+        {stateCount}
+      </text>
+    </svg>
   );
 };
 

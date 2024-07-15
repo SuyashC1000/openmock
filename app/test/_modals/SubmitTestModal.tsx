@@ -57,7 +57,7 @@ export const SubmitTestModal = () => {
       size={"full"}
     >
       <ModalOverlay />
-      <ModalContent className="flex flex-col h-screen">
+      <ModalContent className="flex flex-col h-screen select-none">
         <ModalHeader className="flex-0 h-fit p-0">
           {state.testStatus === "finished" && (
             <Alert

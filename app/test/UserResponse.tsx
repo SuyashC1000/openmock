@@ -88,7 +88,7 @@ const UserResponse = () => {
       <fieldset disabled={!questionConstraint(state, testPaper).canSet}>
         {userAnswerInput(activeQuestion.qDataType[0])}
       </fieldset>
-      {"Saved Answer: " + activeQuestionCache.submit}
+      {/* {"Saved Answer: " + activeQuestionCache.submit}
       <br />
       {"Current Answer: " + responseData}
       <br />
@@ -98,13 +98,7 @@ const UserResponse = () => {
         (activeQuestionCache.submit?.toString() ===
         activeQuestion.answer.toString()
           ? "Yes"
-          : "No")}
-      <br />
-      {"Time spent: " +
-        activeQuestionCache.timeSpent +
-        "s | " +
-        activeGroupCache.timeSpent +
-        "s"}
+          : "No")} */}
     </form>
   );
 };

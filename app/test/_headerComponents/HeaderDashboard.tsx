@@ -49,7 +49,7 @@ function HeaderDashboard() {
         <SectionSelect />
       </div>
       <Popover
-        placement="left-start"
+        placement="left-end"
         offset={[0, 10]}
         trigger="hover"
         closeDelay={800}
@@ -72,10 +72,10 @@ function HeaderDashboard() {
         <PopoverContent>
           <PopoverArrow />
           <PopoverBody>
-            <Text>
+            <Text mb={1}>
               Your name: <strong>{state.userDetails.name}</strong>
             </Text>
-            <br />
+
             <Text>Select language:</Text>
             <Select
               value={state.currentLanguageIndex}

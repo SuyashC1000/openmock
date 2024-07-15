@@ -20,10 +20,10 @@
       "groupName": "General Aptitude",
       "optional": false,
       "constraints": {
-        "maxQuestionsAnswered": 5,
+        "maxQuestionsAnswered": 11,
         "maxOptionalSectionsAnswered": 1,
         "permissionOnSubmit": "view",
-        "maximumTimeAllowed": 2
+        "maximumTimeAllowed": 3
       },
       "sections": [
         {
@@ -31,7 +31,7 @@
           "optional": false,
           "consolidateSubject": "General Aptitude",
           "constraints": {
-            "maxQuestionsAnswered": 3
+            "maxQuestionsAnswered": 9
           },
           "questions": [
             {
@@ -163,6 +163,54 @@
               "constraints": {
                 "maximumTimeAllowed": 1
               }
+            },
+            {
+              "id": "q123456795",
+              "qTypeName": "NNI",
+              "qDataType": [2, 0],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1],
+                [0, 1]
+              ],
+              "question": [
+                "How many countries are there in the world according to the UN?"
+              ],
+              "options": null,
+              "tags": [],
+              "answer": 195
+            },
+            {
+              "id": "q123456796",
+              "qTypeName": "SCQ",
+              "qDataType": [0, 4],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1],
+                [0, 1]
+              ],
+              "question": [
+                "Which colour among the following does not exist in real life?"
+              ],
+              "options": [["Purple"], ["Magenta"], ["Brown"], ["Red"]],
+              "tags": [],
+              "answer": 1
+            },
+            {
+              "id": "q123456797",
+              "qTypeName": "MCQ",
+              "qDataType": [1, 4],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1],
+                [0, 1]
+              ],
+              "question": [
+                "What elements are formed due to fusion during the life of a star?"
+              ],
+              "options": [["Hydrogen"], ["Helium"], ["Sulphur"], ["Iron"]],
+              "tags": [],
+              "answer": [0, 1, 2, 3]
             }
           ]
         },
@@ -317,7 +365,12 @@
               "markingScheme": [
                 [4, 1],
                 [-1, 1],
-                [0, 1]
+                [0, 1],
+                [
+                  [3, 1],
+                  [2, 1],
+                  [1, 1]
+                ]
               ],
               "question": [
                 "Which of these elements is/are metallic in nature?"

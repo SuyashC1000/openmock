@@ -13,7 +13,7 @@ function ToolsButtons() {
   const testPaper = React.useContext(TestPaperContext);
 
   function incDecZoomLevel(i: number): void {
-    const newZoomLevel = (state.toolsPreferences.zoomLevel += i);
+    const newZoomLevel = (state.preferences.zoomLevel += i);
     if (newZoomLevel >= 1 && newZoomLevel <= 3)
       dispatch({ type: SET_ZOOM_LEVEL, payload: newZoomLevel });
   }
@@ -21,7 +21,7 @@ function ToolsButtons() {
   function toggleCalculator() {
     dispatch({
       type: SET_CALCULATOR_VISIBILITY,
-      payload: !state.toolsPreferences.calculator,
+      payload: !state.preferences.calculator,
     });
   }
 
@@ -31,7 +31,7 @@ function ToolsButtons() {
         <Tooltip label="Zoom in" openDelay={400}>
           <Button
             fontSize={"2xl"}
-            isDisabled={state.toolsPreferences.zoomLevel === 3}
+            isDisabled={state.preferences.zoomLevel === 3}
             px={2}
             bgColor={"transparent"}
             aria-label="Zoom in"
@@ -48,7 +48,7 @@ function ToolsButtons() {
         <Tooltip label="Zoom out" openDelay={400}>
           <Button
             fontSize={"2xl"}
-            isDisabled={state.toolsPreferences.zoomLevel === 1}
+            isDisabled={state.preferences.zoomLevel === 1}
             px={2}
             bgColor={"transparent"}
             aria-label="Zoom out"

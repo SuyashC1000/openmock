@@ -167,7 +167,7 @@ function PaperOptions(props: PaperOptionsProps) {
         scrollBehavior="inside"
       >
         <ModalOverlay />
-        <ModalContent>
+        <ModalContent className="select-none">
           <ModalHeader>{paperOptionsContent[props.type].text}</ModalHeader>
           <Alert status="error">
             <AlertIcon />

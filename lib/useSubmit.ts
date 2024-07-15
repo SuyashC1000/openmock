@@ -4,15 +4,12 @@ import {
   SET_ACTIVE_GROUP,
   SET_TEST_STATUS,
   UPDATE_GROUP_STATUS,
-  UPDATE_GROUP_TIMESPENT,
   UPDATE_QUESTION_LASTANSWERED,
   UPDATE_QUESTION_STATUS,
-  UPDATE_QUESTION_TIMESPENT,
   UPDATE_QUESTION_USERANSWER,
 } from "@/app/_formatters/userCacheReducer";
 import {
   DispatchContext,
-  QuestionTimeContext,
   StateContext,
   TestPaperContext,
 } from "@/app/test/page";
@@ -23,7 +20,6 @@ import {
   getActiveCacheByIndex,
   getActiveIndex,
 } from "@/app/_formatters/getActiveCacheAdvanced";
-import { off } from "process";
 import { UserCacheGroup, UserCacheQuestion } from "@/app/_interface/userCache";
 import { groupConstraint } from "@/app/_formatters/groupConstraint";
 
@@ -42,10 +38,6 @@ function useSubmit() {
   const testPaper = React.useContext(TestPaperContext);
   const dispatch = React.useContext(DispatchContext);
 
-  const questionTimeState = React.useContext(QuestionTimeContext);
-  const questionTime = questionTimeState[0] as [number, number] | null;
-  const setQuestionTime = questionTimeState[1] as (e: [number, number]) => void;
-
   const { activeQuestionCache, activeSectionCache } = useActiveElements();
   const { confirm } = useConfirm();
 
@@ -57,7 +49,7 @@ function useSubmit() {
   ) => {
     if (
       activeQuestionCache.permissions !== "all" &&
-      activeQuestionCache.lastAnswered === null &&
+      questionConstraint(state, testPaper).canSet &&
       groupConstraint(state, testPaper).canAccess
     ) {
       const sample = await confirm(
@@ -69,11 +61,6 @@ function useSubmit() {
     }
 
     const currentIndex = getActiveIndex(state);
-
-    dispatch({
-      type: UPDATE_QUESTION_TIMESPENT,
-      payload: questionTime![0],
-    });
 
     if (submitData !== undefined) {
       let newStatus = activeQuestionCache.status;
@@ -131,8 +118,6 @@ function useSubmit() {
       const newQuestionStatus =
         newActiveQuestion.status === 0 ? 1 : newActiveQuestion.status;
 
-      setQuestionTime([newActiveQuestion.timeSpent, questionTime![1]]);
-
       dispatch({ type: SET_ACTIVE_ELEMENTS, payload: newIndex });
       dispatch({
         type: UPDATE_QUESTION_STATUS,
@@ -142,10 +127,6 @@ function useSubmit() {
   };
 
   function submitGroup(groupIndex: number, official: boolean = false) {
-    dispatch({
-      type: UPDATE_GROUP_TIMESPENT,
-      payload: questionTime![1],
-    });
     if (official) {
       dispatch({ type: UPDATE_GROUP_STATUS, payload: "submitted" });
       submitQuestion([groupIndex]);
@@ -162,8 +143,6 @@ function useSubmit() {
     const newActiveGroup = getActiveCacheByIndex(state, [
       newIndex[0],
     ]) as UserCacheGroup;
-
-    setQuestionTime([newActiveQuestion.timeSpent, newActiveGroup.timeSpent]);
   }
 
   return { submitQuestion, submitGroup };

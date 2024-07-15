@@ -41,7 +41,6 @@ export function incrementQuestionIndex(
       currentIndexList[2] = 0;
       currentIndexList[1] += 1;
     }
-    console.log(currentIndexList);
   } while (!questionConstraint(state, testPaper, currentIndexList).canView);
 
   return currentIndexList;

@@ -3,13 +3,9 @@ import { Text } from "@chakra-ui/react";
 import React from "react";
 import { StateContext, TestPaperContext } from "../page";
 import useSubmit from "@/lib/useSubmit";
-import {
-  getActiveCacheByIndex,
-  getActiveIndex,
-} from "@/app/_formatters/getActiveCacheAdvanced";
+import { getActiveIndex } from "@/app/_formatters/getActiveCacheAdvanced";
 import useActiveElements from "@/lib/useActiveElements";
 import { questionConstraint } from "@/app/_formatters/questionConstraint";
-import { getActiveSection } from "@/app/_formatters/getActiveCache";
 
 const QuestionsGrid = () => {
   const state = React.useContext(StateContext);
@@ -20,8 +16,16 @@ const QuestionsGrid = () => {
   const { submitQuestion } = useSubmit();
 
   return (
-    <div className="bg-cyan-100 flex flex-1 p-1 flex-col">
-      <Text className="font-semibold text-sm">Choose a Question</Text>
+    <div
+      className="bg-cyan-100 flex flex-1 px-1 flex-col overflow-y-auto"
+      style={{ scrollbarWidth: "thin" }}
+    >
+      <Text
+        className="font-semibold text-sm sticky top-0 py-1 bg-cyan-100"
+        zIndex={2}
+      >
+        Choose a Question
+      </Text>
       <div className="grid grid-flow-row grid-cols-5">
         {activeSectionCache.questions.map((e, i) => {
           const isDisabled = !questionConstraint(state, testPaper, [

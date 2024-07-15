@@ -1,11 +1,19 @@
 import {
+  Button,
   Heading,
+  Icon,
   ListItem,
   OrderedList,
   Text,
   UnorderedList,
 } from "@chakra-ui/react";
 import QuestionBtn from "../_components/QuestionBtn";
+import {
+  TbArrowDown,
+  TbArrowUp,
+  TbChevronsLeft,
+  TbChevronsRight,
+} from "react-icons/tb";
 
 interface Props {
   testDuration: number;
@@ -103,6 +111,54 @@ const GeneralInstructions = (props: Props) => {
               </Text>
             </ListItem>
           </UnorderedList>
+        </ListItem>
+        <ListItem>
+          <Text>
+            You can click on{" "}
+            <Button colorScheme="blackAlpha" roundedRight={0} p={0} size={"sm"}>
+              <Icon as={TbChevronsLeft} fontSize={"3xl"} />
+            </Button>{" "}
+            which appears on the left of question palette to collapse the
+            question palette thereby maximising the question window. To view the
+            question palette again, you can click on{" "}
+            <Button colorScheme="blackAlpha" roundedRight={0} p={0} size={"sm"}>
+              <Icon as={TbChevronsRight} fontSize={"3xl"} />
+            </Button>{" "}
+            which appears on the right side of the question window.
+          </Text>
+        </ListItem>
+        <ListItem>
+          <Text>
+            You can click on your Profile image on top right corner of your
+            screen to change the question language during the exam for entire
+            question paper. On clicking of Profile image you will get a
+            drop-down to change the question content to the desired language.
+          </Text>
+        </ListItem>
+        <ListItem>
+          <Text>
+            You can click on{" "}
+            <Button
+              colorScheme="blue"
+              rounded={"full"}
+              padding={0}
+              fontSize={"2xl"}
+              size={"sm"}
+            >
+              <Icon as={TbArrowDown}></Icon>
+            </Button>{" "}
+            to navigate to the bottom and{" "}
+            <Button
+              colorScheme="blue"
+              rounded={"full"}
+              padding={0}
+              fontSize={"2xl"}
+              size={"sm"}
+            >
+              <Icon as={TbArrowUp}></Icon>
+            </Button>{" "}
+            to navigate to the top of the question area without scrolling.
+          </Text>
         </ListItem>
         <br />
         <Heading size={"md"}>Navigating to a Question:</Heading>

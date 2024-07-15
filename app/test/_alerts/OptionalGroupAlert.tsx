@@ -23,6 +23,8 @@ const OptionalGroupAlert = () => {
 
   const errorData = groupConstraint(state, testPaper);
 
+  const zoomLevel = state.preferences.zoomLevel;
+
   return (
     <div className="w-screen h-full bg-white p-5">
       <Alert
@@ -35,12 +37,21 @@ const OptionalGroupAlert = () => {
         padding={10}
       >
         <AlertIcon boxSize="40px" mr={0} />
-        <AlertTitle m={2} fontSize="lg">
+        <AlertTitle
+          m={2}
+          fontSize={
+            zoomLevel === 3 ? "xx-large" : zoomLevel === 2 ? "x-large" : "lg"
+          }
+        >
           {errorData.canOpt
             ? "This is an optional group."
             : "You cannot attempt this group!"}
         </AlertTitle>
-        <AlertDescription>
+        <AlertDescription
+          fontSize={
+            zoomLevel === 3 ? "x-large" : zoomLevel === 2 ? "lg" : "base"
+          }
+        >
           {errorData.canOpt ? (
             <>
               <Text>

@@ -43,7 +43,7 @@ function GroupSelect() {
 
   return (
     <div className="h-10 bg-neutral-300 flex justify-between px-2">
-      <div className=" flex gap-2 items-center overflow-x-auto overflow-y-hidden">
+      <div className="flex-1 flex gap-2 items-center overflow-x-auto overflow-y-hidden ">
         {state.body.map((e, i) => {
           const activeQuestionIndex = e.sections[e.activeSectionIndex].qIndex;
           const isDisabled =

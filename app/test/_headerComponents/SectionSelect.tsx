@@ -57,7 +57,7 @@ function SectionSelect() {
     }
   }
 
-  const constraintData = groupConstraint(state, testPaper);
+  const groupConstraintData = groupConstraint(state, testPaper);
 
   return (
     <div
@@ -70,12 +70,12 @@ function SectionSelect() {
             key={i}
             optional={activeGroup.sections[i].optional}
             active={i == activeGroupCache.activeSectionIndex}
-            isSelected={e.selected!}
-            isDisabled={!constraintData.canAccess}
+            isCheckboxSelected={e.selected!}
+            isCheckboxDisabled={!groupConstraintData.canEdit}
             sectionName={e.sectionName}
             questionLegend={getSectionQuestionLegend(e)}
             onClick={async () => {
-              if (constraintData.canAccess)
+              if (groupConstraintData.canAccess)
                 submitQuestion([currentIndex[0], i]);
             }}
             onCheckboxSelect={() => {

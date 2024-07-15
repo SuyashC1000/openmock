@@ -14,7 +14,7 @@ interface UserResponseInputProps {
 const NumeralValue = (userResponseInputProps: UserResponseInputProps) => {
   const state = React.useContext(StateContext);
 
-  const zoomLevel = state.toolsPreferences.zoomLevel;
+  const zoomLevel = state.preferences.zoomLevel;
 
   const activeQuestion = getActiveQuestionCache(state);
 
@@ -100,7 +100,7 @@ const NumeralValue = (userResponseInputProps: UserResponseInputProps) => {
       >
         <NumberInputField
           maxW={200 + zoomLevel * 50}
-          fontSize={zoomLevel === 3 ? "xl" : zoomLevel === 2 ? "lg" : "sm"}
+          fontSize={zoomLevel === 3 ? "xl" : zoomLevel === 2 ? "lg" : "base"}
         />
         <Numpad numpadInput={numpadInput} zoomLevel={zoomLevel} />
       </NumberInput>

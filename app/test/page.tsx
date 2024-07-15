@@ -55,10 +55,6 @@ export const TimeLeftContext = React.createContext([
     e;
   },
 ]);
-export const QuestionTimeContext = React.createContext([
-  null,
-  (e: [number, number]) => {},
-]);
 
 const testCache = testData;
 const TestPage = () => {
@@ -70,8 +66,6 @@ const TestPage = () => {
     title: "",
     message: "",
   });
-  const questionTime = React.useState<[number, number] | null>(null);
-
   React.useEffect(() => {
     dispatch({
       type: INITIALIZE_STATE,
@@ -95,7 +89,6 @@ const TestPage = () => {
     />,
     <TimeLeftContext.Provider value={timeLeft} key={3} />,
     <DialogDataContext.Provider value={dialogData} key={4} />,
-    <QuestionTimeContext.Provider value={questionTime} key={5} />,
   ];
 
   return (
@@ -103,7 +96,8 @@ const TestPage = () => {
       <div className="bg-slate-800 flex flex-box flex-col h-screen max-h-screen select-none">
         <OverlayCollection />
         <TestHeader />
-        <TestMainWindow /> <TestBottombar />
+        <TestMainWindow />
+        <TestBottombar />
       </div>
     </MultiProvider>
   );

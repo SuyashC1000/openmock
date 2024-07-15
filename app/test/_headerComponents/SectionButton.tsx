@@ -7,14 +7,15 @@ import {
   PopoverContent,
   PopoverTrigger,
   Text,
+  Tooltip,
 } from "@chakra-ui/react";
 import React from "react";
 import { TbInfoCircleFilled } from "react-icons/tb";
 
 interface SectionButtonProps {
   optional: boolean;
-  isSelected: boolean;
-  isDisabled: boolean;
+  isCheckboxSelected: boolean;
+  isCheckboxDisabled: boolean;
   sectionName: string;
   active: boolean;
   questionLegend: number[];
@@ -36,27 +37,29 @@ function SectionButton(props: SectionButtonProps) {
         <div
           className={
             (props.active ? "bg-blue-900 text-white" : "bg-white") +
-            ` flex items-center gap-1 px-1 rounded-md my-1 text-sm h-7 min-w-fit cursor-pointer`
+            ` flex items-center gap-1 px-1 rounded-md my-1 text-sm h-7 w-fit overflow-hidden max-w-52 cursor-pointer`
           }
         >
           {props.optional && (
             <Checkbox
               size={"md"}
-              isChecked={props.isSelected}
+              isChecked={props.isCheckboxSelected}
               onChange={() => props.onCheckboxSelect()}
-              isDisabled={props.isDisabled}
+              isDisabled={props.isCheckboxDisabled}
             />
           )}
-          <Text
-            className=""
-            onClick={() => {
-              props.onClick();
-            }}
-          >
-            {props.sectionName}
-          </Text>
+          <Tooltip label={props.sectionName} openDelay={500}>
+            <Text
+              className="text-ellipsis line-clamp-1"
+              onClick={() => {
+                props.onClick();
+              }}
+            >
+              {props.sectionName}
+            </Text>
+          </Tooltip>
           <PopoverTrigger>
-            <TbInfoCircleFilled className="text-sky-600 text-base cursor-pointer" />
+            <TbInfoCircleFilled className="text-sky-600 text-base cursor-pointer min-w-5" />
           </PopoverTrigger>
         </div>
       </PopoverAnchor>

@@ -62,9 +62,10 @@ export default function userCacheGenerator(
 
   let foundation: UserCache = {
     body: newBody,
-    toolsPreferences: {
+    preferences: {
       zoomLevel: 1,
       calculator: false,
+      sidebarCollapsed: false,
     },
     testStatus: "starting",
     activeGroupIndex: 0,
