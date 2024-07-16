@@ -11,11 +11,39 @@ export const emptyTestPaper: TestPaper = {
   id: "",
   languages: [""],
   instructions: [""],
-  maxTime: 0,
+  maxTime: 1,
   subjects: [""],
   timeCreated: 0,
   usefulData: [""],
-  body: [],
+  body: [
+    {
+      groupName: "",
+      optional: false,
+      sections: [
+        {
+          consolidateSubject: "",
+          optional: false,
+          sectionName: "",
+          questions: [
+            {
+              question: [""],
+              qDataType: [2, 0],
+              markingScheme: [
+                [0, 1],
+                [0, 1],
+                [0, 1],
+              ],
+              id: "0",
+              answer: 0,
+              options: null,
+              qTypeName: "",
+              tags: [],
+            },
+          ],
+        },
+      ],
+    },
+  ],
 };
 export const emptyUserCache: UserCache = {
   testId: "",
@@ -24,6 +52,7 @@ export const emptyUserCache: UserCache = {
   preferences: {
     calculator: false,
     zoomLevel: 1,
+    sidebarCollapsed: false,
   },
   userDetails: {
     name: "",

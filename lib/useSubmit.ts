@@ -29,7 +29,8 @@ export interface SubmitQuestionFunc {
     submitData?: {
       response: number | number[] | null;
       mark: boolean;
-    }
+    },
+    confirmFromUser?: boolean
   ): void;
 }
 
@@ -45,12 +46,14 @@ function useSubmit() {
 
   const submitQuestion: SubmitQuestionFunc = async (
     nextIndex?,
-    submitData?
+    submitData?,
+    confirmFromUser = true
   ) => {
     if (
       activeQuestionCache.permissions !== "all" &&
       questionConstraint(state, testPaper).canSet &&
-      groupConstraint(state, testPaper).canAccess
+      groupConstraint(state, testPaper).canAccess &&
+      confirmFromUser
     ) {
       const sample = await confirm(
         "Leave this question?",
@@ -129,7 +132,7 @@ function useSubmit() {
   function submitGroup(groupIndex: number, official: boolean = false) {
     if (official) {
       dispatch({ type: UPDATE_GROUP_STATUS, payload: "submitted" });
-      submitQuestion([groupIndex]);
+      submitQuestion([groupIndex], undefined, false);
       dispatch({ type: UPDATE_GROUP_STATUS, payload: "ongoing" });
       dispatch({ type: SET_TEST_STATUS, payload: "ongoing" });
     } else {

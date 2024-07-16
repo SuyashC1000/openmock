@@ -19,7 +19,7 @@ export const PreTestModal = () => {
   const testPaper = React.useContext(TestPaperContext);
   const dispatch = React.useContext(DispatchContext);
 
-  const [pageIndex, setPageIndex] = React.useState(2);
+  const [pageIndex, setPageIndex] = React.useState(1);
   const [hasAgreed, setHasAgreed] = React.useState(true);
 
   const specificInstructions =

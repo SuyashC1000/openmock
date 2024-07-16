@@ -18,21 +18,23 @@ const Timer = () => {
   const { activeQuestionCache, activeGroupCache, activeQuestion, activeGroup } =
     useActiveElements();
 
-  // const timeLeftState = React.useContext(TimeLeftContext);
-  const timeLeftState = React.useState([testPaper.maxTime, 0]);
-  const timeLeft = timeLeftState[0] as number[];
+  const timeLeftState = React.useState<[number, number]>([
+    testPaper.maxTime,
+    0,
+  ]);
+  const timeLeft = timeLeftState[0] as [number, number];
   const setTimeLeft = timeLeftState[1] as (e: any) => {};
 
-  function decrementCountdown(timeLeft: number[]) {
+  function decrementCountdown(timeLeft: [number, number]) {
     let newSeconds, newMinutes;
     if (timeLeft[1] > 0 && timeLeft[0] >= 0) {
       newSeconds = timeLeft[1] - 1;
       newMinutes = timeLeft[0];
-      return [newMinutes, newSeconds] as number[];
+      return [newMinutes, newSeconds] as [number, number];
     } else if (timeLeft[1] === 0 && timeLeft[0] > 0) {
       newSeconds = 59;
       newMinutes = timeLeft[0] - 1;
-      return [newMinutes, newSeconds] as number[];
+      return [newMinutes, newSeconds] as [number, number];
     } else {
       dispatch({ type: SET_TEST_STATUS, payload: "finished" });
       return timeLeft;
@@ -41,8 +43,15 @@ const Timer = () => {
 
   React.useEffect(() => {
     const timer = setTimeout(() => {
-      setTimeLeft(decrementCountdown(timeLeft));
-      if (state.testStatus === "ongoing" || state.testStatus === "submitting") {
+      if (state.testStatus === "starting") {
+        if (timeLeft[0] !== testPaper.maxTime) {
+          setTimeLeft([testPaper.maxTime, 0]);
+        }
+      } else if (
+        state.testStatus === "ongoing" ||
+        state.testStatus === "submitting"
+      ) {
+        setTimeLeft(decrementCountdown(timeLeft));
         if (groupConstraint(state, testPaper).canTickTime) {
           dispatch({
             type: UPDATE_GROUP_TIMESPENT,
