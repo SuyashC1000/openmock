@@ -16,12 +16,11 @@ import MultiProvider from "../_components/MultiProvider";
 import OverlayCollection from "./OverlayCollection";
 import { TestPaper } from "../_interface/testData";
 import Loader from "./Loader";
+import { ActiveTestPaperContext } from "../page";
 
 interface DispatchFunction {
   (action: Action): void;
 }
-
-function example(action: Action) {}
 
 export const StateContext = React.createContext(emptyUserCache);
 export const DispatchContext = React.createContext(function example(
@@ -63,10 +62,12 @@ const TestPage = () => {
     message: "",
   });
 
+  const { activeTestPaper } = React.useContext(ActiveTestPaperContext);
+
   React.useEffect(() => {
     const fetchData = async () => {
       const response = await fetch("./data/testData.json");
-      const data: TestPaper | null = null;
+      const data: TestPaper | null = activeTestPaper;
 
       if (data !== null) {
         setActiveTestPaperCache(data);
@@ -87,7 +88,7 @@ const TestPage = () => {
   // useRenderingTrace("QuestionView", state);
 
   const providers = [
-    <TestPaperContext.Provider value={activeTestPaperCache} key={0} />,
+    <TestPaperContext.Provider value={activeTestPaperCache!} key={0} />,
     <StateContext.Provider value={state} key={1} />,
     <DispatchContext.Provider value={dispatch} key={2} />,
     <ResponseDataContext.Provider

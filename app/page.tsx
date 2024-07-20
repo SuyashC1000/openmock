@@ -2,11 +2,21 @@
 
 import { TbWriting } from "react-icons/tb";
 
-import Image from "next/image";
-import QuestionBtn from "./_components/QuestionBtn";
-import { Button, Heading, Link, Text } from "@chakra-ui/react";
+import { Button, Link, Text } from "@chakra-ui/react";
+import React from "react";
+import testData from "../public/data/testData.json";
 
-export default function Home() {
+import { TestPaper } from "./_interface/testData";
+
+interface IActiveTestPaperContext {
+  activeTestPaper: TestPaper | null;
+  setActiveTestPaper?: () => void;
+}
+
+export const ActiveTestPaperContext =
+  React.createContext<IActiveTestPaperContext>({ activeTestPaper: testData! });
+
+export default function AppPage() {
   const Navbar = () => {
     return (
       <div className="fixed top-0 left-0 h-12 p-2 px-10 flex justify-between items-center w-screen bg-slate-100 z-40">

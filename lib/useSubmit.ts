@@ -148,7 +148,14 @@ function useSubmit() {
     ]) as UserCacheGroup;
   }
 
-  return { submitQuestion, submitGroup };
+  function submitTest() {
+    dispatch({
+      type: SET_TEST_STATUS,
+      payload: "finished",
+    });
+  }
+
+  return { submitQuestion, submitGroup, submitTest };
 }
 
 export default useSubmit;

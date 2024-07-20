@@ -30,6 +30,7 @@ import {
 } from "@/app/_formatters/userCacheReducer";
 import useActiveElements from "@/lib/useActiveElements";
 import useSubmit from "@/lib/useSubmit";
+import SummaryTable from "../_misc/SummaryTable";
 
 export const SubmitTestModal = () => {
   const state = React.useContext(StateContext);
@@ -37,7 +38,7 @@ export const SubmitTestModal = () => {
   const dispatch = React.useContext(DispatchContext);
 
   const { activeGroupCache, activeGroup } = useActiveElements();
-  const { submitGroup } = useSubmit();
+  const { submitGroup, submitTest } = useSubmit();
 
   const noBtnRef = React.useRef(null);
   const isFinal =
@@ -50,9 +51,7 @@ export const SubmitTestModal = () => {
 
   return (
     <Modal
-      isOpen={
-        state.testStatus === "submitting" || state.testStatus === "finished"
-      }
+      isOpen={state.testStatus === "submitting"}
       onClose={() => {}}
       size={"full"}
     >
@@ -75,95 +74,7 @@ export const SubmitTestModal = () => {
         <ModalBody className="flex flex-col flex-1 overflow-y-auto">
           <Heading size={"lg"}>Exam Summary</Heading>
 
-          {state.body.map((e, i) => {
-            return (
-              <div key={i} className="my-6 flex flex-col gap-1">
-                <Heading size={"sm"}>
-                  {e.groupName}
-                  {e.status === "ongoing" && (
-                    <span className="text-blue-500 text-sm font-semibold ml-1">
-                      {" "}
-                      (Current Group)
-                    </span>
-                  )}
-                  {e.status !== "upcoming" &&
-                    testPaper.body[i].optional &&
-                    !e.hasOpted && (
-                      <span className="text-red-500 text-sm font-semibold ml-1">
-                        {" "}
-                        (Will not be evaulated)
-                      </span>
-                    )}
-                  {e.status === "submitted" && (
-                    <>
-                      <span className="text-neutral-400 text-sm font-semibold ml-1">
-                        {" "}
-                        (Attempted Group)
-                      </span>{" "}
-                      <span className=" text-sm font-normal ml-1">
-                        (View
-                        {e.permissions === "none" ? " not" : ""} allowed; Edit
-                        {e.permissions !== "all" ? " not" : ""} allowed)
-                      </span>
-                    </>
-                  )}
-                </Heading>
-                {e.status === "upcoming" && (
-                  <Text fontSize={"sm"}>(Yet to attempt)</Text>
-                )}
-                {e.status !== "upcoming" && (
-                  <Table
-                    variant={"striped"}
-                    size={"sm"}
-                    className="table-fixed border-2 border-neutral-500"
-                  >
-                    <Thead className="border-b-2 border-neutral-500 bg-blue-100">
-                      <Th className="w-2/12">Section</Th>
-                      <Th>No. of Questions</Th>
-                      <Th>Answered</Th>
-                      <Th>Not Answered</Th>
-                      <Th>Marked for Review</Th>
-                      <Th>
-                        Answered & Marked for Review (will also be evaluated)
-                      </Th>
-                      <Th>Not Visited</Th>
-                    </Thead>
-                    <Tbody>
-                      {e.sections.map((f, j) => {
-                        return (
-                          <Tr key={j}>
-                            <Td>{f.sectionName}</Td>
-                            <Td>
-                              {getNumOfQuestionStatuses(
-                                "section",
-                                [0, 1, 2, 3, 4],
-                                f
-                              )}
-                            </Td>
-                            <Td>
-                              {getNumOfQuestionStatuses("section", [2], f)}
-                            </Td>
-                            <Td>
-                              {getNumOfQuestionStatuses("section", [1], f)}
-                            </Td>
-                            <Td>
-                              {getNumOfQuestionStatuses("section", [3], f)}
-                            </Td>
-                            <Td>
-                              {getNumOfQuestionStatuses("section", [4], f)}
-                            </Td>
-                            <Td>
-                              {getNumOfQuestionStatuses("section", [0], f)}
-                            </Td>
-                          </Tr>
-                        );
-                      })}
-                    </Tbody>
-                  </Table>
-                )}
-              </div>
-            );
-          })}
+          <SummaryTable />
         </ModalBody>
 
         <ModalFooter className=" outline outline-1 outline-neutral flex flex-col flex-0 gap-1">
@@ -194,7 +105,7 @@ export const SubmitTestModal = () => {
               colorScheme="green"
               onClick={() => {
                 if (isFinal) {
-                  handleSubmitTest();
+                  submitTest();
                 } else {
                   submitGroup(state.activeGroupIndex + 1, true);
                 }

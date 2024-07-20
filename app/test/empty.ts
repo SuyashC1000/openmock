@@ -47,7 +47,6 @@ export const emptyTestPaper: TestPaper = {
 };
 export const emptyUserCache: UserCache = {
   testId: "",
-  testLoginTime: 0,
   testStatus: "starting",
   preferences: {
     calculator: false,
@@ -57,7 +56,11 @@ export const emptyUserCache: UserCache = {
   userDetails: {
     name: "",
   },
-  testStartTime: 0,
+  timestamps: {
+    testStartTime: 0,
+    testLoginTime: 0,
+    testEndTime: 0,
+  },
   currentLanguageIndex: 0,
   activeGroupIndex: 0,
   body: [

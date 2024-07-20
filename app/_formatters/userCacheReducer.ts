@@ -70,12 +70,12 @@ export default function userCacheReducer(
     }
 
     case SET_START_TIME: {
-      newState.testStartTime = action.payload;
+      newState.timestamps.testStartTime = action.payload;
 
       return newState;
     }
     case SET_LOGIN_TIME: {
-      newState.testLoginTime = action.payload;
+      newState.timestamps.testLoginTime = action.payload;
 
       return newState;
     }

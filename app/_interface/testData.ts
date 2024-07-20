@@ -2,7 +2,7 @@ export interface TestPaper {
   id: string;
   name: string;
   timeCreated: number;
-  authors: string[];
+  authors: TestPaperAuthor[];
   maxTime: number;
   subjects: string[];
   languages: string[];
@@ -52,6 +52,30 @@ export interface TestPaperGroup {
   constraints?: TestPaperGroupConstraints;
   sections: TestPaperSection[];
   [k: string]: unknown;
+}
+
+export interface TestPaperAuthor {
+  name: string;
+  avatarUrl: string | null;
+  links: [
+    {
+      type: AuthorLinkType;
+      label: string | null;
+      url: string;
+    },
+  ];
+}
+
+export enum AuthorLinkType {
+  Email = "EMAIL",
+  Phone = "PHONE",
+
+  Youtube = "YOUTUBE",
+  Twitter = "TWITTER",
+  Github = "GITHUB",
+  LinkedIn = "LINKEDIN",
+
+  Other = "OTHER",
 }
 
 interface TestPaperGroupConstraints {

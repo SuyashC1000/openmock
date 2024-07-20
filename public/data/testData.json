@@ -2,7 +2,76 @@
   "id": "t1234567890",
   "name": "Test Paper",
   "timeCreated": 1717324690,
-  "authors": ["Test", "test@test.com"],
+  "authors": [
+    {
+      "name": "John Doe",
+      "avatarUrl": "./images/testAuthorProfile.png",
+      "links": [
+        {
+          "type": "EMAIL",
+          "label": "Email me",
+          "url": "test@person.com"
+        },
+        {
+          "type": "EMAIL",
+          "label": null,
+          "url": "test@person.com"
+        },
+        {
+          "type": "PHONE",
+          "label": "Call me",
+          "url": "9876543210"
+        },
+        {
+          "type": "YOUTUBE",
+          "label": "YouTube",
+          "url": "https://www.youtube.com"
+        },
+        {
+          "type": "TWITTER",
+          "label": "Twitter",
+          "url": "https://www.twitter.com"
+        },
+        {
+          "type": "GITHUB",
+          "label": "GitHub",
+          "url": "https://www.github.com"
+        },
+        {
+          "type": "LINKEDIN",
+          "label": "LinkedIn",
+          "url": "https://www.linkedin.com/"
+        },
+        {
+          "type": "OTHER",
+          "label": "Website",
+          "url": "https://www.website.com/"
+        }
+      ]
+    },
+    {
+      "name": "ArrowZone1633",
+      "avatarUrl": null,
+      "links": [
+        {
+          "type": "EMAIL",
+          "label": null,
+          "url": "test@person.com"
+        },
+        {
+          "type": "PHONE",
+          "label": null,
+          "url": "9876543210"
+        },
+
+        {
+          "type": "OTHER",
+          "label": null,
+          "url": "https://www.website.com/"
+        }
+      ]
+    }
+  ],
   "maxTime": 180,
   "subjects": ["General Aptitude", "Science", "Social Science"],
   "languages": ["English"],
@@ -299,9 +368,7 @@
       "instructions": [
         "These are instructions for the Science group. Please refer to Useful Data for reference."
       ],
-      "constraints": {
-        "minimumTimeAllowed": 1
-      },
+
       "optional": false,
       "sections": [
         {

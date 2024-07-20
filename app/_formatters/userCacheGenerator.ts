@@ -71,11 +71,14 @@ export default function userCacheGenerator(
     activeGroupIndex: 0,
     testId: testPaper.id,
     currentLanguageIndex: 0,
-    testStartTime: 0,
+    timestamps: {
+      testStartTime: 0,
+      testLoginTime: 0,
+      testEndTime: 0,
+    },
     userDetails: {
       name: username,
     },
-    testLoginTime: 0,
   };
 
   return foundation;

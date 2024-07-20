@@ -1,3 +1,15 @@
+export interface TestResponse {
+  testId: string;
+  testStartTime: number;
+  testLoginTime: number;
+  currentLanguageIndex: number;
+  activeGroupIndex: number;
+  userDetails: UserTestDetails;
+  body: TestResponseGroup[];
+
+  [k: string]: unknown;
+}
+
 export interface UserCacheQuestion {
   id: string;
   status: number;
@@ -9,7 +21,7 @@ export interface UserCacheQuestion {
   [k: string]: unknown;
 }
 
-export interface UserCacheSection {
+export interface TestResponseSection {
   sectionName: string;
   qIndex: number;
   questionDisplayList: number[];
@@ -18,40 +30,15 @@ export interface UserCacheSection {
   [k: string]: unknown;
 }
 
-export interface UserCacheGroup {
+export interface TestResponseGroup {
   groupName: string;
   status: "upcoming" | "ongoing" | "submitted" | "rejected";
   activeSectionIndex: number;
   permissions: "all" | "view" | "none";
   timeSpent: number;
   hasOpted?: boolean;
-  sections: UserCacheSection[];
+  sections: TestResponseSection[];
   [k: string]: unknown;
-}
-
-export interface UserCache {
-  testId: string;
-  testStatus: "starting" | "ongoing" | "submitting" | "finished";
-  timestamps: UserCacheTimestamps;
-  currentLanguageIndex: number;
-  activeGroupIndex: number;
-  preferences: UserCachePreferences;
-  userDetails: UserTestDetails;
-  body: UserCacheGroup[];
-
-  [k: string]: unknown;
-}
-
-interface UserCachePreferences {
-  zoomLevel: number;
-  calculator: boolean;
-  sidebarCollapsed: boolean;
-}
-
-interface UserCacheTimestamps {
-  testStartTime: number;
-  testLoginTime: number;
-  testEndTime: number;
 }
 
 export interface UserTestDetails {
