@@ -148,7 +148,11 @@ const PostTestModal = () => {
                 return (
                   <ListItem key={i} className="flex flex-col gap-1">
                     <div className="flex items-center gap-2">
-                      <Avatar name={e.name} src={e.avatarUrl} size={"md"} />
+                      <Avatar
+                        name={e.name}
+                        src={e.avatarUrl !== null ? e.avatarUrl : undefined}
+                        size={"md"}
+                      />
                       <Text fontSize={"xl"}>{e.name}</Text>
                     </div>
                     <div className="*:m-1">
