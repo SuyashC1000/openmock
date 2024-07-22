@@ -1,5 +1,5 @@
-import { questionConstraint } from "../_formatters/questionConstraint";
-import { UPDATE_QUESTION_LASTANSWERED } from "../_formatters/userCacheReducer";
+import { questionConstraint } from "../_functions/questionConstraint";
+import { UPDATE_QUESTION_LASTANSWERED } from "../_functions/userCacheReducer";
 import { TestPaper } from "../_interface/testData";
 import { DispatchFunc } from "../_interface/testProps";
 import { UserCache } from "../_interface/userCache";

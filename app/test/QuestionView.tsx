@@ -16,14 +16,14 @@ import {
   Icon,
   Text,
 } from "@chakra-ui/react";
-import { getActiveSectionCache } from "../_formatters/getActiveCache";
+import { getActiveSectionCache } from "../_functions/getActiveCache";
 import UserResponse from "./UserResponse";
 import { DispatchContext, StateContext, TestPaperContext } from "./page";
 
 import MarkingSchemeDisplay from "./_mainViewComponents/MarkingSchemeDisplay";
 import useActiveElements from "@/lib/useActiveElements";
 import ConstraintAlert from "./_alerts/ConstraintAlert";
-import { questionConstraint } from "../_formatters/questionConstraint";
+import { questionConstraint } from "../_functions/questionConstraint";
 import {
   TbArrowDown,
   TbArrowUp,
@@ -32,7 +32,7 @@ import {
   TbChevronsRight,
 } from "react-icons/tb";
 import Marks from "../_components/Marks";
-import { TOGGLE_SIDEBAR } from "../_formatters/userCacheReducer";
+import { TOGGLE_SIDEBAR } from "../_functions/userCacheReducer";
 import { useWindowResize } from "@/lib/useWindowResize";
 
 const QuestionView = () => {

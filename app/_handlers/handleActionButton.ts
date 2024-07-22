@@ -1,19 +1,19 @@
-import { getUserResponse } from "../_formatters/getFunctions";
+import { getUserResponse } from "../_functions/getFunctions";
 import {
   getActiveQuestion,
   getActiveSectionCache,
-} from "../_formatters/getActiveCache";
+} from "../_functions/getActiveCache";
 import { TestPaper, TestPaperQuestion } from "../_interface/testData";
 import { DispatchFunc, SetResponseDataFunc } from "../_interface/testProps";
 import { UserCache, UserCacheSection } from "../_interface/userCache";
 import {
   decrementQuestionIndex,
   incrementQuestionIndex,
-} from "../_formatters/deviateQuestionIndex";
+} from "../_functions/deviateQuestionIndex";
 import {
   UPDATE_QUESTION_STATUS,
   UPDATE_QUESTION_USERANSWER,
-} from "../_formatters/userCacheReducer";
+} from "../_functions/userCacheReducer";
 import { SubmitQuestionFunc } from "@/lib/useSubmit";
 
 export async function handleSubmitQuestion(

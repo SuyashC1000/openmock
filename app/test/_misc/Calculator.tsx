@@ -20,7 +20,7 @@ import {
   calc,
 } from "@chakra-ui/react";
 import { TbMinus, TbQuestionMark, TbX } from "react-icons/tb";
-import { SET_CALCULATOR_VISIBILITY } from "@/app/_formatters/userCacheReducer";
+import { SET_CALCULATOR_VISIBILITY } from "@/app/_functions/userCacheReducer";
 
 const Calculator = () => {
   const state = React.useContext(StateContext);

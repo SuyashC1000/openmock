@@ -1,5 +1,5 @@
 import React from "react";
-import { getDefaultOptions } from "../_formatters/getFunctions";
+import { getDefaultOptions } from "../_functions/getFunctions";
 import { TestPaperQuestion } from "../_interface/testData";
 import { UserCacheQuestion } from "../_interface/userCache";
 
@@ -8,7 +8,7 @@ import { ResponseDataContext, StateContext, TestPaperContext } from "./page";
 import NumeralValue from "./_userResponseTypes/NumeralValue";
 import SingleCorrectChoices from "./_userResponseTypes/SingleCorrectChoices";
 import MultipleCorrectChoices from "./_userResponseTypes/MultipleCorrectChoices";
-import { questionConstraint } from "../_formatters/questionConstraint";
+import { questionConstraint } from "../_functions/questionConstraint";
 import useRenderingTrace from "./Diagnostic";
 import useActiveElements from "@/lib/useActiveElements";
 

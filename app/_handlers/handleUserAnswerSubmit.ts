@@ -1,5 +1,5 @@
-import { getActiveQuestionCache } from "../_formatters/getActiveCache";
-import { UPDATE_QUESTION_USERANSWER } from "../_formatters/userCacheReducer";
+import { getActiveQuestionCache } from "../_functions/getActiveCache";
+import { UPDATE_QUESTION_USERANSWER } from "../_functions/userCacheReducer";
 import { TestPaperQuestion } from "../_interface/testData";
 import { DispatchFunc } from "../_interface/testProps";
 import { UserCache, UserCacheQuestion } from "../_interface/userCache";

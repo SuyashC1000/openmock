@@ -3,7 +3,7 @@
 import { Text } from "@chakra-ui/react";
 
 import QuestionLegend from "../_components/QuestionLegend";
-import { getSectionQuestionLegend } from "../_formatters/getFunctions";
+import { getSectionQuestionLegend } from "../_functions/getFunctions";
 import QuestionsGrid from "./_sidebarComponents/QuestionsGrid";
 import useActiveElements from "@/lib/useActiveElements";
 import { StateContext } from "./page";

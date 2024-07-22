@@ -1,4 +1,4 @@
-import { questionConstraint } from "@/app/_formatters/questionConstraint";
+import { questionConstraint } from "@/app/_functions/questionConstraint";
 import {
   SET_ACTIVE_ELEMENTS,
   SET_ACTIVE_GROUP,
@@ -7,7 +7,7 @@ import {
   UPDATE_QUESTION_LASTANSWERED,
   UPDATE_QUESTION_STATUS,
   UPDATE_QUESTION_USERANSWER,
-} from "@/app/_formatters/userCacheReducer";
+} from "@/app/_functions/userCacheReducer";
 import {
   DispatchContext,
   StateContext,
@@ -19,10 +19,10 @@ import useConfirm from "./useConfirm";
 import {
   getActiveCacheByIndex,
   getActiveIndex,
-} from "@/app/_formatters/getActiveCacheAdvanced";
+} from "@/app/_functions/getActiveCacheAdvanced";
 import { UserCacheGroup, UserCacheQuestion } from "@/app/_interface/userCache";
-import { groupConstraint } from "@/app/_formatters/groupConstraint";
-import { testResponseGenerator } from "@/app/_formatters/testResponseGenerator";
+import { groupConstraint } from "@/app/_functions/groupConstraint";
+import { testResponseGenerator } from "@/app/_functions/testResponseGenerator";
 import { db } from "@/db/db";
 import { setActiveTestResponse } from "@/db/dbFunctions";
 

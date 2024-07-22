@@ -2,7 +2,7 @@ import React from "react";
 import ToolsButtons from "./ToolsButtons";
 import GroupButton from "./GroupButton";
 import { StateContext } from "../page";
-import { getGroupQuestionLegend } from "@/app/_formatters/getFunctions";
+import { getGroupQuestionLegend } from "@/app/_functions/getFunctions";
 import { UserCacheGroup } from "@/app/_interface/userCache";
 import { useToast } from "@chakra-ui/react";
 import useSubmit from "@/lib/useSubmit";

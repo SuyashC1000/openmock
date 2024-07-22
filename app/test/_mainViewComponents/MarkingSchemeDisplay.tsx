@@ -1,5 +1,5 @@
 import Marks from "@/app/_components/Marks";
-import numberToWords from "@/app/_formatters/numberToWords";
+import numberToWords from "@/app/_functions/numberToWords";
 import {
   Card,
   CardBody,

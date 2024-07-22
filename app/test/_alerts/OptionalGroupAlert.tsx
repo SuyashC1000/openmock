@@ -11,10 +11,10 @@ import {
 import React from "react";
 
 import { DispatchContext, StateContext, TestPaperContext } from "../page";
-import { SET_GROUP_HASOPTED } from "@/app/_formatters/userCacheReducer";
-import { getQuestionsAttemptedTally } from "@/app/_formatters/getFunctions";
+import { SET_GROUP_HASOPTED } from "@/app/_functions/userCacheReducer";
+import { getQuestionsAttemptedTally } from "@/app/_functions/getFunctions";
 import useActiveElements from "@/lib/useActiveElements";
-import { groupConstraint } from "@/app/_formatters/groupConstraint";
+import { groupConstraint } from "@/app/_functions/groupConstraint";
 
 const OptionalGroupAlert = () => {
   const state = React.useContext(StateContext);

@@ -5,10 +5,10 @@ import {
   SET_TEST_STATUS,
   UPDATE_GROUP_TIMESPENT,
   UPDATE_QUESTION_TIMESPENT,
-} from "../_formatters/userCacheReducer";
+} from "../_functions/userCacheReducer";
 import useActiveElements from "@/lib/useActiveElements";
-import { groupConstraint } from "../_formatters/groupConstraint";
-import { questionConstraint } from "../_formatters/questionConstraint";
+import { groupConstraint } from "../_functions/groupConstraint";
+import { questionConstraint } from "../_functions/questionConstraint";
 
 const Timer = () => {
   const state = React.useContext(StateContext);

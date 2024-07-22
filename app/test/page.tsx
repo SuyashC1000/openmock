@@ -5,12 +5,12 @@ import TestHeader from "./TestHeader";
 import TestMainWindow from "./TestMainWindow";
 import TestBottombar from "./TestBottombar";
 import testData from "../../public/data/testData.json";
-import userCacheGenerator from "../_formatters/userCacheGenerator";
+import userCacheGenerator from "../_functions/userCacheGenerator";
 import userCacheReducer, {
   Action,
   INITIALIZE_STATE,
   SET_LOGIN_TIME,
-} from "../_formatters/userCacheReducer";
+} from "../_functions/userCacheReducer";
 import { emptyTestPaper, emptyUserCache } from "./empty";
 import MultiProvider from "../_components/MultiProvider";
 import OverlayCollection from "./OverlayCollection";

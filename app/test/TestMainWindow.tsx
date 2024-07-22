@@ -2,7 +2,7 @@ import React from "react";
 import QuestionView from "./QuestionView";
 import TestSidebar from "./TestSidebar";
 import OptionalGroupAlert from "./_alerts/OptionalGroupAlert";
-import { groupConstraint } from "../_formatters/groupConstraint";
+import { groupConstraint } from "../_functions/groupConstraint";
 import { StateContext, TestPaperContext } from "./page";
 
 const TestMainWindow = () => {

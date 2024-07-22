@@ -5,7 +5,7 @@ import { DispatchContext, StateContext, TestPaperContext } from "../page";
 import {
   SET_CALCULATOR_VISIBILITY,
   SET_ZOOM_LEVEL,
-} from "@/app/_formatters/userCacheReducer";
+} from "@/app/_functions/userCacheReducer";
 
 function ToolsButtons() {
   const state = React.useContext(StateContext);

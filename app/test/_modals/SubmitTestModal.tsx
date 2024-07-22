@@ -21,13 +21,13 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import { DispatchContext, StateContext, TestPaperContext } from "../page";
-import { getNumOfQuestionStatuses } from "@/app/_formatters/getFunctions";
+import { getNumOfQuestionStatuses } from "@/app/_functions/getFunctions";
 import {
   SET_ACTIVE_GROUP,
   SET_TEST_STATUS,
   UPDATE_GROUP_STATUS,
   UPDATE_QUESTION_STATUS,
-} from "@/app/_formatters/userCacheReducer";
+} from "@/app/_functions/userCacheReducer";
 import useActiveElements from "@/lib/useActiveElements";
 import useSubmit from "@/lib/useSubmit";
 import SummaryTable from "../_misc/SummaryTable";

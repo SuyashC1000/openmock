@@ -46,7 +46,7 @@ import {
   TbRosetteDiscountCheckFilled,
 } from "react-icons/tb";
 import SummaryTable from "../_misc/SummaryTable";
-import { getNumOfQuestionStatuses } from "@/app/_formatters/getFunctions";
+import { getNumOfQuestionStatuses } from "@/app/_functions/getFunctions";
 import { AuthorLinkType, TestPaperAuthor } from "@/app/_interface/testData";
 import { db } from "@/db/db";
 

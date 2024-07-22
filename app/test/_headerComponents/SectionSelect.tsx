@@ -5,17 +5,17 @@ import { DispatchContext, StateContext, TestPaperContext } from "../page";
 import {
   getSectionQuestionLegend,
   getTotalSectionsSelected,
-} from "@/app/_formatters/getFunctions";
+} from "@/app/_functions/getFunctions";
 import { useToast } from "@chakra-ui/react";
 import useConfirm from "@/lib/useConfirm";
 import {
   RESET_SECTION_ATTEMPTS,
   TOGGLE_SECTION_ISSELECTED,
-} from "@/app/_formatters/userCacheReducer";
+} from "@/app/_functions/userCacheReducer";
 import useSubmit from "@/lib/useSubmit";
-import { getActiveIndex } from "@/app/_formatters/getActiveCacheAdvanced";
+import { getActiveIndex } from "@/app/_functions/getActiveCacheAdvanced";
 import useActiveElements from "@/lib/useActiveElements";
-import { groupConstraint } from "@/app/_formatters/groupConstraint";
+import { groupConstraint } from "@/app/_functions/groupConstraint";
 
 function SectionSelect() {
   const state = React.useContext(StateContext);

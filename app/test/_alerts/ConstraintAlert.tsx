@@ -1,7 +1,7 @@
 import { Alert, AlertDescription, AlertIcon } from "@chakra-ui/react";
 import React from "react";
 
-import { questionConstraint } from "@/app/_formatters/questionConstraint";
+import { questionConstraint } from "@/app/_functions/questionConstraint";
 import { StateContext, TestPaperContext } from "../page";
 
 const ConstraintAlert = () => {

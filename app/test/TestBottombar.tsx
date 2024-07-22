@@ -14,12 +14,12 @@ import {
 import {
   getActiveGroupCache,
   getActiveSectionCache,
-} from "../_formatters/getActiveCache";
-import { questionConstraint } from "../_formatters/questionConstraint";
-import { SET_TEST_STATUS } from "../_formatters/userCacheReducer";
+} from "../_functions/getActiveCache";
+import { questionConstraint } from "../_functions/questionConstraint";
+import { SET_TEST_STATUS } from "../_functions/userCacheReducer";
 import useSubmit from "@/lib/useSubmit";
 import useActiveElements from "@/lib/useActiveElements";
-import { groupConstraint } from "../_formatters/groupConstraint";
+import { groupConstraint } from "../_functions/groupConstraint";
 
 const TestBottombar = () => {
   const state = useContext(StateContext);

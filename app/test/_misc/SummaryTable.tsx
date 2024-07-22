@@ -11,7 +11,7 @@ import {
   Thead,
   Tr,
 } from "@chakra-ui/react";
-import { getNumOfQuestionStatuses } from "@/app/_formatters/getFunctions";
+import { getNumOfQuestionStatuses } from "@/app/_functions/getFunctions";
 
 const SummaryTable = () => {
   const testPaper = React.useContext(TestPaperContext);

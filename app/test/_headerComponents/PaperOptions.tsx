@@ -23,7 +23,7 @@ import GroupQuestionPaper from "./GroupQuestionPaper";
 import {
   getActiveGroup,
   getActiveSection,
-} from "@/app/_formatters/getActiveCache";
+} from "@/app/_functions/getActiveCache";
 
 interface PaperOptionsProps {
   type: number;

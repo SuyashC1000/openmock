@@ -7,7 +7,7 @@ import rehypeKatex from "rehype-katex";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 import { ResponseDataContext, StateContext, TestPaperContext } from "../page";
-import { questionConstraint } from "@/app/_formatters/questionConstraint";
+import { questionConstraint } from "@/app/_functions/questionConstraint";
 
 interface UserResponseInputProps {
   question: TestPaperQuestion;

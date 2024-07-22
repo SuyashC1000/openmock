@@ -14,7 +14,7 @@ import {
 } from "@chakra-ui/react";
 import Timer from "../Timer";
 import { DispatchContext, StateContext, TestPaperContext } from "../page";
-import { SET_DEFAULT_LANGUAGE } from "@/app/_formatters/userCacheReducer";
+import { SET_DEFAULT_LANGUAGE } from "@/app/_functions/userCacheReducer";
 import useActiveElements from "@/lib/useActiveElements";
 
 function HeaderDashboard() {
