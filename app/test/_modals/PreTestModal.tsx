@@ -20,7 +20,7 @@ export const PreTestModal = () => {
   const dispatch = React.useContext(DispatchContext);
 
   const [pageIndex, setPageIndex] = React.useState(1);
-  const [hasAgreed, setHasAgreed] = React.useState(true);
+  const [hasAgreed, setHasAgreed] = React.useState(false);
 
   const specificInstructions =
     testPaper.instructions[state.currentLanguageIndex].length === 0

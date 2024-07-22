@@ -16,7 +16,8 @@ import MultiProvider from "../_components/MultiProvider";
 import OverlayCollection from "./OverlayCollection";
 import { TestPaper } from "../_interface/testData";
 import Loader from "./Loader";
-import { ActiveTestPaperContext } from "../page";
+import { useLiveQuery } from "dexie-react-hooks";
+import { db } from "@/db/db";
 
 interface DispatchFunction {
   (action: Action): void;
@@ -62,14 +63,12 @@ const TestPage = () => {
     message: "",
   });
 
-  const { activeTestPaper } = React.useContext(ActiveTestPaperContext);
-
   React.useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch("./data/testData.json");
-      const data: TestPaper | null = activeTestPaper;
+      const response = await db.activeTestPaper.toArray();
+      const data: TestPaper | null = response[0];
 
-      if (data !== null) {
+      if (data !== null && data !== undefined) {
         setActiveTestPaperCache(data);
         dispatch({
           type: INITIALIZE_STATE,

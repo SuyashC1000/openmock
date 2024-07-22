@@ -8,14 +8,6 @@ import testData from "../public/data/testData.json";
 
 import { TestPaper } from "./_interface/testData";
 
-interface IActiveTestPaperContext {
-  activeTestPaper: TestPaper | null;
-  setActiveTestPaper?: () => void;
-}
-
-export const ActiveTestPaperContext =
-  React.createContext<IActiveTestPaperContext>({ activeTestPaper: testData! });
-
 export default function AppPage() {
   const Navbar = () => {
     return (

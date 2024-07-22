@@ -31,6 +31,7 @@ export interface UserCacheGroup {
 
 export interface UserCache {
   testId: string;
+  attemptId: string;
   testStatus: "starting" | "ongoing" | "submitting" | "finished";
   timestamps: UserCacheTimestamps;
   currentLanguageIndex: number;
@@ -51,7 +52,6 @@ interface UserCachePreferences {
 interface UserCacheTimestamps {
   testStartTime: number;
   testLoginTime: number;
-  testEndTime: number;
 }
 
 export interface UserTestDetails {

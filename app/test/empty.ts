@@ -1,4 +1,5 @@
 import { TestPaper } from "../_interface/testData";
+import { TestResponse } from "../_interface/testResponse";
 import { UserCache } from "../_interface/userCache";
 
 export const emptyTestPaper: TestPaper = {
@@ -47,6 +48,7 @@ export const emptyTestPaper: TestPaper = {
 };
 export const emptyUserCache: UserCache = {
   testId: "",
+  attemptId: "",
   testStatus: "starting",
   preferences: {
     calculator: false,
@@ -59,7 +61,6 @@ export const emptyUserCache: UserCache = {
   timestamps: {
     testStartTime: 0,
     testLoginTime: 0,
-    testEndTime: 0,
   },
   currentLanguageIndex: 0,
   activeGroupIndex: 0,
@@ -81,6 +82,36 @@ export const emptyUserCache: UserCache = {
               permissions: "all",
               optionDisplayList: null,
               lastAnswered: 0,
+              status: 0,
+              submit: null,
+              timeSpent: 0,
+            },
+          ],
+        },
+      ],
+    },
+  ],
+};
+export const emptyTestResponse: TestResponse = {
+  testId: "",
+  attemptId: "",
+  timestamps: {
+    testStartTime: 0,
+    testEndTime: 0,
+  },
+  body: [
+    {
+      groupName: "",
+      timeSpent: 0,
+      sections: [
+        {
+          sectionName: "",
+          questionDisplayList: [],
+          questions: [
+            {
+              id: "",
+              lastAnswered: 0,
+              optionDisplayList: [],
               status: 0,
               submit: null,
               timeSpent: 0,

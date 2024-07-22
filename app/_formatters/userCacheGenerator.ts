@@ -5,6 +5,7 @@ import {
   UserCacheQuestion,
   UserCacheSection,
 } from "../_interface/userCache";
+import { uniqueId } from "./randomGenerator";
 
 export default function userCacheGenerator(
   testPaper: TestPaper,
@@ -61,6 +62,7 @@ export default function userCacheGenerator(
   // console.log(newBody);
 
   let foundation: UserCache = {
+    attemptId: "a" + uniqueId().toString(),
     body: newBody,
     preferences: {
       zoomLevel: 1,
@@ -74,7 +76,6 @@ export default function userCacheGenerator(
     timestamps: {
       testStartTime: 0,
       testLoginTime: 0,
-      testEndTime: 0,
     },
     userDetails: {
       name: username,

@@ -22,6 +22,9 @@ import {
 } from "@/app/_formatters/getActiveCacheAdvanced";
 import { UserCacheGroup, UserCacheQuestion } from "@/app/_interface/userCache";
 import { groupConstraint } from "@/app/_formatters/groupConstraint";
+import { testResponseGenerator } from "@/app/_formatters/testResponseGenerator";
+import { db } from "@/db/db";
+import { setActiveTestResponse } from "@/db/dbFunctions";
 
 export interface SubmitQuestionFunc {
   (
@@ -148,11 +151,20 @@ function useSubmit() {
     ]) as UserCacheGroup;
   }
 
-  function submitTest() {
+  async function submitTest() {
     dispatch({
       type: SET_TEST_STATUS,
       payload: "finished",
     });
+
+    const testResponse = testResponseGenerator(state, Date.now());
+
+    console.log(testResponse);
+
+    await db.activeTestPaper.clear();
+    await db.testResponses.add(testResponse);
+
+    setActiveTestResponse(testResponse);
   }
 
   return { submitQuestion, submitGroup, submitTest };
