@@ -1,0 +1,371 @@
+{
+  "testId": "t1234567890",
+  "attemptId": "a103448511171",
+  "timestamps": {
+    "testStartTime": 1721669028354,
+    "testEndTime": 1721669118771
+  },
+  "body": [
+    {
+      "groupName": "General Aptitude",
+      "timeSpent": 23,
+      "sections": [
+        {
+          "sectionName": "General Knowledge",
+          "questionDisplayList": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+          "questions": [
+            {
+              "id": "q123456789",
+              "status": 2,
+              "submit": 0,
+              "timeSpent": 2,
+              "lastAnswered": 1721669030672,
+              "optionDisplayList": [0, 1, 2, 3],
+              "evaluation": 0,
+              "marks": 4
+            },
+            {
+              "id": "q123456790",
+              "status": 2,
+              "submit": 1,
+              "timeSpent": 2,
+              "lastAnswered": 1721669033300,
+              "optionDisplayList": [0, 1, 2, 3],
+              "evaluation": 1,
+              "marks": -1
+            },
+            {
+              "id": "q123456791",
+              "status": 2,
+              "submit": 50,
+              "timeSpent": 1,
+              "lastAnswered": 1721669035828,
+              "optionDisplayList": null,
+              "evaluation": 0,
+              "marks": 4
+            },
+            {
+              "id": "q123456792",
+              "status": 2,
+              "submit": [0, 1, 2],
+              "timeSpent": 3,
+              "lastAnswered": 1721669042440,
+              "optionDisplayList": [0, 1, 2, 3],
+              "evaluation": 1,
+              "marks": -1
+            },
+            {
+              "id": "q123456793",
+              "status": 2,
+              "submit": [0, 1, 2, 3],
+              "timeSpent": 2,
+              "lastAnswered": 1721669047526,
+              "optionDisplayList": [0, 1, 2, 3],
+              "evaluation": 1,
+              "marks": -1
+            },
+            {
+              "id": "q123456794",
+              "status": 2,
+              "submit": 0,
+              "timeSpent": 1,
+              "lastAnswered": 1721669050550,
+              "optionDisplayList": [0, 1, 2, 3],
+              "evaluation": 0,
+              "marks": 4
+            },
+            {
+              "id": "q123456794",
+              "status": 2,
+              "submit": 1,
+              "timeSpent": 1,
+              "lastAnswered": 1721669054191,
+              "optionDisplayList": [0, 1, 2, 3],
+              "evaluation": 0,
+              "marks": 4
+            },
+            {
+              "id": "q123456795",
+              "status": 2,
+              "submit": 195,
+              "timeSpent": 4,
+              "lastAnswered": 1721669059667,
+              "optionDisplayList": null,
+              "evaluation": 0,
+              "marks": 4
+            },
+            {
+              "id": "q123456796",
+              "status": 2,
+              "submit": 1,
+              "timeSpent": 2,
+              "lastAnswered": 1721669062349,
+              "optionDisplayList": [0, 1, 2, 3],
+              "evaluation": 0,
+              "marks": 4
+            },
+            {
+              "id": "q123456797",
+              "status": 1,
+              "submit": null,
+              "timeSpent": 2,
+              "lastAnswered": null,
+              "optionDisplayList": [0, 1, 2, 3],
+              "evaluation": 2,
+              "marks": 0
+            }
+          ]
+        },
+        {
+          "sectionName": "Logical Reasoning",
+          "questionDisplayList": [0, 1],
+          "selected": false,
+          "questions": [
+            {
+              "id": "q123456889",
+              "status": 0,
+              "submit": null,
+              "timeSpent": 0,
+              "lastAnswered": null,
+              "optionDisplayList": [0, 1, 2, 3],
+              "evaluation": 2,
+              "marks": 0
+            },
+            {
+              "id": "q123456890",
+              "status": 0,
+              "submit": null,
+              "timeSpent": 0,
+              "lastAnswered": null,
+              "optionDisplayList": null,
+              "evaluation": 2,
+              "marks": 0
+            }
+          ]
+        },
+        {
+          "sectionName": "Mathematical Ability",
+          "questionDisplayList": [0, 1],
+          "selected": true,
+          "questions": [
+            {
+              "id": "q123457789",
+              "status": 2,
+              "submit": 15,
+              "timeSpent": 1,
+              "lastAnswered": 1721669068742,
+              "optionDisplayList": null,
+              "evaluation": 1,
+              "marks": -1
+            },
+            {
+              "id": "q123457790",
+              "status": 2,
+              "submit": 3,
+              "timeSpent": 2,
+              "lastAnswered": 1721669072699,
+              "optionDisplayList": [0, 1, 2, 3],
+              "evaluation": 0,
+              "marks": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "groupName": "Science",
+      "timeSpent": 12,
+      "sections": [
+        {
+          "sectionName": "Physics",
+          "questionDisplayList": [0, 1],
+          "questions": [
+            {
+              "id": "q2001",
+              "status": 2,
+              "submit": 2,
+              "timeSpent": 1,
+              "lastAnswered": 1721669075757,
+              "optionDisplayList": [0, 1, 2, 3],
+              "evaluation": 0,
+              "marks": 4
+            },
+            {
+              "id": "q2002",
+              "status": 2,
+              "submit": 3,
+              "timeSpent": 0,
+              "lastAnswered": 1721669077801,
+              "optionDisplayList": [0, 1, 2, 3],
+              "evaluation": 0,
+              "marks": 4
+            }
+          ]
+        },
+        {
+          "sectionName": "Chemistry",
+          "questionDisplayList": [0, 1],
+          "questions": [
+            {
+              "id": "q2101",
+              "status": 2,
+              "submit": [0, 2],
+              "timeSpent": 1,
+              "lastAnswered": 1721669080360,
+              "optionDisplayList": [0, 1, 2, 3],
+              "evaluation": 0,
+              "marks": 4
+            },
+            {
+              "id": "q2102",
+              "status": 2,
+              "submit": 29.25,
+              "timeSpent": 4,
+              "lastAnswered": 1721669086392,
+              "optionDisplayList": null,
+              "evaluation": 0,
+              "marks": 4
+            }
+          ]
+        },
+        {
+          "sectionName": "Maths",
+          "questionDisplayList": [0, 1],
+          "questions": [
+            {
+              "id": "q2201",
+              "status": 2,
+              "submit": 1,
+              "timeSpent": 2,
+              "lastAnswered": 1721669088944,
+              "optionDisplayList": [0, 1, 2, 3],
+              "evaluation": 0,
+              "marks": 4
+            },
+            {
+              "id": "q2202",
+              "status": 2,
+              "submit": 1,
+              "timeSpent": 4,
+              "lastAnswered": 1721669094562,
+              "optionDisplayList": null,
+              "evaluation": 0,
+              "marks": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "groupName": "Social Science",
+      "hasOpted": true,
+      "timeSpent": 10,
+      "sections": [
+        {
+          "sectionName": "History",
+          "questionDisplayList": [0, 1],
+          "questions": [
+            {
+              "id": "q3001",
+              "status": 2,
+              "submit": 0,
+              "timeSpent": 2,
+              "lastAnswered": 1721669097971,
+              "optionDisplayList": [0, 1, 2, 3],
+              "evaluation": 0,
+              "marks": 4
+            },
+            {
+              "id": "q3002",
+              "status": 2,
+              "submit": 11,
+              "timeSpent": 1,
+              "lastAnswered": 1721669100732,
+              "optionDisplayList": null,
+              "evaluation": 0,
+              "marks": 4
+            }
+          ]
+        },
+        {
+          "sectionName": "Political Science",
+          "questionDisplayList": [0, 1],
+          "questions": [
+            {
+              "id": "q3101",
+              "status": 2,
+              "submit": 2,
+              "timeSpent": 1,
+              "lastAnswered": 1721669103208,
+              "optionDisplayList": null,
+              "evaluation": 1,
+              "marks": -1
+            },
+            {
+              "id": "q3102",
+              "status": 2,
+              "submit": 1,
+              "timeSpent": 1,
+              "lastAnswered": 1721669105370,
+              "optionDisplayList": [0, 1],
+              "evaluation": 0,
+              "marks": 4
+            }
+          ]
+        },
+        {
+          "sectionName": "Geography",
+          "questionDisplayList": [0, 1],
+          "questions": [
+            {
+              "id": "q3201",
+              "status": 2,
+              "submit": 1,
+              "timeSpent": 1,
+              "lastAnswered": 1721669108170,
+              "optionDisplayList": [0, 1, 2, 3],
+              "evaluation": 1,
+              "marks": -1
+            },
+            {
+              "id": "q3202",
+              "status": 2,
+              "submit": 0,
+              "timeSpent": 1,
+              "lastAnswered": 1721669110119,
+              "optionDisplayList": [0, 1, 2],
+              "evaluation": 1,
+              "marks": -1
+            }
+          ]
+        },
+        {
+          "sectionName": "Economics",
+          "questionDisplayList": [0, 1],
+          "questions": [
+            {
+              "id": "q3301",
+              "status": 2,
+              "submit": [0, 2],
+              "timeSpent": 2,
+              "lastAnswered": 1721669114228,
+              "optionDisplayList": [0, 1, 2, 3],
+              "evaluation": 1,
+              "marks": -1
+            },
+            {
+              "id": "q3302",
+              "status": 2,
+              "submit": 1,
+              "timeSpent": 1,
+              "lastAnswered": 1721669117028,
+              "optionDisplayList": [0, 1, 2, 3],
+              "evaluation": 0,
+              "marks": 4
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

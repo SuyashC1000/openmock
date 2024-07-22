@@ -157,7 +157,7 @@ function useSubmit() {
       payload: "finished",
     });
 
-    const testResponse = testResponseGenerator(state, Date.now());
+    const testResponse = testResponseGenerator(state, testPaper, Date.now());
 
     console.log(testResponse);
 

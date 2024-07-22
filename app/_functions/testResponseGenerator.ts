@@ -1,3 +1,4 @@
+import { TestPaper } from "../_interface/testData";
 import {
   TestResponse,
   TestResponseGroup,
@@ -5,9 +6,11 @@ import {
   TestResponseSection,
 } from "../_interface/testResponse";
 import { UserCache } from "../_interface/userCache";
+import { evaluateMarks } from "./evaluateMarks";
 
 export function testResponseGenerator(
   userCache: UserCache,
+  testPaper: TestPaper,
   endTime: number
 ): TestResponse {
   let foundation: TestResponse = {
@@ -27,7 +30,10 @@ export function testResponseGenerator(
             sectionName: f.sectionName,
             questionDisplayList: f.questionDisplayList,
             selected: f.selected,
-            questions: f.questions.map((g, h) => {
+            questions: f.questions.map((g, k) => {
+              const question = testPaper.body[i].sections[j].questions[k];
+              const questionScore = evaluateMarks(question, g);
+
               return {
                 id: g.id,
                 status: g.status,
@@ -35,6 +41,8 @@ export function testResponseGenerator(
                 timeSpent: g.timeSpent,
                 lastAnswered: g.lastAnswered,
                 optionDisplayList: g.optionDisplayList,
+                evaluation: questionScore.evaluation,
+                marks: questionScore.marks,
               } as TestResponseQuestion;
             }),
           } as TestResponseSection;

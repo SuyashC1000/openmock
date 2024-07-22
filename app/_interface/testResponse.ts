@@ -14,6 +14,8 @@ export interface TestResponseQuestion {
   timeSpent: number;
   optionDisplayList: number[] | null;
   lastAnswered: number | null;
+  evaluation: number;
+  marks: number;
   [k: string]: unknown;
 }
 

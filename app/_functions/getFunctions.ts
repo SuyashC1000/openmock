@@ -1,3 +1,4 @@
+import { QDataTypes } from "@/lib/enums";
 import {
   UserCache,
   UserCacheGroup,
@@ -63,19 +64,19 @@ export function getUserResponse(
   const userAnswer = responseData;
   let payload;
   switch (qDataType) {
-    case 0:
+    case QDataTypes.SingleCorrectOption:
       {
         payload = userAnswer.length === 0 ? null : +userAnswer[0];
       }
       break;
 
-    case 1:
+    case QDataTypes.MultipleCorrectOptions:
       {
         payload = userAnswer.length === 0 ? null : userAnswer.map((e) => +e);
       }
       break;
 
-    case 2:
+    case QDataTypes.NumericalValue:
       {
         payload = userAnswer[0].length === 0 ? null : +userAnswer;
       }

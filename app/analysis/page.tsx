@@ -9,6 +9,8 @@ import { emptyTestPaper, emptyTestResponse } from "../test/empty";
 import { TestPaper } from "../_interface/testData";
 import { TestResponse } from "../_interface/testResponse";
 import Head from "next/head";
+import RawDataDisplay from "./RawDataDisplay";
+import MainView from "./MainView";
 
 export const SuppliedTestPaperContext =
   React.createContext<TestPaper>(emptyTestPaper);
@@ -56,26 +58,7 @@ const AnalysisPage = () => {
         <div className="h-screen w-screen flex flex-col">
           <div className="bg-slate-600 h-10 flex-0"></div>
           <div className="flex flex-1 overflow-y-auto">
-            {status === "success" ? (
-              <div className="flex-1 max-h-full p-2 ">
-                <Card>
-                  <CardBody>
-                    <Heading size={"md"}>Response</Heading>
-                    <Text>{JSON.stringify(activeTestResponse)}</Text>
-                  </CardBody>
-                  <br />
-                </Card>
-                <Card>
-                  <CardBody>
-                    <Heading size={"md"}>Paper</Heading>
-                    <Text>{JSON.stringify(suppliedTestPaper)}</Text>
-                  </CardBody>
-                  <br />
-                </Card>
-              </div>
-            ) : (
-              <Loader status={status} />
-            )}
+            {status === "success" ? <MainView /> : <Loader status={status} />}
           </div>
         </div>
       </SuppliedTestPaperContext.Provider>
