@@ -3,16 +3,16 @@ import RawDataDisplay from "./RawDataDisplay";
 import { Heading, Text } from "@chakra-ui/react";
 import { activeTestResponseContext, SuppliedTestPaperContext } from "./page";
 import { calculateScoreData } from "../_functions/calculateScoreData";
+import { MyResponsivePie } from "../_components/charts/PieChart";
+import Summary from "./Summary";
 
 const MainView = () => {
   const testResponse = React.useContext(activeTestResponseContext);
   const testPaper = React.useContext(SuppliedTestPaperContext);
 
-  const example = calculateScoreData(testPaper, testResponse);
-
   const attemptDate = new Date(testResponse.timestamps.testStartTime);
   return (
-    <div className="flex-1 max-h-full p-4 ">
+    <div className="flex-1 max-h-full p-4 bg-neutral-50">
       <div className="p-2">
         <Heading fontWeight={"semibold"}>{testPaper.name}</Heading>
         <Text>
@@ -27,8 +27,7 @@ const MainView = () => {
         </Text>
       </div>
       <br />
-      <Heading size={"lg"}>Summary</Heading>
-
+      <Summary />
       <RawDataDisplay />
     </div>
   );

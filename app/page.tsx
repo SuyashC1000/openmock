@@ -2,7 +2,7 @@
 
 import { TbWriting } from "react-icons/tb";
 
-import { Button, Link, Text } from "@chakra-ui/react";
+import { Button, ButtonGroup, Link, Text } from "@chakra-ui/react";
 import React from "react";
 import testData from "../public/data/testData.json";
 
@@ -33,9 +33,14 @@ export default function AppPage() {
           </Button>
         </Link>
         <Text className="underline text-white">NO signup required!</Text>
-        <Link href="/test">
-          <Button colorScheme="blue">Test Interface!</Button>
-        </Link>
+        <ButtonGroup>
+          <Link href="/test">
+            <Button colorScheme="blue">Test Interface</Button>
+          </Link>
+          <Link href="/analysis">
+            <Button colorScheme="purple">Analysis Interface</Button>
+          </Link>
+        </ButtonGroup>
       </div>
       <main>
         <p>This marks the beginning of the OpenMock Project</p>

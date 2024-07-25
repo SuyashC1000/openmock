@@ -45,17 +45,24 @@ export function evaluateMarks(
           markCorrect(question.markingScheme[Evaluation.Correct]);
         } else if (question.markingScheme[Evaluation.Partial] !== undefined) {
           let correctOptionsTally = 0;
+          let foundIncorrect = false;
 
           (questionResponse.submit as number[]).forEach((e) => {
-            if ((question.answer as number[]).includes(e))
+            if ((question.answer as number[]).includes(e)) {
               correctOptionsTally += 1;
+            } else {
+              foundIncorrect = true;
+            }
           });
-
-          markPartial(
-            question.markingScheme[Evaluation.Partial][
-              question.qDataType[1] - correctOptionsTally - 1
-            ]
-          );
+          if (!foundIncorrect) {
+            markPartial(
+              question.markingScheme[Evaluation.Partial][
+                question.qDataType[1] - correctOptionsTally - 1
+              ]
+            );
+          } else {
+            markIncorrect(question.markingScheme[Evaluation.Incorrect]);
+          }
         } else {
           markIncorrect(question.markingScheme[Evaluation.Incorrect]);
         }
