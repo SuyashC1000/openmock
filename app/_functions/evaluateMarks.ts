@@ -86,8 +86,7 @@ export function evaluateMarks(
         break;
     }
   } else {
-    questionScore.marks =
-      question.markingScheme[2][0] / question.markingScheme[2][1];
+    questionScore.marks = 0;
   }
 
   return questionScore;

@@ -28,7 +28,8 @@ const MainView = () => {
       </div>
       <br />
       <Summary />
-      <RawDataDisplay />
+      <br />
+      {/* <RawDataDisplay /> */}
     </div>
   );
 };

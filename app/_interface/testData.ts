@@ -24,8 +24,7 @@ export interface TestPaperQuestion {
   markingScheme: {
     0: [number, number];
     1: [number, number];
-    2: [number, number];
-    3?: [number, number][];
+    2?: [number, number][];
   };
   question: string[];
   options: string[][] | null;

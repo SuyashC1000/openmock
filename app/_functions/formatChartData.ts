@@ -1,10 +1,14 @@
 import { MayHaveLabel } from "@nivo/pie";
 import { ScoreData } from "./calculateScoreData";
+import { TestPaper } from "../_interface/testData";
+import { TestResponse } from "../_interface/testResponse";
 
 export function formatPieChartData(
-  scoreData: ScoreData,
-  type: "marks" | "questions"
+  testPaper: TestPaper,
+  testResponse: TestResponse,
+  type: "marks" | "questions" | "time"
 ) {
+  const scoreData = testResponse.scoreData;
   if (type === "marks") {
     const pieChartData = [
       {
@@ -21,7 +25,7 @@ export function formatPieChartData(
       },
     ];
     return pieChartData;
-  } else {
+  } else if (type === "questions") {
     let pieChartData = [];
     if (scoreData.questions.correct > 0)
       pieChartData.push({
@@ -42,7 +46,7 @@ export function formatPieChartData(
         id: "Unattempted",
         label: "Unattempted",
         value: scoreData.questions.unattempted,
-        color: "#a3a3a3",
+        color: "#e5e5e5",
       });
     if (scoreData.questions.partial > 0)
       pieChartData.push({
@@ -51,6 +55,28 @@ export function formatPieChartData(
         value: scoreData.questions.partial,
         color: "#facc15",
       });
+    return pieChartData;
+  } else {
+    const minsUsed = Math.floor(
+      (testResponse.timestamps.testEndTime -
+        testResponse.timestamps.testStartTime) /
+        60000
+    );
+    const pieChartData = [
+      {
+        id: "Mins taken",
+        label: "Mins taken",
+        value: minsUsed,
+        color: "#a78bfa",
+      },
+      {
+        id: "Mins spared",
+        label: "Mins spared",
+        value: testPaper.maxTime - minsUsed,
+        color: "#e5e5e5",
+      },
+    ];
+
     return pieChartData;
   }
 }

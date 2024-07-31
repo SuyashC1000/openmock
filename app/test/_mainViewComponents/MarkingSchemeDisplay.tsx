@@ -1,5 +1,6 @@
 import Marks from "@/app/_components/Marks";
 import numberToWords from "@/app/_functions/numberToWords";
+import { Evaluation } from "@/lib/enums";
 import {
   Card,
   CardBody,
@@ -16,8 +17,7 @@ interface MarkingSchemeProps {
   markingScheme: {
     0: [number, number];
     1: [number, number];
-    2: [number, number];
-    3?: [number, number][];
+    2?: [number, number][];
   };
   qDataType: number[];
   qTypeName: string;
@@ -84,44 +84,46 @@ function MarkingSchemeDisplay(props: MarkingSchemeProps) {
 
         <Text>
           <strong>Correct: </strong>
-          {Marks(props.markingScheme[0], "element")}{" "}
+          {Marks(props.markingScheme[Evaluation.Correct], "element")}{" "}
           {markingSchemeMessages.correct[props.qDataType[0]]}
         </Text>
-        {props.qDataType[0] === 1 && props.markingScheme[3] !== undefined && (
-          <>
-            {props.markingScheme[3].map((e, i) => {
-              return (
-                <Text key={i}>
-                  <strong>Partial:</strong> {Marks(e, "element")} if{" "}
-                  {i == 0
-                    ? "all"
-                    : `${numberToWords(props.qDataType[1] - i).toLowerCase()} or
+        {props.qDataType[0] === 1 &&
+          props.markingScheme[Evaluation.Partial] !== undefined && (
+            <>
+              {props.markingScheme[Evaluation.Partial].map((e, i) => {
+                return (
+                  <Text key={i}>
+                    <strong>Partial:</strong> {Marks(e, "element")} if{" "}
+                    {i == 0
+                      ? "all"
+                      : `${numberToWords(props.qDataType[1] - i).toLowerCase()} or
                     more`}{" "}
-                  options are correct but ONLY{" "}
-                  {numberToWords(props.qDataType[1] - 1 - i).toLowerCase()}{" "}
-                  correct{" "}
-                  {props.qDataType[1] - 1 - i === 1
-                    ? "option is"
-                    : "options are"}{" "}
-                  chosen
-                </Text>
-              );
-            })}
-          </>
-        )}
-        {props.qDataType[0] === 1 && props.markingScheme[3] === undefined && (
-          <Text>
-            <strong>Partial:</strong> There is NO partial marking
-          </Text>
-        )}
+                    options are correct but ONLY{" "}
+                    {numberToWords(props.qDataType[1] - 1 - i).toLowerCase()}{" "}
+                    correct{" "}
+                    {props.qDataType[1] - 1 - i === 1
+                      ? "option is"
+                      : "options are"}{" "}
+                    chosen
+                  </Text>
+                );
+              })}
+            </>
+          )}
+        {props.qDataType[0] === 1 &&
+          props.markingScheme[Evaluation.Partial] === undefined && (
+            <Text>
+              <strong>Partial:</strong> There is NO partial marking
+            </Text>
+          )}
         <Text>
           <strong>Unanswered: </strong>
-          {Marks(props.markingScheme[2], "element")}{" "}
+          {Marks([0, 1], "element")}{" "}
           {markingSchemeMessages.unanswered[props.qDataType[0]]}
         </Text>
         <Text>
           <strong>Incorrect: </strong>
-          {Marks(props.markingScheme[1], "element")}{" "}
+          {Marks(props.markingScheme[Evaluation.Incorrect], "element")}{" "}
           {markingSchemeMessages.incorrect[props.qDataType[0]]}
         </Text>
       </CardBody>

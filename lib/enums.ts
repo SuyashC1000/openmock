@@ -7,6 +7,6 @@ export enum QDataTypes {
 export enum Evaluation {
   Correct,
   Incorrect,
-  Unattempted,
   Partial,
+  Unattempted,
 }

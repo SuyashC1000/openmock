@@ -6,6 +6,7 @@ import {
   TestResponseSection,
 } from "../_interface/testResponse";
 import { UserCache } from "../_interface/userCache";
+import { calculateScoreData } from "./calculateScoreData";
 import { evaluateMarks } from "./evaluateMarks";
 
 export function testResponseGenerator(
@@ -23,7 +24,6 @@ export function testResponseGenerator(
         max: 0,
         partial: 0,
         total: 0,
-        unattempted: 0,
       },
       questions: {
         correct: 0,
@@ -48,7 +48,6 @@ export function testResponseGenerator(
             max: 0,
             partial: 0,
             total: 0,
-            unattempted: 0,
           },
           questions: {
             correct: 0,
@@ -71,7 +70,6 @@ export function testResponseGenerator(
                 max: 0,
                 partial: 0,
                 total: 0,
-                unattempted: 0,
               },
               questions: {
                 correct: 0,
@@ -102,5 +100,5 @@ export function testResponseGenerator(
     }),
   };
 
-  return foundation;
+  return calculateScoreData(testPaper, foundation);
 }
