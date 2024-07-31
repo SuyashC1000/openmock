@@ -59,7 +59,34 @@ const Summary = () => {
   return (
     <div>
       <Heading size={"lg"}>Summary</Heading>
-      <div className="flex max-w-screen flex-col gap-4 m-3">
+
+      <Card>
+        <CardBody>{JSON.stringify({ ...testPaper, ...testResponse })}</CardBody>
+      </Card>
+
+      {/* <Grid gap={3} templateColumns={"repeat(auto-fit, minmax(10rem, 1fr))"}>
+        <Card
+          size={"sm"}
+          alignItems={"center"}
+          justifyContent={"center"}
+          textAlign={"center"}
+        >
+          <CardBody>
+            <Text>Score</Text>
+            <div style={{ height: 120, width: 200 }}>
+              <MyResponsivePie
+                data={formatPieChartData(scoreData, "marks")}
+                isHalf={true}
+              />
+            </div>
+            <Heading>
+              {scoreData.marks.total}/{scoreData.marks.max}
+            </Heading>
+          </CardBody>
+        </Card>
+      </Grid> */}
+
+      {/* <div className="flex max-w-screen flex-col gap-4 m-3">
         <div className="flex max-w-screen gap-4">
           <Card className="flex-1 w-1/2">
             <CardBody>
@@ -113,6 +140,7 @@ const Summary = () => {
                 <div className="flex-0" style={{ height: 250, width: 250 }}>
                   <MyResponsivePie
                     data={formatPieChartData(scoreData, "marks")}
+                    isHalf={true}
                   />
                 </div>
               </div>
@@ -214,8 +242,8 @@ const Summary = () => {
             </CardBody>
           </Card>
         </div>
-      </div>
-      <Text>{JSON.stringify(scoreData)}</Text>
+      </div> */}
+      {/* <Text>{JSON.stringify(scoreData)}</Text> */}
     </div>
   );
 };

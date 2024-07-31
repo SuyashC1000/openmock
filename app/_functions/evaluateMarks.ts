@@ -1,10 +1,11 @@
 import { Evaluation, QDataTypes } from "@/lib/enums";
 import { TestPaperQuestion } from "../_interface/testData";
 import { UserCacheQuestion } from "../_interface/userCache";
+import { TestResponseQuestion } from "../_interface/testResponse";
 
 export function evaluateMarks(
   question: TestPaperQuestion,
-  questionResponse: UserCacheQuestion
+  questionResponse: UserCacheQuestion | TestResponseQuestion
 ) {
   let questionScore = {
     evaluation: Evaluation.Unattempted,

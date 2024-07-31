@@ -16,6 +16,23 @@ export function testResponseGenerator(
   let foundation: TestResponse = {
     testId: userCache.testId,
     attemptId: userCache.attemptId,
+    scoreData: {
+      marks: {
+        correct: 0,
+        incorrect: 0,
+        max: 0,
+        partial: 0,
+        total: 0,
+        unattempted: 0,
+      },
+      questions: {
+        correct: 0,
+        incorrect: 0,
+        partial: 0,
+        total: 0,
+        unattempted: 0,
+      },
+    },
     timestamps: {
       testStartTime: userCache.timestamps.testStartTime,
       testEndTime: endTime,
@@ -24,12 +41,46 @@ export function testResponseGenerator(
       return {
         groupName: e.groupName,
         hasOpted: e.hasOpted,
+        scoreData: {
+          marks: {
+            correct: 0,
+            incorrect: 0,
+            max: 0,
+            partial: 0,
+            total: 0,
+            unattempted: 0,
+          },
+          questions: {
+            correct: 0,
+            incorrect: 0,
+            partial: 0,
+            total: 0,
+            unattempted: 0,
+          },
+        },
         timeSpent: e.timeSpent,
         sections: e.sections.map((f, j) => {
           return {
             sectionName: f.sectionName,
             questionDisplayList: f.questionDisplayList,
             selected: f.selected,
+            scoreData: {
+              marks: {
+                correct: 0,
+                incorrect: 0,
+                max: 0,
+                partial: 0,
+                total: 0,
+                unattempted: 0,
+              },
+              questions: {
+                correct: 0,
+                incorrect: 0,
+                partial: 0,
+                total: 0,
+                unattempted: 0,
+              },
+            },
             questions: f.questions.map((g, k) => {
               const question = testPaper.body[i].sections[j].questions[k];
               const questionScore = evaluateMarks(question, g);

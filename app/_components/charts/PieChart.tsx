@@ -8,11 +8,18 @@ import { MayHaveLabel, ResponsivePie } from "@nivo/pie";
 // no chart will be rendered.
 // website examples showcase many properties,
 // you'll often use just a few of them.
-export const MyResponsivePie = ({ data }: { data: MayHaveLabel[] }) => (
+export const MyResponsivePie = ({
+  data,
+  isHalf = false,
+}: {
+  data: MayHaveLabel[];
+  isHalf?: boolean;
+}) => (
   <ResponsivePie
     data={data}
     margin={{ top: 20, right: 20, bottom: 20, left: 20 }}
     startAngle={-90}
+    endAngle={isHalf ? 90 : undefined}
     innerRadius={0.55}
     activeOuterRadiusOffset={8}
     borderWidth={4}

@@ -1,9 +1,11 @@
+import { ScoreData } from "../_functions/calculateScoreData";
+
 export interface TestResponse {
   testId: string;
   attemptId: string;
   timestamps: TestResponseTimeStamps;
   body: TestResponseGroup[];
-
+  scoreData: ScoreData;
   [k: string]: unknown;
 }
 
@@ -23,6 +25,7 @@ export interface TestResponseSection {
   sectionName: string;
   questionDisplayList: number[];
   selected?: boolean;
+  scoreData: ScoreData;
   questions: TestResponseQuestion[];
   [k: string]: unknown;
 }
@@ -30,6 +33,7 @@ export interface TestResponseSection {
 export interface TestResponseGroup {
   groupName: string;
   timeSpent: number;
+  scoreData: ScoreData;
   hasOpted?: boolean;
   sections: TestResponseSection[];
   [k: string]: unknown;
