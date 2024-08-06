@@ -5,6 +5,8 @@ import { activeTestResponseContext, SuppliedTestPaperContext } from "./page";
 import { calculateScoreData } from "../_functions/calculateScoreData";
 import { MyResponsivePie } from "../_components/charts/PieChart";
 import Summary from "./Summary";
+import MarksStats from "./MarksStats";
+import QuestionsStats from "./QuestionsStats";
 
 const MainView = () => {
   const testResponse = React.useContext(activeTestResponseContext);
@@ -29,6 +31,9 @@ const MainView = () => {
       <br />
       <Summary />
       <br />
+      <MarksStats />
+      <br />
+      <QuestionsStats />
       {/* <RawDataDisplay /> */}
     </div>
   );

@@ -11,9 +11,13 @@ import { MayHaveLabel, ResponsivePie } from "@nivo/pie";
 export const MyResponsivePie = ({
   data,
   isHalf = false,
+  defaultScheme = false,
+  showLegend = false,
 }: {
   data: MayHaveLabel[];
   isHalf?: boolean;
+  defaultScheme?: boolean;
+  showLegend?: boolean;
 }) => (
   <ResponsivePie
     data={data}
@@ -35,6 +39,35 @@ export const MyResponsivePie = ({
     arcLinkLabelsColor={{ from: "color" }}
     enableArcLabels={false}
     arcLabelsTextColor={{ theme: "background" }}
-    colors={{ datum: "data.color" }}
+    colors={defaultScheme ? { scheme: "pastel1" } : { datum: "data.color" }}
+    legends={
+      showLegend === true
+        ? [
+            {
+              anchor: "bottom",
+              direction: "row",
+              justify: false,
+              translateX: 0,
+              translateY: 56,
+              itemsSpacing: 0,
+              itemWidth: 100,
+              itemHeight: 18,
+              itemTextColor: "#999",
+              itemDirection: "left-to-right",
+              itemOpacity: 1,
+              symbolSize: 18,
+              symbolShape: "circle",
+              effects: [
+                {
+                  on: "hover",
+                  style: {
+                    itemTextColor: "#000",
+                  },
+                },
+              ],
+            },
+          ]
+        : undefined
+    }
   />
 );

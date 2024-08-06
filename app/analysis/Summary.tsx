@@ -21,30 +21,6 @@ import { formatPieChartData } from "../_functions/formatChartData";
 import Marks from "../_components/Marks";
 import { ST } from "next/dist/shared/lib/utils";
 
-const StatsCard = ({
-  label,
-  content,
-  footnote,
-}: {
-  label: string;
-  content: any;
-  footnote?: string;
-}) => {
-  return (
-    <GridItem>
-      <Card size="sm">
-        <CardBody>
-          <Stat>
-            <StatLabel>{label}</StatLabel>
-            <StatNumber>{content}</StatNumber>
-            {footnote !== undefined && <StatHelpText>{footnote}</StatHelpText>}
-          </Stat>
-        </CardBody>
-      </Card>
-    </GridItem>
-  );
-};
-
 const Summary = () => {
   const testResponse = React.useContext(activeTestResponseContext);
   const testPaper = React.useContext(SuppliedTestPaperContext);
@@ -132,7 +108,7 @@ const Summary = () => {
                   )}{" "}
                   / {testPaper.maxTime}
                 </Heading>
-                <Heading size={"md"}>Mins Taken</Heading>
+                <Heading size={"md"}>Mins taken</Heading>
               </CardBody>
             </Card>
           </GridItem>
