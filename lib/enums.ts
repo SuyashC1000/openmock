@@ -10,3 +10,11 @@ export enum Evaluation {
   Partial,
   Unattempted,
 }
+
+export enum QuestionStatus {
+  NotVisited,
+  NotAnswered,
+  Answered,
+  Marked,
+  AnsweredMarked,
+}

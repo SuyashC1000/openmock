@@ -1,3 +1,4 @@
+import { QDataTypes } from "@/lib/enums";
 import { getActiveQuestionCache } from "../_functions/getActiveCache";
 import { UPDATE_QUESTION_USERANSWER } from "../_functions/userCacheReducer";
 import { TestPaperQuestion } from "../_interface/testData";
@@ -15,7 +16,7 @@ export default function handleUserAnswerSubmit(
   const questionCache = getActiveQuestionCache(state);
 
   switch (question.qDataType[0]) {
-    case 0:
+    case QDataTypes.SingleCorrectOption:
       {
         if (userAnswer[0] === questionCache.submit) break;
         let payload = userAnswer.length === 0 ? null : +userAnswer[0];
@@ -23,7 +24,7 @@ export default function handleUserAnswerSubmit(
       }
       break;
 
-    case 1:
+    case QDataTypes.MultipleCorrectOptions:
       {
         if (userAnswer.map((e) => +e) === questionCache.submit) break;
         let payload =
@@ -34,7 +35,7 @@ export default function handleUserAnswerSubmit(
 
       break;
 
-    case 2:
+    case QDataTypes.NumericalValue:
       {
         let payload = userAnswer.length === 0 ? null : +userAnswer;
         dispatch({ type: UPDATE_QUESTION_USERANSWER, payload: payload });

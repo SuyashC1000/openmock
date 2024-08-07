@@ -15,6 +15,7 @@ import {
   UPDATE_QUESTION_USERANSWER,
 } from "../_functions/userCacheReducer";
 import { SubmitQuestionFunc } from "@/lib/useSubmit";
+import { QuestionStatus } from "@/lib/enums";
 
 export async function handleSubmitQuestion(
   state: UserCache,
@@ -55,7 +56,10 @@ export function handleClearResponse(
   responseDataState.setResponseData([]);
   dispatch({
     type: UPDATE_QUESTION_STATUS,
-    payload: { qIndex: activeSection.qIndex, newStatus: 1 },
+    payload: {
+      qIndex: activeSection.qIndex,
+      newStatus: QuestionStatus.NotAnswered,
+    },
   });
 }
 

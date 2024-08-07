@@ -7,6 +7,8 @@ import { MyResponsivePie } from "../_components/charts/PieChart";
 import Summary from "./Summary";
 import MarksStats from "./MarksStats";
 import QuestionsStats from "./QuestionsStats";
+import EvalStats from "./EvalStats";
+import TimeStats from "./TimeStats";
 
 const MainView = () => {
   const testResponse = React.useContext(activeTestResponseContext);
@@ -14,7 +16,7 @@ const MainView = () => {
 
   const attemptDate = new Date(testResponse.timestamps.testStartTime);
   return (
-    <div className="flex-1 max-h-full p-4 bg-neutral-50">
+    <div className="flex-1 flex flex-col p-4 h-fit bg-neutral-100 gap-6">
       <div className="p-2">
         <Heading fontWeight={"semibold"}>{testPaper.name}</Heading>
         <Text>
@@ -28,12 +30,11 @@ const MainView = () => {
           })}
         </Text>
       </div>
-      <br />
       <Summary />
-      <br />
       <MarksStats />
-      <br />
       <QuestionsStats />
+      {/* <TimeStats /> */}
+      <EvalStats />
       {/* <RawDataDisplay /> */}
     </div>
   );

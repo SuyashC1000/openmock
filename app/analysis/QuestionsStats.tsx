@@ -54,13 +54,14 @@ const QuestionsStats = () => {
 
   return (
     <div>
-      ``
       <Heading size={"lg"}>Questions Stats</Heading>
+      <hr />
       <Card>
         <CardBody>
           <Heading size={"md"} textAlign={"center"}>
             At a Glance
           </Heading>
+          <br />
           <Grid
             templateColumns={"repeat(auto-fill, minmax(14rem, 1fr))"}
             width={"full"}
@@ -107,6 +108,7 @@ const QuestionsStats = () => {
           <Heading size={"md"} textAlign={"center"}>
             Detailed Review
           </Heading>
+          <br />
           <Table variant={"unstyled"}>
             <Thead>
               <Tr>

@@ -59,6 +59,7 @@ const MarksStats = () => {
           <Heading size={"md"} textAlign={"center"}>
             At a Glance
           </Heading>
+          <br />
           <Grid
             templateColumns={"repeat(auto-fill, minmax(14rem, 1fr))"}
             width={"full"}
@@ -95,6 +96,7 @@ const MarksStats = () => {
           <Heading size={"md"} textAlign={"center"}>
             Detailed Review
           </Heading>
+          <br />
           <Table variant={"unstyled"}>
             <Thead>
               <Tr>

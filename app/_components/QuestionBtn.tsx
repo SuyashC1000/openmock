@@ -1,3 +1,4 @@
+import { QuestionStatus } from "@/lib/enums";
 import React from "react";
 
 interface Props {
@@ -18,7 +19,7 @@ const QuestionBtn = ({
 
   const ButtonAccent = () => {
     switch (status) {
-      case 0:
+      case QuestionStatus.NotVisited:
         return (
           <polygon
             points="10 10, 110 10, 110 90, 10 90, 10 10"
@@ -27,7 +28,7 @@ const QuestionBtn = ({
             strokeWidth={5}
           />
         );
-      case 1:
+      case QuestionStatus.NotAnswered:
         return (
           <polygon
             points="10 10, 110 10, 110 60, 70 90, 50 90, 10 60, 10 10"
@@ -36,7 +37,7 @@ const QuestionBtn = ({
             strokeWidth={5}
           />
         );
-      case 2:
+      case QuestionStatus.Answered:
         return (
           <polygon
             points="50 10, 70 10, 110 40, 110 90, 10 90, 10 40, 50 10"
@@ -45,7 +46,7 @@ const QuestionBtn = ({
             strokeWidth={5}
           />
         );
-      case 3:
+      case QuestionStatus.Marked:
         return (
           <circle
             cx="60"
@@ -56,7 +57,7 @@ const QuestionBtn = ({
             strokeWidth={5}
           />
         );
-      case 4:
+      case QuestionStatus.AnsweredMarked:
         return (
           <>
             <circle
