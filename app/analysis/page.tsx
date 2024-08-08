@@ -4,7 +4,7 @@ import { db } from "@/db/db";
 import { Card, CardBody, Heading, Text } from "@chakra-ui/react";
 import { useLiveQuery } from "dexie-react-hooks";
 import React from "react";
-import Loader from "./Loader";
+import Loader from "../_components/AnalysisLoader";
 import { emptyTestPaper, emptyTestResponse } from "../test/empty";
 import { TestPaper } from "../_interface/testData";
 import { TestResponse } from "../_interface/testResponse";

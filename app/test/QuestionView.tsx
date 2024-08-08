@@ -84,7 +84,10 @@ const QuestionView = () => {
       </div>
       {questionConstraint(state, testPaper).canView && (
         <>
-          <div className=" outline outline-1 outline-neutral-400 p-1 px-2 flex justify-between sticky top-0 bg-white">
+          <div
+            className=" outline outline-1 outline-neutral-400 p-1 px-2
+          flex justify-between sticky top-0 bg-white"
+          >
             <span className="flex items-center gap-1">
               <Text className="text-sm font-semibold">
                 Question Type: {activeQuestion.qTypeName}
@@ -94,7 +97,7 @@ const QuestionView = () => {
                 className={`text-xl duration-300 ${
                   isQDetailsCollapsed
                     ? "stroke-neutral-900 hover:border-2 hover:border-neutral-500"
-                    : "stroke-blue-600 bg-blue-100 hover:stroke-white hover:bg-blue-500 rotate-90"
+                    : "stroke-blue-600 bg-blue-10 hover:stroke-white hover:bg-blue-500 rotate-90"
                 } rounded-full`}
                 onClick={() => setIsQDetailsCollapsed((e) => !e)}
               ></Icon>
