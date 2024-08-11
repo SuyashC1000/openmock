@@ -30,6 +30,7 @@ export interface TestPaperQuestion {
   options: string[][] | null;
   tags: unknown[];
   answer: number | number[];
+  solution: string[] | null;
   constraints?: TestPaperQuestionConstraints;
   [k: string]: unknown;
 }

@@ -42,7 +42,7 @@ const QuestionEvalStatus = ({
       {[QuestionStatus.Marked, QuestionStatus.AnsweredMarked].includes(
         question.status
       ) && (
-        <div className="h-4 w-4 rounded-full bg-purple-500 absolute top-1 right-1"></div>
+        <div className="h-4 w-4 rounded-full bg-purple-400 absolute top-1 right-1"></div>
       )}
     </div>
   );

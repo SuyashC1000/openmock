@@ -119,7 +119,10 @@
                 ["Lysosome"]
               ],
               "tags": [],
-              "answer": 0
+              "answer": 0,
+              "solution": [
+                "Mitochondria is the organelle responsible for supplying energy to the cell."
+              ]
             },
             {
               "id": "q123456790",
@@ -132,7 +135,10 @@
               "question": ["How many countries were part of G20 in 2023?"],
               "options": [["18"], ["19"], ["20"], ["21"]],
               "tags": [],
-              "answer": 2
+              "answer": 2,
+              "solution": [
+                "19 countries and the European Union participated in the G20 in 2023."
+              ]
             },
             {
               "id": "q123456791",
@@ -145,7 +151,8 @@
               "question": ["How many states are there in the USA?"],
               "options": null,
               "tags": [],
-              "answer": 50
+              "answer": 50,
+              "solution": ["To be memorized"]
             },
             {
               "id": "q123456792",
@@ -168,7 +175,8 @@
               "answer": [0, 2],
               "constraints": {
                 "permissionOnAttempt": "view"
-              }
+              },
+              "solution": ["To be memorized"]
             },
             {
               "id": "q123456793",
@@ -183,7 +191,8 @@
               ],
               "options": [["France"], ["Spain"], ["UK"], ["Soviet Union"]],
               "tags": [],
-              "answer": [0, 2, 3]
+              "answer": [0, 2, 3],
+              "solution": ["To be memorized"]
             },
             {
               "id": "q123456794",
@@ -206,7 +215,8 @@
               "answer": 0,
               "constraints": {
                 "permissionOnAttempt": "none"
-              }
+              },
+              "solution": null
             },
             {
               "id": "q123456794",
@@ -222,6 +232,7 @@
               "options": [["Black"], ["White"], ["Dark Blue"], ["Brown"]],
               "tags": [],
               "answer": 1,
+              "solution": null,
               "constraints": {
                 "maximumTimeAllowed": 1
               }
@@ -238,6 +249,7 @@
                 "How many countries are there in the world according to the UN?"
               ],
               "options": null,
+              "solution": null,
               "tags": [],
               "answer": 195
             },
@@ -254,7 +266,8 @@
               ],
               "options": [["Purple"], ["Magenta"], ["Brown"], ["Red"]],
               "tags": [],
-              "answer": 1
+              "answer": 1,
+              "solution": null
             },
             {
               "id": "q123456797",
@@ -269,7 +282,8 @@
               ],
               "options": [["Hydrogen"], ["Helium"], ["Sulphur"], ["Iron"]],
               "tags": [],
-              "answer": [0, 1, 2, 3]
+              "answer": [0, 1, 2, 3],
+              "solution": null
             }
           ]
         },
@@ -291,7 +305,8 @@
               ],
               "options": [["Sunday"], ["Monday"], ["Tuesday"], ["Wednesday"]],
               "tags": [],
-              "answer": 2
+              "answer": 2,
+              "solution": null
             },
             {
               "id": "q123456890",
@@ -306,7 +321,8 @@
               ],
               "options": null,
               "tags": [],
-              "answer": 10
+              "answer": 10,
+              "solution": null
             }
           ]
         },
@@ -328,7 +344,8 @@
               ],
               "options": null,
               "tags": [],
-              "answer": 20
+              "answer": 20,
+              "solution": null
             },
             {
               "id": "q123457790",
@@ -343,7 +360,8 @@
               ],
               "options": [["140"], ["280"], ["420"], ["560"]],
               "tags": [],
-              "answer": 3
+              "answer": 3,
+              "solution": null
             }
           ]
         }
@@ -380,7 +398,8 @@
                 ["Cannot be determined"]
               ],
               "tags": [],
-              "answer": 2
+              "answer": 2,
+              "solution": null
             },
             {
               "id": "q2002",
@@ -400,7 +419,8 @@
                 ["$\\frac{1}{r^2}$"]
               ],
               "tags": [],
-              "answer": 3
+              "answer": 3,
+              "solution": null
             }
           ]
         },
@@ -427,7 +447,8 @@
               ],
               "options": [["Barium"], ["Nitrogen"], ["Mercury"], ["Germanium"]],
               "tags": [],
-              "answer": [0, 2]
+              "answer": [0, 2],
+              "solution": null
             },
             {
               "id": "q2102",
@@ -440,7 +461,8 @@
               "question": ["What is the average molecular mass of NaCl?"],
               "options": null,
               "tags": [],
-              "answer": 29.25
+              "answer": 29.25,
+              "solution": null
             }
           ]
         },
@@ -470,7 +492,8 @@
                 ["$\\cos{x} \\tan{x}$"]
               ],
               "tags": [],
-              "answer": 1
+              "answer": 1,
+              "solution": null
             },
             {
               "id": "q2202",
@@ -485,7 +508,8 @@
               ],
               "options": null,
               "tags": [],
-              "answer": 1
+              "answer": 1,
+              "solution": null
             }
           ]
         }
@@ -517,7 +541,8 @@
               ],
               "options": [["Balkans"], ["Austria"], ["Poland"], ["Turkey"]],
               "tags": [],
-              "answer": 0
+              "answer": 0,
+              "solution": null
             },
             {
               "id": "q3002",
@@ -532,7 +557,8 @@
               ],
               "options": null,
               "tags": [],
-              "answer": 11
+              "answer": 11,
+              "solution": null
             }
           ]
         },
@@ -554,7 +580,8 @@
               ],
               "options": null,
               "tags": [],
-              "answer": 7
+              "answer": 7,
+              "solution": null
             },
             {
               "id": "q3102",
@@ -567,7 +594,8 @@
               "question": ["What type of governance does India follow?"],
               "options": [["Federal"], ["Quasi-federal"]],
               "tags": [],
-              "answer": 1
+              "answer": 1,
+              "solution": null
             }
           ]
         },
@@ -589,7 +617,8 @@
               ],
               "options": [["52%"], ["42%"], ["32%"], ["22%"]],
               "tags": [],
-              "answer": 3
+              "answer": 3,
+              "solution": null
             },
             {
               "id": "q3202",
@@ -608,7 +637,8 @@
                 ["6 species of butterflies"]
               ],
               "tags": [],
-              "answer": 1
+              "answer": 1,
+              "solution": null
             }
           ]
         },
@@ -639,7 +669,8 @@
                 ]
               ],
               "tags": [],
-              "answer": [0, 2, 3]
+              "answer": [0, 2, 3],
+              "solution": null
             },
             {
               "id": "q3302",
@@ -659,7 +690,8 @@
                 ["Telangana"]
               ],
               "tags": [],
-              "answer": 1
+              "answer": 1,
+              "solution": null
             }
           ]
         }

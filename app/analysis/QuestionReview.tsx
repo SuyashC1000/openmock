@@ -5,9 +5,11 @@ import {
   AlertDescription,
   AlertIcon,
   Badge,
+  Box,
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
+  Button,
   Card,
   CardBody,
   Checkbox,
@@ -16,6 +18,7 @@ import {
   GridItem,
   Heading,
   Icon,
+  IconButton,
   NumberInput,
   NumberInputField,
   Radio,
@@ -38,7 +41,14 @@ import {
 } from "../_functions/getActiveCacheAdvanced";
 import { TestPaperQuestion } from "../_interface/testData";
 import { Evaluation, QDataTypes } from "@/lib/enums";
-import { TbCheck, TbX } from "react-icons/tb";
+import {
+  TbCaretLeft,
+  TbCaretLeftFilled,
+  TbCaretRightFilled,
+  TbCheck,
+  TbLanguage,
+  TbX,
+} from "react-icons/tb";
 import Marks from "../_components/Marks";
 import "katex/dist/katex.min.css";
 
@@ -82,9 +92,7 @@ const ResponseReview = ({
       {qDataType === QDataTypes.SingleCorrectOption && (
         <RadioGroup
           value={
-            responseQuestion.submit !== null
-              ? `${responseQuestion.submit}`
-              : undefined
+            responseQuestion.submit !== null ? `${responseQuestion.submit}` : ""
           }
         >
           {paperQuestion.options!.map((e, i) => {
@@ -206,6 +214,11 @@ const QuestionReview = () => {
             ? "Unattempted"
             : "Error";
 
+  const solutionMsg: string =
+    qPaper.solution !== null && qPaper.solution.length !== 0
+      ? qPaper.solution[languageIndex]
+      : "(Solution not provided)";
+
   function handleUpdateIndexList(newIndexList: [number, number, number]): void {
     console.log(newIndexList);
 
@@ -221,9 +234,38 @@ const QuestionReview = () => {
     );
   }
 
+  function deviateIndexList(indexType: 0 | 1 | 2, nature: "inc" | "dec") {
+    let newIndex = activeQIndex;
+    let validIndexLists = finalQIndexList;
+
+    if (indexType === 1) {
+      validIndexLists = validIndexLists.filter((e) => e[2] == 0);
+    } else if (indexType === 0) {
+      validIndexLists = validIndexLists.filter((e) => e[2] == 0 && e[1] == 0);
+    }
+
+    const indexPlace = validIndexLists.indexOf(activeQIndex);
+
+    if (nature === "inc") {
+      if (indexPlace < validIndexLists.length - 1) {
+        newIndex = validIndexLists[indexPlace + 1];
+      } else {
+        newIndex = validIndexLists[0];
+      }
+    } else if (nature === "dec") {
+      if (indexPlace > 0) {
+        newIndex = validIndexLists[indexPlace - 1];
+      } else {
+        newIndex = validIndexLists[validIndexLists.length - 1];
+      }
+    }
+
+    handleUpdateIndexList(newIndex);
+  }
+
   React.useEffect(() => {
     let initialList: [number, number, number][] = [];
-    const initialQuestionIndex = 2;
+    const initialQuestionIndex = 0;
 
     testResponse.body.forEach((e, i) => {
       e.sections.forEach((f, j) => {
@@ -252,70 +294,162 @@ const QuestionReview = () => {
 
   return (
     <div>
-      <Breadcrumb className=" w-fit px-3 rounded-full">
-        <BreadcrumbItem>
-          <Select
-            value={activeQIndex[0]}
-            size={"sm"}
-            variant={"flushed"}
-            onChange={(e) => {
-              handleUpdateIndexList([+e.target.value, 0, 0]);
-            }}
-          >
-            {testPaper.body.map((e, i) => {
-              return (
-                <option value={i} key={i}>
-                  {e.groupName}
-                </option>
-              );
-            })}
-          </Select>
-        </BreadcrumbItem>
-        <BreadcrumbItem>
-          <Select
-            value={activeQIndex[1]}
-            size={"sm"}
-            variant={"flushed"}
-            onChange={(e) => {
-              handleUpdateIndexList([activeQIndex[0], +e.target.value, 0]);
-            }}
-          >
-            {testPaper.body[activeQIndex[0]].sections.map((e, i) => {
-              return (
-                <option value={i} key={i}>
-                  {e.sectionName}
-                </option>
-              );
-            })}
-          </Select>
-        </BreadcrumbItem>
-        <BreadcrumbItem>
-          <Select
-            value={activeQIndex[2]}
-            size={"sm"}
-            variant={"flushed"}
-            onChange={(e) => {
-              console.log([activeQIndex[0], activeQIndex[1], +e.target.value]);
+      <div
+        className="flex justify-between items-center sticky top-2 z-10 px-3 py-1 rounded-xl
+       bg-neutral-100 border-2 border-neutral-300"
+      >
+        <Breadcrumb className=" w-fit px-3 rounded-full">
+          <BreadcrumbItem>
+            <Button
+              size={"sm"}
+              p={0}
+              variant={"ghost"}
+              colorScheme="blackAlpha"
+              onClick={() => {
+                deviateIndexList(0, "dec");
+              }}
+            >
+              <Icon fontSize={"lg"} as={TbCaretLeftFilled} />
+            </Button>
+            <Select
+              value={activeQIndex[0]}
+              size={"sm"}
+              w={"12rem"}
+              variant={"flushed"}
+              onChange={(e) => {
+                handleUpdateIndexList([+e.target.value, 0, 0]);
+              }}
+            >
+              {testPaper.body.map((e, i) => {
+                return (
+                  <option value={i} key={i}>
+                    {e.groupName}
+                  </option>
+                );
+              })}
+            </Select>
+            <Button
+              size={"sm"}
+              p={0}
+              variant={"ghost"}
+              colorScheme="blackAlpha"
+              onClick={() => {
+                deviateIndexList(0, "inc");
+              }}
+            >
+              <Icon fontSize={"lg"} as={TbCaretRightFilled} />
+            </Button>
+          </BreadcrumbItem>
 
-              handleUpdateIndexList([
-                activeQIndex[0],
-                activeQIndex[1],
-                +e.target.value,
-              ]);
+          <BreadcrumbItem>
+            <Button
+              size={"sm"}
+              p={0}
+              variant={"ghost"}
+              colorScheme="blackAlpha"
+              onClick={() => {
+                deviateIndexList(1, "dec");
+              }}
+            >
+              <Icon fontSize={"lg"} as={TbCaretLeftFilled} />
+            </Button>
+            <Select
+              value={activeQIndex[1]}
+              size={"sm"}
+              w={"12rem"}
+              variant={"flushed"}
+              onChange={(e) => {
+                handleUpdateIndexList([activeQIndex[0], +e.target.value, 0]);
+              }}
+            >
+              {testPaper.body[activeQIndex[0]].sections.map((e, i) => {
+                return (
+                  <option value={i} key={i}>
+                    {e.sectionName}
+                  </option>
+                );
+              })}
+            </Select>
+            <Button
+              size={"sm"}
+              p={0}
+              variant={"ghost"}
+              colorScheme="blackAlpha"
+              onClick={() => {
+                deviateIndexList(1, "inc");
+              }}
+            >
+              <Icon fontSize={"lg"} as={TbCaretRightFilled} />
+            </Button>
+          </BreadcrumbItem>
+
+          <BreadcrumbItem>
+            <Button
+              size={"sm"}
+              p={0}
+              variant={"ghost"}
+              colorScheme="blackAlpha"
+              onClick={() => {
+                deviateIndexList(2, "dec");
+              }}
+            >
+              <Icon fontSize={"lg"} as={TbCaretLeftFilled} />
+            </Button>
+            <Select
+              value={activeQIndex[2]}
+              size={"sm"}
+              w={"5rem"}
+              variant={"flushed"}
+              onChange={(e) => {
+                handleUpdateIndexList([
+                  activeQIndex[0],
+                  activeQIndex[1],
+                  +e.target.value,
+                ]);
+              }}
+            >
+              {testPaper.body[activeQIndex[0]].sections[
+                activeQIndex[1]
+              ].questions.map((e, i) => {
+                return (
+                  <option value={i} key={i}>
+                    Q{i + 1}
+                  </option>
+                );
+              })}
+            </Select>
+            <Button
+              size={"sm"}
+              p={0}
+              variant={"ghost"}
+              colorScheme="blackAlpha"
+              onClick={() => {
+                deviateIndexList(2, "inc");
+              }}
+            >
+              <Icon fontSize={"lg"} as={TbCaretRightFilled} />
+            </Button>
+          </BreadcrumbItem>
+        </Breadcrumb>
+        <div>
+          <Select
+            w={"fit"}
+            variant={"unstyled"}
+            onChange={(e) => {
+              setLanguageIndex(+e.target.value);
             }}
           >
-            {testPaper.body[activeQIndex[0]].sections[
-              activeQIndex[1]
-            ].questions.map((e, i) => {
+            {testPaper.languages.map((e, i) => {
               return (
                 <option value={i} key={i}>
-                  Question {i + 1}
+                  {e}
                 </option>
               );
             })}
           </Select>
-        </BreadcrumbItem>
-      </Breadcrumb>
+        </div>
+      </div>
+
       {(testResponse.body[activeQIndex[0]].hasOpted === false ||
         testResponse.body[activeQIndex[0]].sections[activeQIndex[1]]
           .selected === false) && (
@@ -364,20 +498,35 @@ const QuestionReview = () => {
             responseQuestion={qResponse}
             languageIndex={languageIndex}
           />
+          <br />
+          <Box>
+            <Grid templateColumns={"repeat(auto-fill, minmax(14rem, 1fr))"}>
+              <StatsCard label="Evaluation" content={evaluationMsg} />
+              <StatsCard
+                label="Marks awarded"
+                content={Marks([qResponse.marks, 1], "element")}
+              />
+              <StatsCard
+                label="Time taken"
+                content={qResponse.timeSpent + "s"}
+              />
+            </Grid>
+          </Box>
         </CardBody>
       </Card>
       <br />
       <Card>
         <CardBody>
-          <Heading size={"sm"}>Remarks:</Heading>
-          <Grid templateColumns={"repeat(auto-fill, minmax(14rem, 1fr))"}>
-            <StatsCard label="Evaluation" content={evaluationMsg} />
-            <StatsCard
-              label="Marks awarded"
-              content={Marks([qResponse.marks, 1], "element")}
-            />
-            <StatsCard label="Time taken" content={qResponse.timeSpent + "s"} />
-          </Grid>
+          <Heading size={"sm"}>Solution:</Heading>
+          <Text>
+            <Markdown
+              className={"font-serif text-lg"}
+              remarkPlugins={[remarkGfm, remarkMath]}
+              rehypePlugins={[rehypeKatex]}
+            >
+              {solutionMsg}
+            </Markdown>
+          </Text>
         </CardBody>
       </Card>
     </div>
