@@ -4,7 +4,6 @@ export interface TestPaper {
   timeCreated: number;
   authors: TestPaperAuthor[];
   maxTime: number;
-  subjects: string[];
   languages: string[];
   instructions: string[];
   additionalTools: {
@@ -37,7 +36,6 @@ export interface TestPaperQuestion {
 
 export interface TestPaperSection {
   sectionName: string;
-  consolidateSubject: string;
   optional: boolean;
   instructions?: string[];
   questions: TestPaperQuestion[];

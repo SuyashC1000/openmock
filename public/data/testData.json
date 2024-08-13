@@ -73,7 +73,6 @@
     }
   ],
   "maxTime": 180,
-  "subjects": ["General Aptitude", "Science", "Social Science"],
   "languages": ["English"],
   "instructions": [""],
   "usefulData": [
@@ -98,7 +97,6 @@
         {
           "sectionName": "General Knowledge",
           "optional": false,
-          "consolidateSubject": "General Aptitude",
           "constraints": {
             "maxQuestionsAnswered": 9
           },
@@ -290,7 +288,6 @@
         {
           "sectionName": "Logical Reasoning",
           "optional": true,
-          "consolidateSubject": "General Aptitude",
           "questions": [
             {
               "id": "q123456889",
@@ -329,7 +326,6 @@
         {
           "sectionName": "Mathematical Ability",
           "optional": true,
-          "consolidateSubject": "General Aptitude",
           "questions": [
             {
               "id": "q123457789",
@@ -378,7 +374,6 @@
         {
           "sectionName": "Physics",
           "optional": false,
-          "consolidateSubject": "Science",
           "questions": [
             {
               "id": "q2001",
@@ -427,7 +422,6 @@
         {
           "sectionName": "Chemistry",
           "optional": false,
-          "consolidateSubject": "Science",
           "questions": [
             {
               "id": "q2101",
@@ -469,7 +463,6 @@
         {
           "sectionName": "Maths",
           "optional": false,
-          "consolidateSubject": "Science",
           "instructions": [
             "You may need to do rough work to solve these questions."
           ],
@@ -526,7 +519,6 @@
         {
           "sectionName": "History",
           "optional": false,
-          "consolidateSubject": "Social Science",
           "questions": [
             {
               "id": "q3001",
@@ -565,7 +557,6 @@
         {
           "sectionName": "Political Science",
           "optional": false,
-          "consolidateSubject": "Social Science",
           "questions": [
             {
               "id": "q3101",
@@ -602,7 +593,6 @@
         {
           "sectionName": "Geography",
           "optional": false,
-          "consolidateSubject": "Social Science",
           "questions": [
             {
               "id": "q3201",
@@ -645,7 +635,6 @@
         {
           "sectionName": "Economics",
           "optional": false,
-          "consolidateSubject": "Social Science",
           "questions": [
             {
               "id": "q3301",
