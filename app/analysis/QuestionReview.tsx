@@ -17,8 +17,13 @@ import {
   Grid,
   GridItem,
   Heading,
+  HStack,
   Icon,
   IconButton,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
   NumberInput,
   NumberInputField,
   Radio,
@@ -28,6 +33,7 @@ import {
   StatHelpText,
   StatLabel,
   StatNumber,
+  Tag,
   Text,
 } from "@chakra-ui/react";
 import { TestResponse, TestResponseQuestion } from "../_interface/testResponse";
@@ -42,6 +48,8 @@ import {
 import { TestPaperQuestion } from "../_interface/testData";
 import { Evaluation, QDataTypes } from "@/lib/enums";
 import {
+  TbAdjustments,
+  TbAdjustmentsHorizontal,
   TbCaretLeft,
   TbCaretLeftFilled,
   TbCaretRightFilled,
@@ -51,6 +59,7 @@ import {
 } from "react-icons/tb";
 import Marks from "../_components/Marks";
 import "katex/dist/katex.min.css";
+import { getTagDataByID } from "../_functions/getTagData";
 
 const StatsCard = ({
   label,
@@ -431,7 +440,7 @@ const QuestionReview = () => {
             </Button>
           </BreadcrumbItem>
         </Breadcrumb>
-        <div>
+        <div className="flex justify-center items-center gap-5">
           <Select
             w={"fit"}
             variant={"unstyled"}
@@ -487,6 +496,22 @@ const QuestionReview = () => {
               }
             </Markdown>
           </Text>
+          {qPaper.tags.length > 0 && (
+            <div className="flex items-center gap-3 mt-3">
+              <Text>Tags:</Text>
+              <HStack spacing={2}>
+                {qPaper.tags.map((e, i) => {
+                  const tag = getTagDataByID(testPaper, e);
+
+                  return (
+                    <Tag key={tag.id} bgColor={tag.color}>
+                      {tag.label}
+                    </Tag>
+                  );
+                })}
+              </HStack>
+            </div>
+          )}
         </CardBody>
       </Card>
       <br />

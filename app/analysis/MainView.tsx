@@ -18,6 +18,7 @@ import QuestionsStats from "./QuestionsStats";
 import EvalStats from "./EvalStats";
 import TimeStats from "./TimeStats";
 import QuestionReview from "./QuestionReview";
+import TagStats from "./TagStats";
 
 const MainView = () => {
   const testResponse = React.useContext(activeTestResponseContext);
@@ -51,6 +52,7 @@ const MainView = () => {
               <MarksStats />
               <QuestionsStats />
               {/* <TimeStats /> */}
+              <TagStats />
               <EvalStats />
               {/* <RawDataDisplay /> */}
             </div>

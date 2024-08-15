@@ -11,6 +11,10 @@ import { TestResponse } from "../_interface/testResponse";
 import Head from "next/head";
 import RawDataDisplay from "./RawDataDisplay";
 import MainView from "./MainView";
+import { evaluateMarks } from "../_functions/evaluateMarks";
+import { calculateScoreData } from "../_functions/calculateScoreData";
+
+import testPaperRaw from "../../public/data/testData.json";
 
 export const SuppliedTestPaperContext =
   React.createContext<TestPaper>(emptyTestPaper);
@@ -38,8 +42,11 @@ const AnalysisPage = () => {
           .equals(attemptResponse[0].testId)
           .toArray();
         if (paperResponse.length === 1) {
-          setActiveTestResponse(attemptResponse[0]);
+          setActiveTestResponse(
+            calculateScoreData(paperResponse[0], attemptResponse[0])
+          );
           setSuppliedTestPaper(paperResponse[0]);
+          setSuppliedTestPaper(testPaperRaw);
           setStatus("success");
         } else {
           setStatus("failure");

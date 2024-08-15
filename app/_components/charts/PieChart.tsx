@@ -13,11 +13,15 @@ export const MyResponsivePie = ({
   isHalf = false,
   defaultScheme = false,
   showLegend = false,
+  showArcLabels = false,
+  showArcLinkLabels = false,
 }: {
   data: MayHaveLabel[];
   isHalf?: boolean;
   defaultScheme?: boolean;
   showLegend?: boolean;
+  showArcLabels?: boolean;
+  showArcLinkLabels?: boolean;
 }) => (
   <ResponsivePie
     data={data}
@@ -31,40 +35,33 @@ export const MyResponsivePie = ({
       from: "color",
       modifiers: [["darker", 0.2]],
     }}
-    enableArcLinkLabels={false}
+    enableArcLinkLabels={showArcLinkLabels}
+    arcLinkLabel={(e) => `${e.label} (${e.value})`}
     arcLinkLabelsSkipAngle={10}
     arcLinkLabelsTextColor="#333333"
     arcLinkLabelsThickness={2}
     arcLabel={(e) => `${e.value}`}
     arcLinkLabelsColor={{ from: "color" }}
-    enableArcLabels={false}
-    arcLabelsTextColor={{ theme: "background" }}
+    enableArcLabels={showArcLabels}
+    arcLabelsTextColor={{
+      from: "color",
+      modifiers: [["darker", 2]],
+    }}
     colors={defaultScheme ? { scheme: "pastel1" } : { datum: "data.color" }}
     legends={
-      showLegend === true
+      showLegend
         ? [
             {
-              anchor: "bottom",
-              direction: "row",
+              anchor: "right",
+              direction: "column",
               justify: false,
               translateX: 0,
-              translateY: 56,
-              itemsSpacing: 0,
+              translateY: 0,
               itemWidth: 100,
-              itemHeight: 18,
-              itemTextColor: "#999",
+              itemHeight: 10,
+              itemsSpacing: 30,
+              symbolSize: 26,
               itemDirection: "left-to-right",
-              itemOpacity: 1,
-              symbolSize: 18,
-              symbolShape: "circle",
-              effects: [
-                {
-                  on: "hover",
-                  style: {
-                    itemTextColor: "#000",
-                  },
-                },
-              ],
             },
           ]
         : undefined

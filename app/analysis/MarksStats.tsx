@@ -117,7 +117,7 @@ const MarksStats = () => {
                     {e.hasOpted !== false && (
                       <>
                         <Tr
-                          key={i}
+                          key={e.groupName}
                           className="font-bold border-t-2 border-t-neutral-200"
                         >
                           <Td>{e.groupName}</Td>
@@ -136,7 +136,7 @@ const MarksStats = () => {
                           return (
                             <>
                               {f.selected !== false && (
-                                <Tr key={j}>
+                                <Tr key={f.sectionName}>
                                   <Td>{f.sectionName}</Td>
                                   <Td>
                                     {Marks([secMarks.correct, 1], "element")}

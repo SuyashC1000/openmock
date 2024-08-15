@@ -2,6 +2,12 @@
   "id": "t1234567890",
   "name": "Test Paper",
   "timeCreated": 1717324690,
+  "tags": [
+    { "id": "g1", "label": "Easy", "color": "#86efac" },
+    { "id": "g2", "label": "Medium", "color": "#fde047" },
+    { "id": "g3", "label": "Hard", "color": "#fca5a5" },
+    { "id": "g4", "label": "Important", "color": "#d8b4fe" }
+  ],
   "authors": [
     {
       "name": "John Doe",
@@ -75,6 +81,18 @@
   "maxTime": 180,
   "languages": ["English"],
   "instructions": [""],
+  "analysis": {
+    "customTagStats": [
+      {
+        "label": "Difficulty",
+        "tags": ["g1", "g2", "g3"]
+      },
+      {
+        "label": "Important",
+        "tags": ["g4", ""]
+      }
+    ]
+  },
   "usefulData": [
     "$$\\pi = 3.14159$$\n\n$$e = 2.71828$$\n\n$$\\text{Na}= 23\\text{amu}$$\n\n$$\\text{Cl}= 35.5\\text{amu}$$"
   ],
@@ -109,6 +127,7 @@
                 [4, 1],
                 [-1, 1]
               ],
+              "tags": ["g3", "g4"],
               "question": ["What is the powerhouse of the cell?"],
               "options": [
                 ["Mitochondria"],
@@ -116,7 +135,6 @@
                 ["Ribosome"],
                 ["Lysosome"]
               ],
-              "tags": [],
               "answer": 0,
               "solution": [
                 "Mitochondria is the organelle responsible for supplying energy to the cell."
@@ -132,7 +150,7 @@
               ],
               "question": ["How many countries were part of G20 in 2023?"],
               "options": [["18"], ["19"], ["20"], ["21"]],
-              "tags": [],
+              "tags": ["g1", "g4"],
               "answer": 2,
               "solution": [
                 "19 countries and the European Union participated in the G20 in 2023."
@@ -148,7 +166,7 @@
               ],
               "question": ["How many states are there in the USA?"],
               "options": null,
-              "tags": [],
+              "tags": ["g2"],
               "answer": 50,
               "solution": ["To be memorized"]
             },
@@ -169,7 +187,7 @@
                 ["Himachal Pradesh"],
                 ["Andhra Pradesh"]
               ],
-              "tags": [],
+              "tags": ["g2"],
               "answer": [0, 2],
               "constraints": {
                 "permissionOnAttempt": "view"
@@ -188,7 +206,7 @@
                 "Which of the following were part of the Allied forces in World War II?"
               ],
               "options": [["France"], ["Spain"], ["UK"], ["Soviet Union"]],
-              "tags": [],
+              "tags": ["g1"],
               "answer": [0, 2, 3],
               "solution": ["To be memorized"]
             },
@@ -209,7 +227,7 @@
                 ["Airways"],
                 ["Iron & Steel Plants"]
               ],
-              "tags": [],
+              "tags": ["g2"],
               "answer": 0,
               "constraints": {
                 "permissionOnAttempt": "none"
@@ -228,7 +246,7 @@
                 "What colour is obtained on mixing all colours of a rainbow in an additive manner?"
               ],
               "options": [["Black"], ["White"], ["Dark Blue"], ["Brown"]],
-              "tags": [],
+              "tags": ["g1"],
               "answer": 1,
               "solution": null,
               "constraints": {
@@ -248,7 +266,7 @@
               ],
               "options": null,
               "solution": null,
-              "tags": [],
+              "tags": ["g3"],
               "answer": 195
             },
             {
@@ -263,7 +281,7 @@
                 "Which colour among the following does not exist in real life?"
               ],
               "options": [["Purple"], ["Magenta"], ["Brown"], ["Red"]],
-              "tags": [],
+              "tags": ["g3"],
               "answer": 1,
               "solution": null
             },
@@ -279,7 +297,7 @@
                 "What elements are formed due to fusion during the life of a star?"
               ],
               "options": [["Hydrogen"], ["Helium"], ["Sulphur"], ["Iron"]],
-              "tags": [],
+              "tags": ["g3"],
               "answer": [0, 1, 2, 3],
               "solution": null
             }
@@ -301,7 +319,7 @@
                 "If it was Monday on February 1, 2008, then what day was it on March 1, 2008?"
               ],
               "options": [["Sunday"], ["Monday"], ["Tuesday"], ["Wednesday"]],
-              "tags": [],
+              "tags": ["g2"],
               "answer": 2,
               "solution": null
             },
@@ -317,7 +335,7 @@
                 "If a person walks 6m north then turns right and walks another 8m, then how far is he from his initial position (in m)?"
               ],
               "options": null,
-              "tags": [],
+              "tags": ["g1"],
               "answer": 10,
               "solution": null
             }
@@ -339,7 +357,7 @@
                 "If the present ages of X and Y are in the ratio of 3:4 and five years ago they were in the ratio of 2:3, what is the present age of Y?"
               ],
               "options": null,
-              "tags": [],
+              "tags": ["g3"],
               "answer": 20,
               "solution": null
             },
@@ -355,7 +373,7 @@
                 "if 25% of 35% of x equals square of 7, what is the value of x?"
               ],
               "options": [["140"], ["280"], ["420"], ["560"]],
-              "tags": [],
+              "tags": ["g2"],
               "answer": 3,
               "solution": null
             }
@@ -392,7 +410,7 @@
                 ["Stays the same"],
                 ["Cannot be determined"]
               ],
-              "tags": [],
+              "tags": ["g2"],
               "answer": 2,
               "solution": null
             },
@@ -413,7 +431,7 @@
                 ["$\\frac{1}{r}$"],
                 ["$\\frac{1}{r^2}$"]
               ],
-              "tags": [],
+              "tags": ["g1", "g4"],
               "answer": 3,
               "solution": null
             }
@@ -440,7 +458,7 @@
                 "Which of these elements is/are metallic in nature?"
               ],
               "options": [["Barium"], ["Nitrogen"], ["Mercury"], ["Germanium"]],
-              "tags": [],
+              "tags": ["g2"],
               "answer": [0, 2],
               "solution": null
             },
@@ -454,7 +472,7 @@
               ],
               "question": ["What is the average molecular mass of NaCl?"],
               "options": null,
-              "tags": [],
+              "tags": ["g3"],
               "answer": 29.25,
               "solution": null
             }
@@ -484,7 +502,7 @@
                 ["$\\sin{x} \\tan{x}$"],
                 ["$\\cos{x} \\tan{x}$"]
               ],
-              "tags": [],
+              "tags": ["g3"],
               "answer": 1,
               "solution": null
             },
@@ -500,7 +518,7 @@
                 "What is the smallest natural number that is both a perfect square and a perfect cube?"
               ],
               "options": null,
-              "tags": [],
+              "tags": ["g2"],
               "answer": 1,
               "solution": null
             }
@@ -532,7 +550,7 @@
                 "Which area became the scene of big power rivalry after 1871?"
               ],
               "options": [["Balkans"], ["Austria"], ["Poland"], ["Turkey"]],
-              "tags": [],
+              "tags": ["g2"],
               "answer": 0,
               "solution": null
             },
@@ -548,7 +566,7 @@
                 "How many demands did Gandhi state in his letter to Lord Irwin?"
               ],
               "options": null,
-              "tags": [],
+              "tags": ["g2"],
               "answer": 11,
               "solution": null
             }
@@ -570,7 +588,7 @@
                 "As of 2024, how many national parties are there in India?"
               ],
               "options": null,
-              "tags": [],
+              "tags": ["g1", "g4"],
               "answer": 7,
               "solution": null
             },
@@ -584,7 +602,7 @@
               ],
               "question": ["What type of governance does India follow?"],
               "options": [["Federal"], ["Quasi-federal"]],
-              "tags": [],
+              "tags": ["g1"],
               "answer": 1,
               "solution": null
             }
@@ -606,7 +624,7 @@
                 "How much energy does India generate through hydroelectric power plants?"
               ],
               "options": [["52%"], ["42%"], ["32%"], ["22%"]],
-              "tags": [],
+              "tags": ["g2"],
               "answer": 3,
               "solution": null
             },
@@ -626,7 +644,7 @@
                 ["6 species of plants"],
                 ["6 species of butterflies"]
               ],
-              "tags": [],
+              "tags": ["g2"],
               "answer": 1,
               "solution": null
             }
@@ -657,7 +675,7 @@
                   "Members can use the group's money to buy agricultural products, release mortgaged lands etc."
                 ]
               ],
-              "tags": [],
+              "tags": ["g1"],
               "answer": [0, 2, 3],
               "solution": null
             },
@@ -678,7 +696,7 @@
                 ["Tamil Nadu"],
                 ["Telangana"]
               ],
-              "tags": [],
+              "tags": ["g1", "g4"],
               "answer": 1,
               "solution": null
             }

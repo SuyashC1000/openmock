@@ -2,8 +2,18 @@ import React from "react";
 import { activeTestResponseContext, SuppliedTestPaperContext } from "./page";
 import { Card, CardBody, Heading, Icon, Text } from "@chakra-ui/react";
 import { TestResponseQuestion } from "../_interface/testResponse";
-import { TbClock, TbDiamonds, TbTallymarks } from "react-icons/tb";
+import {
+  TbCircleCheck,
+  TbCircleDashed,
+  TbCircleDot,
+  TbCircleMinus,
+  TbCircleX,
+  TbClock,
+  TbDiamonds,
+  TbTallymarks,
+} from "react-icons/tb";
 import { Evaluation, QuestionStatus } from "@/lib/enums";
+import { IconType } from "react-icons/lib";
 
 const QuestionEvalStatus = ({
   index,
@@ -13,24 +23,29 @@ const QuestionEvalStatus = ({
   question: TestResponseQuestion;
 }) => {
   let background: string = "";
+  let evalIcon: IconType = TbCircleDashed;
   switch (question.evaluation) {
     case Evaluation.Correct:
-      background = "bg-green-200";
+      background = "green";
+      evalIcon = TbCircleCheck;
       break;
     case Evaluation.Incorrect:
-      background = "bg-red-200";
+      background = "red";
+      evalIcon = TbCircleX;
       break;
     case Evaluation.Partial:
-      background = "bg-yellow-200";
+      background = "yellow";
+      evalIcon = TbCircleDot;
       break;
     case Evaluation.Unattempted:
-      background = "bg-neutral-200";
+      background = "neutral";
+      evalIcon = TbCircleMinus;
       break;
   }
 
   return (
     <div
-      className={`h-16 min-w-28 max-w-fit ${background} flex flex-col
+      className={`h-16 min-w-28 max-w-fit bg-${background}-200 flex flex-col
     justify-center items-center rounded-lg p-2 relative`}
     >
       <Heading size={"md"}>{index}</Heading>
@@ -39,6 +54,9 @@ const QuestionEvalStatus = ({
         {question.marks} | <Icon as={TbClock} />
         {question.timeSpent}s
       </Text>
+      <div className={`absolute top-1 left-1 text-${background}-600`}>
+        <Icon as={evalIcon} fontSize={25} strokeWidth={1.5} />
+      </div>
       {[QuestionStatus.Marked, QuestionStatus.AnsweredMarked].includes(
         question.status
       ) && (
@@ -57,10 +75,6 @@ const EvalStats = () => {
       <Heading size={"lg"}>Evaluation Stats</Heading>
       <Card>
         <CardBody>
-          {/* <QuestionEvalStatus
-            index={1}
-            question={testResponse.body[0].sections[0].questions[0]}
-          /> */}
           {testResponse.body.map((e, i) => {
             return (
               <>

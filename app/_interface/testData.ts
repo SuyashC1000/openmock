@@ -2,6 +2,7 @@ export interface TestPaper {
   id: string;
   name: string;
   timeCreated: number;
+  tags: TestPaperTag[];
   authors: TestPaperAuthor[];
   maxTime: number;
   languages: string[];
@@ -13,6 +14,12 @@ export interface TestPaper {
   };
   usefulData?: string[];
   body: TestPaperGroup[];
+  analysis: {
+    preTestMessage?: string[];
+    postTestMessage?: string[];
+    customEvaluation?: TestPaperCustomEvaluation;
+    customTagStats?: TestPaperCustomTagStats[];
+  };
   [k: string]: unknown;
 }
 
@@ -27,7 +34,7 @@ export interface TestPaperQuestion {
   };
   question: string[];
   options: string[][] | null;
-  tags: unknown[];
+  tags: string[];
   answer: number | number[];
   solution: string[] | null;
   constraints?: TestPaperQuestionConstraints;
@@ -50,6 +57,12 @@ export interface TestPaperGroup {
   constraints?: TestPaperGroupConstraints;
   sections: TestPaperSection[];
   [k: string]: unknown;
+}
+
+export interface TestPaperTag {
+  id: string;
+  label: string;
+  color: string;
 }
 
 export interface TestPaperAuthor {
@@ -94,4 +107,15 @@ interface TestPaperQuestionConstraints {
   randomizeOptions?: boolean;
   maximumTimeAllowed?: number;
   permissionOnAttempt?: "all" | "view" | "none" | undefined;
+}
+
+interface TestPaperCustomEvaluation {
+  type: "grade" | "rank" | "percentile" | "passfail";
+  basis: "marks" | "percentage";
+  data: [{ label: string; range: [number, number] }];
+}
+
+interface TestPaperCustomTagStats {
+  label: string;
+  tags: string[];
 }
