@@ -84,11 +84,11 @@
   "analysis": {
     "customTagStats": [
       {
-        "label": "Difficulty",
+        "title": "Difficulty",
         "tags": ["g1", "g2", "g3"]
       },
       {
-        "label": "Important",
+        "title": "Important",
         "tags": ["g4", ""]
       }
     ]

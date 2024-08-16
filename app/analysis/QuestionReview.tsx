@@ -501,7 +501,7 @@ const QuestionReview = () => {
               <Text>Tags:</Text>
               <HStack spacing={2}>
                 {qPaper.tags.map((e, i) => {
-                  const tag = getTagDataByID(testPaper, e);
+                  const tag = getTagDataByID(testPaper, e)!;
 
                   return (
                     <Tag key={tag.id} bgColor={tag.color}>

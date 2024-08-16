@@ -116,6 +116,6 @@ interface TestPaperCustomEvaluation {
 }
 
 interface TestPaperCustomTagStats {
-  label: string;
+  title: string;
   tags: string[];
 }
