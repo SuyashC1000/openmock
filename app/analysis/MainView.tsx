@@ -51,7 +51,7 @@ const MainView = () => {
               <Summary />
               <MarksStats />
               <QuestionsStats />
-              {/* <TimeStats /> */}
+              <TimeStats />
               <TagStats />
               <EvalStats />
               {/* <RawDataDisplay /> */}

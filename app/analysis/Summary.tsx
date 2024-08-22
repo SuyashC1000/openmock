@@ -27,16 +27,14 @@ const Summary = () => {
 
   const scoreData = testResponse.scoreData;
 
+  const [languageIndex, setLanguageIndex] = React.useState(0);
+
   return (
     <div>
       <Heading size={"lg"}>Summary</Heading>
 
-      <div className="w-full flex flex-col gap-1">
-        <Grid
-          gap={3}
-          templateColumns={"repeat(auto-fit, minmax(10rem, 1fr))"}
-          m={1}
-        >
+      <div className="w-full flex flex-col gap-3 m-1">
+        <Grid gap={3} templateColumns={"repeat(auto-fit, minmax(10rem, 1fr))"}>
           <GridItem>
             <Card
               alignItems={"center"}
@@ -114,11 +112,7 @@ const Summary = () => {
           </GridItem>
         </Grid>
 
-        <Grid
-          gap={3}
-          templateColumns={"repeat(auto-fit, minmax(10rem, 1fr))"}
-          m={1}
-        >
+        <Grid gap={3} templateColumns={"repeat(auto-fit, minmax(10rem, 1fr))"}>
           <GridItem>
             <Card
               alignItems={"center"}
@@ -158,6 +152,29 @@ const Summary = () => {
             </Card>
           </GridItem>
         </Grid>
+        {testPaper.analysis.postTestMessage !== undefined && (
+          <Card>
+            <CardBody>
+              <div className="flex items-center justify-between">
+                <Heading size={"md"}>Message</Heading>
+                <select
+                  onChange={(e) => {
+                    setLanguageIndex(+e.target.value);
+                  }}
+                >
+                  {testPaper.languages.map((e, i) => {
+                    return (
+                      <option value={i} key={i}>
+                        {e}
+                      </option>
+                    );
+                  })}
+                </select>
+              </div>
+              <Text>{testPaper.analysis.postTestMessage[languageIndex]}</Text>
+            </CardBody>
+          </Card>
+        )}
       </div>
     </div>
   );

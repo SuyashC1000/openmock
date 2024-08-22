@@ -82,6 +82,7 @@
   "languages": ["English"],
   "instructions": [""],
   "analysis": {
+    "postTestMessage": ["Hello"],
     "customTagStats": [
       {
         "title": "Difficulty",
