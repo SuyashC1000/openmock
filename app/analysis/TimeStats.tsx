@@ -74,13 +74,11 @@ const TimeStats = () => {
   return (
     <div>
       <Heading size={"lg"}>Time Stats</Heading>
-      <br />
       <Card>
         <CardBody>
           <Heading size={"md"} textAlign={"center"}>
             Test Timeline
           </Heading>
-          <Text>{JSON.stringify(generateTimelineData())}</Text>
           <div style={{ height: 400, width: 1000 }}>
             <ResponsiveLine
               data={timelineData}
@@ -93,7 +91,7 @@ const TimeStats = () => {
                 reverse: false,
               }}
               yFormat=" >-.2f"
-              curve="natural"
+              curve="linear"
               axisTop={null}
               axisRight={null}
               axisBottom={{

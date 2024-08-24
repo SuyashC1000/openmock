@@ -4,7 +4,7 @@ export interface TestPaper {
   timeCreated: number;
   tags: TestPaperTag[];
   authors: TestPaperAuthor[];
-  maxTime: number;
+  maxMetrics: MaxMetrics;
   languages: string[];
   instructions: string[];
   additionalTools: {
@@ -118,4 +118,10 @@ interface TestPaperCustomEvaluation {
 interface TestPaperCustomTagStats {
   title: string;
   tags: string[];
+}
+
+interface MaxMetrics {
+  marks: number;
+  time: number;
+  questions: number;
 }

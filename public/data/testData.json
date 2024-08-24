@@ -1,13 +1,18 @@
 {
   "id": "t1234567890",
   "name": "Test Paper",
-  "timeCreated": 1717324690,
+  "timeCreated": 1717324690000,
   "tags": [
     { "id": "g1", "label": "Easy", "color": "#86efac" },
     { "id": "g2", "label": "Medium", "color": "#fde047" },
     { "id": "g3", "label": "Hard", "color": "#fca5a5" },
     { "id": "g4", "label": "Important", "color": "#d8b4fe" }
   ],
+  "maxMetrics": {
+    "marks": 100,
+    "questions": 25,
+    "time": 180
+  },
   "authors": [
     {
       "name": "John Doe",
@@ -78,10 +83,10 @@
       ]
     }
   ],
-  "maxTime": 180,
   "languages": ["English"],
   "instructions": [""],
   "analysis": {
+    "preTestMessage": ["Welcome to the test"],
     "postTestMessage": ["Hello"],
     "customTagStats": [
       {

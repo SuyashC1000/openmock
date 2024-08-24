@@ -1,11 +1,36 @@
+import { ScoreData } from "../_functions/calculateScoreData";
 import { TestPaper } from "../_interface/testData";
 import { TestResponse } from "../_interface/testResponse";
 import { UserCache } from "../_interface/userCache";
+
+export const emptyScoreData: ScoreData = {
+  marks: {
+    correct: 0,
+    incorrect: 0,
+    max: 0,
+    partial: 0,
+    total: 0,
+  },
+  questions: {
+    correct: 0,
+    incorrect: 0,
+    partial: 0,
+    total: 0,
+    unattempted: 0,
+  },
+};
 
 export const emptyTestPaper: TestPaper = {
   additionalTools: {
     calculator: "none",
     magnifyingGlass: false,
+  },
+  tags: [],
+  analysis: {},
+  maxMetrics: {
+    marks: 0,
+    questions: 0,
+    time: 0,
   },
   authors: [],
   name: "",
@@ -27,10 +52,10 @@ export const emptyTestPaper: TestPaper = {
           sectionName: "",
           questions: [
             {
+              solution: [""],
               question: [""],
               qDataType: [2, 0],
               markingScheme: [
-                [0, 1],
                 [0, 1],
                 [0, 1],
               ],
@@ -94,6 +119,7 @@ export const emptyUserCache: UserCache = {
 };
 export const emptyTestResponse: TestResponse = {
   testId: "",
+  scoreData: emptyScoreData,
   attemptId: "",
   timestamps: {
     testStartTime: 0,
@@ -103,16 +129,20 @@ export const emptyTestResponse: TestResponse = {
     {
       groupName: "",
       timeSpent: 0,
+      scoreData: emptyScoreData,
       sections: [
         {
           sectionName: "",
           questionDisplayList: [],
+          scoreData: emptyScoreData,
           questions: [
             {
               id: "",
               lastAnswered: 0,
               optionDisplayList: [],
               status: 0,
+              evaluation: 0,
+              marks: 0,
               submit: null,
               timeSpent: 0,
             },

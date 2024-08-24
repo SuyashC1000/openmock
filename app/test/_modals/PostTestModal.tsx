@@ -49,6 +49,7 @@ import SummaryTable from "../_misc/SummaryTable";
 import { getNumOfQuestionStatuses } from "@/app/_functions/getFunctions";
 import { AuthorLinkType, TestPaperAuthor } from "@/app/_interface/testData";
 import { db } from "@/db/db";
+import AuthorLinkButton from "@/app/_components/AuthorLinkButton";
 
 const PostTestModal = () => {
   const state = React.useContext(StateContext);
@@ -57,49 +58,6 @@ const PostTestModal = () => {
 
   const [showFinishModal, setShowFinishModal] = React.useState(true);
   const [pageIndex, setPageIndex] = React.useState(1);
-
-  const AuthorLinkButton = (props: TestPaperAuthor["links"][0]) => {
-    return (
-      <Link
-        href={
-          (props.type === AuthorLinkType.Email ? "mailto:" : "") +
-          (props.type === AuthorLinkType.Phone ? "tel:+" : "") +
-          props.url
-        }
-      >
-        <Button
-          size={"sm"}
-          variant={"outline"}
-          colorScheme="blue"
-          className="flex gap-1 items-center"
-          // leftIcon={<TbInfoHexagon />}
-        >
-          {props.type === AuthorLinkType.Email && (
-            <Icon as={TbMail} boxSize={"20px"} />
-          )}
-          {props.type === AuthorLinkType.Phone && (
-            <Icon as={TbPhone} boxSize={"20px"} />
-          )}
-          {props.type === AuthorLinkType.Youtube && (
-            <Icon as={TbBrandYoutube} boxSize={"20px"} />
-          )}
-          {props.type === AuthorLinkType.Twitter && (
-            <Icon as={TbBrandTwitter} boxSize={"20px"} />
-          )}
-          {props.type === AuthorLinkType.Github && (
-            <Icon as={TbBrandGithub} boxSize={"20px"} />
-          )}
-          {props.type === AuthorLinkType.LinkedIn && (
-            <Icon as={TbBrandLinkedin} boxSize={"20px"} />
-          )}
-          {props.label}
-          {props.type === AuthorLinkType.Other ? (
-            <Icon as={TbExternalLink} boxSize={"20px"} />
-          ) : undefined}
-        </Button>
-      </Link>
-    );
-  };
 
   const PageHandler = () => {
     if (pageIndex === 1) {

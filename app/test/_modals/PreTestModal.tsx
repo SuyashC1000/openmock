@@ -22,6 +22,8 @@ export const PreTestModal = () => {
   const [pageIndex, setPageIndex] = React.useState(1);
   const [hasAgreed, setHasAgreed] = React.useState(false);
 
+  console.log(testPaper);
+
   const specificInstructions =
     testPaper.instructions[state.currentLanguageIndex].length === 0
       ? "There are no other specific instructions."
@@ -35,7 +37,7 @@ export const PreTestModal = () => {
             General Instructions
           </Text>
           <GeneralInstructions
-            testDuration={testPaper.maxTime}
+            testDuration={testPaper.maxMetrics.time}
             calculator={testPaper.additionalTools.calculator}
           />
         </div>

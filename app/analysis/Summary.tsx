@@ -104,7 +104,7 @@ const Summary = () => {
                       testResponse.timestamps.testStartTime) /
                       60000
                   )}{" "}
-                  / {testPaper.maxTime}
+                  / {testPaper.maxMetrics.time}
                 </Heading>
                 <Heading size={"md"}>Mins taken</Heading>
               </CardBody>

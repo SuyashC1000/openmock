@@ -72,7 +72,7 @@ export function formatPieChartData(
       {
         id: "Mins spared",
         label: "Mins spared",
-        value: testPaper.maxTime - minsUsed,
+        value: testPaper.maxMetrics.time - minsUsed,
         color: "#e5e5e5",
       },
     ];

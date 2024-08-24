@@ -19,7 +19,7 @@ const Timer = () => {
     useActiveElements();
 
   const timeLeftState = React.useState<[number, number]>([
-    testPaper.maxTime,
+    testPaper.maxMetrics.time,
     0,
   ]);
   const timeLeft = timeLeftState[0] as [number, number];
@@ -44,8 +44,8 @@ const Timer = () => {
   React.useEffect(() => {
     const timer = setTimeout(() => {
       if (state.testStatus === "starting") {
-        if (timeLeft[0] !== testPaper.maxTime) {
-          setTimeLeft([testPaper.maxTime, 0]);
+        if (timeLeft[0] !== testPaper.maxMetrics.time) {
+          setTimeLeft([testPaper.maxMetrics.time, 0]);
         }
       } else if (
         state.testStatus === "ongoing" ||

@@ -61,7 +61,7 @@ const QuestionEvalStatus = ({
       </Heading>
       <Text color={disabled ? "grey" : undefined}>
         <Icon as={TbDiamonds} />
-        {question.marks} | <Icon as={TbClock} />
+        {question.marks} &bull; <Icon as={TbClock} />
         {question.timeSpent}s
       </Text>
       <div

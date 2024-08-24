@@ -79,7 +79,7 @@ function PaperOptions(props: PaperOptionsProps) {
               General Instructions
             </Text>
             <GeneralInstructions
-              testDuration={testPaper.maxTime}
+              testDuration={testPaper.maxMetrics.time}
               calculator={testPaper.additionalTools.calculator}
             />
             <br />

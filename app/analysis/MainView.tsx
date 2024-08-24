@@ -19,26 +19,20 @@ import EvalStats from "./EvalStats";
 import TimeStats from "./TimeStats";
 import QuestionReview from "./QuestionReview";
 import TagStats from "./TagStats";
+import * as d3 from "d3";
 
 const MainView = () => {
   const testResponse = React.useContext(activeTestResponseContext);
   const testPaper = React.useContext(SuppliedTestPaperContext);
+
+  const formatTime = d3.utcFormat("%I:%M:%S %p, %d/%m/%G");
 
   const attemptDate = new Date(testResponse.timestamps.testStartTime);
   return (
     <div className="flex-1 flex flex-col p-4 h-fit min-h-full bg-neutral-100 gap-6">
       <div className="p-2">
         <Heading fontWeight={"semibold"}>{testPaper.name}</Heading>
-        <Text>
-          Attempted on:{" "}
-          {attemptDate.toLocaleTimeString("en-UK", {
-            timeZone: "Asia/Kolkata",
-          })}
-          ,{" "}
-          {attemptDate.toLocaleDateString("en-UK", {
-            timeZone: "Asia/Kolkata",
-          })}
-        </Text>
+        <Text>Attempted on: {formatTime(attemptDate)}</Text>
       </div>
       <Tabs variant={"enclosed-colored"}>
         <TabList>

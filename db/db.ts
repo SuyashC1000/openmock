@@ -15,7 +15,7 @@ db.version(1).stores({
   testPapers: "id",
 
   activeTestResponse: "attemptId",
-  testResponses: "attemptId",
+  testResponses: "attemptId, testId",
 });
 
 export { db };
