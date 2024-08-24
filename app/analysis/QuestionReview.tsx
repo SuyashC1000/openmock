@@ -304,7 +304,8 @@ const QuestionReview = () => {
   return (
     <div>
       <div
-        className="flex justify-between items-center sticky top-2 z-10 px-3 py-1 rounded-xl
+        style={{ zIndex: 5 }}
+        className="flex justify-between items-center sticky top-2 px-3 py-1 rounded-xl
        bg-neutral-100 border-2 border-neutral-300"
       >
         <Breadcrumb className=" w-fit px-3 rounded-full">

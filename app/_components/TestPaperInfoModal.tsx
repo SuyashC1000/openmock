@@ -51,7 +51,7 @@ const TestPaperInfoModal = ({ testPaper, isOpen, onClose }: Props) => {
   const testPaperDate = new Date(testPaper.timeCreated);
   const [languageIndex, setLanguageIndex] = React.useState(0);
 
-  const formatTime = d3.utcFormat("%I:%M:%S %p, %d/%m/%G");
+  const formatTime = d3.utcFormat("%I:%M:%S %p • %d/%m/%G");
 
   return (
     <Modal
@@ -102,7 +102,7 @@ const TestPaperInfoModal = ({ testPaper, isOpen, onClose }: Props) => {
                   </ListItem>
                   <ListItem>
                     <Text>
-                      Date created: {formatTime(new Date(testPaperDate))}
+                      Created at: {formatTime(new Date(testPaperDate))}
                     </Text>
                   </ListItem>
                 </UnorderedList>
@@ -171,6 +171,7 @@ const TestPaperInfoModal = ({ testPaper, isOpen, onClose }: Props) => {
                       px={3}
                       w={"full"}
                       variant={"ghost"}
+                      fontWeight={"semibold"}
                       className="rounded-lg"
                       onClick={async () => {
                         await db.activeTestResponse.clear();

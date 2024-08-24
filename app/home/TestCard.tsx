@@ -6,6 +6,7 @@ import {
   Icon,
   Tag,
   TagLeftIcon,
+  Text,
   useDisclosure,
 } from "@chakra-ui/react";
 import { TestPaper } from "../_interface/testData";
@@ -36,31 +37,26 @@ const TestCard = ({ testPaper }: { testPaper: TestPaper }) => {
             alignItems={"center"}
             justifyContent={"space-between"}
           >
-            <Heading size={"md"} fontWeight={"medium"} flex={1}>
+            <Text size={"md"} fontWeight={"medium"} flex={1}>
               {testPaper.name}
-            </Heading>
+            </Text>
             <Flex gap={2} flex={0} flexDirection={"row"}>
               {attemptCount != 0 && (
-                <Tag
-                  size={"lg"}
-                  w={"fit"}
-                  colorScheme="yellow"
-                  variant={"solid"}
-                >
-                  <TagLeftIcon as={TbCheck} fontSize={"xl"} />
+                <Tag w={"fit"} colorScheme="yellow" variant={"solid"}>
+                  <TagLeftIcon as={TbCheck} />
                   {attemptCount}
                 </Tag>
               )}
-              <Tag size={"lg"} colorScheme="red" variant={"outline"}>
-                <TagLeftIcon as={TbDiamonds} fontSize={"xl"} />
+              <Tag colorScheme="red" variant={"outline"}>
+                <TagLeftIcon as={TbDiamonds} />
                 {testPaper.maxMetrics.marks}
               </Tag>
-              <Tag size={"lg"} colorScheme="green" variant={"outline"}>
-                <TagLeftIcon as={TbClipboard} fontSize={"xl"} />
+              <Tag colorScheme="green" variant={"outline"}>
+                <TagLeftIcon as={TbClipboard} />
                 {testPaper.maxMetrics.questions}Qs
               </Tag>
-              <Tag size={"lg"} colorScheme="cyan" variant={"outline"}>
-                <TagLeftIcon as={TbHourglass} fontSize={"xl"} />
+              <Tag colorScheme="cyan" variant={"outline"}>
+                <TagLeftIcon as={TbHourglass} />
                 {testPaper.maxMetrics.time}m
               </Tag>
             </Flex>
