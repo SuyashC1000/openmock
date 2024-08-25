@@ -3,7 +3,11 @@ import { getDefaultOptions } from "../_functions/getFunctions";
 import { TestPaperQuestion } from "../_interface/testData";
 import { UserCacheQuestion } from "../_interface/userCache";
 
-import { ResponseDataContext, StateContext, TestPaperContext } from "./page";
+import {
+  TestCacheResponseDataContext,
+  TestStateContext,
+  TestPaperContext,
+} from "./page";
 
 import NumeralValue from "./_userResponseTypes/NumeralValue";
 import SingleCorrectChoices from "./_userResponseTypes/SingleCorrectChoices";
@@ -19,9 +23,10 @@ interface UserResponseInputProps {
 
 const UserResponse = () => {
   const testPaper = React.useContext(TestPaperContext);
-  const state = React.useContext(StateContext);
-  const { responseData, setResponseData } =
-    React.useContext(ResponseDataContext);
+  const state = React.useContext(TestStateContext);
+  const { responseData, setResponseData } = React.useContext(
+    TestCacheResponseDataContext
+  );
 
   const { activeQuestion, activeQuestionCache, activeGroupCache } =
     useActiveElements();

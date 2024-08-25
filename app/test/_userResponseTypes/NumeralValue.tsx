@@ -3,7 +3,7 @@ import { TestPaperQuestion } from "@/app/_interface/testData";
 import { UserCacheQuestion } from "@/app/_interface/userCache";
 import { NumberInput, NumberInputField } from "@chakra-ui/react";
 import React from "react";
-import { ResponseDataContext, StateContext } from "../page";
+import { TestCacheResponseDataContext, TestStateContext } from "../page";
 import { getActiveQuestionCache } from "@/app/_functions/getActiveCache";
 
 interface UserResponseInputProps {
@@ -12,14 +12,15 @@ interface UserResponseInputProps {
 }
 
 const NumeralValue = (userResponseInputProps: UserResponseInputProps) => {
-  const state = React.useContext(StateContext);
+  const state = React.useContext(TestStateContext);
 
   const zoomLevel = state.preferences.zoomLevel;
 
   const activeQuestion = getActiveQuestionCache(state);
 
-  const { responseData, setResponseData } =
-    React.useContext(ResponseDataContext);
+  const { responseData, setResponseData } = React.useContext(
+    TestCacheResponseDataContext
+  );
 
   const numInput: string =
     responseData[0] ??

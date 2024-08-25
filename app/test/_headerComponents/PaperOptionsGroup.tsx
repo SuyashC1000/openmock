@@ -1,11 +1,11 @@
 import React from "react";
 import PaperOptions from "./PaperOptions";
-import { StateContext, TestPaperContext } from "../page";
+import { TestStateContext, TestPaperContext } from "../page";
 import useActiveElements from "@/lib/useActiveElements";
 import { groupConstraint } from "@/app/_functions/groupConstraint";
 
 function PaperOptionsGroup() {
-  const state = React.useContext(StateContext);
+  const state = React.useContext(TestStateContext);
   const testPaper = React.useContext(TestPaperContext);
 
   const { activeGroup, activeSection } = useActiveElements();

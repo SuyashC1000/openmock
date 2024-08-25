@@ -18,7 +18,11 @@ import {
 } from "@chakra-ui/react";
 import { getActiveSectionCache } from "../_functions/getActiveCache";
 import UserResponse from "./UserResponse";
-import { DispatchContext, StateContext, TestPaperContext } from "./page";
+import {
+  TestDispatchContext,
+  TestStateContext,
+  TestPaperContext,
+} from "./page";
 
 import MarkingSchemeDisplay from "./_mainViewComponents/MarkingSchemeDisplay";
 import useActiveElements from "@/lib/useActiveElements";
@@ -37,8 +41,8 @@ import { useWindowResize } from "@/lib/useWindowResize";
 
 const QuestionView = () => {
   const testPaper = React.useContext(TestPaperContext);
-  const state = React.useContext(StateContext);
-  const dispatch = React.useContext(DispatchContext);
+  const state = React.useContext(TestStateContext);
+  const dispatch = React.useContext(TestDispatchContext);
 
   const [width, height] = useWindowResize();
 

@@ -18,7 +18,7 @@ import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
-import { StateContext, TestPaperContext } from "../page";
+import { TestStateContext, TestPaperContext } from "../page";
 import GroupQuestionPaper from "./GroupQuestionPaper";
 import {
   getActiveGroup,
@@ -62,7 +62,7 @@ function PaperOptions(props: PaperOptionsProps) {
 
   function PaperOptionDisplayCases() {
     const testPaper = React.useContext(TestPaperContext);
-    const state = React.useContext(StateContext);
+    const state = React.useContext(TestStateContext);
 
     const activeGroup = getActiveGroup(testPaper, state);
     const activeSection = getActiveSection(testPaper, state);

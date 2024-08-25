@@ -1,14 +1,14 @@
 import QuestionBtn from "@/app/_components/QuestionBtn";
 import { Text } from "@chakra-ui/react";
 import React from "react";
-import { StateContext, TestPaperContext } from "../page";
+import { TestStateContext, TestPaperContext } from "../page";
 import useSubmit from "@/lib/useSubmit";
 import { getActiveIndex } from "@/app/_functions/getActiveCacheAdvanced";
 import useActiveElements from "@/lib/useActiveElements";
 import { questionConstraint } from "@/app/_functions/questionConstraint";
 
 const QuestionsGrid = () => {
-  const state = React.useContext(StateContext);
+  const state = React.useContext(TestStateContext);
   const testPaper = React.useContext(TestPaperContext);
 
   const currentIndex = getActiveIndex(state);

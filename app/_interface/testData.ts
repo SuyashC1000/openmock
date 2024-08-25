@@ -2,6 +2,7 @@ export interface TestPaper {
   id: string;
   name: string;
   timeCreated: number;
+  version: string;
   tags: TestPaperTag[];
   authors: TestPaperAuthor[];
   maxMetrics: MaxMetrics;
@@ -124,4 +125,11 @@ interface MaxMetrics {
   marks: number;
   time: number;
   questions: number;
+}
+
+export interface TestPaperFolder {
+  id: string;
+  name: string;
+  description: string;
+  testPapers: TestPaper[];
 }

@@ -1,5 +1,9 @@
 import React from "react";
-import { DispatchContext, StateContext, TestPaperContext } from "../page";
+import {
+  TestDispatchContext,
+  TestStateContext,
+  TestPaperContext,
+} from "../page";
 import {
   Alert,
   AlertDescription,
@@ -52,9 +56,9 @@ import { db } from "@/db/db";
 import AuthorLinkButton from "@/app/_components/AuthorLinkButton";
 
 const PostTestModal = () => {
-  const state = React.useContext(StateContext);
+  const state = React.useContext(TestStateContext);
   const testPaper = React.useContext(TestPaperContext);
-  const dispatch = React.useContext(DispatchContext);
+  const dispatch = React.useContext(TestDispatchContext);
 
   const [showFinishModal, setShowFinishModal] = React.useState(true);
   const [pageIndex, setPageIndex] = React.useState(1);

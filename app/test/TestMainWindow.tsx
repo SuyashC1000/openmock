@@ -3,10 +3,10 @@ import QuestionView from "./QuestionView";
 import TestSidebar from "./TestSidebar";
 import OptionalGroupAlert from "./_alerts/OptionalGroupAlert";
 import { groupConstraint } from "../_functions/groupConstraint";
-import { StateContext, TestPaperContext } from "./page";
+import { TestStateContext, TestPaperContext } from "./page";
 
 const TestMainWindow = () => {
-  const state = React.useContext(StateContext);
+  const state = React.useContext(TestStateContext);
   const testPaper = React.useContext(TestPaperContext);
 
   return (

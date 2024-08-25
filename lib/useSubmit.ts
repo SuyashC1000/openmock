@@ -9,8 +9,8 @@ import {
   UPDATE_QUESTION_USERANSWER,
 } from "@/app/_functions/userCacheReducer";
 import {
-  DispatchContext,
-  StateContext,
+  TestDispatchContext,
+  TestStateContext,
   TestPaperContext,
 } from "@/app/test/page";
 import React from "react";
@@ -38,9 +38,9 @@ export interface SubmitQuestionFunc {
 }
 
 function useSubmit() {
-  const state = React.useContext(StateContext);
+  const state = React.useContext(TestStateContext);
   const testPaper = React.useContext(TestPaperContext);
-  const dispatch = React.useContext(DispatchContext);
+  const dispatch = React.useContext(TestDispatchContext);
 
   const { activeQuestionCache, activeSectionCache } = useActiveElements();
   const { confirm } = useConfirm();

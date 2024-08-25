@@ -6,11 +6,11 @@ import QuestionLegend from "../_components/QuestionLegend";
 import { getSectionQuestionLegend } from "../_functions/getFunctions";
 import QuestionsGrid from "./_sidebarComponents/QuestionsGrid";
 import useActiveElements from "@/lib/useActiveElements";
-import { StateContext } from "./page";
+import { TestStateContext } from "./page";
 import React from "react";
 
 const TestSidebar = () => {
-  const state = React.useContext(StateContext);
+  const state = React.useContext(TestStateContext);
   const { activeSectionCache } = useActiveElements();
 
   function SectionHeading() {

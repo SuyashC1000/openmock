@@ -16,6 +16,7 @@ export function testResponseGenerator(
 ): TestResponse {
   let foundation: TestResponse = {
     testId: userCache.testId,
+    version: testPaper.version,
     attemptId: userCache.attemptId,
     scoreData: {
       marks: {

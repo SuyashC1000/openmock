@@ -2,6 +2,7 @@ import { ScoreData } from "../_functions/calculateScoreData";
 
 export interface TestResponse {
   testId: string;
+  version: string;
   attemptId: string;
   timestamps: TestResponseTimeStamps;
   body: TestResponseGroup[];

@@ -1,14 +1,14 @@
 import React from "react";
 import ToolsButtons from "./ToolsButtons";
 import GroupButton from "./GroupButton";
-import { StateContext } from "../page";
+import { TestStateContext } from "../page";
 import { getGroupQuestionLegend } from "@/app/_functions/getFunctions";
 import { UserCacheGroup } from "@/app/_interface/userCache";
 import { useToast } from "@chakra-ui/react";
 import useSubmit from "@/lib/useSubmit";
 
 function GroupSelect() {
-  const state = React.useContext(StateContext);
+  const state = React.useContext(TestStateContext);
   const toast = useToast();
   const { submitQuestion, submitGroup } = useSubmit();
 

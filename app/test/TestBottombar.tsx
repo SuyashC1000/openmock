@@ -1,9 +1,9 @@
 import { Button, ButtonGroup } from "@chakra-ui/react";
 import { useContext } from "react";
 import {
-  DispatchContext,
-  ResponseDataContext,
-  StateContext,
+  TestDispatchContext,
+  TestCacheResponseDataContext,
+  TestStateContext,
   TestPaperContext,
 } from "./page";
 import {
@@ -22,10 +22,10 @@ import useActiveElements from "@/lib/useActiveElements";
 import { groupConstraint } from "../_functions/groupConstraint";
 
 const TestBottombar = () => {
-  const state = useContext(StateContext);
+  const state = useContext(TestStateContext);
   const testPaper = useContext(TestPaperContext);
-  const dispatch = useContext(DispatchContext);
-  const responseDataState = useContext(ResponseDataContext);
+  const dispatch = useContext(TestDispatchContext);
+  const responseDataState = useContext(TestCacheResponseDataContext);
 
   const { submitQuestion } = useSubmit();
   const { activeGroupCache } = useActiveElements();

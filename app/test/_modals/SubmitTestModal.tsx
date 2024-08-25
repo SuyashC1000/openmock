@@ -20,7 +20,11 @@ import {
   Tr,
 } from "@chakra-ui/react";
 import React from "react";
-import { DispatchContext, StateContext, TestPaperContext } from "../page";
+import {
+  TestDispatchContext,
+  TestStateContext,
+  TestPaperContext,
+} from "../page";
 import { getNumOfQuestionStatuses } from "@/app/_functions/getFunctions";
 import {
   SET_ACTIVE_GROUP,
@@ -33,9 +37,9 @@ import useSubmit from "@/lib/useSubmit";
 import SummaryTable from "../_misc/SummaryTable";
 
 export const SubmitTestModal = () => {
-  const state = React.useContext(StateContext);
+  const state = React.useContext(TestStateContext);
   const testPaper = React.useContext(TestPaperContext);
-  const dispatch = React.useContext(DispatchContext);
+  const dispatch = React.useContext(TestDispatchContext);
 
   const { activeGroupCache, activeGroup } = useActiveElements();
   const { submitGroup, submitTest } = useSubmit();

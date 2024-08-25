@@ -5,11 +5,12 @@ import {
   UserCacheQuestion,
   UserCacheSection,
 } from "../_interface/userCache";
+import { UserData } from "../_interface/userData";
 import { uniqueId } from "./randomGenerator";
 
 export default function userCacheGenerator(
   testPaper: TestPaper,
-  username: string
+  userData: UserData
 ): UserCache {
   //
 
@@ -78,7 +79,8 @@ export default function userCacheGenerator(
       testLoginTime: 0,
     },
     userDetails: {
-      name: username,
+      username: userData.profile.username,
+      imageSrc: userData.profile.imageSrc,
     },
   };
 

@@ -1,6 +1,10 @@
 import { Avatar, Button, Checkbox, Heading, Text } from "@chakra-ui/react";
 import React from "react";
-import { DispatchContext, StateContext, TestPaperContext } from "../page";
+import {
+  TestDispatchContext,
+  TestStateContext,
+  TestPaperContext,
+} from "../page";
 import { TbChevronLeft, TbChevronRight } from "react-icons/tb";
 import GeneralInstructions from "../GeneralInstructions";
 import Markdown from "react-markdown";
@@ -15,9 +19,9 @@ import {
 } from "@/app/_functions/userCacheReducer";
 
 export const PreTestModal = () => {
-  const state = React.useContext(StateContext);
+  const state = React.useContext(TestStateContext);
   const testPaper = React.useContext(TestPaperContext);
-  const dispatch = React.useContext(DispatchContext);
+  const dispatch = React.useContext(TestDispatchContext);
 
   const [pageIndex, setPageIndex] = React.useState(1);
   const [hasAgreed, setHasAgreed] = React.useState(false);
@@ -174,8 +178,13 @@ export const PreTestModal = () => {
         </div>
         <div className="w-64 grow-1 h-screen bg-white outline outline-1 outline-neutral-400 flex flex-col items-center">
           <div className="flex items-center flex-col m-8 gap-2">
-            <Avatar size={"xl"} />
-            <Text className="font-semibold">{state.userDetails.name}</Text>
+            <Avatar
+              size={"xl"}
+              name={state.userDetails.username}
+              src={state.userDetails.imageSrc}
+            />
+            {/* <Text className="font-semibold">{state.userDetails.username}</Text> */}
+            <Text className="font-semibold">{state.userDetails.username}</Text>
           </div>
         </div>
       </div>

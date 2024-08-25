@@ -55,5 +55,6 @@ interface UserCacheTimestamps {
 }
 
 export interface UserTestDetails {
-  name: string;
+  username: string;
+  imageSrc: string;
 }

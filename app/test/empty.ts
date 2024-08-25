@@ -2,6 +2,7 @@ import { ScoreData } from "../_functions/calculateScoreData";
 import { TestPaper } from "../_interface/testData";
 import { TestResponse } from "../_interface/testResponse";
 import { UserCache } from "../_interface/userCache";
+import { UserData } from "../_interface/userData";
 
 export const emptyScoreData: ScoreData = {
   marks: {
@@ -26,6 +27,7 @@ export const emptyTestPaper: TestPaper = {
     magnifyingGlass: false,
   },
   tags: [],
+  version: "0",
   analysis: {},
   maxMetrics: {
     marks: 0,
@@ -81,7 +83,8 @@ export const emptyUserCache: UserCache = {
     sidebarCollapsed: false,
   },
   userDetails: {
-    name: "",
+    username: "",
+    imageSrc: "",
   },
   timestamps: {
     testStartTime: 0,
@@ -119,6 +122,7 @@ export const emptyUserCache: UserCache = {
 };
 export const emptyTestResponse: TestResponse = {
   testId: "",
+  version: "0",
   scoreData: emptyScoreData,
   attemptId: "",
   timestamps: {
@@ -151,4 +155,24 @@ export const emptyTestResponse: TestResponse = {
       ],
     },
   ],
+};
+
+export const emptyUserData: UserData = {
+  id: "",
+  timeCreated: 0,
+  preferences: {
+    alwaysSaveResponses: false,
+    author: null,
+    displayMode: null,
+  },
+  version: "0",
+  saved: {
+    testPaperFolderIds: [],
+    testPaperIds: [],
+    testResponseIds: [],
+  },
+  profile: {
+    imageSrc: "",
+    username: "User",
+  },
 };

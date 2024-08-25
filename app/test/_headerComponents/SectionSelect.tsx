@@ -1,7 +1,11 @@
 import React from "react";
 import SectionButton from "./SectionButton";
 import { UserCacheSection } from "@/app/_interface/userCache";
-import { DispatchContext, StateContext, TestPaperContext } from "../page";
+import {
+  TestDispatchContext,
+  TestStateContext,
+  TestPaperContext,
+} from "../page";
 import {
   getSectionQuestionLegend,
   getTotalSectionsSelected,
@@ -18,9 +22,9 @@ import useActiveElements from "@/lib/useActiveElements";
 import { groupConstraint } from "@/app/_functions/groupConstraint";
 
 function SectionSelect() {
-  const state = React.useContext(StateContext);
+  const state = React.useContext(TestStateContext);
   const testPaper = React.useContext(TestPaperContext);
-  const dispatch = React.useContext(DispatchContext);
+  const dispatch = React.useContext(TestDispatchContext);
 
   const toast = useToast();
   const { submitQuestion } = useSubmit();

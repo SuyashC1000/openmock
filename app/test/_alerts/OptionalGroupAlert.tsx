@@ -10,16 +10,20 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 
-import { DispatchContext, StateContext, TestPaperContext } from "../page";
+import {
+  TestDispatchContext,
+  TestStateContext,
+  TestPaperContext,
+} from "../page";
 import { SET_GROUP_HASOPTED } from "@/app/_functions/userCacheReducer";
 import { getQuestionsAttemptedTally } from "@/app/_functions/getFunctions";
 import useActiveElements from "@/lib/useActiveElements";
 import { groupConstraint } from "@/app/_functions/groupConstraint";
 
 const OptionalGroupAlert = () => {
-  const state = React.useContext(StateContext);
+  const state = React.useContext(TestStateContext);
   const testPaper = React.useContext(TestPaperContext);
-  const dispatch = React.useContext(DispatchContext);
+  const dispatch = React.useContext(TestDispatchContext);
 
   const errorData = groupConstraint(state, testPaper);
 

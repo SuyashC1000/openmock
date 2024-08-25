@@ -1,15 +1,19 @@
 import { Button, ButtonGroup, Icon, Tooltip } from "@chakra-ui/react";
 import React from "react";
 import { TbCalculator, TbZoomIn, TbZoomOut } from "react-icons/tb";
-import { DispatchContext, StateContext, TestPaperContext } from "../page";
+import {
+  TestDispatchContext,
+  TestStateContext,
+  TestPaperContext,
+} from "../page";
 import {
   SET_CALCULATOR_VISIBILITY,
   SET_ZOOM_LEVEL,
 } from "@/app/_functions/userCacheReducer";
 
 function ToolsButtons() {
-  const state = React.useContext(StateContext);
-  const dispatch = React.useContext(DispatchContext);
+  const state = React.useContext(TestStateContext);
+  const dispatch = React.useContext(TestDispatchContext);
   const testPaper = React.useContext(TestPaperContext);
 
   function incDecZoomLevel(i: number): void {

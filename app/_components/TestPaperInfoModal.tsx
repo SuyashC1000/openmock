@@ -161,7 +161,7 @@ const TestPaperInfoModal = ({ testPaper, isOpen, onClose }: Props) => {
             <>
               <br />
               <Heading size={"sm"}>Previous Attempts</Heading>
-              <Flex gap={3}>
+              <Flex gap={1} flexDirection={"column"}>
                 {availableAttempts?.map((e, i) => {
                   const attemptDate = new Date(e.timestamps.testStartTime);
 

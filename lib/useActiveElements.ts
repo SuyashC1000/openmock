@@ -17,14 +17,14 @@ import {
   UserCacheSection,
 } from "@/app/_interface/userCache";
 import {
-  DispatchContext,
-  StateContext,
+  TestDispatchContext,
+  TestStateContext,
   TestPaperContext,
 } from "@/app/test/page";
 import React from "react";
 
 function useActiveElements() {
-  const state = React.useContext(StateContext);
+  const state = React.useContext(TestStateContext);
   const testPaper = React.useContext(TestPaperContext);
   // const dispatch = React.useContext(DispatchContext);
 

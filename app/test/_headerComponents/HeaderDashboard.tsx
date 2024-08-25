@@ -13,14 +13,18 @@ import {
   Text,
 } from "@chakra-ui/react";
 import Timer from "../Timer";
-import { DispatchContext, StateContext, TestPaperContext } from "../page";
+import {
+  TestDispatchContext,
+  TestStateContext,
+  TestPaperContext,
+} from "../page";
 import { SET_DEFAULT_LANGUAGE } from "@/app/_functions/userCacheReducer";
 import useActiveElements from "@/lib/useActiveElements";
 
 function HeaderDashboard() {
-  const state = React.useContext(StateContext);
+  const state = React.useContext(TestStateContext);
   const testPaper = React.useContext(TestPaperContext);
-  const dispatch = React.useContext(DispatchContext);
+  const dispatch = React.useContext(TestDispatchContext);
 
   const { activeGroup } = useActiveElements();
 
@@ -62,9 +66,14 @@ function HeaderDashboard() {
               className="w-64 bg-white flex-0 flex flex-box flex-col items-center justify-start
             gap-3 p-2 outline outline-1 outline-neutral-400"
             >
-              <Avatar size={"lg"} className="flex-0 self-center" />
+              <Avatar
+                size={"lg"}
+                name={state.userDetails.username}
+                src={state.userDetails.imageSrc}
+                className="flex-0 self-center"
+              />
               <Text className="font-semibold flex-1 text-center">
-                {state.userDetails.name}
+                {state.userDetails.username}
               </Text>
             </div>
           </PopoverTrigger>
@@ -73,7 +82,7 @@ function HeaderDashboard() {
           <PopoverArrow />
           <PopoverBody>
             <Text mb={1}>
-              Your name: <strong>{state.userDetails.name}</strong>
+              Your name: <strong>{state.userDetails.username}</strong>
             </Text>
 
             <Text>Select language:</Text>

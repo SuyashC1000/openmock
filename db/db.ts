@@ -1,5 +1,6 @@
 import { TestPaper } from "@/app/_interface/testData";
 import { TestResponse } from "@/app/_interface/testResponse";
+import { UserData } from "@/app/_interface/userData";
 import Dexie, { type EntityTable } from "dexie";
 
 const db = new Dexie("FriendsDatabase") as Dexie & {
@@ -8,6 +9,8 @@ const db = new Dexie("FriendsDatabase") as Dexie & {
 
   activeTestResponse: EntityTable<TestResponse, "attemptId">;
   testResponses: EntityTable<TestResponse, "attemptId">;
+
+  userData: EntityTable<UserData, "id">;
 };
 
 db.version(1).stores({
@@ -16,6 +19,8 @@ db.version(1).stores({
 
   activeTestResponse: "attemptId",
   testResponses: "attemptId, testId",
+
+  userData: "id",
 });
 
 export { db };

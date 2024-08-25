@@ -6,7 +6,11 @@ import Markdown from "react-markdown";
 import rehypeKatex from "rehype-katex";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
-import { ResponseDataContext, StateContext, TestPaperContext } from "../page";
+import {
+  TestCacheResponseDataContext,
+  TestStateContext,
+  TestPaperContext,
+} from "../page";
 import { questionConstraint } from "@/app/_functions/questionConstraint";
 
 interface UserResponseInputProps {
@@ -16,10 +20,10 @@ interface UserResponseInputProps {
 }
 
 const MultipleCorrectChoices = (props: UserResponseInputProps) => {
-  const { responseData } = React.useContext(ResponseDataContext);
+  const { responseData } = React.useContext(TestCacheResponseDataContext);
 
   const testPaper = React.useContext(TestPaperContext);
-  const state = React.useContext(StateContext);
+  const state = React.useContext(TestStateContext);
 
   const zoomLevel = state.preferences.zoomLevel;
 

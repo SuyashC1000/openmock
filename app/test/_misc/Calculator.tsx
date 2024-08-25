@@ -1,5 +1,9 @@
 import React, { useState } from "react";
-import { DispatchContext, StateContext, TestPaperContext } from "../page";
+import {
+  TestDispatchContext,
+  TestStateContext,
+  TestPaperContext,
+} from "../page";
 import Draggable from "react-draggable";
 import {
   Button,
@@ -23,9 +27,9 @@ import { TbMinus, TbQuestionMark, TbX } from "react-icons/tb";
 import { SET_CALCULATOR_VISIBILITY } from "@/app/_functions/userCacheReducer";
 
 const Calculator = () => {
-  const state = React.useContext(StateContext);
+  const state = React.useContext(TestStateContext);
   const testPaper = React.useContext(TestPaperContext);
-  const dispatch = React.useContext(DispatchContext);
+  const dispatch = React.useContext(TestDispatchContext);
 
   const [viewState, setViewState] = useState([true, false]);
   const [calcLog, setCalcLog] = useState("");

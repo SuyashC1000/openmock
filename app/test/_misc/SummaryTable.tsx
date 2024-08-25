@@ -1,5 +1,5 @@
 import React from "react";
-import { StateContext, TestPaperContext } from "../page";
+import { TestStateContext, TestPaperContext } from "../page";
 import {
   Checkbox,
   Heading,
@@ -15,7 +15,7 @@ import { getNumOfQuestionStatuses } from "@/app/_functions/getFunctions";
 
 const SummaryTable = () => {
   const testPaper = React.useContext(TestPaperContext);
-  const state = React.useContext(StateContext);
+  const state = React.useContext(TestStateContext);
 
   return (
     <>

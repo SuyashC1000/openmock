@@ -1,6 +1,10 @@
 import { Text } from "@chakra-ui/react";
 import React from "react";
-import { DispatchContext, StateContext, TestPaperContext } from "./page";
+import {
+  TestDispatchContext,
+  TestStateContext,
+  TestPaperContext,
+} from "./page";
 import {
   SET_TEST_STATUS,
   UPDATE_GROUP_TIMESPENT,
@@ -11,9 +15,9 @@ import { groupConstraint } from "../_functions/groupConstraint";
 import { questionConstraint } from "../_functions/questionConstraint";
 
 const Timer = () => {
-  const state = React.useContext(StateContext);
+  const state = React.useContext(TestStateContext);
   const testPaper = React.useContext(TestPaperContext);
-  const dispatch = React.useContext(DispatchContext);
+  const dispatch = React.useContext(TestDispatchContext);
 
   const { activeQuestionCache, activeGroupCache, activeQuestion, activeGroup } =
     useActiveElements();
