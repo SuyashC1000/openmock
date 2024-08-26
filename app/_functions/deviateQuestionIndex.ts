@@ -7,7 +7,7 @@ import {
 } from "../_interface/userCache";
 
 import {
-  getActiveCacheByIndex,
+  getActiveCacheElementByIndex,
   getActiveIndex,
 } from "./getActiveCacheAdvanced";
 import { questionConstraint } from "./questionConstraint";
@@ -20,14 +20,16 @@ export function incrementQuestionIndex(
 
   do {
     const numOfQuestions = (
-      getActiveCacheByIndex(state, [
+      getActiveCacheElementByIndex(state, [
         currentIndexList[0],
         currentIndexList[1],
       ]) as UserCacheSection
     ).questions.length;
 
     const numOfSections = (
-      getActiveCacheByIndex(state, [currentIndexList[0]]) as UserCacheGroup
+      getActiveCacheElementByIndex(state, [
+        currentIndexList[0],
+      ]) as UserCacheGroup
     ).sections.length;
 
     const numOfGroups = state.body.length;
@@ -54,17 +56,19 @@ export function decrementQuestionIndex(
 
   do {
     const numOfQuestions = (
-      getActiveCacheByIndex(state, [
+      getActiveCacheElementByIndex(state, [
         currentIndexList[0],
         currentIndexList[1],
       ]) as UserCacheSection
     ).questions.length;
 
     const numOfSections = (
-      getActiveCacheByIndex(state, [currentIndexList[0]]) as UserCacheGroup
+      getActiveCacheElementByIndex(state, [
+        currentIndexList[0],
+      ]) as UserCacheGroup
     ).sections.length;
 
-    const lastSection = getActiveCacheByIndex(state, [
+    const lastSection = getActiveCacheElementByIndex(state, [
       currentIndexList[0],
       currentIndexList[1],
     ]) as UserCacheGroup;
@@ -74,7 +78,7 @@ export function decrementQuestionIndex(
     if (currentIndexList[2] > 0) {
       currentIndexList[2] -= 1;
     } else if (currentIndexList[2] === 0 && currentIndexList[1] > 0) {
-      const lastSection = getActiveCacheByIndex(state, [
+      const lastSection = getActiveCacheElementByIndex(state, [
         currentIndexList[0],
         currentIndexList[1] - 1,
       ]) as UserCacheSection;

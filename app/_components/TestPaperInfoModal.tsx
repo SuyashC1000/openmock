@@ -66,7 +66,6 @@ const TestPaperInfoModal = ({ testPaper, isOpen, onClose }: Props) => {
         <ModalCloseButton />
         <ModalBody pt={8}>
           <Heading size={"lg"}>{testPaper.name}</Heading>
-
           <UnorderedList listStyleType={"none"}>
             <ListItem>
               <Text>
@@ -133,7 +132,7 @@ const TestPaperInfoModal = ({ testPaper, isOpen, onClose }: Props) => {
             </AccordionItem>
           </Accordion>
 
-          {testPaper.analysis.preTestMessage !== null && (
+          {testPaper.analysis.preTestMessage !== undefined && (
             <>
               <br />
               <div className="flex items-center justify-between">
@@ -171,12 +170,13 @@ const TestPaperInfoModal = ({ testPaper, isOpen, onClose }: Props) => {
                       px={3}
                       w={"full"}
                       variant={"ghost"}
-                      fontWeight={"semibold"}
+                      fontWeight={"medium"}
                       className="rounded-lg"
-                      onClick={async () => {
-                        await db.activeTestResponse.clear();
-                        await db.activeTestResponse.add(e);
+                      onClick={() => {
+                        db.activeTestResponse.clear();
+                        db.activeTestResponse.add(e);
                         router.push("/analysis");
+                        onClose();
                       }}
                     >
                       <Flex

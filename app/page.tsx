@@ -4,9 +4,6 @@ import { TbWriting } from "react-icons/tb";
 
 import { Button, ButtonGroup, Link, Text } from "@chakra-ui/react";
 import React from "react";
-import testData from "../public/data/testData.json";
-
-import { TestPaper } from "./_interface/testData";
 
 export default function AppPage() {
   const Navbar = () => {

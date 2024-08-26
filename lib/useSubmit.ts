@@ -12,12 +12,12 @@ import {
   TestDispatchContext,
   TestStateContext,
   TestPaperContext,
-} from "@/app/test/page";
+} from "@/app/(test)/test/page";
 import React from "react";
 import useActiveElements from "./useActiveElements";
 import useConfirm from "./useConfirm";
 import {
-  getActiveCacheByIndex,
+  getActiveCacheElementByIndex,
   getActiveIndex,
 } from "@/app/_functions/getActiveCacheAdvanced";
 import { UserCacheGroup, UserCacheQuestion } from "@/app/_interface/userCache";
@@ -117,7 +117,7 @@ function useSubmit() {
 
       if (newIndex.toString() === currentIndex.toString()) return;
 
-      const newActiveQuestion = getActiveCacheByIndex(
+      const newActiveQuestion = getActiveCacheElementByIndex(
         state,
         newIndex
       ) as UserCacheQuestion;
@@ -142,11 +142,11 @@ function useSubmit() {
       submitQuestion([groupIndex]);
     }
 
-    const newActiveQuestion = getActiveCacheByIndex(
+    const newActiveQuestion = getActiveCacheElementByIndex(
       state,
       newIndex
     ) as UserCacheQuestion;
-    const newActiveGroup = getActiveCacheByIndex(state, [
+    const newActiveGroup = getActiveCacheElementByIndex(state, [
       newIndex[0],
     ]) as UserCacheGroup;
   }

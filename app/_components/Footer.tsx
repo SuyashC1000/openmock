@@ -3,7 +3,7 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <div>
+    <div className="mt-auto">
       <Text textAlign={"center"} fontSize={"xs"}>
         © OpenMock 2024
       </Text>

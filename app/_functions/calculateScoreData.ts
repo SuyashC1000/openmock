@@ -5,7 +5,7 @@ import {
   TestPaperSection,
 } from "../_interface/testData";
 import { TestResponse, TestResponseGroup } from "../_interface/testResponse";
-import { getActiveCacheByIndex } from "./getActiveCacheAdvanced";
+import { getActiveCacheElementByIndex } from "./getActiveCacheAdvanced";
 import { Evaluation } from "@/lib/enums";
 import Marks from "../_components/Marks";
 import { evaluateMarks } from "./evaluateMarks";

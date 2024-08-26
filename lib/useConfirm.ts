@@ -1,5 +1,5 @@
-import { DialogDataProps } from "@/app/test/_modals/ConfirmationModal";
-import { DialogDataContext } from "@/app/test/page";
+import { DialogDataProps } from "@/app/(test)/test/_modals/ConfirmationModal";
+import { DialogDataContext } from "@/app/(test)/test/page";
 import React, { Dispatch } from "react";
 
 let resolveCallback: (value: unknown) => void;

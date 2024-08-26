@@ -18,7 +18,7 @@ import {
 } from "../_interface/userCache";
 import { getActiveSectionCache } from "./getActiveCache";
 
-export function getActiveCacheByIndex(
+export function getActiveCacheElementByIndex(
   state: UserCache,
   indexList: number[]
 ): UserCacheGroup | UserCacheSection | UserCacheQuestion | UserCache {
@@ -38,7 +38,7 @@ export function getActiveCacheByIndex(
   }
 }
 
-export function getActiveResponseByIndex(
+export function getActiveResponseElementByIndex(
   response: TestResponse,
   indexList: number[]
 ):
@@ -61,7 +61,7 @@ export function getActiveResponseByIndex(
       return response;
   }
 }
-export function getActivePaperByIndex(
+export function getActivePaperElementByIndex(
   paper: TestPaper,
   indexList: number[]
 ): TestPaperGroup | TestPaperSection | TestPaperQuestion | TestPaper {

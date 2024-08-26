@@ -1,7 +1,7 @@
-import "./globals.css";
+import "../globals.css";
 import type { Metadata } from "next";
 // import { Inter } from 'next/font/google'
-import { fonts } from "./fonts";
+import { fonts } from "../fonts";
 
 // const inter = Inter({ subsets: ['latin'] })
 
@@ -10,18 +10,16 @@ export const metadata: Metadata = {
   description: "",
 };
 
-import { Providers } from "./providers";
+import { Providers } from "../providers";
 
-export default function RootLayout({
+export default function TestLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={fonts.worksans.className}>
-      <body>
-        <Providers>{children}</Providers>
-      </body>
-    </html>
+    <section lang="en" className={fonts.worksans.className}>
+      <Providers>{children}</Providers>
+    </section>
   );
 }

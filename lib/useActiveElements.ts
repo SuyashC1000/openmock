@@ -20,7 +20,7 @@ import {
   TestDispatchContext,
   TestStateContext,
   TestPaperContext,
-} from "@/app/test/page";
+} from "@/app/(test)/test/page";
 import React from "react";
 
 function useActiveElements() {
