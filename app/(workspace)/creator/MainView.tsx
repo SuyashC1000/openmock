@@ -1,14 +1,14 @@
 import React from "react";
 import Footer from "../../_components/Footer";
-import { Text } from "@chakra-ui/react";
+import { Heading, Text } from "@chakra-ui/react";
+import { DraftStateContext } from "./page";
 
 const MainView = () => {
+  const state = React.useContext(DraftStateContext);
   return (
-    <div className="flex-1 flex flex-col p-4 h-fit min-h-full bg-neutral-100 gap-6">
-      <Text>Content</Text>
-      <div className="mt-auto">
-        <Footer />
-      </div>
+    <div>
+      <Heading>Creator page</Heading>
+      <Text>{JSON.stringify(state)}</Text>
     </div>
   );
 };

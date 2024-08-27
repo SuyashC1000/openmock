@@ -1,21 +1,47 @@
 "use client";
 
 import React from "react";
-import Navbar from "../../_components/Navbar";
 import MainView from "./MainView";
-import { Text } from "@chakra-ui/react";
 import { useLiveQuery } from "dexie-react-hooks";
 import { db } from "@/db/db";
+import { emptyTestPaper } from "@/app/(test)/test/empty";
+import { testDraftGenerator } from "@/app/_functions/testDraftGenerator";
+import { Action } from "@/app/_functions/userCacheReducer";
+import { TestPaper } from "@/app/_interface/testData";
+import Loading from "../loading";
+import testDraftReducer, {
+  INITIALIZE_STATE,
+} from "@/app/_functions/testDraftReducer";
+
+export const DraftStateContext = React.createContext(emptyTestPaper);
+
+export const DraftDispatchContext = React.createContext(function example(
+  action: Action
+) {});
 
 const CreatorPage = () => {
-  const sample = useLiveQuery(() => db.activeTestResponse.toArray());
+  const [state, dispatch] = React.useReducer(testDraftReducer, emptyTestPaper);
 
-  console.log(sample);
+  const [fetchedTestPaper, loaded]: [TestPaper, boolean] | [] = useLiveQuery(
+    () =>
+      db.activeTestPaper.toArray().then((response) => {
+        const finalResponse =
+          response[0] ?? testDraftGenerator(Date.now(), "0");
+        dispatch({ type: INITIALIZE_STATE, payload: finalResponse });
+        return [finalResponse, true];
+      }),
+    [],
+    []
+  );
+
+  if (!loaded) return <Loading />;
 
   return (
-    <div>
-      <Text>Hello</Text>
-    </div>
+    <DraftStateContext.Provider value={state}>
+      <DraftDispatchContext.Provider value={dispatch}>
+        <MainView />
+      </DraftDispatchContext.Provider>
+    </DraftStateContext.Provider>
   );
 };
 
