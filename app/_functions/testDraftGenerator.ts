@@ -13,7 +13,7 @@ export function testDraftGenerator(date: number, version: string): TestPaper {
     maxMetrics: {
       marks: 0,
       questions: 0,
-      time: 0,
+      time: 1,
     },
     version: version,
     tags: [],

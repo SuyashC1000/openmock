@@ -12,6 +12,7 @@ import Loading from "../loading";
 import testDraftReducer, {
   INITIALIZE_STATE,
 } from "@/app/_functions/testDraftReducer";
+import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 
 export const DraftStateContext = React.createContext(emptyTestPaper);
 
@@ -34,12 +35,19 @@ const CreatorPage = () => {
     []
   );
 
+  const methods = useForm<TestPaper>({ values: fetchedTestPaper });
+  const onSubmit: SubmitHandler<TestPaper> = (data: any) => console.log(data);
+
   if (!loaded) return <Loading />;
 
   return (
     <DraftStateContext.Provider value={state}>
       <DraftDispatchContext.Provider value={dispatch}>
-        <MainView />
+        <FormProvider {...methods}>
+          <form onSubmit={methods.handleSubmit(onSubmit)}>
+            <MainView />
+          </form>
+        </FormProvider>
       </DraftDispatchContext.Provider>
     </DraftStateContext.Provider>
   );

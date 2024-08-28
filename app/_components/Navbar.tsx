@@ -2,6 +2,7 @@
 
 import {
   Avatar,
+  Badge,
   Breadcrumb,
   BreadcrumbItem,
   Button,
@@ -61,6 +62,9 @@ const Navbar = ({ page }: { page: string }) => {
             >
               OpenMock
             </Heading>
+            <Badge ml={2} colorScheme="red" variant={"subtle"}>
+              Alpha
+            </Badge>
           </BreadcrumbItem>
           {pathnameList[0] !== "home" &&
             pathnameList.map((e, i) => (
