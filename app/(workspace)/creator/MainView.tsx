@@ -22,6 +22,8 @@ import { Controller, useFormContext } from "react-hook-form";
 import { TestPaper } from "@/app/_interface/testData";
 import Step1 from "./Step1";
 import { active } from "d3";
+import Step2 from "./Step2";
+import Step3 from "./Step3";
 
 const MainView = () => {
   const state = React.useContext(DraftStateContext);
@@ -33,8 +35,9 @@ const MainView = () => {
 
   const steps = [
     { title: "First", description: "Paper Details" },
-    { title: "Second", description: "Questions" },
-    { title: "Third", description: "Evaluation" },
+    { title: "Second", description: "Grouping" },
+    { title: "Third", description: "Questions" },
+    { title: "Fourth", description: "Evaluation" },
   ];
 
   const { activeStep, setActiveStep } = useSteps({
@@ -69,7 +72,12 @@ const MainView = () => {
         </Stepper>
       </div>
       {activeStep === 0 && <Step1 />}
-      <input type="submit" />
+      {activeStep === 1 && <Step2 />}
+      {activeStep === 2 && <Step3 />}
+      <input
+        type="submit"
+        className="bg-green-400 p-3 text-white rounded-lg cursor-pointer hover:bg-green-500 active:bg-green-600"
+      />
     </div>
   );
 };

@@ -37,6 +37,9 @@ export default function AppPage() {
           <Link href="/analysis">
             <Button colorScheme="purple">Analysis Interface</Button>
           </Link>
+          <Link href="/creator">
+            <Button colorScheme="red">Creator Interface</Button>
+          </Link>
         </ButtonGroup>
       </div>
       <main>

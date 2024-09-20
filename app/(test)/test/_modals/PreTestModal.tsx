@@ -26,8 +26,6 @@ export const PreTestModal = () => {
   const [pageIndex, setPageIndex] = React.useState(1);
   const [hasAgreed, setHasAgreed] = React.useState(false);
 
-  console.log(testPaper);
-
   const specificInstructions =
     testPaper.instructions[state.currentLanguageIndex].length === 0
       ? "There are no other specific instructions."
