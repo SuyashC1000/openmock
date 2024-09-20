@@ -1,4 +1,8 @@
-import { TestPaper } from "@/app/_interface/testData";
+import {
+  TestPaper,
+  TestPaperGroup,
+  TestPaperSection,
+} from "@/app/_interface/testData";
 import { Button, Card, CardBody, Heading, Icon, Text } from "@chakra-ui/react";
 import React from "react";
 import { useFieldArray, useFormContext, useWatch } from "react-hook-form";
@@ -23,10 +27,11 @@ const Step2 = () => {
     register,
     watch,
     control,
+    setValue,
     formState: { errors },
   } = useFormContext<TestPaper>();
 
-  const { fields, move } = useFieldArray({ name: `body` });
+  const { fields, move, replace } = useFieldArray({ name: `body` });
 
   const fieldsData = watch(`body`);
 
@@ -42,7 +47,6 @@ const Step2 = () => {
     // if (destination) {
     //   move(source.index, destination.index);
     // }
-
     if (!result.destination) {
       return;
     }
@@ -52,48 +56,51 @@ const Step2 = () => {
     if (result.type === "GROUP") {
       move(result.source.index, result.destination.index);
     } else if (result.type === "SECTION") {
-      // const itemSubItemMap = fieldsData.reduce((acc, item ) => {
-      //   acc[item.id] = item.subItems;
-      //   return acc;
-      // }, {});
-      // const sourceParentId = parseInt(result.source.droppableId);
-      // const destParentId = parseInt(result.destination.droppableId);
-      // const sourceSubItems = itemSubItemMap[sourceParentId];
-      // const destSubItems = itemSubItemMap[destParentId];
-      // let newItems = [...this.state.items];
-      // /** In this case subItems are reOrdered inside same Parent */
-      // if (sourceParentId === destParentId) {
-      //   const reorderedSubItems = reorder(
-      //     sourceSubItems,
-      //     sourceIndex,
-      //     destIndex
-      //   );
-      //   newItems = newItems.map((item) => {
-      //     if (item.id === sourceParentId) {
-      //       item.subItems = reorderedSubItems;
-      //     }
-      //     return item;
-      //   });
-      //   this.setState({
-      //     items: newItems,
-      //   });
-      // } else {
-      //   let newSourceSubItems = [...sourceSubItems];
-      //   const [draggedItem] = newSourceSubItems.splice(sourceIndex, 1);
-      //   let newDestSubItems = [...destSubItems];
-      //   newDestSubItems.splice(destIndex, 0, draggedItem);
-      //   newItems = newItems.map((item) => {
-      //     if (item.id === sourceParentId) {
-      //       item.subItems = newSourceSubItems;
-      //     } else if (item.id === destParentId) {
-      //       item.subItems = newDestSubItems;
-      //     }
-      //     return item;
-      //   });
-      //   this.setState({
-      //     items: newItems,
-      //   });
-      // }
+      const itemSubItemMap: { [key: string]: TestPaperGroup } =
+        fieldsData.reduce((acc: { [key: string]: TestPaperGroup }, item) => {
+          acc[item.groupName] = { ...item };
+          return acc;
+        }, {});
+
+      const sourceParentId = result.source.droppableId;
+      const destParentId = result.destination.droppableId;
+
+      const sourceSubItems = itemSubItemMap[sourceParentId].sections;
+      const destSubItems = itemSubItemMap[destParentId].sections;
+
+      let newItems = [...fieldsData];
+      /** In this case subItems are reOrdered inside same Parent */
+      if (sourceParentId === destParentId) {
+        const reorderedSubItems = reorder(
+          sourceSubItems,
+          sourceIndex,
+          destIndex
+        ) as TestPaperSection[];
+
+        newItems = newItems.map((item) => {
+          console.log(item.id, sourceParentId);
+
+          if (item.groupName === sourceParentId) {
+            item.sections = reorderedSubItems;
+          }
+          return item;
+        });
+        replace(newItems);
+      } else {
+        let newSourceSubItems = [...sourceSubItems];
+        const [draggedItem] = newSourceSubItems.splice(sourceIndex, 1);
+        let newDestSubItems = [...destSubItems];
+        newDestSubItems.splice(destIndex, 0, draggedItem);
+        newItems = newItems.map((item) => {
+          if (item.groupName === sourceParentId) {
+            item.sections = newSourceSubItems;
+          } else if (item.groupName === destParentId) {
+            item.sections = newDestSubItems;
+          }
+          return item;
+        });
+        replace(newItems);
+      }
     }
   };
 

@@ -12,22 +12,18 @@ interface Props {
 
 const SectionCreator = ({ provided, sectionData, id }: Props) => {
   return (
-    <Card
-      size={"sm"}
-      key={id}
-      ref={provided.innerRef}
-      {...provided.draggableProps}
-      bg={"blue.400"}
-    >
-      <CardBody>
-        <Box w={20} h={5} bg={"green.200"} {...provided.dragHandleProps} />
+    <Box key={id} ref={provided.innerRef} {...provided.draggableProps} py={2}>
+      <Card size={"sm"} bg={"blue.400"}>
+        <CardBody>
+          <Box w={20} h={5} bg={"green.200"} {...provided.dragHandleProps} />
 
-        <Text fontSize={"sm"}>Section name:</Text>
-        <Heading size={"md"}>{sectionData.sectionName}</Heading>
-        <br />
-        <Button w={"fit-content"}>Add Question</Button>
-      </CardBody>
-    </Card>
+          <Text fontSize={"sm"}>Section name:</Text>
+          <Heading size={"md"}>{sectionData.sectionName}</Heading>
+          <br />
+          <Button w={"fit-content"}>Add Question</Button>
+        </CardBody>
+      </Card>
+    </Box>
   );
 };
 

@@ -31,51 +31,47 @@ const GroupCreator = ({ provided, groupData, id, grpIndex, temp }: Props) => {
   } = useFormContext<TestPaper>();
 
   return (
-    <Card
-      size={"sm"}
-      key={id}
-      ref={provided.innerRef}
-      {...provided.draggableProps}
-      bg={"blue.200"}
-    >
-      <CardBody>
-        <Box w={20} h={5} bg={"green.200"} {...provided.dragHandleProps} />
-        <Text>
-          <code>
-            {id} {grpIndex} {JSON.stringify(temp.id)}
-          </code>
-        </Text>
-        <Text fontSize={"sm"}>Group name:</Text>
-        <Heading size={"md"}>{groupData.groupName}</Heading>
-        <br />
-        <Button w={"fit-content"}>Add Section</Button>
-        <Droppable droppableId={id} type="SECTION">
-          {(provided) => (
-            <div {...provided.droppableProps} ref={provided.innerRef}>
-              {groupData.sections.map((field, index) => {
-                return (
-                  <Draggable
-                    key={field.sectionName}
-                    draggableId={field.sectionName}
-                    index={index}
-                  >
-                    {(provided) => (
-                      <SectionCreator
-                        sectionData={field}
-                        id={field.sectionName}
-                        provided={provided}
-                        secIndex={index}
-                      />
-                    )}
-                  </Draggable>
-                );
-              })}
-              {provided.placeholder}
-            </div>
-          )}
-        </Droppable>
-      </CardBody>
-    </Card>
+    <Box py={2} ref={provided.innerRef} {...provided.draggableProps}>
+      <Card size={"sm"} key={id} bg={"blue.200"}>
+        <CardBody>
+          <Box w={20} h={5} bg={"green.200"} {...provided.dragHandleProps} />
+          <Text>
+            <code>
+              {id} {grpIndex} {JSON.stringify(temp.id)}
+            </code>
+          </Text>
+          <Text fontSize={"sm"}>Group name:</Text>
+          <Heading size={"md"}>{groupData.groupName}</Heading>
+          <br />
+          <Button w={"fit-content"}>Add Section</Button>
+          <Droppable droppableId={id} type="SECTION">
+            {(provided) => (
+              <div {...provided.droppableProps} ref={provided.innerRef}>
+                {groupData.sections.map((field, index) => {
+                  return (
+                    <Draggable
+                      key={field.sectionName}
+                      draggableId={field.sectionName}
+                      index={index}
+                    >
+                      {(provided) => (
+                        <SectionCreator
+                          sectionData={field}
+                          id={field.sectionName}
+                          provided={provided}
+                          secIndex={index}
+                        />
+                      )}
+                    </Draggable>
+                  );
+                })}
+                {provided.placeholder}
+              </div>
+            )}
+          </Droppable>
+        </CardBody>
+      </Card>
+    </Box>
   );
 };
 
