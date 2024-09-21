@@ -44,6 +44,7 @@ export interface TestPaperQuestion {
 
 export interface TestPaperSection {
   sectionName: string;
+  sectionId: string;
   optional: boolean;
   instructions?: string[];
   questions: TestPaperQuestion[];
@@ -53,6 +54,7 @@ export interface TestPaperSection {
 
 export interface TestPaperGroup {
   groupName: string;
+  groupId: string;
   optional: boolean;
   instructions?: string[];
   constraints?: TestPaperGroupConstraints;

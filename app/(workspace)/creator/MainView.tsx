@@ -30,7 +30,7 @@ const MainView = () => {
   const {
     control,
     register,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useFormContext<TestPaper>();
 
   const steps = [
@@ -76,6 +76,7 @@ const MainView = () => {
       {activeStep === 2 && <Step3 />}
       <input
         type="submit"
+        disabled={!isValid}
         className="bg-green-400 p-3 text-white rounded-lg cursor-pointer hover:bg-green-500 active:bg-green-600"
       />
     </div>

@@ -18,9 +18,10 @@ import rehypeKatex from "rehype-katex";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 import "katex/dist/katex.min.css";
-import { TbMenuOrder } from "react-icons/tb";
+import { TbMenuOrder, TbSquarePlus } from "react-icons/tb";
 import GroupCreator from "./GroupCreator";
 import { forceLink } from "d3";
+import { uniqueId } from "@/app/_functions/randomGenerator";
 
 const Step2 = () => {
   const {
@@ -31,7 +32,9 @@ const Step2 = () => {
     formState: { errors },
   } = useFormContext<TestPaper>();
 
-  const { fields, move, replace } = useFieldArray({ name: `body` });
+  const { fields, move, replace, append, remove } = useFieldArray({
+    name: `body`,
+  });
 
   const fieldsData = watch(`body`);
 
@@ -41,6 +44,18 @@ const Step2 = () => {
     result.splice(endIndex, 0, removed);
 
     return result;
+  };
+
+  const createNewGroup = () => {
+    const final: TestPaperGroup = {
+      groupName: "New Group",
+      groupId: `tg${uniqueId(10)}`,
+      optional: false,
+      sections: [],
+      constraints: {},
+      instructions: [],
+    };
+    return final;
   };
 
   const handleDrag = (result: any) => {
@@ -58,7 +73,7 @@ const Step2 = () => {
     } else if (result.type === "SECTION") {
       const itemSubItemMap: { [key: string]: TestPaperGroup } =
         fieldsData.reduce((acc: { [key: string]: TestPaperGroup }, item) => {
-          acc[item.groupName] = { ...item };
+          acc[item.groupId] = { ...item };
           return acc;
         }, {});
 
@@ -78,9 +93,7 @@ const Step2 = () => {
         ) as TestPaperSection[];
 
         newItems = newItems.map((item) => {
-          console.log(item.id, sourceParentId);
-
-          if (item.groupName === sourceParentId) {
+          if (item.groupId === sourceParentId) {
             item.sections = reorderedSubItems;
           }
           return item;
@@ -92,9 +105,9 @@ const Step2 = () => {
         let newDestSubItems = [...destSubItems];
         newDestSubItems.splice(destIndex, 0, draggedItem);
         newItems = newItems.map((item) => {
-          if (item.groupName === sourceParentId) {
+          if (item.groupId === sourceParentId) {
             item.sections = newSourceSubItems;
-          } else if (item.groupName === destParentId) {
+          } else if (item.groupId === destParentId) {
             item.sections = newDestSubItems;
           }
           return item;
@@ -108,7 +121,16 @@ const Step2 = () => {
     <div className="m-2">
       <Card>
         <CardBody>
-          <Button>Hello</Button>
+          <Button
+            onClick={() => {
+              append(createNewGroup());
+            }}
+            colorScheme="cyan"
+            variant={"outline"}
+            leftIcon={<TbSquarePlus />}
+          >
+            Add Group
+          </Button>
           <DragDropContext onDragEnd={handleDrag}>
             <Droppable droppableId="groups-container" type="GROUP">
               {(provided) => (
@@ -124,10 +146,10 @@ const Step2 = () => {
                         {(provided) => (
                           <GroupCreator
                             groupData={fieldData}
-                            id={fieldData.groupName}
+                            id={fieldData.groupId}
                             provided={provided}
                             grpIndex={index}
-                            temp={field}
+                            removeGroup={remove}
                           />
                         )}
                       </Draggable>
@@ -143,40 +165,5 @@ const Step2 = () => {
     </div>
   );
 };
-
-{
-  /* <Droppable droppableId="test-id" type="parentContainer">
-            {(provided) => (
-              <ul {...provided.droppableProps} ref={provided.innerRef}>
-                {provided.placeholder}
-                {fields.map((field, index) => {
-                  const fieldData = watch(`body.${index}`);
-                  return (
-                    <Draggable
-                      key={`test[${index}]`}
-                      draggableId={`item-${index}`}
-                      index={index}
-                    >
-                      {(provided, snapshot) => (
-                        <Card
-                          {...provided.dragHandleProps}
-                          {...provided.draggableProps}
-                          id={field.id}
-                          ref={provided.innerRef}
-                        >
-                          <CardBody>
-                            <Text>{fieldData.groupName}</Text>
-                          </CardBody>
-
-                          
-                        </Card>
-                      )}
-                    </Draggable>
-                  );
-                })}
-              </ul>
-            )}
-          </Droppable> */
-}
 
 export default Step2;
