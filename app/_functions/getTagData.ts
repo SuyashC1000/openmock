@@ -45,7 +45,7 @@ export function getTaggedQuestionDataByID(
 
         testPaper.body.forEach((testPaperGroup) => {
           const testResponseGroup = testResponse.body.filter(
-            (e) => e.groupName === testPaperGroup.groupName
+            (e) => e.groupId === testPaperGroup.groupId
           )[0];
 
           if (testResponseGroup.hasOpted !== false) {

@@ -128,6 +128,7 @@ export const PreTestModal = () => {
         newStatus: 1,
       },
     });
+    document.body.requestFullscreen();
   }
 
   return (

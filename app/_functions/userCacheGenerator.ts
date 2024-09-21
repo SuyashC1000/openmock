@@ -25,6 +25,7 @@ export default function userCacheGenerator(
   let newBody = testPaper.body.map((e, i) => {
     return {
       groupName: e.groupName,
+      groupId: e.groupId,
       hasOpted: e.optional ? false : undefined,
       activeSectionIndex: 0,
       timeSpent: 0,
@@ -33,6 +34,7 @@ export default function userCacheGenerator(
       sections: e.sections.map((f, j) => {
         return {
           sectionName: f.sectionName,
+          sectionId: f.sectionId,
           selected: f.optional ? false : undefined,
           qIndex: 0,
           questionDisplayList:

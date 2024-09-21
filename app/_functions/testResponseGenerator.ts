@@ -41,6 +41,7 @@ export function testResponseGenerator(
     body: userCache.body.map((e, i) => {
       return {
         groupName: e.groupName,
+        groupId: e.groupId,
         hasOpted: e.hasOpted,
         scoreData: {
           marks: {
@@ -62,6 +63,7 @@ export function testResponseGenerator(
         sections: e.sections.map((f, j) => {
           return {
             sectionName: f.sectionName,
+            sectionId: f.sectionId,
             questionDisplayList: f.questionDisplayList,
             selected: f.selected,
             scoreData: {

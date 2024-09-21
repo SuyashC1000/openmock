@@ -10,9 +10,13 @@ import {
   Card,
   CardBody,
   Container,
+  Editable,
+  EditableInput,
+  EditablePreview,
   Flex,
   Heading,
   Icon,
+  Input,
   Text,
 } from "@chakra-ui/react";
 import React from "react";
@@ -65,7 +69,24 @@ const SectionCreator = ({
               </Flex>
               <Container p={0}>
                 <Text fontSize={"sm"}>Section name:</Text>
-                <Heading size={"md"}>{sectionData.sectionName}</Heading>
+                <Editable
+                  defaultValue={sectionData.sectionName}
+                  fontSize={"xl"}
+                  fontWeight={"bold"}
+                  py={0}
+                >
+                  <EditablePreview p={0} />
+                  <Input
+                    as={EditableInput}
+                    {...register(
+                      `body.${grpIndex}.sections.${secIndex}.sectionName`,
+                      {
+                        required: true,
+                      }
+                    )}
+                    placeholder="Insert group name"
+                  />
+                </Editable>{" "}
               </Container>
             </Flex>
             <Container flex={0} ml={"auto"} mr={0} px={0}>

@@ -11,6 +11,7 @@ export interface UserCacheQuestion {
 
 export interface UserCacheSection {
   sectionName: string;
+  sectionId: string;
   qIndex: number;
   questionDisplayList: number[];
   selected?: boolean;
@@ -20,6 +21,7 @@ export interface UserCacheSection {
 
 export interface UserCacheGroup {
   groupName: string;
+  groupId: string;
   status: "upcoming" | "ongoing" | "submitted" | "rejected";
   activeSectionIndex: number;
   permissions: "all" | "view" | "none";

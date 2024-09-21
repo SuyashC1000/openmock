@@ -53,7 +53,7 @@ export function calculateScoreData(
     ...testResponse,
     body: testResponse.body.map((testResponseGroup) => {
       const testPaperGroup: TestPaperGroup = testPaper.body.filter(
-        (e) => e.groupName === testResponseGroup.groupName
+        (e) => e.groupId === testResponseGroup.groupId
       )[0];
 
       return {
@@ -152,7 +152,7 @@ export function calculateScoreData(
     ...responseWithUpdatedSections,
     body: responseWithUpdatedSections.body.map((testResponseGroup) => {
       const testPaperGroup: TestPaperGroup = testPaper.body.filter(
-        (e) => e.groupName === testResponseGroup.groupName
+        (e) => e.groupId === testResponseGroup.groupId
       )[0];
 
       let groupScoreData: ScoreData = {

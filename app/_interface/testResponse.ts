@@ -24,6 +24,7 @@ export interface TestResponseQuestion {
 
 export interface TestResponseSection {
   sectionName: string;
+  sectionId: string;
   questionDisplayList: number[];
   selected?: boolean;
   scoreData: ScoreData;
@@ -33,6 +34,7 @@ export interface TestResponseSection {
 
 export interface TestResponseGroup {
   groupName: string;
+  groupId: string;
   timeSpent: number;
   scoreData: ScoreData;
   hasOpted?: boolean;
