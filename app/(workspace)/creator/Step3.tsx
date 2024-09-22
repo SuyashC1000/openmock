@@ -1,9 +1,13 @@
 import React from "react";
 import QuestionEditor from "./QuestionEditor";
+import { Card, CardBody } from "@chakra-ui/react";
+import QuestionSelector from "./QuestionSelector";
 
 const Step3 = () => {
   return (
     <div className="m-2">
+      <QuestionSelector />
+      <br />
       <QuestionEditor />
     </div>
   );
