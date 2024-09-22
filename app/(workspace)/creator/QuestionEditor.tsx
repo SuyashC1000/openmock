@@ -3,7 +3,7 @@ import React from "react";
 
 const QuestionEditor = () => {
   return (
-    <Card>
+    <Card flex={1}>
       <CardBody>
         <Heading size={"md"} fontWeight={"medium"}>
           Question Editor

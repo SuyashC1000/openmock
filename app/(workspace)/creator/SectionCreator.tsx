@@ -49,9 +49,9 @@ const SectionCreator = ({
   } = useFormContext<TestPaper>();
 
   return (
-    <Box key={id} ref={provided.innerRef} {...provided.draggableProps} py={2}>
-      <Card size={"sm"} borderWidth={1} variant={"outline"} rounded={"lg"}>
-        <CardBody>
+    <Box key={id} ref={provided.innerRef} {...provided.draggableProps} py={1}>
+      <Card size={"sm"} borderWidth={1} variant={"outline"} rounded={"base"}>
+        <CardBody p={2}>
           <Flex justifyContent={"start"}>
             <Flex ml={0} mr={"auto"} px={0} alignItems={"center"}>
               <Flex
@@ -71,7 +71,7 @@ const SectionCreator = ({
                 <Text fontSize={"sm"}>Section name:</Text>
                 <Editable
                   defaultValue={sectionData.sectionName}
-                  fontSize={"xl"}
+                  fontSize={"lg"}
                   fontWeight={"bold"}
                   py={0}
                 >
@@ -92,6 +92,7 @@ const SectionCreator = ({
             <Container flex={0} ml={"auto"} mr={0} px={0}>
               <ButtonGroup>
                 <Button
+                  size={"sm"}
                   colorScheme="red"
                   variant={"outline"}
                   onClick={() => removeSection(secIndex)}

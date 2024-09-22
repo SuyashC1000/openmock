@@ -76,9 +76,9 @@ const GroupCreator = ({
         key={id}
         borderWidth={1}
         variant={"outline"}
-        rounded={"xl"}
+        rounded={"lg"}
       >
-        <CardBody>
+        <CardBody p={2}>
           <Flex justifyContent={"start"}>
             <Flex ml={0} mr={"auto"} px={0} alignItems={"center"}>
               <Flex
@@ -99,7 +99,7 @@ const GroupCreator = ({
 
                 <Editable
                   defaultValue={groupData.groupName}
-                  fontSize={"xl"}
+                  fontSize={"lg"}
                   fontWeight={"bold"}
                   py={0}
                 >
@@ -117,6 +117,7 @@ const GroupCreator = ({
             <Container flex={0} ml={"auto"} mr={0} px={0}>
               <ButtonGroup>
                 <Button
+                  size={"sm"}
                   colorScheme="cyan"
                   variant={"outline"}
                   w={"fit-content"}
@@ -128,6 +129,7 @@ const GroupCreator = ({
                   Add Section
                 </Button>
                 <Button
+                  size={"sm"}
                   colorScheme="red"
                   variant={"outline"}
                   onClick={() => removeGroup(grpIndex)}

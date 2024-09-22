@@ -5,7 +5,7 @@ import QuestionSelector from "./QuestionSelector";
 
 const Step3 = () => {
   return (
-    <div className="m-2">
+    <div className="m-2 flex gap-3">
       <QuestionSelector />
       <br />
       <QuestionEditor />

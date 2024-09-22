@@ -48,7 +48,6 @@ const MainView = () => {
   return (
     <div>
       <Heading>Creator page</Heading>
-
       <div className="max-w-3xl mx-auto mb-5">
         <Stepper index={activeStep}>
           {steps.map((step, index) => (
@@ -74,11 +73,9 @@ const MainView = () => {
       {activeStep === 0 && <Step1 />}
       {activeStep === 1 && <Step2 />}
       {activeStep === 2 && <Step3 />}
-      <input
-        type="submit"
-        disabled={!isValid}
-        className="bg-green-400 p-3 text-white rounded-lg cursor-pointer hover:bg-green-500 active:bg-green-600"
-      />
+      <Button type="submit" colorScheme="green" isDisabled={!isValid}>
+        Submit
+      </Button>
     </div>
   );
 };

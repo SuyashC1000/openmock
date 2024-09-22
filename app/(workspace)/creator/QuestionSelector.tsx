@@ -134,7 +134,7 @@ const QuestionSelector = () => {
   };
 
   return (
-    <Card>
+    <Card w={400} flexGrow={0}>
       <CardBody>
         <Heading size={"md"} fontWeight={"medium"}>
           Question Selector
@@ -145,22 +145,26 @@ const QuestionSelector = () => {
             return (
               <Box
                 my={2}
-                p={3}
-                borderWidth={2}
-                borderColor={"gray.200"}
+                p={1}
+                pl={2}
+                borderLeftWidth={2}
+                borderLeftColor={"blue.600"}
                 key={fieldData.groupId}
               >
                 <Heading size={"sm"}>{fieldData.groupName}</Heading>
                 {fieldData.sections.map((f, j) => {
                   return (
                     <Box
-                      my={1}
+                      my={2}
                       p={1}
-                      borderWidth={2}
-                      borderColor={"gray.200"}
+                      pl={2}
+                      borderLeftWidth={2}
+                      borderLeftColor={"blue.500"}
                       key={f.sectionId}
                     >
-                      <Heading size={"sm"}>{f.sectionName}</Heading>
+                      <Heading size={"sm"} fontWeight={"semibold"}>
+                        {f.sectionName}
+                      </Heading>
                       <Droppable
                         droppableId={f.sectionId}
                         type="QUESTION"
@@ -168,8 +172,10 @@ const QuestionSelector = () => {
                           const questionData = f.questions[rubric.source.index];
                           return (
                             <Box
-                              m={1}
-                              p={1}
+                              my={1}
+                              pl={1}
+                              borderLeftWidth={2}
+                              borderLeftColor={"blue.400"}
                               bgColor={"gray.100"}
                               {...provided.draggableProps}
                               {...provided.dragHandleProps}
@@ -178,11 +184,8 @@ const QuestionSelector = () => {
                               alignItems={"center"}
                               textOverflow={"hidden"}
                             >
-                              <Text textAlign={"center"}>
+                              <Text noOfLines={1} fontSize={"sm"}>
                                 {questionData.question[0]}
-                              </Text>
-                              <Text textAlign={"center"}>
-                                {rubric.source.index + 1} {rubric.draggableId}
                               </Text>
                             </Box>
                           );
@@ -193,6 +196,7 @@ const QuestionSelector = () => {
                             {...provided.droppableProps}
                             ref={provided.innerRef}
                             w={"full"}
+                            minH={2}
                             flexDirection={"column"}
                           >
                             {f.questions.map((g, k) => {
@@ -205,21 +209,17 @@ const QuestionSelector = () => {
                                   {(provided) => (
                                     <Box
                                       userSelect={"none"}
-                                      m={1}
-                                      p={1}
-                                      bgColor={"gray.100"}
+                                      my={1}
+                                      pl={1}
+                                      borderLeftWidth={2}
+                                      borderLeftColor={"blue.400"}
                                       {...provided.draggableProps}
                                       {...provided.dragHandleProps}
                                       ref={provided.innerRef}
-                                      justifyContent={"center"}
-                                      alignItems={"center"}
                                       textOverflow={"hidden"}
                                     >
-                                      <Text textAlign={"center"}>
+                                      <Text fontSize={"sm"} noOfLines={1}>
                                         {g.question[0]}
-                                      </Text>
-                                      <Text textAlign={"center"}>
-                                        {k + 1} {g.id}
                                       </Text>
                                     </Box>
                                   )}
