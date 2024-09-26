@@ -95,7 +95,7 @@ const GroupCreator = ({
                 />
               </Flex>
               <Container p={0}>
-                <Text fontSize={"sm"}>Group name:</Text>
+                <Text fontSize={"xs"}>Group name:</Text>
 
                 <Editable
                   defaultValue={groupData.groupName}

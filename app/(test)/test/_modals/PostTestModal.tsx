@@ -174,7 +174,10 @@ const PostTestModal = () => {
             <Button
               colorScheme="green"
               mr={3}
-              onClick={() => setShowFinishModal(false)}
+              onClick={async () => {
+                setShowFinishModal(false);
+                await document.exitFullscreen();
+              }}
             >
               Close
             </Button>

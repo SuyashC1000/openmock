@@ -68,7 +68,7 @@ const SectionCreator = ({
                 />
               </Flex>
               <Container p={0}>
-                <Text fontSize={"sm"}>Section name:</Text>
+                <Text fontSize={"xs"}>Section name:</Text>
                 <Editable
                   defaultValue={sectionData.sectionName}
                   fontSize={"lg"}

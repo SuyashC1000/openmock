@@ -1,6 +1,18 @@
-import { TestPaper, TestPaperGroup } from "@/app/_interface/testData";
-import { Box, Card, CardBody, Flex, Heading, Text } from "@chakra-ui/react";
-import React from "react";
+import {
+  TestPaper,
+  TestPaperGroup,
+  TestPaperSection,
+} from "@/app/_interface/testData";
+import {
+  Box,
+  Card,
+  CardBody,
+  Checkbox,
+  Flex,
+  Heading,
+  Text,
+} from "@chakra-ui/react";
+import React, { Dispatch, SetStateAction } from "react";
 import {
   DragDropContext,
   Draggable,
@@ -8,8 +20,14 @@ import {
   DropResult,
 } from "react-beautiful-dnd";
 import { useFieldArray, useFormContext } from "react-hook-form";
+import { Step3DataProps } from "./Step3";
 
-const QuestionSelector = () => {
+interface Props {
+  step3Data: Step3DataProps;
+  setStep3Data: Dispatch<SetStateAction<Step3DataProps>>;
+}
+
+const QuestionSelector = ({ step3Data, setStep3Data }: Props) => {
   const {
     register,
     watch,
@@ -33,8 +51,6 @@ const QuestionSelector = () => {
   };
 
   const handleDrag = (result: DropResult) => {
-    console.log(result);
-
     if (!result.destination) {
       return;
     }
@@ -49,18 +65,33 @@ const QuestionSelector = () => {
 
     let fieldsCopy = [...fieldsData];
 
-    const sourceIndex = result.source.index;
-    const destIndex = result.destination.index;
+    const sourceIndex: number = result.source.index;
+    const destIndex: number = result.destination.index;
 
-    const sourceParentId = result.source.droppableId;
-    const destParentId = result.destination?.droppableId;
+    const sourceParentId: string = result.source.droppableId;
+    const destParentId: string = result.destination?.droppableId;
+
+    let sourceGroupIndex: number;
+    const destGroupIndex: number = fieldsCopy.findIndex((e) =>
+      e.sections.some((f, i) => {
+        return f.sectionId == destParentId;
+      })
+    );
 
     const [sourceGroup] = fieldsCopy.filter((e) =>
-      e.sections.some((f) => f.sectionId == sourceParentId)
+      e.sections.some((f, i) => {
+        return f.sectionId == sourceParentId;
+      })
     );
     const [destGroup] = fieldsCopy.filter((e) =>
-      e.sections.some((f) => f.sectionId == destParentId)
+      e.sections.some((f, i) => {
+        return f.sectionId == destParentId;
+      })
     );
+
+    const destSectionIndex: number = destGroup.sections.findIndex((e) => {
+      return e.sectionId == destParentId;
+    });
 
     const [sourceSection] = sourceGroup.sections.filter(
       (e) => e.sectionId == sourceParentId
@@ -105,6 +136,12 @@ const QuestionSelector = () => {
         }
         return e;
       });
+
+      if (replacedQuestion.id === step3Data.questionData?.id) {
+        setStep3Data((e) => {
+          return { ...e, sectionLocation: [destGroupIndex, destSectionIndex] };
+        });
+      }
     } else {
       let newSourceQuestions = [...sourceSection.questions];
       const [replacedQuestion] = newSourceQuestions.splice(sourceIndex, 1);
@@ -129,6 +166,12 @@ const QuestionSelector = () => {
         }
         return e;
       });
+
+      if (replacedQuestion.id === step3Data.questionData?.id) {
+        setStep3Data((e) => {
+          return { ...e, sectionLocation: [destGroupIndex, destSectionIndex] };
+        });
+      }
     }
     replace(fieldsCopy);
   };
@@ -153,6 +196,9 @@ const QuestionSelector = () => {
               >
                 <Heading size={"sm"}>{fieldData.groupName}</Heading>
                 {fieldData.sections.map((f, j) => {
+                  let isActive =
+                    step3Data.sectionLocation?.[0] === index &&
+                    step3Data.sectionLocation?.[1] === j;
                   return (
                     <Box
                       my={2}
@@ -162,9 +208,38 @@ const QuestionSelector = () => {
                       borderLeftColor={"blue.500"}
                       key={f.sectionId}
                     >
-                      <Heading size={"sm"} fontWeight={"semibold"}>
-                        {f.sectionName}
-                      </Heading>
+                      <Flex gap={1}>
+                        <Checkbox
+                          colorScheme="green"
+                          key={Math.random()}
+                          isChecked={isActive}
+                          onChange={() => {
+                            setStep3Data((e) => {
+                              if (isActive) {
+                                return {
+                                  ...e,
+                                  sectionLocation: undefined,
+                                  questionData: undefined,
+                                };
+                              } else {
+                                return {
+                                  ...e,
+                                  sectionLocation: [index, j],
+                                  questionData: undefined,
+                                };
+                              }
+                            });
+                          }}
+                        >
+                          <Heading
+                            size={"sm"}
+                            fontWeight={"semibold"}
+                            color={isActive ? "green.500" : undefined}
+                          >
+                            {f.sectionName}
+                          </Heading>
+                        </Checkbox>
+                      </Flex>
                       <Droppable
                         droppableId={f.sectionId}
                         type="QUESTION"
@@ -176,7 +251,11 @@ const QuestionSelector = () => {
                               pl={1}
                               borderLeftWidth={2}
                               borderLeftColor={"blue.400"}
-                              bgColor={"gray.100"}
+                              bgColor={
+                                questionData.id === step3Data.questionData?.id
+                                  ? "green.300"
+                                  : "gray.100"
+                              }
                               {...provided.draggableProps}
                               {...provided.dragHandleProps}
                               ref={provided.innerRef}
@@ -184,8 +263,22 @@ const QuestionSelector = () => {
                               alignItems={"center"}
                               textOverflow={"hidden"}
                             >
-                              <Text noOfLines={1} fontSize={"sm"}>
-                                {questionData.question[0]}
+                              <Text
+                                noOfLines={1}
+                                fontSize={"sm"}
+                                color={
+                                  questionData.id === step3Data.questionData?.id
+                                    ? "white"
+                                    : "black"
+                                }
+                              >
+                                {questionData.question[
+                                  step3Data.currentLanguage
+                                ].length > 0
+                                  ? questionData.question[
+                                      step3Data.currentLanguage
+                                    ]
+                                  : "(Empty question)"}
                               </Text>
                             </Box>
                           );
@@ -212,14 +305,43 @@ const QuestionSelector = () => {
                                       my={1}
                                       pl={1}
                                       borderLeftWidth={2}
+                                      bgColor={
+                                        step3Data.questionData?.id === g.id
+                                          ? "green.100"
+                                          : undefined
+                                      }
                                       borderLeftColor={"blue.400"}
                                       {...provided.draggableProps}
                                       {...provided.dragHandleProps}
                                       ref={provided.innerRef}
                                       textOverflow={"hidden"}
+                                      onClick={() => {
+                                        setStep3Data((e) => {
+                                          return {
+                                            ...e,
+                                            activeSection: f.sectionId,
+                                            sectionLocation: [index, j],
+                                            questionData: g,
+                                          };
+                                        });
+                                      }}
                                     >
-                                      <Text fontSize={"sm"} noOfLines={1}>
-                                        {g.question[0]}
+                                      <Text
+                                        fontSize={"sm"}
+                                        noOfLines={1}
+                                        color={
+                                          g.question[step3Data.currentLanguage]
+                                            .length === 0
+                                            ? "gray.400"
+                                            : undefined
+                                        }
+                                      >
+                                        {g.question[step3Data.currentLanguage]
+                                          .length > 0
+                                          ? g.question[
+                                              step3Data.currentLanguage
+                                            ]
+                                          : "(Empty question)"}
                                       </Text>
                                     </Box>
                                   )}

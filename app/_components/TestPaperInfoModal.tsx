@@ -31,6 +31,7 @@ import {
   TbClock,
   TbDeviceDesktop,
   TbDiamonds,
+  TbEdit,
   TbHourglass,
   TbLanguage,
 } from "react-icons/tb";
@@ -219,6 +220,19 @@ const TestPaperInfoModal = ({ testPaper, isOpen, onClose }: Props) => {
             }}
           >
             Attempt Paper
+          </Button>
+          <Button
+            ml={"auto"}
+            colorScheme="yellow"
+            variant={"outline"}
+            leftIcon={<TbEdit />}
+            onClick={async () => {
+              await db.activeTestPaper.clear();
+              await db.activeTestPaper.add(testPaper);
+              router.push("/creator");
+            }}
+          >
+            Edit Paper
           </Button>
         </ModalFooter>
       </ModalContent>

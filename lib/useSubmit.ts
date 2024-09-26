@@ -165,8 +165,6 @@ function useSubmit() {
     await db.testResponses.add(testResponse);
 
     setActiveTestResponse(testResponse);
-
-    await document.exitFullscreen();
   }
 
   return { submitQuestion, submitGroup, submitTest };
