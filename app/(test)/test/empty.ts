@@ -46,10 +46,12 @@ export const emptyTestPaper: TestPaper = {
   body: [
     {
       groupName: "",
+      groupId: "",
       optional: false,
       sections: [
         {
           consolidateSubject: "",
+          sectionId: "",
           optional: false,
           sectionName: "",
           questions: [
@@ -96,12 +98,15 @@ export const emptyUserCache: UserCache = {
     {
       activeSectionIndex: 0,
       groupName: "",
+      groupId: "",
+      hasOpted: false,
       permissions: "all",
       status: "ongoing",
       timeSpent: 0,
       sections: [
         {
           sectionName: "",
+          sectionId: "",
           questionDisplayList: [0],
           qIndex: 0,
           questions: [
@@ -132,11 +137,13 @@ export const emptyTestResponse: TestResponse = {
   body: [
     {
       groupName: "",
+      groupId: "",
       timeSpent: 0,
       scoreData: emptyScoreData,
       sections: [
         {
           sectionName: "",
+          sectionId: "",
           questionDisplayList: [],
           scoreData: emptyScoreData,
           questions: [
