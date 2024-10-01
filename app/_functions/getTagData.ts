@@ -56,10 +56,10 @@ export function getTaggedQuestionDataByID(
 
               if (testResponseSection.selected !== false) {
                 testPaperSection.questions.forEach((testPaperQuestion) => {
-                  const testResponseQuestion =
+                  const [testResponseQuestion] =
                     testResponseSection.questions.filter(
                       (e) => e.id === testPaperQuestion.id
-                    )[0];
+                    );
 
                   if (
                     testPaperQuestion.tags.includes(tagID) ||

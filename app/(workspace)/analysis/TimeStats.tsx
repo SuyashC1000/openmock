@@ -79,7 +79,7 @@ const TimeStats = () => {
           <Heading size={"md"} textAlign={"center"}>
             Test Timeline
           </Heading>
-          <div style={{ height: 400, width: 1000 }}>
+          <div style={{ height: 400, width: "90vw" }}>
             <ResponsiveLine
               data={timelineData}
               margin={{ top: 50, right: 110, bottom: 50, left: 60 }}

@@ -76,25 +76,26 @@ const AnalysisPage = () => {
   //   fetchData();
   // }, []);
 
-  if (!loaded) return <Loading />;
-  if (!activeTestResponse || !suppliedTestPaper)
+  if (!loaded) {
+    return <Loading />;
+  } else if (!activeTestResponse || !suppliedTestPaper) {
     return (
       <ErrorCard
         title="Nothing to analyze..."
         description="You must first select an attempt for analysis from the 
-        Home page after which you will be redirected here."
+      Home page after which you will be redirected here."
         icon={TbMoodConfuzed}
         iconColor="gray.400"
       />
     );
-
-  return (
-    <activeTestResponseContext.Provider value={activeTestResponse}>
-      <SuppliedTestPaperContext.Provider value={suppliedTestPaper}>
-        <MainView />
-      </SuppliedTestPaperContext.Provider>
-    </activeTestResponseContext.Provider>
-  );
+  } else
+    return (
+      <activeTestResponseContext.Provider value={activeTestResponse}>
+        <SuppliedTestPaperContext.Provider value={suppliedTestPaper}>
+          <MainView />
+        </SuppliedTestPaperContext.Provider>
+      </activeTestResponseContext.Provider>
+    );
 };
 
 export default AnalysisPage;
