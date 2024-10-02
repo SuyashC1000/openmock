@@ -227,8 +227,8 @@ const TestPaperInfoModal = ({ testPaper, isOpen, onClose }: Props) => {
             variant={"outline"}
             leftIcon={<TbEdit />}
             onClick={async () => {
-              await db.activeTestPaper.clear();
-              await db.activeTestPaper.add(testPaper);
+              await db.activeTestDraft.clear();
+              await db.activeTestDraft.add(testPaper);
               router.push("/creator");
             }}
           >

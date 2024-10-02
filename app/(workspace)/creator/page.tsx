@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import MainView from "./MainView";
 import { useLiveQuery } from "dexie-react-hooks";
 import { db } from "@/db/db";
@@ -12,12 +12,9 @@ import Loading from "../loading";
 import testDraftReducer, {
   INITIALIZE_STATE,
 } from "@/app/_functions/testDraftReducer";
-import {
-  FormProvider,
-  SubmitHandler,
-  useFieldArray,
-  useForm,
-} from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
+import { DialogDataContext } from "@/app/(test)/test/page";
+import ConfirmationModal from "@/app/(test)/test/_modals/ConfirmationModal";
 
 export const DraftStateContext = React.createContext(emptyTestPaper);
 
@@ -28,31 +25,41 @@ export const DraftDispatchContext = React.createContext(function example(
 const CreatorPage = () => {
   const [state, dispatch] = React.useReducer(testDraftReducer, emptyTestPaper);
 
-  const [fetchedTestPaper, loaded]: [TestPaper, boolean] | [] = useLiveQuery(
-    () =>
-      db.activeTestPaper.toArray().then((response) => {
-        const finalResponse =
-          response[0] ?? testDraftGenerator(Date.now(), "0");
-        dispatch({ type: INITIALIZE_STATE, payload: finalResponse });
-        return [finalResponse, true];
-      }),
-    [],
-    []
-  );
+  const dialogData = useState({
+    active: false,
+    title: "",
+    message: "",
+  });
 
-  const methods = useForm<TestPaper>({ values: fetchedTestPaper });
-  const onSubmit: SubmitHandler<TestPaper> = (data: any) => console.log(data);
+  const [fetchedTestPaper, loaded]: [Partial<TestPaper>, boolean] | [] =
+    useLiveQuery(
+      () =>
+        db.activeTestDraft.toArray().then((response) => {
+          const finalResponse =
+            response[0] ?? testDraftGenerator(Date.now(), "0");
+          dispatch({ type: INITIALIZE_STATE, payload: finalResponse });
+          return [finalResponse, true];
+        }),
+      [],
+      []
+    );
 
-  if (!loaded) return <Loading />;
+  const methods = useForm<Partial<TestPaper>>({ values: fetchedTestPaper });
 
+  if (!loaded) {
+    return <Loading />;
+  }
   return (
     <DraftStateContext.Provider value={state}>
       <DraftDispatchContext.Provider value={dispatch}>
-        <FormProvider {...methods}>
-          <form onSubmit={methods.handleSubmit(onSubmit)}>
-            <MainView />
-          </form>
-        </FormProvider>
+        <DialogDataContext.Provider value={dialogData}>
+          <FormProvider {...methods}>
+            <ConfirmationModal />
+            <form>
+              <MainView />
+            </form>
+          </FormProvider>
+        </DialogDataContext.Provider>
       </DraftDispatchContext.Provider>
     </DraftStateContext.Provider>
   );

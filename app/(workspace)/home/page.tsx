@@ -6,6 +6,8 @@ import { useLiveQuery } from "dexie-react-hooks";
 import testData from "../../../public/data/testData.json";
 import {
   Button,
+  Card,
+  CardBody,
   GridItem,
   Heading,
   SimpleGrid,
@@ -14,6 +16,7 @@ import {
   TabPanel,
   TabPanels,
   Tabs,
+  Text,
 } from "@chakra-ui/react";
 import TestCard from "./TestCard";
 import { TbCopyPlus } from "react-icons/tb";
@@ -21,8 +24,13 @@ import { useRouter } from "next/navigation";
 import Loading from "../loading";
 
 const HomePage = () => {
-  const [availableTests, loading] = useLiveQuery(
-    () => db.testPapers.toArray().then((e) => [e, true]),
+  const [availableTests, availableDrafts, loading] = useLiveQuery(
+    async () => {
+      const testPapers = await db.testPapers.toArray();
+      const testDrafts = await db.testDrafts.toArray();
+
+      return [testPapers, testDrafts, true];
+    },
     [],
     []
   );
@@ -41,6 +49,7 @@ const HomePage = () => {
           <Tab>All</Tab>
           <Tab>Papers</Tab>
           <Tab>Attempts</Tab>
+          <Tab>Drafts</Tab>
         </TabList>
         <TabPanels>
           <TabPanel>
@@ -52,6 +61,7 @@ const HomePage = () => {
               ))}
             </SimpleGrid>
             <br />
+
             <Button
               onClick={async () => {
                 await db.testPapers.add(testData);
@@ -64,7 +74,8 @@ const HomePage = () => {
             <Button
               leftIcon={<TbCopyPlus />}
               colorScheme="red"
-              onClick={() => {
+              onClick={async () => {
+                await db.activeTestDraft.clear();
                 router.push("/creator");
               }}
             >
@@ -72,6 +83,35 @@ const HomePage = () => {
             </Button>
           </TabPanel>
           <TabPanel></TabPanel>
+          <TabPanel>
+            <Button
+              leftIcon={<TbCopyPlus />}
+              colorScheme="red"
+              onClick={async () => {
+                await db.activeTestDraft.clear();
+                router.push("/creator");
+              }}
+            >
+              Create Test
+            </Button>
+            <br />
+            {availableDrafts?.map((e, i) => (
+              <Card
+                size={"sm"}
+                key={i}
+                my={1}
+                onClick={async () => {
+                  await db.activeTestDraft.clear();
+                  await db.activeTestDraft.add(e);
+                  router.push("/creator");
+                }}
+              >
+                <CardBody>
+                  <Text>{e.name}</Text>
+                </CardBody>
+              </Card>
+            ))}
+          </TabPanel>
         </TabPanels>
       </Tabs>
     </div>

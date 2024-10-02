@@ -10,6 +10,9 @@ const db = new Dexie("FriendsDatabase") as Dexie & {
   activeTestResponse: EntityTable<TestResponse, "attemptId">;
   testResponses: EntityTable<TestResponse, "attemptId">;
 
+  testDrafts: EntityTable<Partial<TestPaper>, "id">;
+  activeTestDraft: EntityTable<Partial<TestPaper>, "id">;
+
   userData: EntityTable<UserData, "id">;
 };
 
@@ -19,6 +22,9 @@ db.version(1).stores({
 
   activeTestResponse: "attemptId",
   testResponses: "attemptId, testId",
+
+  testDrafts: "id",
+  activeTestDraft: "id",
 
   userData: "id",
 });

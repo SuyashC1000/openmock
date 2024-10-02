@@ -10,14 +10,15 @@ import {
   NumberInputField,
   Text,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm, useFormContext } from "react-hook-form";
 
 const Step1 = () => {
   const {
+    watch,
     register,
     formState: { errors },
-  } = useFormContext<TestPaper>();
+  } = useFormContext<Partial<TestPaper>>();
 
   return (
     <div className="m-2">
@@ -41,27 +42,25 @@ const Step1 = () => {
           <br />
           <FormControl>
             <FormLabel>Test Duration (in minutes)</FormLabel>
-            <NumberInput size={"sm"} inputMode="numeric">
-              <NumberInputField
-                {...register("maxMetrics.time", {
-                  valueAsNumber: true,
-                  required: true,
-                  min: 1,
-                  max: 999,
-                })}
-                placeholder="Enter duration of test paper (in minutes)"
-                min={1}
-                max={999}
-              />
-              {errors.maxMetrics?.time?.type === "required" && (
-                <p className="text-red-700 text-sm">Required</p>
-              )}
-              {errors.maxMetrics?.time?.type === "max" && (
-                <p className="text-red-700 text-sm">
-                  Duration cannot be more than 999 minutes!
-                </p>
-              )}
-            </NumberInput>
+            <Input
+              size={"sm"}
+              type="number"
+              {...register("maxMetrics.time", {
+                valueAsNumber: true,
+                required: true,
+                min: 1,
+                max: 999,
+              })}
+              placeholder="Enter duration of test paper (in minutes)"
+            />
+            {errors.maxMetrics?.time?.type === "required" && (
+              <p className="text-red-700 text-sm">Required</p>
+            )}
+            {errors.maxMetrics?.time?.type === "max" && (
+              <p className="text-red-700 text-sm">
+                Duration cannot be more than 999 minutes!
+              </p>
+            )}
           </FormControl>
           <br />
           <FormControl>
