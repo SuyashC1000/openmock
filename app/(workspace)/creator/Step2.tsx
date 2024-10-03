@@ -32,7 +32,7 @@ const Step2 = () => {
     formState: { errors },
   } = useFormContext<TestPaper>();
 
-  const { fields, move, replace, append, remove } = useFieldArray({
+  const { fields, move, replace, prepend, remove } = useFieldArray({
     name: `body`,
   });
 
@@ -123,7 +123,7 @@ const Step2 = () => {
         <CardBody>
           <Button
             onClick={() => {
-              append(createNewGroup());
+              prepend(createNewGroup());
             }}
             colorScheme="cyan"
             variant={"outline"}

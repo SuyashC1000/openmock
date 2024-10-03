@@ -17,6 +17,9 @@ import {
   Heading,
   Icon,
   Input,
+  Tag,
+  TagLabel,
+  TagLeftIcon,
   Text,
 } from "@chakra-ui/react";
 import React from "react";
@@ -24,12 +27,16 @@ import { Draggable, DraggableProvided, Droppable } from "react-beautiful-dnd";
 import SectionCreator from "./SectionCreator";
 import { useFieldArray, useFormContext } from "react-hook-form";
 import {
+  TbClipboard,
+  TbDiamonds,
   TbGripVertical,
   TbMenuOrder,
+  TbSettings,
   TbSquareRoundedPlus,
   TbTrash,
 } from "react-icons/tb";
 import { uniqueId } from "@/app/_functions/randomGenerator";
+import { findTotalValidQuestionsAndMarks } from "@/app/_functions/findTotal";
 
 interface Props {
   provided: DraggableProvided;
@@ -53,7 +60,7 @@ const GroupCreator = ({
     formState: { errors },
   } = useFormContext<TestPaper>();
 
-  const { fields, append, remove } = useFieldArray({
+  const { fields, prepend, remove } = useFieldArray({
     name: `body.${grpIndex}.sections`,
   });
 
@@ -69,6 +76,11 @@ const GroupCreator = ({
     return final;
   };
 
+  const { validMarks, validQuestions } = findTotalValidQuestionsAndMarks(
+    "group",
+    groupData
+  );
+
   return (
     <Box py={2} ref={provided.innerRef} {...provided.draggableProps}>
       <Card
@@ -79,7 +91,7 @@ const GroupCreator = ({
         rounded={"lg"}
       >
         <CardBody p={2}>
-          <Flex justifyContent={"start"}>
+          <Flex justifyContent={"start"} alignContent={"center"}>
             <Flex ml={0} mr={"auto"} px={0} alignItems={"center"}>
               <Flex
                 w={"fit"}
@@ -114,30 +126,49 @@ const GroupCreator = ({
                 </Editable>
               </Container>
             </Flex>
-            <Container flex={0} ml={"auto"} mr={0} px={0}>
-              <ButtonGroup>
+            <Flex
+              flex={0}
+              ml={"auto"}
+              mr={0}
+              px={0}
+              gap={2}
+              alignContent={"center"}
+              justifyContent={"center"}
+            >
+              <Flex bgColor={"gray.100"} gap={2} m={2} px={1} rounded={"md"}>
+                <Tag variant={"subtle"} size={"sm"}>
+                  <TagLeftIcon as={TbDiamonds} fontSize={16} />
+                  <TagLabel>{validMarks}</TagLabel>
+                </Tag>
+                <Tag variant={"subtle"} size={"sm"}>
+                  <TagLeftIcon as={TbClipboard} fontSize={16} />
+                  <TagLabel>{validQuestions}</TagLabel>
+                </Tag>
+              </Flex>
+
+              <ButtonGroup
+                size={"sm"}
+                variant={"outline"}
+                alignItems={"center"}
+              >
                 <Button
-                  size={"sm"}
                   colorScheme="cyan"
-                  variant={"outline"}
                   w={"fit-content"}
                   onClick={() => {
-                    append(createNewSection());
+                    prepend(createNewSection());
                   }}
-                  leftIcon={<TbSquareRoundedPlus />}
+                  leftIcon={<TbSquareRoundedPlus size={20} />}
                 >
                   Add Section
                 </Button>
-                <Button
-                  size={"sm"}
-                  colorScheme="red"
-                  variant={"outline"}
-                  onClick={() => removeGroup(grpIndex)}
-                >
-                  <TbTrash />
+                <Button colorScheme="yellow">
+                  <TbSettings size={20} />
+                </Button>
+                <Button colorScheme="red" onClick={() => removeGroup(grpIndex)}>
+                  <TbTrash size={20} />
                 </Button>
               </ButtonGroup>
-            </Container>
+            </Flex>
           </Flex>
 
           <Droppable droppableId={id} type="SECTION">

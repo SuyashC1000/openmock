@@ -4,6 +4,9 @@ import {
   TestPaperSection,
 } from "@/app/_interface/testData";
 import {
+  Alert,
+  AlertDescription,
+  AlertIcon,
   Box,
   Card,
   CardBody,
@@ -359,6 +362,15 @@ const QuestionSelector = ({ step3Data, setStep3Data }: Props) => {
             );
           })}
         </DragDropContext>
+
+        {fieldsData.length === 0 && (
+          <Alert status="info" size={"sm"}>
+            <AlertIcon />
+            <AlertDescription fontSize={"sm"}>
+              Insert a group and a section to start creating questions
+            </AlertDescription>
+          </Alert>
+        )}
       </CardBody>
     </Card>
   );

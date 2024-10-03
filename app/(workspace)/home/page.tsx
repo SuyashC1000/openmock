@@ -106,7 +106,7 @@ const HomePage = () => {
                   router.push("/creator");
                 }}
               >
-                <CardBody>
+                <CardBody cursor={"pointer"}>
                   <Text>{e.name}</Text>
                 </CardBody>
               </Card>

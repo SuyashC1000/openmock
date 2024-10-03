@@ -1,3 +1,4 @@
+import { findTotalValidQuestionsAndMarks } from "@/app/_functions/findTotal";
 import {
   TestPaper,
   TestPaperGroup,
@@ -17,12 +18,21 @@ import {
   Heading,
   Icon,
   Input,
+  Tag,
+  TagLabel,
+  TagLeftIcon,
   Text,
 } from "@chakra-ui/react";
 import React from "react";
 import { DraggableProvided } from "react-beautiful-dnd";
 import { useFormContext } from "react-hook-form";
-import { TbGripVertical, TbTrash } from "react-icons/tb";
+import {
+  TbClipboard,
+  TbDiamonds,
+  TbGripVertical,
+  TbSettings,
+  TbTrash,
+} from "react-icons/tb";
 
 interface Props {
   provided: DraggableProvided;
@@ -47,6 +57,11 @@ const SectionCreator = ({
     control,
     formState: { errors },
   } = useFormContext<TestPaper>();
+
+  const { validMarks, validQuestions } = findTotalValidQuestionsAndMarks(
+    "section",
+    sectionData
+  );
 
   return (
     <Box key={id} ref={provided.innerRef} {...provided.draggableProps} py={1}>
@@ -89,18 +104,33 @@ const SectionCreator = ({
                 </Editable>{" "}
               </Container>
             </Flex>
-            <Container flex={0} ml={"auto"} mr={0} px={0}>
-              <ButtonGroup>
+            <Flex flex={0} ml={"auto"} mr={0} px={0}>
+              <Flex bgColor={"gray.100"} gap={2} m={2} px={1} rounded={"md"}>
+                <Tag variant={"subtle"}>
+                  <TagLeftIcon as={TbDiamonds} fontSize={16} />
+                  <TagLabel>{validMarks}</TagLabel>
+                </Tag>
+                <Tag variant={"subtle"}>
+                  <TagLeftIcon as={TbClipboard} fontSize={16} />
+                  <TagLabel>{validQuestions}</TagLabel>
+                </Tag>
+              </Flex>
+              <ButtonGroup
+                size={"sm"}
+                variant={"outline"}
+                alignItems={"center"}
+              >
+                <Button colorScheme="yellow">
+                  <TbSettings size={20} />
+                </Button>
                 <Button
-                  size={"sm"}
                   colorScheme="red"
-                  variant={"outline"}
                   onClick={() => removeSection(secIndex)}
                 >
-                  <TbTrash />
+                  <TbTrash size={20} />
                 </Button>
               </ButtonGroup>
-            </Container>
+            </Flex>
           </Flex>
         </CardBody>
       </Card>

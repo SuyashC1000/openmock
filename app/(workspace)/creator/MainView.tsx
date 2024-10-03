@@ -60,15 +60,11 @@ const MainView = () => {
     count: steps.length,
   });
 
-  const onSubmitPaper: SubmitHandler<Partial<TestPaper>> = (data: any) => {
-    console.log(data);
-  };
+  const onSubmitPaper: SubmitHandler<Partial<TestPaper>> = (data: any) => {};
 
   const onSubmitSaveDraft: SubmitHandler<Partial<TestPaper>> = async (
     data: Partial<TestPaper>
   ) => {
-    console.log(data);
-
     const isPresent = await db.testDrafts.where("id").equals(data.id!).count();
 
     db.testDrafts.put(data).then(() => {
@@ -85,10 +81,9 @@ const MainView = () => {
   const onSubmitCopyDraft: SubmitHandler<Partial<TestPaper>> = (
     data: Partial<TestPaper>
   ) => {
-    console.log("yello");
-
     let newcopy = data;
     newcopy.id = `td${uniqueId(10)}`;
+    newcopy.name += " (Copy)";
 
     db.testDrafts.add(newcopy).then(() => {
       toast({
@@ -104,8 +99,6 @@ const MainView = () => {
   const onSubmitRemoveDraft: SubmitHandler<Partial<TestPaper>> = async (
     data: Partial<TestPaper>
   ) => {
-    console.log(data);
-
     const isPresent = await db.testDrafts.where("id").equals(data.id!).count();
 
     if (isPresent > 0) {
@@ -178,7 +171,7 @@ const MainView = () => {
           Submit
         </Button>
 
-        <Menu>
+        <Menu strategy="fixed">
           <MenuButton
             as={Button}
             isDisabled={!isValid}
