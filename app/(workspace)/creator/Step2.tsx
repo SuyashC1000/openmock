@@ -34,6 +34,10 @@ const Step2 = () => {
 
   const { fields, move, replace, prepend, remove } = useFieldArray({
     name: `body`,
+    rules: {
+      required: "There should exist at least one group",
+      maxLength: { value: 15, message: "Number of groups must not exceed 15" },
+    },
   });
 
   const fieldsData = watch(`body`);
@@ -160,6 +164,8 @@ const Step2 = () => {
               )}
             </Droppable>
           </DragDropContext>
+
+          <p className="text-red-700 text-sm">{errors.body?.root?.message}</p>
         </CardBody>
       </Card>
     </div>

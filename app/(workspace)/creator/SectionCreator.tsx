@@ -1,4 +1,7 @@
-import { findTotalValidQuestionsAndMarks } from "@/app/_functions/findTotal";
+import {
+  findTotalOptionalSections,
+  findTotalValidQuestionsAndMarks,
+} from "@/app/_functions/findTotal";
 import {
   TestPaper,
   TestPaperGroup,
@@ -10,11 +13,15 @@ import {
   ButtonGroup,
   Card,
   CardBody,
+  Checkbox,
+  ComponentWithAs,
   Container,
   Editable,
   EditableInput,
   EditablePreview,
   Flex,
+  FormControl,
+  FormLabel,
   Heading,
   Icon,
   Input,
@@ -22,11 +29,14 @@ import {
   TagLabel,
   TagLeftIcon,
   Text,
+  Tooltip,
+  TooltipProps,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { Ref } from "react";
 import { DraggableProvided } from "react-beautiful-dnd";
-import { useFormContext } from "react-hook-form";
+import { useFieldArray, useFormContext } from "react-hook-form";
 import {
+  TbCircleMinus,
   TbClipboard,
   TbDiamonds,
   TbGripVertical,
@@ -54,6 +64,8 @@ const SectionCreator = ({
   const {
     register,
     watch,
+    setValue,
+    getFieldState,
     control,
     formState: { errors },
   } = useFormContext<TestPaper>();
@@ -62,6 +74,19 @@ const SectionCreator = ({
     "section",
     sectionData
   );
+
+  const { fields } = useFieldArray({
+    name: `body.${grpIndex}.sections.${secIndex}.questions`,
+    rules: {
+      required: "There should exist at least one question in each section",
+    },
+  });
+
+  const { error } = getFieldState(
+    `body.${grpIndex}.sections.${secIndex}.questions`
+  );
+
+  const [isConfiguring, setIsConfiguring] = React.useState(false);
 
   return (
     <Box key={id} ref={provided.innerRef} {...provided.draggableProps} py={1}>
@@ -105,6 +130,16 @@ const SectionCreator = ({
               </Container>
             </Flex>
             <Flex flex={0} ml={"auto"} mr={0} px={0}>
+              <Flex gap={2} alignItems={"center"}>
+                {sectionData.optional && (
+                  <Tooltip label={"Optional section"}>
+                    <span>
+                      <Icon as={TbCircleMinus} fontSize={20} />
+                    </span>
+                  </Tooltip>
+                )}
+              </Flex>
+
               <Flex bgColor={"gray.100"} gap={2} m={2} px={1} rounded={"md"}>
                 <Tag variant={"subtle"}>
                   <TagLeftIcon as={TbDiamonds} fontSize={16} />
@@ -120,7 +155,11 @@ const SectionCreator = ({
                 variant={"outline"}
                 alignItems={"center"}
               >
-                <Button colorScheme="yellow">
+                <Button
+                  colorScheme="yellow"
+                  onClick={() => setIsConfiguring((e) => !e)}
+                  isActive={isConfiguring}
+                >
                   <TbSettings size={20} />
                 </Button>
                 <Button
@@ -132,6 +171,60 @@ const SectionCreator = ({
               </ButtonGroup>
             </Flex>
           </Flex>
+
+          {isConfiguring && (
+            <Card variant={"outline"} m={3}>
+              <CardBody>
+                <Heading
+                  size={"sm"}
+                  fontWeight={"semibold"}
+                  textDecoration={"underline"}
+                >
+                  Constraints
+                </Heading>
+                <br />
+                <Flex>
+                  <Box>
+                    <Checkbox
+                      {...register(
+                        `body.${grpIndex}.sections.${secIndex}.optional`
+                      )}
+                    >
+                      Optional section
+                    </Checkbox>
+                  </Box>
+                </Flex>
+                <br />
+                <Flex>
+                  <Box>
+                    <FormControl>
+                      <FormLabel>Max Questions Attemptable</FormLabel>
+                      <Input
+                        type="number"
+                        {...register(
+                          `body.${grpIndex}.sections.${secIndex}.constraints.maxQuestionsAnswered`,
+                          {
+                            valueAsNumber: true,
+                            min: {
+                              value: 1,
+                              message:
+                                "Max number of questions attemptable must at least 1",
+                            },
+                            max: {
+                              value: sectionData.questions.length,
+                              message:
+                                "Max number of questions attemptable must not exceed the total number of questions",
+                            },
+                          }
+                        )}
+                      />
+                    </FormControl>
+                  </Box>
+                </Flex>
+              </CardBody>
+            </Card>
+          )}
+          <p className="text-red-700 text-sm">{error?.root?.message}</p>
         </CardBody>
       </Card>
     </Box>

@@ -27,40 +27,47 @@ const Step1 = () => {
           <FormControl>
             <FormLabel>Name of Test Paper</FormLabel>
             <Input
+              isInvalid={errors.name ? true : false}
               size={"sm"}
               placeholder="Enter a name between 3 and 40 characters"
               {...register("name", {
-                minLength: 2,
-                maxLength: 40,
-                required: true,
+                minLength: {
+                  value: 3,
+                  message: "Test paper name must be at least 3 characters long",
+                },
+                maxLength: {
+                  value: 40,
+                  message: "Test paper name must be at most 40 characters long",
+                },
+                required: "Name for the test paper must be provided",
               })}
             />
-            {errors.name?.type === "required" && (
-              <p className="text-red-700 text-sm">Required</p>
-            )}
+            <p className="text-red-700 text-sm">{errors.name?.message}</p>
           </FormControl>
           <br />
           <FormControl>
             <FormLabel>Test Duration (in minutes)</FormLabel>
             <Input
+              isInvalid={errors.name ? true : false}
               size={"sm"}
               type="number"
               {...register("maxMetrics.time", {
                 valueAsNumber: true,
-                required: true,
-                min: 1,
-                max: 999,
+                required: "Duration of test must be provided",
+                min: {
+                  value: 1,
+                  message: "Test duration must be at least 1 minute long",
+                },
+                max: {
+                  value: 999,
+                  message: "Test duration must be at most 999 minutes long",
+                },
               })}
               placeholder="Enter duration of test paper (in minutes)"
             />
-            {errors.maxMetrics?.time?.type === "required" && (
-              <p className="text-red-700 text-sm">Required</p>
-            )}
-            {errors.maxMetrics?.time?.type === "max" && (
-              <p className="text-red-700 text-sm">
-                Duration cannot be more than 999 minutes!
-              </p>
-            )}
+            <p className="text-red-700 text-sm">
+              {errors.maxMetrics?.time?.message}
+            </p>
           </FormControl>
           <br />
           <FormControl>

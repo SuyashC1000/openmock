@@ -15,7 +15,7 @@ export function findTotalValidQuestionsAndMarks(
     sectionData: TestPaperSection
   ): validPair {
     let marksArray: number[] = [];
-    let questionsTally: number;
+    let questionsTally: number = 0;
 
     sectionData.questions.map((question) => {
       marksArray.push(
@@ -25,9 +25,16 @@ export function findTotalValidQuestionsAndMarks(
 
     marksArray.sort((a, b) => b - a);
 
-    if (sectionData.constraints?.maxQuestionsAnswered !== undefined) {
-      questionsTally = sectionData.constraints.maxQuestionsAnswered;
-      marksArray = marksArray.slice(0, questionsTally - marksArray.length);
+    const maxQuestions = sectionData.constraints?.maxQuestionsAnswered;
+
+    if (
+      maxQuestions !== undefined &&
+      maxQuestions !== null &&
+      !isNaN(maxQuestions)
+    ) {
+      questionsTally = maxQuestions;
+      if (questionsTally !== marksArray.length)
+        marksArray = marksArray.slice(0, questionsTally - marksArray.length);
     } else {
       questionsTally = marksArray.length;
     }
@@ -43,9 +50,6 @@ export function findTotalValidQuestionsAndMarks(
   function findTotalValidQuestionsAndMarksinGroup(
     groupData: TestPaperGroup
   ): validPair {
-    let numOfOptionalSections =
-      groupData.constraints?.maxOptionalSectionsAnswered ?? 0;
-
     let compulsoryQuestionsTally: number = 0;
     let compulsoryMarksTally: number = 0;
     let optionalValidPairArray: validPair[] = [];
@@ -62,9 +66,21 @@ export function findTotalValidQuestionsAndMarks(
       }
     });
 
-    optionalValidPairArray = optionalValidPairArray
-      .sort((a, b) => b.validMarks - a.validMarks)
-      .slice(0, numOfOptionalSections - optionalValidPairArray.length);
+    const numOfOptionalSections =
+      groupData.constraints?.maxOptionalSectionsAnswered === undefined ||
+      groupData.constraints?.maxOptionalSectionsAnswered === null
+        ? optionalValidPairArray.length
+        : groupData.constraints!.maxOptionalSectionsAnswered;
+
+    optionalValidPairArray = optionalValidPairArray.sort(
+      (a, b) => b.validMarks - a.validMarks
+    );
+
+    if (numOfOptionalSections < optionalValidPairArray.length)
+      optionalValidPairArray = optionalValidPairArray.slice(
+        0,
+        numOfOptionalSections - optionalValidPairArray.length
+      );
 
     compulsoryMarksTally += optionalValidPairArray.reduce(
       (a, i) => a + i.validMarks,
@@ -107,4 +123,14 @@ export function findTotalValidQuestionsAndMarks(
   } else if (type === "body") {
     return findTotalValidQuestionsAndMarksinBody(data as TestPaperGroup[]);
   } else return { validMarks: -1, validQuestions: -1 };
+}
+
+export function findTotalOptionalSections(groupData: TestPaperGroup): number {
+  let tally = 0;
+
+  groupData.sections.map((e) => {
+    if (e.optional) tally++;
+  });
+
+  return tally;
 }

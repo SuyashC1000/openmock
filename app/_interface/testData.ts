@@ -94,16 +94,16 @@ export enum AuthorLinkType {
 
 interface TestPaperGroupConstraints {
   permissionOnSubmit?: "all" | "view" | "none" | undefined;
-  maxQuestionsAnswered?: number;
-  maximumTimeAllowed?: number;
-  minimumTimeAllowed?: number;
-  maxOptionalSectionsAnswered?: number;
+  maxQuestionsAnswered?: number | null;
+  maximumTimeAllowed?: number | null;
+  minimumTimeAllowed?: number | null;
+  maxOptionalSectionsAnswered?: number | null;
   minPreviousQuestionsAnswered?: number[];
   maxPreviousGroupsAttemptTime?: number[];
 }
 interface TestPaperSectionConstraints {
-  maxQuestionsAnswered?: number;
-  randomizeQuestions?: boolean;
+  maxQuestionsAnswered?: number | null;
+  randomizeQuestions?: boolean | null;
 }
 interface TestPaperQuestionConstraints {
   optional?: boolean;

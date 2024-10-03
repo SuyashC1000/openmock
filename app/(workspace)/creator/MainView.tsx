@@ -4,6 +4,7 @@ import {
   Box,
   Button,
   ButtonGroup,
+  Card,
   Flex,
   Heading,
   Input,
@@ -35,6 +36,7 @@ import { TbChevronDown, TbCopy, TbDeviceFloppy, TbTrash } from "react-icons/tb";
 import { uniqueId } from "@/app/_functions/randomGenerator";
 import { db } from "@/db/db";
 import useConfirm from "@/lib/useConfirm";
+import DraftErrorList from "./DraftErrorList";
 
 const MainView = () => {
   const state = React.useContext(DraftStateContext);
@@ -161,11 +163,13 @@ const MainView = () => {
       {activeStep === 1 && <Step2 />}
       {activeStep === 2 && <Step3 />}
 
+      {/* <DraftErrorList /> */}
+
       <Flex gap={3}>
         <Button
           type="submit"
           colorScheme="green"
-          isDisabled={!isValid}
+          // isDisabled={!isValid}
           onClick={handleSubmit(onSubmitPaper)}
         >
           Submit
@@ -174,7 +178,7 @@ const MainView = () => {
         <Menu strategy="fixed">
           <MenuButton
             as={Button}
-            isDisabled={!isValid}
+            // isDisabled={!isValid}
             colorScheme="yellow"
             rightIcon={<TbChevronDown />}
           >
