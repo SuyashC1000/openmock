@@ -1,17 +1,44 @@
+import MDEditor from "@/app/_components/MDEditor";
+import { uniqueId } from "@/app/_functions/randomGenerator";
 import { TestPaper } from "@/app/_interface/testData";
 import {
+  Button,
+  ButtonGroup,
   Card,
   CardBody,
+  Circle,
+  Editable,
+  EditableInput,
+  EditablePreview,
+  Flex,
   FormControl,
   FormErrorMessage,
   FormLabel,
   Input,
   NumberInput,
   NumberInputField,
+  Popover,
+  PopoverAnchor,
+  PopoverArrow,
+  PopoverBody,
+  PopoverCloseButton,
+  PopoverContent,
+  PopoverHeader,
+  PopoverTrigger,
+  Tag,
+  TagCloseButton,
+  TagLabel,
   Text,
+  Textarea,
 } from "@chakra-ui/react";
-import React, { useEffect } from "react";
-import { useForm, useFormContext } from "react-hook-form";
+import React, { useEffect, useState } from "react";
+import { DragDropContext } from "react-beautiful-dnd";
+import { useFieldArray, useForm, useFormContext } from "react-hook-form";
+import { TbEdit, TbEye } from "react-icons/tb";
+import Markdown from "react-markdown";
+import rehypeKatex from "rehype-katex";
+import remarkGfm from "remark-gfm";
+import remarkMath from "remark-math";
 
 const Step1 = () => {
   const {
@@ -19,6 +46,32 @@ const Step1 = () => {
     register,
     formState: { errors },
   } = useFormContext<Partial<TestPaper>>();
+
+  const { fields, append, remove, update } = useFieldArray({ name: "tags" });
+
+  const [isPreview, setIsPreview] = useState(false);
+  const [currentLanguage, setCurrentLanguage] = React.useState(0);
+
+  const data = watch();
+
+  const colors: string[] = [
+    "#fca5a5",
+    "#fdba74",
+    "#fcd34d",
+    "#fde047",
+    "#bef264",
+    "#86efac",
+    "#6ee7b7",
+    "#5eead4",
+    "#67e8f9",
+    "#7dd3fc",
+    "#93c5fd",
+    "#a5b4fc",
+    "#d8b4fe",
+    "#f0abfc",
+    "#f9a8d4",
+    "#fecdd3",
+  ];
 
   return (
     <div className="m-2">
@@ -72,6 +125,129 @@ const Step1 = () => {
           <br />
           <FormControl>
             <FormLabel>Supported Language</FormLabel>
+          </FormControl>
+          <br />
+          <FormControl>
+            <Flex gap={2}>
+              <FormLabel>Test Description</FormLabel>
+
+              <ButtonGroup isAttached ml={"auto"}>
+                <Button
+                  size={"sm"}
+                  variant={"outline"}
+                  isActive={!isPreview}
+                  onClick={() => setIsPreview(false)}
+                >
+                  <TbEdit size={18} />
+                </Button>
+                <Button
+                  size={"sm"}
+                  variant={"outline"}
+                  isActive={isPreview}
+                  onClick={() => setIsPreview(true)}
+                >
+                  <TbEye size={18} />
+                </Button>
+              </ButtonGroup>
+            </Flex>
+            {isPreview ? (
+              <Card size={"sm"} variant={"outline"}>
+                <CardBody className="whitespace-pre-wrap">
+                  <Markdown
+                    className={`font-serif text-lg`}
+                    remarkPlugins={[remarkGfm, remarkMath]}
+                    rehypePlugins={[rehypeKatex]}
+                  >
+                    {data.analysis?.preTestMessage?.[currentLanguage]}
+                  </Markdown>
+                </CardBody>
+              </Card>
+            ) : (
+              <Textarea
+                {...register(`analysis.preTestMessage.${currentLanguage}`)}
+                // onBlur={(f) => {}}
+              />
+            )}
+          </FormControl>
+          <br />
+          <FormControl>
+            <FormLabel>Question Tags</FormLabel>
+            <Flex gap={1}>
+              {fields.map((e, i) => {
+                const tagData = watch(`tags.${i}`);
+                return (
+                  <Popover key={e.id}>
+                    <PopoverAnchor>
+                      <Tag size={"lg"} key={e.id} bgColor={tagData.color}>
+                        <PopoverTrigger>
+                          <Circle
+                            cursor={"pointer"}
+                            bgColor={tagData.color}
+                            filter={"auto"}
+                            brightness={0.8}
+                            saturate={2}
+                            size={18}
+                          />
+                        </PopoverTrigger>
+                        <TagLabel>
+                          <Editable
+                            defaultValue={tagData.label}
+                            py={0}
+                            ml={2}
+                            px={1}
+                            size={"sm"}
+                          >
+                            <EditablePreview p={0} />
+                            <Input
+                              as={EditableInput}
+                              size={"sm"}
+                              {...register(`tags.${i}.label`, {
+                                required: true,
+                              })}
+                            />
+                          </Editable>
+                        </TagLabel>
+                        <TagCloseButton onClick={() => remove(i)} />
+                      </Tag>
+                    </PopoverAnchor>
+
+                    <PopoverContent>
+                      <PopoverArrow />
+                      <PopoverCloseButton />
+                      <PopoverHeader>Color picker</PopoverHeader>
+                      <PopoverBody>
+                        <Flex gap={1} wrap={"wrap"} mx={"auto"}>
+                          {colors.map((f, j) => (
+                            <Circle
+                              key={f}
+                              size={"2rem"}
+                              bgColor={f}
+                              cursor={"pointer"}
+                              onClick={() => {
+                                update(i, { ...tagData, color: f });
+                              }}
+                            />
+                          ))}
+                        </Flex>
+                      </PopoverBody>
+                    </PopoverContent>
+                  </Popover>
+                );
+              })}
+            </Flex>
+            <br />
+            <Button
+              size={"sm"}
+              onClick={() => {
+                append({
+                  id: `g${uniqueId(5)}`,
+                  label: `Tag`,
+                  color: colors[Math.floor(Math.random() * colors.length)],
+                });
+              }}
+            >
+              Add Tag
+            </Button>
           </FormControl>
         </CardBody>
       </Card>
