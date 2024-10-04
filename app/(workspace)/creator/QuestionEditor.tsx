@@ -947,7 +947,7 @@ const QuestionEditor = ({ step3Data, setStep3Data }: Props) => {
                   </Tag>
                 );
               })}
-              <Popover>
+              <Popover trigger="hover">
                 <PopoverAnchor>
                   <PopoverTrigger>
                     <Button>
@@ -958,6 +958,7 @@ const QuestionEditor = ({ step3Data, setStep3Data }: Props) => {
 
                 <PopoverContent>
                   <PopoverArrow />
+                  <PopoverHeader>Question Tag Palette</PopoverHeader>
 
                   <PopoverBody>
                     <Flex gap={1} wrap={"wrap"} mx={"auto"}>

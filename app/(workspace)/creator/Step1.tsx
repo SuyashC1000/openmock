@@ -3,6 +3,8 @@ import { uniqueId } from "@/app/_functions/randomGenerator";
 import { TestPaper } from "@/app/_interface/testData";
 import { QDataTypes } from "@/lib/enums";
 import {
+  Avatar,
+  Box,
   Button,
   ButtonGroup,
   Card,
@@ -14,17 +16,14 @@ import {
   EditablePreview,
   Flex,
   FormControl,
-  FormErrorMessage,
   FormLabel,
   Input,
   ListItem,
-  NumberInput,
-  NumberInputField,
+  OrderedList,
   Popover,
   PopoverAnchor,
   PopoverArrow,
   PopoverBody,
-  PopoverCloseButton,
   PopoverContent,
   PopoverHeader,
   PopoverTrigger,
@@ -32,18 +31,12 @@ import {
   Tag,
   TagCloseButton,
   TagLabel,
-  Text,
-  Textarea,
   UnorderedList,
 } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
-import { DragDropContext } from "react-beautiful-dnd";
-import { useFieldArray, useForm, useFormContext } from "react-hook-form";
+import React, { useState } from "react";
+import { useFieldArray, useFormContext } from "react-hook-form";
 import { TbEdit, TbEye, TbPlus } from "react-icons/tb";
-import Markdown from "react-markdown";
-import rehypeKatex from "rehype-katex";
-import remarkGfm from "remark-gfm";
-import remarkMath from "remark-math";
+import Step1Authors from "./_step1Fields/Step1Authors";
 
 const Step1 = () => {
   const {
@@ -71,7 +64,6 @@ const Step1 = () => {
   const [currentLanguage, setCurrentLanguage] = React.useState(0);
 
   const data = watch();
-  console.log("From here", data);
 
   const languages = watch("languages", [""]);
 
@@ -238,7 +230,6 @@ const Step1 = () => {
             <FormLabel>Name of Test Paper</FormLabel>
             <Input
               isInvalid={errors.name ? true : false}
-              size={"sm"}
               placeholder="Enter a name between 3 and 40 characters"
               {...register("name", {
                 minLength: {
@@ -259,7 +250,6 @@ const Step1 = () => {
             <FormLabel>Test Duration (in minutes)</FormLabel>
             <Input
               isInvalid={errors.maxMetrics?.time ? true : false}
-              size={"sm"}
               type="number"
               {...register("maxMetrics.time", {
                 valueAsNumber: true,
@@ -282,7 +272,7 @@ const Step1 = () => {
           <br />
           <FormControl>
             <FormLabel>Supported Language</FormLabel>
-            <UnorderedList>
+            <OrderedList>
               {languageFields.map((field, index) => {
                 const language = data.languages![index];
 
@@ -316,19 +306,18 @@ const Step1 = () => {
                   </ListItem>
                 );
               })}
-              <ListItem>
-                <Button
-                  variant={"ghost"}
-                  size={"sm"}
-                  onClick={() => {
-                    appendLanguage("New Language");
-                    addLanguage();
-                  }}
-                >
-                  <TbPlus size={18} />
-                </Button>
-              </ListItem>
-            </UnorderedList>
+            </OrderedList>
+            <Button
+              variant={"ghost"}
+              size={"sm"}
+              ml={2}
+              onClick={() => {
+                appendLanguage("New Language");
+                addLanguage();
+              }}
+            >
+              <TbPlus size={18} />
+            </Button>
           </FormControl>
           <br />
 
@@ -407,7 +396,9 @@ const Step1 = () => {
               }}
             />
           </FormControl>
+
           <br />
+
           <FormControl>
             <FormLabel>Question Tags</FormLabel>
             <Flex gap={1}>
@@ -491,6 +482,10 @@ const Step1 = () => {
               </Button>
             </Flex>
           </FormControl>
+
+          <br />
+
+          <Step1Authors />
         </CardBody>
       </Card>
     </div>
