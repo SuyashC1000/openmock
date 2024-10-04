@@ -62,7 +62,9 @@ const MainView = () => {
     count: steps.length,
   });
 
-  const onSubmitPaper: SubmitHandler<Partial<TestPaper>> = (data: any) => {};
+  const onSubmitPaper: SubmitHandler<Partial<TestPaper>> = (data: any) => {
+    alert("Done!");
+  };
 
   const onSubmitSaveDraft: SubmitHandler<Partial<TestPaper>> = async (
     data: Partial<TestPaper>

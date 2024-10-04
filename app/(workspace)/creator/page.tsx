@@ -44,7 +44,10 @@ const CreatorPage = () => {
       []
     );
 
-  const methods = useForm<Partial<TestPaper>>({ values: fetchedTestPaper });
+  const methods = useForm<Partial<TestPaper>>({
+    values: fetchedTestPaper,
+    mode: "onTouched",
+  });
 
   if (!loaded) {
     return <Loading />;

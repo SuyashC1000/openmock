@@ -8,6 +8,7 @@ import {
   Card,
   CardBody,
   Checkbox,
+  Circle,
   Flex,
   FormControl,
   FormLabel,
@@ -18,8 +19,20 @@ import {
   NumberInput,
   NumberInputField,
   NumberInputStepper,
+  Popover,
+  PopoverAnchor,
+  PopoverArrow,
+  PopoverBody,
+  PopoverCloseButton,
+  PopoverContent,
+  PopoverHeader,
+  PopoverTrigger,
   Select,
+  Tag,
+  TagCloseButton,
+  TagLabel,
   Text,
+  Textarea,
 } from "@chakra-ui/react";
 import React, { Dispatch, SetStateAction } from "react";
 import { Step3DataProps } from "./Step3";
@@ -34,6 +47,7 @@ import dynamic from "next/dynamic";
 import "@uiw/react-markdown-editor/markdown-editor.css";
 import "@uiw/react-markdown-preview/markdown.css";
 import MDEditor from "@/app/_components/MDEditor";
+import Head from "next/head";
 
 interface Props {
   step3Data: Step3DataProps;
@@ -64,6 +78,7 @@ const QuestionEditor = ({ step3Data, setStep3Data }: Props) => {
   const [isAdvanced, setIsAdvanced] = React.useState(false);
 
   const languages = watch(`languages`);
+  const tags = watch(`tags`);
 
   const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 
@@ -908,6 +923,75 @@ const QuestionEditor = ({ step3Data, setStep3Data }: Props) => {
               </Box>
             </Flex>
             <br /> */}
+
+            <br />
+            <br />
+            <Heading size={"md"}>Miscellaneous</Heading>
+            <FormLabel>Tags</FormLabel>
+
+            <Flex gap={2} wrap={"wrap"}>
+              {step3Data.questionData.tags.map((e, i) => {
+                const [tagData] = tags.filter((f) => f.id === e);
+                return (
+                  <Tag size={"lg"} key={i} bgColor={tagData.color}>
+                    <TagLabel>{tagData.label}</TagLabel>
+                    <TagCloseButton
+                      onClick={() => {
+                        setStep3Data((g) => {
+                          g.questionData!.tags.splice(i, 1);
+                          return g;
+                        });
+                        updateQuestion();
+                      }}
+                    />
+                  </Tag>
+                );
+              })}
+              <Popover>
+                <PopoverAnchor>
+                  <PopoverTrigger>
+                    <Button>
+                      <TbPlus size={20} />
+                    </Button>
+                  </PopoverTrigger>
+                </PopoverAnchor>
+
+                <PopoverContent>
+                  <PopoverArrow />
+
+                  <PopoverBody>
+                    <Flex gap={1} wrap={"wrap"} mx={"auto"}>
+                      {tags
+                        .filter(
+                          (e) => !step3Data.questionData?.tags.includes(e.id)
+                        )
+                        .map((e, i) => {
+                          return (
+                            <Tag
+                              cursor={"pointer"}
+                              key={i}
+                              size={"lg"}
+                              bgColor={e.color}
+                              onClick={() => {
+                                setStep3Data((f) => {
+                                  f.questionData?.tags.push(e.id);
+                                  return f;
+                                });
+                                updateQuestion();
+                              }}
+                            >
+                              <TagLabel>{e.label}</TagLabel>
+                            </Tag>
+                          );
+                        })}
+                      {!tags.some(
+                        (e) => !step3Data.questionData?.tags.includes(e.id)
+                      ) && <Text mx={"auto"}>No more tags left.</Text>}
+                    </Flex>
+                  </PopoverBody>
+                </PopoverContent>
+              </Popover>
+            </Flex>
 
             <br />
             <br />

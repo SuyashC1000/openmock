@@ -44,6 +44,7 @@ const Step1 = () => {
   const {
     watch,
     register,
+    setValue,
     formState: { errors },
   } = useFormContext<Partial<TestPaper>>();
 
@@ -73,6 +74,29 @@ const Step1 = () => {
     "#fecdd3",
   ];
 
+  function removeTagInstances(tagId: string) {
+    let dataCopy = structuredClone(data);
+    setValue(
+      "body",
+      dataCopy.body?.map((group, i) => {
+        return {
+          ...group,
+          sections: group.sections.map((section, j) => {
+            return {
+              ...section,
+              questions: section.questions.map((question, k) => {
+                return {
+                  ...question,
+                  tags: question.tags.filter((tag) => tag !== tagId),
+                };
+              }),
+            };
+          }),
+        };
+      })
+    );
+  }
+
   return (
     <div className="m-2">
       <Card>
@@ -101,7 +125,7 @@ const Step1 = () => {
           <FormControl>
             <FormLabel>Test Duration (in minutes)</FormLabel>
             <Input
-              isInvalid={errors.name ? true : false}
+              isInvalid={errors.maxMetrics?.time ? true : false}
               size={"sm"}
               type="number"
               {...register("maxMetrics.time", {
@@ -207,7 +231,12 @@ const Step1 = () => {
                             />
                           </Editable>
                         </TagLabel>
-                        <TagCloseButton onClick={() => remove(i)} />
+                        <TagCloseButton
+                          onClick={() => {
+                            removeTagInstances(tagData.id);
+                            remove(i);
+                          }}
+                        />
                       </Tag>
                     </PopoverAnchor>
 
