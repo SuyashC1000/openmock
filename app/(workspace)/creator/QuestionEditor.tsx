@@ -8,8 +8,8 @@ import {
   Card,
   CardBody,
   Checkbox,
-  Container,
   Flex,
+  FormControl,
   FormLabel,
   Heading,
   Input,
@@ -20,7 +20,6 @@ import {
   NumberInputStepper,
   Select,
   Text,
-  Textarea,
 } from "@chakra-ui/react";
 import React, { Dispatch, SetStateAction } from "react";
 import { Step3DataProps } from "./Step3";
@@ -30,10 +29,6 @@ import { TestPaper, TestPaperQuestion } from "@/app/_interface/testData";
 import { uniqueId } from "@/app/_functions/randomGenerator";
 import { Evaluation, QDataTypes } from "@/lib/enums";
 import { useFieldArray, useFormContext } from "react-hook-form";
-import Markdown from "react-markdown";
-import remarkGfm from "remark-gfm";
-import remarkMath from "remark-math";
-import rehypeKatex from "rehype-katex";
 
 import dynamic from "next/dynamic";
 import "@uiw/react-markdown-editor/markdown-editor.css";
@@ -199,6 +194,11 @@ const QuestionEditor = ({ step3Data, setStep3Data }: Props) => {
     setStep3Data((e) => {
       if (e.questionData!.qDataType[1] < 10) e.questionData!.qDataType[1]++;
       e.questionData!.options!.push(Array(languages.length).fill(""));
+
+      if (type === QDataTypes.SingleCorrectOption) {
+      } else if (type === QDataTypes.MultipleCorrectOptions) {
+      }
+
       return e;
     });
     updateQuestion();
@@ -231,11 +231,37 @@ const QuestionEditor = ({ step3Data, setStep3Data }: Props) => {
           e.questionData!.answer = (e.questionData!.answer as number[]).filter(
             (f) => f !== e.questionData!.qDataType[1]
           );
+          e.questionData?.markingScheme[Evaluation.Partial]?.pop();
+          if (e.questionData?.markingScheme[Evaluation.Partial]?.length === 0) {
+            e.questionData!.markingScheme[Evaluation.Partial] = undefined;
+          }
+
+          if (e.questionData?.answer.length === 0) {
+            e.questionData.answer.push(0);
+          }
         }
       }
 
       return e;
     });
+    updateQuestion();
+  }
+
+  function handlePartialMarking() {
+    const isPartialMarkingEnabled =
+      step3Data.questionData?.markingScheme[Evaluation.Partial] !== undefined;
+
+    setStep3Data((e) => {
+      if (isPartialMarkingEnabled) {
+        e.questionData!.markingScheme[Evaluation.Partial] = undefined;
+      } else {
+        e.questionData!.markingScheme[Evaluation.Partial] = Array(
+          (e.questionData?.answer as number[]).length - 1
+        ).fill([0, 1]);
+      }
+      return e;
+    });
+
     updateQuestion();
   }
 
@@ -494,6 +520,73 @@ const QuestionEditor = ({ step3Data, setStep3Data }: Props) => {
                 </Box>
               )}
             </Flex>
+            {step3Data.questionData.qDataType[0] ===
+              QDataTypes.MultipleCorrectOptions && (
+              <Checkbox
+                isChecked={
+                  step3Data.questionData.markingScheme[2] !== undefined
+                }
+                isDisabled={
+                  (step3Data.questionData.answer as number[]).length === 1
+                }
+                onChange={() => handlePartialMarking()}
+              >
+                Enable Partial Marking
+              </Checkbox>
+            )}
+
+            {step3Data.questionData.markingScheme[Evaluation.Partial]?.map(
+              (markSet, i) => (
+                <Flex gap={3} my={2} key={i}>
+                  <Box flexGrow={1}>
+                    <FormLabel>
+                      Marks for {i + 1} Partially Correct Answer
+                      {i > 0 ? "s" : ""}
+                    </FormLabel>
+                    <Input
+                      type="number"
+                      color={"yellow.500"}
+                      size={"sm"}
+                      value={markSet[0]}
+                      onChange={(f) => {
+                        setStep3Data((e) => {
+                          e.questionData!.markingScheme[Evaluation.Partial]![
+                            i
+                          ][0] = +f.target.value;
+                          return e;
+                        });
+                        updateQuestion();
+                      }}
+                    />
+                  </Box>
+                  {isAdvanced && (
+                    <Box flexGrow={1}>
+                      <FormLabel>
+                        Marks for {i + 1} Partially Correct Answer
+                        {i > 0 ? "s" : ""} (Denominator)
+                      </FormLabel>
+                      <Input
+                        type="number"
+                        color={"yellow.500"}
+                        size={"sm"}
+                        value={markSet[1]}
+                        onChange={(f) => {
+                          setStep3Data((e) => {
+                            e.questionData!.markingScheme![Evaluation.Partial]![
+                              i
+                            ][1] = +f.target.value;
+                            return e;
+                          });
+                          updateQuestion();
+                        }}
+                      />
+                    </Box>
+                  )}
+                </Flex>
+              )
+            )}
+
+            <br />
 
             <Heading size={"md"}>Answer</Heading>
 
@@ -626,28 +719,42 @@ const QuestionEditor = ({ step3Data, setStep3Data }: Props) => {
                             const target = f.target as HTMLButtonElement;
                             const value: number = +target.value;
                             setStep3Data((e) => {
-                              let copy = structuredClone(e);
-
                               if (
                                 (e.questionData?.answer as number[]).includes(
-                                  +value
+                                  value
                                 )
                               ) {
                                 if (
                                   (e.questionData?.answer as number[]).length >
                                   1
                                 )
-                                  copy.questionData!.answer = (
-                                    copy.questionData!.answer as number[]
-                                  ).filter((g) => g !== +value);
+                                  e.questionData!.answer = (
+                                    e.questionData!.answer as number[]
+                                  ).filter((g) => g !== value);
+                                if (
+                                  e.questionData!.markingScheme[
+                                    Evaluation.Partial
+                                  ]?.length === 2
+                                ) {
+                                  e.questionData!.markingScheme[
+                                    Evaluation.Partial
+                                  ] = undefined;
+                                } else {
+                                  e.questionData!.markingScheme[
+                                    Evaluation.Partial
+                                  ]?.pop();
+                                }
                               } else {
-                                (copy.questionData!.answer as number[]).push(
-                                  +value
+                                (e.questionData!.answer as number[]).push(
+                                  value
                                 );
+                                e.questionData!.markingScheme[
+                                  Evaluation.Partial
+                                ]?.push([0, 1]);
                               }
-                              (copy.questionData!.answer as number[]).sort();
+                              (e.questionData!.answer as number[]).sort();
 
-                              return copy;
+                              return e;
                             });
                             updateQuestion();
                           }}
@@ -727,8 +834,77 @@ const QuestionEditor = ({ step3Data, setStep3Data }: Props) => {
               </Flex>
             ) : undefined}
 
-            <Heading size={"md"}>Constraints</Heading>
+            <br />
+            <Flex alignItems={"center"}>
+              <Heading size={"md"}>Solution</Heading>
+            </Flex>
 
+            <MDEditor
+              isPreview={isPreview}
+              content={
+                step3Data?.questionData?.solution?.[
+                  step3Data.currentLanguage
+                ] !== null
+                  ? step3Data?.questionData?.solution?.[
+                      step3Data.currentLanguage
+                    ]
+                  : ""
+              }
+              onChange={(f) => {
+                setStep3Data((e): Step3DataProps => {
+                  let final = e;
+                  e.questionData!.solution![step3Data.currentLanguage] =
+                    f.target.value;
+                  return final;
+                });
+                updateQuestion();
+              }}
+            />
+
+            {/* <Heading size={"md"}>Constraints</Heading>
+            <Flex gap={2}>
+            <Box>
+            <FormControl>
+            <FormLabel>Permission on Submit</FormLabel>
+            <Select
+                    onChange={(f) => {
+                      setStep3Data((e) => {
+                        e.questionData!.constraints!.permissionOnAttempt = f
+                          .target.value as "view" | "all" | "none" | undefined;
+                        return e;
+                      });
+                      updateQuestion();
+                    }}
+                  >
+                    <option value={"all"}>View and edit response</option>
+                    <option value={"view"}>Only view response</option>
+                    <option value={"none"}>No permisisons</option>
+                  </Select>
+                </FormControl>
+              </Box>
+              <Box>
+                <FormControl>
+                  <FormLabel>Maximum Time Allowed</FormLabel>
+                  <Input
+                    type="number"
+                    value={
+                      step3Data.questionData.constraints?.maximumTimeAllowed
+                    }
+                    onChange={(f) => {
+                      setStep3Data((e) => {
+                        e.questionData!.constraints!.maximumTimeAllowed =
+                          +f.target.value;
+                        return e;
+                      });
+                      updateQuestion();
+                    }}
+                  />
+                </FormControl>
+              </Box>
+            </Flex>
+            <br /> */}
+
+            <br />
             <br />
             <Checkbox
               isChecked={isAdvanced}

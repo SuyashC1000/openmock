@@ -241,7 +241,7 @@
               "constraints": {
                 "permissionOnAttempt": "none"
               },
-              "solution": null
+              "solution": [""]
             },
             {
               "id": "q123456795",
@@ -257,7 +257,7 @@
               "options": [["Black"], ["White"], ["Dark Blue"], ["Brown"]],
               "tags": ["g1"],
               "answer": 1,
-              "solution": null,
+              "solution": [""],
               "constraints": {
                 "maximumTimeAllowed": 1
               }
@@ -274,7 +274,7 @@
                 "How many countries are there in the world according to the UN?"
               ],
               "options": null,
-              "solution": null,
+              "solution": [""],
               "tags": ["g3"],
               "answer": 195
             },
@@ -292,7 +292,7 @@
               "options": [["Purple"], ["Magenta"], ["Brown"], ["Red"]],
               "tags": ["g3"],
               "answer": 1,
-              "solution": null
+              "solution": [""]
             },
             {
               "id": "q123456798",
@@ -308,7 +308,7 @@
               "options": [["Hydrogen"], ["Helium"], ["Sulphur"], ["Iron"]],
               "tags": ["g3"],
               "answer": [0, 1, 2, 3],
-              "solution": null
+              "solution": [""]
             }
           ]
         },
@@ -331,7 +331,7 @@
               "options": [["Sunday"], ["Monday"], ["Tuesday"], ["Wednesday"]],
               "tags": ["g2"],
               "answer": 2,
-              "solution": null
+              "solution": [""]
             },
             {
               "id": "q123456890",
@@ -347,7 +347,7 @@
               "options": null,
               "tags": ["g1"],
               "answer": 10,
-              "solution": null
+              "solution": [""]
             }
           ]
         },
@@ -370,7 +370,7 @@
               "options": null,
               "tags": ["g3"],
               "answer": 20,
-              "solution": null
+              "solution": [""]
             },
             {
               "id": "q123457790",
@@ -386,7 +386,7 @@
               "options": [["140"], ["280"], ["420"], ["560"]],
               "tags": ["g2"],
               "answer": 3,
-              "solution": null
+              "solution": [""]
             }
           ]
         }
@@ -425,7 +425,7 @@
               ],
               "tags": ["g2"],
               "answer": 2,
-              "solution": null
+              "solution": [""]
             },
             {
               "id": "q2002",
@@ -446,7 +446,7 @@
               ],
               "tags": ["g1", "g4"],
               "answer": 3,
-              "solution": null
+              "solution": [""]
             }
           ]
         },
@@ -474,7 +474,7 @@
               "options": [["Barium"], ["Nitrogen"], ["Mercury"], ["Germanium"]],
               "tags": ["g2"],
               "answer": [0, 2],
-              "solution": null
+              "solution": [""]
             },
             {
               "id": "q2102",
@@ -488,7 +488,7 @@
               "options": null,
               "tags": ["g3"],
               "answer": 29.25,
-              "solution": null
+              "solution": [""]
             }
           ]
         },
@@ -519,7 +519,7 @@
               ],
               "tags": ["g3"],
               "answer": 1,
-              "solution": null
+              "solution": [""]
             },
             {
               "id": "q2202",
@@ -535,7 +535,7 @@
               "options": null,
               "tags": ["g2"],
               "answer": 1,
-              "solution": null
+              "solution": [""]
             }
           ]
         }
@@ -569,7 +569,7 @@
               "options": [["Balkans"], ["Austria"], ["Poland"], ["Turkey"]],
               "tags": ["g2"],
               "answer": 0,
-              "solution": null
+              "solution": [""]
             },
             {
               "id": "q3002",
@@ -585,7 +585,7 @@
               "options": null,
               "tags": ["g2"],
               "answer": 11,
-              "solution": null
+              "solution": [""]
             }
           ]
         },
@@ -608,7 +608,7 @@
               "options": null,
               "tags": ["g1", "g4"],
               "answer": 7,
-              "solution": null
+              "solution": [""]
             },
             {
               "id": "q3102",
@@ -622,7 +622,7 @@
               "options": [["Federal"], ["Quasi-federal"]],
               "tags": ["g1"],
               "answer": 1,
-              "solution": null
+              "solution": [""]
             }
           ]
         },
@@ -645,7 +645,7 @@
               "options": [["52%"], ["42%"], ["32%"], ["22%"]],
               "tags": ["g2"],
               "answer": 3,
-              "solution": null
+              "solution": [""]
             },
             {
               "id": "q3202",
@@ -665,7 +665,7 @@
               ],
               "tags": ["g2"],
               "answer": 1,
-              "solution": null
+              "solution": [""]
             }
           ]
         },
@@ -697,7 +697,7 @@
               ],
               "tags": ["g1"],
               "answer": [0, 2, 3],
-              "solution": null
+              "solution": [""]
             },
             {
               "id": "q3302",
@@ -718,7 +718,7 @@
               ],
               "tags": ["g1", "g4"],
               "answer": 1,
-              "solution": null
+              "solution": [""]
             }
           ]
         }
