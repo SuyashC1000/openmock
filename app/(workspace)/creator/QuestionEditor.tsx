@@ -96,11 +96,15 @@ const QuestionEditor = ({ step3Data, setStep3Data }: Props) => {
       options:
         step3Data.preferences.questionType === QDataTypes.NumericalValue
           ? null
-          : Array(
-              step3Data.preferences.questionTypeProps[
-                step3Data.preferences.questionType
-              ]
-            ).fill(""),
+          : Array.from(
+              {
+                length:
+                  step3Data.preferences.questionTypeProps[
+                    step3Data.preferences.questionType
+                  ],
+              },
+              () => Array.from({ length: languages.length }, () => "")
+            ),
       tags: [],
     };
     return final;
@@ -659,11 +663,12 @@ const QuestionEditor = ({ step3Data, setStep3Data }: Props) => {
                         content={option[step3Data.currentLanguage]}
                         onChange={(f) => {
                           setStep3Data((e): Step3DataProps => {
-                            let final = e;
-                            e.questionData!.options![i][
-                              step3Data.currentLanguage
+                            console.log(e.questionData!.options!);
+
+                            e.questionData!.options![+i][
+                              +step3Data.currentLanguage
                             ] = f.target.value;
-                            return final;
+                            return e;
                           });
                           updateQuestion();
                         }}
