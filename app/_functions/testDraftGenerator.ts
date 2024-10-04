@@ -21,7 +21,10 @@ export function testDraftGenerator(
     version: version,
     tags: [],
     usefulData: [],
-    analysis: {},
+    analysis: {
+      preTestMessage: [""],
+      postTestMessage: [""],
+    },
     additionalTools: {
       calculator: "none",
       magnifyingGlass: false,

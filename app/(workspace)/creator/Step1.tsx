@@ -1,12 +1,14 @@
 import MDEditor from "@/app/_components/MDEditor";
 import { uniqueId } from "@/app/_functions/randomGenerator";
 import { TestPaper } from "@/app/_interface/testData";
+import { QDataTypes } from "@/lib/enums";
 import {
   Button,
   ButtonGroup,
   Card,
   CardBody,
   Circle,
+  CloseButton,
   Editable,
   EditableInput,
   EditablePreview,
@@ -15,6 +17,7 @@ import {
   FormErrorMessage,
   FormLabel,
   Input,
+  ListItem,
   NumberInput,
   NumberInputField,
   Popover,
@@ -25,16 +28,18 @@ import {
   PopoverContent,
   PopoverHeader,
   PopoverTrigger,
+  Select,
   Tag,
   TagCloseButton,
   TagLabel,
   Text,
   Textarea,
+  UnorderedList,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { DragDropContext } from "react-beautiful-dnd";
 import { useFieldArray, useForm, useFormContext } from "react-hook-form";
-import { TbEdit, TbEye } from "react-icons/tb";
+import { TbEdit, TbEye, TbPlus } from "react-icons/tb";
 import Markdown from "react-markdown";
 import rehypeKatex from "rehype-katex";
 import remarkGfm from "remark-gfm";
@@ -46,14 +51,32 @@ const Step1 = () => {
     register,
     setValue,
     formState: { errors },
-  } = useFormContext<Partial<TestPaper>>();
+  } = useFormContext<TestPaper>();
 
-  const { fields, append, remove, update } = useFieldArray({ name: "tags" });
+  const {
+    fields: tagFields,
+    append: appendTag,
+    remove: removeTag,
+    update: updateTag,
+  } = useFieldArray({ name: "tags" });
+
+  const {
+    fields: languageFields,
+    append: appendLanguage,
+    remove: removeLanguage,
+    update: updateLanguage,
+  } = useFieldArray({ name: "languages" });
 
   const [isPreview, setIsPreview] = useState(false);
   const [currentLanguage, setCurrentLanguage] = React.useState(0);
 
   const data = watch();
+  console.log("From here", data);
+
+  const languages = watch("languages", [""]);
+
+  const description = watch(`analysis.preTestMessage.${currentLanguage}`);
+  const instructions = watch(`instructions.${currentLanguage}`);
 
   const colors: string[] = [
     "#fca5a5",
@@ -96,6 +119,116 @@ const Step1 = () => {
       })
     );
   }
+
+  function addLanguage() {
+    let dataCopy = structuredClone(data);
+    setValue("instructions", [...dataCopy.instructions, ""]);
+    setValue("analysis.preTestMessage", [
+      ...dataCopy.analysis.preTestMessage,
+      "",
+    ]);
+    setValue("analysis.postTestMessage", [
+      ...dataCopy.analysis.postTestMessage,
+      "",
+    ]);
+    setValue(
+      "body",
+      dataCopy.body?.map((group) => {
+        if (group.instructions !== undefined) {
+          group.instructions.push("");
+        }
+        return {
+          ...group,
+          sections: group.sections.map((section) => {
+            if (section.instructions !== undefined) {
+              section.instructions.push("");
+            }
+            return {
+              ...section,
+              questions: section.questions.map((question) => {
+                question.question.push("");
+                question.solution.push("");
+
+                if (
+                  [
+                    QDataTypes.SingleCorrectOption,
+                    QDataTypes.MultipleCorrectOptions,
+                  ].includes(question.qDataType[0])
+                ) {
+                  question.options!.map((option) => {
+                    option.push("");
+                    return option;
+                  });
+                }
+                return { ...question };
+              }),
+            };
+          }),
+        };
+      })
+    );
+  }
+  function deleteLanguage(index: number) {
+    setCurrentLanguage((langIndex) => {
+      if (langIndex >= index) {
+        return langIndex - 1;
+      } else {
+        return langIndex;
+      }
+    });
+
+    let dataCopy = structuredClone(data);
+    setValue(
+      "instructions",
+      dataCopy.instructions.filter((e, i) => i !== index)
+    );
+    setValue(
+      "analysis.preTestMessage",
+      dataCopy.analysis.preTestMessage.filter((e, i) => i !== index)
+    );
+    setValue(
+      "analysis.postTestMessage",
+      dataCopy.analysis.postTestMessage.filter((e, i) => i !== index)
+    );
+    setValue(
+      "body",
+      dataCopy.body?.map((group) => {
+        if (group.instructions !== undefined) {
+          group.instructions.splice(index, 1);
+        }
+        return {
+          ...group,
+          sections: group.sections.map((section) => {
+            if (section.instructions !== undefined) {
+              section.instructions.splice(index, 1);
+            }
+            return {
+              ...section,
+              questions: section.questions.map((question) => {
+                question.question.splice(index, 1);
+                question.solution.splice(index, 1);
+
+                if (
+                  [
+                    QDataTypes.SingleCorrectOption,
+                    QDataTypes.MultipleCorrectOptions,
+                  ].includes(question.qDataType[0])
+                ) {
+                  question.options!.map((option) => {
+                    option.splice(index, 1);
+                    return option;
+                  });
+                }
+                return { ...question };
+              }),
+            };
+          }),
+        };
+      })
+    );
+  }
+
+  // React.useEffect(()=> {}, [cur])
 
   return (
     <div className="m-2">
@@ -149,58 +282,139 @@ const Step1 = () => {
           <br />
           <FormControl>
             <FormLabel>Supported Language</FormLabel>
+            <UnorderedList>
+              {languageFields.map((field, index) => {
+                const language = data.languages![index];
+
+                return (
+                  <ListItem key={field.id}>
+                    <Flex alignContent={"center"}>
+                      <Editable
+                        defaultValue={language}
+                        py={0}
+                        ml={2}
+                        px={1}
+                        size={"sm"}
+                      >
+                        <EditablePreview />
+                        <Input
+                          as={EditableInput}
+                          size={"sm"}
+                          {...register(`languages.${index}`, {
+                            required: true,
+                          })}
+                        />
+                      </Editable>
+                      <CloseButton
+                        isDisabled={languages.length === 1}
+                        onClick={() => {
+                          removeLanguage(index);
+                          deleteLanguage(index);
+                        }}
+                      />
+                    </Flex>
+                  </ListItem>
+                );
+              })}
+              <ListItem>
+                <Button
+                  variant={"ghost"}
+                  size={"sm"}
+                  onClick={() => {
+                    appendLanguage("New Language");
+                    addLanguage();
+                  }}
+                >
+                  <TbPlus size={18} />
+                </Button>
+              </ListItem>
+            </UnorderedList>
           </FormControl>
+          <br />
+
+          <Flex
+            mt={1}
+            alignItems={"center"}
+            gap={2}
+            bgColor={"white"}
+            zIndex={5}
+            p={2}
+            rounded={"lg"}
+            // borderWidth={2}
+            // borderColor={"gray.200"}
+            justifyContent={"end"}
+          >
+            <ButtonGroup isAttached>
+              <Button
+                size={"sm"}
+                variant={"outline"}
+                isActive={!isPreview}
+                onClick={() => setIsPreview(false)}
+              >
+                <TbEdit size={18} />
+              </Button>
+              <Button
+                size={"sm"}
+                variant={"outline"}
+                isActive={isPreview}
+                onClick={() => setIsPreview(true)}
+              >
+                <TbEye size={18} />
+              </Button>
+            </ButtonGroup>
+            <Select
+              maxW={"2xs"}
+              size={"sm"}
+              onChange={(f) => {
+                setCurrentLanguage(+f.target.value);
+              }}
+            >
+              {languages.map((e, i) => (
+                <option key={i} value={i}>
+                  {e}
+                </option>
+              ))}
+            </Select>
+          </Flex>
+
           <br />
           <FormControl>
             <Flex gap={2}>
               <FormLabel>Test Description</FormLabel>
-
-              <ButtonGroup isAttached ml={"auto"}>
-                <Button
-                  size={"sm"}
-                  variant={"outline"}
-                  isActive={!isPreview}
-                  onClick={() => setIsPreview(false)}
-                >
-                  <TbEdit size={18} />
-                </Button>
-                <Button
-                  size={"sm"}
-                  variant={"outline"}
-                  isActive={isPreview}
-                  onClick={() => setIsPreview(true)}
-                >
-                  <TbEye size={18} />
-                </Button>
-              </ButtonGroup>
             </Flex>
-            {isPreview ? (
-              <Card size={"sm"} variant={"outline"}>
-                <CardBody className="whitespace-pre-wrap">
-                  <Markdown
-                    className={`font-serif text-lg`}
-                    remarkPlugins={[remarkGfm, remarkMath]}
-                    rehypePlugins={[rehypeKatex]}
-                  >
-                    {data.analysis?.preTestMessage?.[currentLanguage]}
-                  </Markdown>
-                </CardBody>
-              </Card>
-            ) : (
-              <Textarea
-                {...register(`analysis.preTestMessage.${currentLanguage}`)}
-                // onBlur={(f) => {}}
-              />
-            )}
+            <MDEditor
+              isPreview={isPreview}
+              content={description}
+              onChange={(f) => {
+                setValue(
+                  `analysis.preTestMessage.${currentLanguage}`,
+                  f.target.value
+                );
+              }}
+            />
+          </FormControl>
+
+          <br />
+          <FormControl>
+            <Flex gap={2}>
+              <FormLabel>Test Specific Instructions</FormLabel>
+            </Flex>
+            <MDEditor
+              isPreview={isPreview}
+              content={instructions}
+              onChange={(f) => {
+                setValue(`instructions.${currentLanguage}`, f.target.value);
+              }}
+            />
           </FormControl>
           <br />
           <FormControl>
             <FormLabel>Question Tags</FormLabel>
             <Flex gap={1}>
-              {fields.map((e, i) => {
+              {tagFields.map((e, i) => {
                 const tagData = watch(`tags.${i}`);
                 return (
-                  <Popover key={e.id}>
+                  <Popover key={e.id} trigger="hover">
                     <PopoverAnchor>
                       <Tag size={"lg"} key={e.id} bgColor={tagData.color}>
                         <PopoverTrigger>
@@ -234,7 +448,7 @@ const Step1 = () => {
                         <TagCloseButton
                           onClick={() => {
                             removeTagInstances(tagData.id);
-                            remove(i);
+                            removeTag(i);
                           }}
                         />
                       </Tag>
@@ -242,7 +456,6 @@ const Step1 = () => {
 
                     <PopoverContent>
                       <PopoverArrow />
-                      <PopoverCloseButton />
                       <PopoverHeader>Color picker</PopoverHeader>
                       <PopoverBody>
                         <Flex gap={1} wrap={"wrap"} mx={"auto"}>
@@ -253,7 +466,7 @@ const Step1 = () => {
                               bgColor={f}
                               cursor={"pointer"}
                               onClick={() => {
-                                update(i, { ...tagData, color: f });
+                                updateTag(i, { ...tagData, color: f });
                               }}
                             />
                           ))}
@@ -263,20 +476,20 @@ const Step1 = () => {
                   </Popover>
                 );
               })}
+              <Button
+                variant={"outline"}
+                leftIcon={<TbPlus size={20} />}
+                onClick={() => {
+                  appendTag({
+                    id: `g${uniqueId(5)}`,
+                    label: `Tag`,
+                    color: colors[Math.floor(Math.random() * colors.length)],
+                  });
+                }}
+              >
+                Add Tag
+              </Button>
             </Flex>
-            <br />
-            <Button
-              size={"sm"}
-              onClick={() => {
-                append({
-                  id: `g${uniqueId(5)}`,
-                  label: `Tag`,
-                  color: colors[Math.floor(Math.random() * colors.length)],
-                });
-              }}
-            >
-              Add Tag
-            </Button>
           </FormControl>
         </CardBody>
       </Card>

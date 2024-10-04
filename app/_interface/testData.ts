@@ -16,8 +16,8 @@ export interface TestPaper {
   usefulData?: string[];
   body: TestPaperGroup[];
   analysis: {
-    preTestMessage?: string[];
-    postTestMessage?: string[];
+    preTestMessage: string[];
+    postTestMessage: string[];
     customEvaluation?: TestPaperCustomEvaluation;
     customTagStats?: TestPaperCustomTagStats[];
   };
