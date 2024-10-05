@@ -98,7 +98,19 @@
         "title": "Important",
         "tags": ["g4", ""]
       }
-    ]
+    ],
+    "customEvaluation": {
+      "basis": "percentage",
+      "type": "grade",
+      "data": [
+        { "label": "S", "range": [91, 100] },
+        { "label": "A", "range": [71, 90] },
+        { "label": "B", "range": [51, 70] },
+        { "label": "C", "range": [31, 50] },
+        { "label": "D", "range": [11, 30] },
+        { "label": "E", "range": [0, 10] }
+      ]
+    }
   },
   "usefulData": [
     "$$\\pi = 3.14159$$\n\n$$e = 2.71828$$\n\n$$\\text{Na}= 23\\text{amu}$$\n\n$$\\text{Cl}= 35.5\\text{amu}$$"

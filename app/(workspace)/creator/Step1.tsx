@@ -37,6 +37,7 @@ import React, { useState } from "react";
 import { useFieldArray, useFormContext } from "react-hook-form";
 import { TbEdit, TbEye, TbPlus } from "react-icons/tb";
 import Step1Authors from "./_step1Fields/Step1Authors";
+import TagStats from "../analysis/TagStats";
 
 const Step1 = () => {
   const {
@@ -61,7 +62,7 @@ const Step1 = () => {
   } = useFieldArray({ name: "languages" });
 
   const [isPreview, setIsPreview] = useState(false);
-  const [currentLanguage, setCurrentLanguage] = React.useState(0);
+  const [currentLanguage, setCurrentLanguage] = useState(0);
 
   const data = watch();
 
@@ -110,6 +111,18 @@ const Step1 = () => {
         };
       })
     );
+
+    if (dataCopy.analysis.customTagStats !== undefined) {
+      setValue(
+        "analysis.customTagStats",
+        dataCopy.analysis.customTagStats.map((tagStat) => {
+          return {
+            ...tagStat,
+            tags: tagStat.tags.filter((tag) => tag !== tagId),
+          };
+        })
+      );
+    }
   }
 
   function addLanguage() {
@@ -310,13 +323,12 @@ const Step1 = () => {
             <Button
               variant={"ghost"}
               size={"sm"}
-              ml={2}
               onClick={() => {
                 appendLanguage("New Language");
                 addLanguage();
               }}
             >
-              <TbPlus size={18} />
+              <TbPlus size={18} /> Add Language
             </Button>
           </FormControl>
           <br />

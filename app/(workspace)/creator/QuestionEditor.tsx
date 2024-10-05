@@ -379,6 +379,7 @@ const QuestionEditor = ({ step3Data, setStep3Data }: Props) => {
               content={
                 step3Data.questionData.question[step3Data.currentLanguage]
               }
+              fontStyle="serif"
               onChange={(f) => {
                 setStep3Data((e): Step3DataProps => {
                   let final = e;
@@ -676,6 +677,7 @@ const QuestionEditor = ({ step3Data, setStep3Data }: Props) => {
                       <MDEditor
                         isPreview={isPreview}
                         content={option[step3Data.currentLanguage]}
+                        fontStyle="serif"
                         onChange={(f) => {
                           setStep3Data((e): Step3DataProps => {
                             console.log(e.questionData!.options!);
@@ -796,6 +798,7 @@ const QuestionEditor = ({ step3Data, setStep3Data }: Props) => {
                       <MDEditor
                         isPreview={isPreview}
                         content={option[step3Data.currentLanguage]}
+                        fontStyle="serif"
                         onChange={(f) => {
                           setStep3Data((e): Step3DataProps => {
                             let final = e;
@@ -861,6 +864,7 @@ const QuestionEditor = ({ step3Data, setStep3Data }: Props) => {
 
             <MDEditor
               isPreview={isPreview}
+              fontStyle="serif"
               content={
                 step3Data?.questionData?.solution?.[
                   step3Data.currentLanguage
@@ -933,7 +937,7 @@ const QuestionEditor = ({ step3Data, setStep3Data }: Props) => {
               {step3Data.questionData.tags.map((e, i) => {
                 const [tagData] = tags.filter((f) => f.id === e);
                 return (
-                  <Tag size={"lg"} key={i} bgColor={tagData.color}>
+                  <Tag size={"md"} key={i} bgColor={tagData.color}>
                     <TagLabel>{tagData.label}</TagLabel>
                     <TagCloseButton
                       onClick={() => {

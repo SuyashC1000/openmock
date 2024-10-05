@@ -132,6 +132,7 @@ const GroupCreator = ({
 
                 <Editable
                   defaultValue={groupData.groupName}
+                  placeholder="Group Name"
                   fontSize={"lg"}
                   fontWeight={"bold"}
                   py={0}

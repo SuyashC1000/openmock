@@ -111,6 +111,7 @@ const SectionCreator = ({
                 <Text fontSize={"xs"}>Section name:</Text>
                 <Editable
                   defaultValue={sectionData.sectionName}
+                  placeholder="Section Name"
                   fontSize={"lg"}
                   fontWeight={"bold"}
                   py={0}

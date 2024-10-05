@@ -113,9 +113,9 @@ interface TestPaperQuestionConstraints {
 }
 
 interface TestPaperCustomEvaluation {
-  type: "grade" | "rank" | "percentile" | "passfail";
+  type: "grade" | "rank" | "percentile" | "custom";
   basis: "marks" | "percentage";
-  data: [{ label: string; range: [number, number] }];
+  data: { label: string; range: [number, number] }[];
 }
 
 interface TestPaperCustomTagStats {

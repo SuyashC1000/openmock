@@ -139,11 +139,8 @@ const TimeStats = () => {
           <Table variant={"unstyled"}>
             <Thead>
               <Tr>
-                <Th className="w-4/12">Title</Th>
+                <Th>Title</Th>
                 <Th>Total</Th>
-                <Th>Average</Th>
-                <Th>Shortest</Th>
-                <Th>Longest</Th>
               </Tr>
             </Thead>
             <Tbody>
@@ -159,9 +156,6 @@ const TimeStats = () => {
                         >
                           <Td>{e.groupName}</Td>
                           <Td>{e.timeSpent}s</Td>
-                          <Td>{1}</Td>
-                          <Td>{1}</Td>
-                          <Td>{grpMarks.total}</Td>
                         </Tr>
                         {e.sections.map((f, j) => {
                           const secMarks = f.scoreData.marks;
@@ -170,10 +164,13 @@ const TimeStats = () => {
                               {f.selected !== false && (
                                 <Tr key={j}>
                                   <Td>{f.sectionName}</Td>
-                                  <Td>{1}</Td>
-                                  <Td>{1}</Td>
-                                  <Td>{1}</Td>
-                                  <Td>{secMarks.total}</Td>
+                                  <Td>
+                                    {f.questions.reduce(
+                                      (a, i) => a + i.timeSpent,
+                                      0
+                                    )}
+                                    s
+                                  </Td>
                                 </Tr>
                               )}
                             </>

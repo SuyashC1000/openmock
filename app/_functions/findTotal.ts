@@ -9,7 +9,8 @@ interface validPair {
 
 export function findTotalValidQuestionsAndMarks(
   type: "body" | "group" | "section",
-  data: TestPaperGroup | TestPaperSection | TestPaperGroup[]
+  data: TestPaperGroup | TestPaperSection | TestPaperGroup[],
+  isIncorrect: boolean = false
 ): validPair {
   function findTotalValidQuestionsAndMarksinSection(
     sectionData: TestPaperSection
@@ -19,11 +20,21 @@ export function findTotalValidQuestionsAndMarks(
 
     sectionData.questions.map((question) => {
       marksArray.push(
-        Marks(question.markingScheme[Evaluation.Correct]) as number
+        Marks(
+          question.markingScheme[
+            isIncorrect ? Evaluation.Incorrect : Evaluation.Correct
+          ]
+        ) as number
       );
     });
 
-    marksArray.sort((a, b) => b - a);
+    marksArray.sort((a, b) => {
+      if (isIncorrect) {
+        return a - b;
+      } else {
+        return b - a;
+      }
+    });
 
     const maxQuestions = sectionData.constraints?.maxQuestionsAnswered;
 
@@ -72,9 +83,13 @@ export function findTotalValidQuestionsAndMarks(
         ? optionalValidPairArray.length
         : groupData.constraints!.maxOptionalSectionsAnswered;
 
-    optionalValidPairArray = optionalValidPairArray.sort(
-      (a, b) => b.validMarks - a.validMarks
-    );
+    optionalValidPairArray = optionalValidPairArray.sort((a, b) => {
+      if (isIncorrect) {
+        return a.validMarks - b.validMarks;
+      } else {
+        return b.validMarks - a.validMarks;
+      }
+    });
 
     if (numOfOptionalSections < optionalValidPairArray.length)
       optionalValidPairArray = optionalValidPairArray.slice(

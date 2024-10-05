@@ -37,6 +37,7 @@ import { uniqueId } from "@/app/_functions/randomGenerator";
 import { db } from "@/db/db";
 import useConfirm from "@/lib/useConfirm";
 import DraftErrorList from "./DraftErrorList";
+import Step4 from "./Step4";
 
 const MainView = () => {
   const state = React.useContext(DraftStateContext);
@@ -51,7 +52,7 @@ const MainView = () => {
     { title: "First", description: "Paper Details" },
     { title: "Second", description: "Grouping" },
     { title: "Third", description: "Questions" },
-    { title: "Fourth", description: "Evaluation" },
+    { title: "Fourth", description: "Miscellanous" },
   ];
 
   const toast = useToast();
@@ -63,7 +64,13 @@ const MainView = () => {
   });
 
   const onSubmitPaper: SubmitHandler<Partial<TestPaper>> = (data: any) => {
-    alert("Done!");
+    toast({
+      title: "Paper successfully published",
+      description: "Draft is saved as a copy ready to be attempted",
+      status: "success",
+      position: "top",
+      variant: "subtle",
+    });
   };
 
   const onSubmitSaveDraft: SubmitHandler<Partial<TestPaper>> = async (
@@ -74,7 +81,7 @@ const MainView = () => {
     db.testDrafts.put(data).then(() => {
       toast({
         title: `Draft successfully ${isPresent > 0 ? "updated" : "created"}`,
-        description: "Test paper draft has been saved",
+        description: `${isPresent > 0 ? "Updated draft is" : "Draft is now"} accessible from the Home page`,
         status: "success",
         position: "top",
         variant: "subtle",
@@ -92,7 +99,7 @@ const MainView = () => {
     db.testDrafts.add(newcopy).then(() => {
       toast({
         title: "Draft successfully copied",
-        description: "Copied test paper draft has been saved",
+        description: "Copy is accessible from the Home page",
         status: "success",
         position: "top",
         variant: "subtle",
@@ -117,7 +124,8 @@ const MainView = () => {
         await db.testDrafts.delete(data.id).then(() => {
           toast({
             title: "Draft successfully discarded",
-            description: "Test paper draft has been successfully deleted",
+            description:
+              "Curent draft will remain as is until you exit the page",
             status: "success",
             position: "top",
             variant: "subtle",
@@ -126,9 +134,8 @@ const MainView = () => {
       }
     } else {
       toast({
-        title: "Draft doesn't exist",
-        description:
-          "No last save of this test paper draft was found for deletion",
+        title: "No last save of draft found",
+        description: "Ensure your draft exists in the Home page",
         status: "error",
         position: "top",
         variant: "subtle",
@@ -164,6 +171,7 @@ const MainView = () => {
       {activeStep === 0 && <Step1 />}
       {activeStep === 1 && <Step2 />}
       {activeStep === 2 && <Step3 />}
+      {activeStep === 3 && <Step4 />}
 
       {/* <DraftErrorList /> */}
 
@@ -174,7 +182,7 @@ const MainView = () => {
           // isDisabled={!isValid}
           onClick={handleSubmit(onSubmitPaper)}
         >
-          Submit
+          Publish
         </Button>
 
         <Menu strategy="fixed">
