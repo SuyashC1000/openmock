@@ -110,25 +110,29 @@ const TestPaperInfoModal = ({ testPaper, isOpen, onClose }: Props) => {
                 <Heading size={"sm"} mb={2}>
                   Authors:
                 </Heading>
-                <UnorderedList spacing={2}>
-                  {testPaper.authors.map((e, i) => (
-                    <ListItem key={i} className="flex flex-col gap-1">
-                      <div className="flex items-center gap-2">
-                        <Avatar
-                          name={e.name}
-                          src={e.avatarUrl !== null ? e.avatarUrl : undefined}
-                          size={"sm"}
-                        />
-                        <Text fontSize={"lg"}>{e.name}</Text>
-                      </div>
-                      <div className="*:m-1">
-                        {e.links.map((f, j) => {
-                          return <AuthorLinkButton key={j} {...f} />;
-                        })}
-                      </div>
-                    </ListItem>
-                  ))}
-                </UnorderedList>
+                {testPaper.authors.length > 0 ? (
+                  <UnorderedList spacing={2}>
+                    {testPaper.authors.map((e, i) => (
+                      <ListItem key={i} className="flex flex-col gap-1">
+                        <div className="flex items-center gap-2">
+                          <Avatar
+                            name={e.name}
+                            src={e.avatarUrl !== null ? e.avatarUrl : undefined}
+                            size={"sm"}
+                          />
+                          <Text fontSize={"lg"}>{e.name}</Text>
+                        </div>
+                        <div className="*:m-1">
+                          {e.links.map((f, j) => {
+                            return <AuthorLinkButton key={j} {...f} />;
+                          })}
+                        </div>
+                      </ListItem>
+                    ))}
+                  </UnorderedList>
+                ) : (
+                  <Text>No authors listed</Text>
+                )}
               </AccordionPanel>
             </AccordionItem>
           </Accordion>

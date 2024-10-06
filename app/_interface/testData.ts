@@ -13,7 +13,7 @@ export interface TestPaper {
     magnifyingGlass: boolean;
     [k: string]: unknown;
   };
-  usefulData?: string[];
+  usefulData: string[];
   body: TestPaperGroup[];
   analysis: {
     preTestMessage: string[];

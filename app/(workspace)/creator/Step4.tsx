@@ -35,6 +35,7 @@ const Step4 = () => {
   const responseDescription = watch(
     `analysis.postTestMessage.${currentLanguage}`
   );
+  const usefulData = watch(`usefulData.${currentLanguage}`);
 
   return (
     <div className="m-2">
@@ -54,7 +55,7 @@ const Step4 = () => {
             <Box flexGrow={1}>
               <FormControl>
                 <FormLabel>Magnifying Glass</FormLabel>
-                <Checkbox {...register("addtionalTools.magnifyingGlass")}>
+                <Checkbox {...register("additionalTools.magnifyingGlass")}>
                   Allow adjusting zoom level during test
                 </Checkbox>
               </FormControl>
@@ -118,6 +119,19 @@ const Step4 = () => {
                   `analysis.postTestMessage.${currentLanguage}`,
                   f.target.value
                 );
+              }}
+            />
+          </FormControl>
+          <br />
+          <FormControl>
+            <Flex gap={2}>
+              <FormLabel>Useful Data</FormLabel>
+            </Flex>
+            <MDEditor
+              isPreview={isPreview}
+              content={usefulData}
+              onChange={(f) => {
+                setValue(`usefulData.${currentLanguage}`, f.target.value);
               }}
             />
           </FormControl>

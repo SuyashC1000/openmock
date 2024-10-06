@@ -312,7 +312,7 @@ const QuestionReview = () => {
       <div
         style={{ zIndex: 5 }}
         className="flex justify-between items-center sticky top-2 px-3 py-1 rounded-xl
-       bg-neutral-100 border-2 border-neutral-300"
+       bg-white border-2 border-neutral-200"
       >
         <Breadcrumb className=" w-fit px-3 rounded-full">
           <BreadcrumbItem>
@@ -519,20 +519,13 @@ const QuestionReview = () => {
               </HStack>
             </div>
           )}
-        </CardBody>
-      </Card>
-      <br />
-      <Card>
-        <CardBody>
-          <Heading size={"sm"}>Response:</Heading>
-          <ResponseReview
-            paperQuestion={qPaper}
-            responseQuestion={qResponse}
-            languageIndex={languageIndex}
-          />
+
           <br />
           <Box>
-            <Grid templateColumns={"repeat(auto-fill, minmax(14rem, 1fr))"}>
+            <Grid
+              gap={2}
+              templateColumns={"repeat(auto-fill, minmax(14rem, 1fr))"}
+            >
               <StatsCard label="Evaluation" content={evaluationMsg} />
               <StatsCard
                 label="Marks awarded"
@@ -544,6 +537,17 @@ const QuestionReview = () => {
               />
             </Grid>
           </Box>
+        </CardBody>
+      </Card>
+      <br />
+      <Card>
+        <CardBody>
+          <Heading size={"sm"}>Response:</Heading>
+          <ResponseReview
+            paperQuestion={qPaper}
+            responseQuestion={qResponse}
+            languageIndex={languageIndex}
+          />
         </CardBody>
       </Card>
       <br />

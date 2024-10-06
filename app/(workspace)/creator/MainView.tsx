@@ -44,6 +44,7 @@ const MainView = () => {
   const {
     control,
     handleSubmit,
+    watch,
     register,
     formState: { errors, isValid },
   } = useFormContext<TestPaper>();
@@ -52,8 +53,10 @@ const MainView = () => {
     { title: "First", description: "Paper Details" },
     { title: "Second", description: "Grouping" },
     { title: "Third", description: "Questions" },
-    { title: "Fourth", description: "Miscellanous" },
+    { title: "Fourth", description: "Miscellaneous" },
   ];
+
+  const data = watch();
 
   const toast = useToast();
   const { confirm } = useConfirm();
@@ -63,13 +66,18 @@ const MainView = () => {
     count: steps.length,
   });
 
-  const onSubmitPaper: SubmitHandler<Partial<TestPaper>> = (data: any) => {
-    toast({
-      title: "Paper successfully published",
-      description: "Draft is saved as a copy ready to be attempted",
-      status: "success",
-      position: "top",
-      variant: "subtle",
+  const onSubmitPaper: SubmitHandler<TestPaper> = (data: TestPaper) => {
+    data.timeCreated = Date.now();
+    data.id = `t${uniqueId(10)}`;
+
+    db.testPapers.add(data).then(() => {
+      toast({
+        title: "Paper successfully published",
+        description: "Draft is saved as a copy ready to be attempted",
+        status: "success",
+        position: "top",
+        variant: "subtle",
+      });
     });
   };
 
@@ -174,6 +182,7 @@ const MainView = () => {
       {activeStep === 3 && <Step4 />}
 
       {/* <DraftErrorList /> */}
+      {JSON.stringify(data)}
 
       <Flex gap={3}>
         <Button

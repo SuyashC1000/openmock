@@ -48,6 +48,7 @@ import "@uiw/react-markdown-editor/markdown-editor.css";
 import "@uiw/react-markdown-preview/markdown.css";
 import MDEditor from "@/app/_components/MDEditor";
 import Head from "next/head";
+import { findTotalValidQuestionsAndMarks } from "@/app/_functions/findTotal";
 
 interface Props {
   step3Data: Step3DataProps;
@@ -73,6 +74,8 @@ const QuestionEditor = ({ step3Data, setStep3Data }: Props) => {
   const sectionsFieldData = watch(
     `body.${step3Data.sectionLocation?.[0]}.sections.${step3Data.sectionLocation?.[1]}.questions`
   );
+  const data = watch(`body`);
+  const maxMetrics = watch(`maxMetrics`);
 
   const [isPreview, setIsPreview] = React.useState(false);
   const [isAdvanced, setIsAdvanced] = React.useState(false);
@@ -92,6 +95,16 @@ const QuestionEditor = ({ step3Data, setStep3Data }: Props) => {
       (e) => e.id === step3Data.questionData!.id
     );
     update(index, step3Data.questionData);
+
+    const { validMarks, validQuestions } = findTotalValidQuestionsAndMarks(
+      "body",
+      data
+    );
+    setValue(`maxMetrics`, {
+      ...maxMetrics,
+      marks: validMarks,
+      questions: validQuestions,
+    });
   }
 
   function questionGenerator(): TestPaperQuestion {

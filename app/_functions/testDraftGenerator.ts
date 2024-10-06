@@ -20,7 +20,7 @@ export function testDraftGenerator(
     // },
     version: version,
     tags: [],
-    usefulData: [],
+    usefulData: [""],
     analysis: {
       preTestMessage: [""],
       postTestMessage: [""],
