@@ -182,7 +182,7 @@ const MainView = () => {
       {activeStep === 3 && <Step4 />}
 
       {/* <DraftErrorList /> */}
-      {JSON.stringify(data)}
+      {/* {JSON.stringify(data)} */}
 
       <Flex gap={3}>
         <Button

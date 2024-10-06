@@ -44,6 +44,7 @@ const HomePage = () => {
   return (
     <div>
       <Heading>Welcome Home!</Heading>
+      <h1>Juice</h1>
       <Tabs variant={"line"}>
         <TabList>
           <Tab>All</Tab>
