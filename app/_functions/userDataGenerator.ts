@@ -2,7 +2,7 @@ import { UserData } from "../_interface/userData";
 import { uniqueId } from "./randomGenerator";
 
 export function userDataGenerator(
-  username: string,
+  name: string,
   profileImgSrc: string,
   version: string,
   time: number
@@ -11,11 +11,12 @@ export function userDataGenerator(
     id: `u${uniqueId(10)}`,
     preferences: {
       author: null,
-      alwaysSaveResponses: false,
+      defaultLanguage: "English",
+      showAnnouncements: true,
       displayMode: null,
     },
     profile: {
-      username: username,
+      name: name,
       imageSrc: profileImgSrc,
     },
     version: version,

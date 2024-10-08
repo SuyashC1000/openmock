@@ -176,7 +176,7 @@ const PostTestModal = () => {
               mr={3}
               onClick={async () => {
                 setShowFinishModal(false);
-                await document.exitFullscreen();
+                await document.exitFullscreen().catch(() => {});
               }}
             >
               Close

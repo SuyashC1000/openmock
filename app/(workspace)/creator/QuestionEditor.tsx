@@ -964,7 +964,7 @@ const QuestionEditor = ({ step3Data, setStep3Data }: Props) => {
                   </Tag>
                 );
               })}
-              <Popover trigger="hover">
+              <Popover trigger="hover" placement="bottom-end">
                 <PopoverAnchor>
                   <PopoverTrigger>
                     <Button>

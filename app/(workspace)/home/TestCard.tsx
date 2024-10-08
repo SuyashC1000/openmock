@@ -30,11 +30,13 @@ const TestCard = ({ testPaper }: { testPaper: TestPaper }) => {
 
   return (
     <div>
-      <Card onClick={onOpen} cursor={"pointer"} size={"sm"}>
+      <Card onClick={onOpen} cursor={"pointer"} size={"sm"} maxWidth={"30rem"}>
         <CardBody>
           <Flex
             w={"full"}
-            alignItems={"center"}
+            alignItems={"start"}
+            flexDirection={"column"}
+            gap={1}
             justifyContent={"space-between"}
           >
             <Text size={"md"} fontWeight={"medium"} flex={1}>

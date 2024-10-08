@@ -20,6 +20,8 @@ import {
 } from "../page";
 import { SET_DEFAULT_LANGUAGE } from "@/app/_functions/userCacheReducer";
 import useActiveElements from "@/lib/useActiveElements";
+import DisplayedUserName from "../_misc/DisplayedUserName";
+import DisplayedUserProfilePic from "../_misc/DisplayedUserProfilePic";
 
 const OptionalSectionNotice = () => {
   const state = React.useContext(TestStateContext);
@@ -53,7 +55,7 @@ const DashboardPopover = () => {
 
   return (
     <Popover
-      placement="left-end"
+      placement="left-start"
       offset={[0, 10]}
       trigger="hover"
       closeDelay={800}
@@ -66,37 +68,18 @@ const DashboardPopover = () => {
             className="w-64 bg-white flex-0 flex flex-box flex-col items-center justify-start
             gap-3 p-2 outline outline-1 outline-neutral-400"
           >
-            <Avatar
-              size={"lg"}
-              name={state.userDetails.username}
-              src={state.userDetails.imageSrc}
-              className="flex-0 self-center"
-            />
-            <Text className="font-semibold flex-1 text-center">
-              {state.userDetails.username !== "" ? (
-                state.userDetails.username
-              ) : (
-                <span className="italic font-medium">Anonymous User</span>
-              )}{" "}
-            </Text>
+            <DisplayedUserProfilePic />
+            <DisplayedUserName />
           </div>
         </PopoverTrigger>
       </PopoverAnchor>
       <PopoverContent>
         <PopoverArrow />
         <PopoverBody>
-          <Text mb={1}>
-            Your name:{" "}
-            <strong>
-              {state.userDetails.username !== "" ? (
-                state.userDetails.username
-              ) : (
-                <span className="italic font-medium">Anonymous User</span>
-              )}
-            </strong>
-          </Text>
+          <Text>Your name: </Text>
+          <DisplayedUserName align="left" limit={false} />
 
-          <Text>Select language:</Text>
+          <Text mt={1}>Select language:</Text>
           <Select
             value={state.currentLanguageIndex}
             onChange={(e) => {

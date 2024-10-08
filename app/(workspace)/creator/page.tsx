@@ -16,6 +16,8 @@ import { FormProvider, useForm } from "react-hook-form";
 import { DialogDataContext } from "@/app/(test)/test/page";
 import ConfirmationModal from "@/app/(test)/test/_modals/ConfirmationModal";
 
+import systemData from "../../../public/systemData.json";
+
 export const DraftStateContext = React.createContext(emptyTestPaper);
 
 export const DraftDispatchContext = React.createContext(function example(
@@ -33,13 +35,22 @@ const CreatorPage = () => {
 
   const [fetchedTestPaper, loaded]: [Partial<TestPaper>, boolean] | [] =
     useLiveQuery(
-      () =>
-        db.activeTestDraft.toArray().then((response) => {
-          const finalResponse =
-            response[0] ?? testDraftGenerator(Date.now(), "0");
-          dispatch({ type: INITIALIZE_STATE, payload: finalResponse });
-          return [finalResponse, true];
-        }),
+      async () => {
+        const [userData] = await db.userData.toArray();
+        const [activeTestDraft] = await db.activeTestDraft.toArray();
+
+        const finalTestDraft =
+          activeTestDraft ?? testDraftGenerator(userData, systemData);
+        dispatch({ type: INITIALIZE_STATE, payload: finalTestDraft });
+
+        return [finalTestDraft, true];
+      },
+      // db.activeTestDraft.toArray().then((response) => {
+      //   const finalResponse =
+      //     response[0] ?? testDraftGenerator(Date.now(), "0");
+      //   dispatch({ type: INITIALIZE_STATE, payload: finalResponse });
+      //   return [finalResponse, true];
+      // }),
       [],
       []
     );

@@ -17,6 +17,8 @@ import {
   SET_TEST_STATUS,
   UPDATE_QUESTION_STATUS,
 } from "@/app/_functions/userCacheReducer";
+import DisplayedUserName from "../_misc/DisplayedUserName";
+import DisplayedUserProfilePic from "../_misc/DisplayedUserProfilePic";
 
 export const PreTestModal = () => {
   const state = React.useContext(TestStateContext);
@@ -177,19 +179,8 @@ export const PreTestModal = () => {
         </div>
         <div className="w-64 grow-1 h-screen bg-white outline outline-1 outline-neutral-400 flex flex-col items-center">
           <div className="flex items-center flex-col m-8 gap-2">
-            <Avatar
-              size={"xl"}
-              name={state.userDetails.username}
-              src={state.userDetails.imageSrc}
-            />
-            {/* <Text className="font-semibold">{state.userDetails.username}</Text> */}
-            <Text className="font-semibold">
-              {state.userDetails.username !== "" ? (
-                state.userDetails.username
-              ) : (
-                <span className="italic font-medium">Anonymous User</span>
-              )}
-            </Text>
+            <DisplayedUserProfilePic size="xl" />
+            <DisplayedUserName />
           </div>
         </div>
       </div>

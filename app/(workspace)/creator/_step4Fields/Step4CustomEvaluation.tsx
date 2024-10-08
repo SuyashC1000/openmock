@@ -38,7 +38,6 @@ const Step4CustomEvaluation = () => {
   const customEvaluation = watch("analysis.customEvaluation");
 
   const data = watch(`body`);
-  const isEnabled = customEvaluation !== undefined;
 
   const tierRangeMinMax =
     customEvaluation?.basis === "marks"
@@ -50,145 +49,127 @@ const Step4CustomEvaluation = () => {
 
   return (
     <div>
-      <FormControl>
-        <FormLabel>Custom Evaluation</FormLabel>
+      <div>
+        <Flex gap={2}>
+          <Box flexGrow={1}>
+            <FormControl>
+              <FormLabel>Basis of Evaluation</FormLabel>
+              <Select {...register(`analysis.customEvaluation.basis`)}>
+                <option value={"marks"}>Marks</option>
+                <option value={"percentage"}>Percentage</option>
+              </Select>
+            </FormControl>
+          </Box>
+          <Box flexGrow={1}>
+            <FormControl>
+              <FormLabel>Evaluation Type</FormLabel>
+              <Select {...register(`analysis.customEvaluation.type`)}>
+                <option value={"custom"}>Custom</option>
+                <option value={"grade"}>Grade</option>
+                <option value={"percentile"}>Percentile</option>
+                <option value={"rank"}>Rank</option>
+              </Select>
+            </FormControl>
+          </Box>
+        </Flex>
+        <br />
+        <Flex flexDirection={"column"} gap={2}>
+          {evaluationTierFields.map((field, index) => {
+            const tierData = watch(`analysis.customEvaluation.data.${index}`);
+            return (
+              <Flex key={field.id} gap={2}>
+                <Box flexGrow={1}>
+                  <FormControl>
+                    <FormLabel>Tier Label</FormLabel>
+                    <Input
+                      size={"sm"}
+                      {...register(
+                        `analysis.customEvaluation.data.${index}.label`,
+                        {
+                          required: "A tier name must be provided",
+                          shouldUnregister: true,
+                        }
+                      )}
+                    />
+                  </FormControl>
+                </Box>
+                <Box flexGrow={1}>
+                  <FormControl>
+                    <FormLabel>Tier Lower Limit</FormLabel>
+                    <Input
+                      size={"sm"}
+                      {...register(
+                        `analysis.customEvaluation.data.${index}.range[0]`,
+                        {
+                          valueAsNumber: true,
+                          min: {
+                            value: tierRangeMinMax[0],
+                            message:
+                              "Number cannot be lower than minimum possible value",
+                          },
+                          max: {
+                            value: tierRangeMinMax[1],
+                            message:
+                              "Number cannot be higher than maximum possible value",
+                          },
+                          required: "A lower limit must be specified",
+                          shouldUnregister: true,
+                        }
+                      )}
+                    />
+                  </FormControl>
+                </Box>
+                <Box flexGrow={1}>
+                  <FormControl>
+                    <FormLabel>Tier Upper Limit</FormLabel>
+                    <Input
+                      required
+                      size={"sm"}
+                      {...register(
+                        `analysis.customEvaluation.data.${index}.range[1]`,
+                        {
+                          valueAsNumber: true,
+                          min: {
+                            value: tierRangeMinMax[0],
+                            message:
+                              "Number cannot be lower than minimum possible value",
+                          },
+                          max: {
+                            value: tierRangeMinMax[1],
+                            message:
+                              "Number cannot be higher than maximum possible value",
+                          },
+                          required: "An upper limit must be specified",
+                          shouldUnregister: true,
+                        }
+                      )}
+                    />
+                  </FormControl>
+                </Box>
 
-        <Checkbox
-          isChecked={isEnabled}
-          onChange={() => {
-            replaceEvaluationTier([]);
-            setValue(
-              "analysis.customEvaluation",
-              isEnabled
-                ? undefined
-                : { basis: "marks" as const, type: "custom" as const, data: [] }
+                <CloseButton
+                  mt={"auto"}
+                  onClick={() => {
+                    removeEvaluationTier(index);
+                  }}
+                />
+              </Flex>
             );
-          }}
+          })}
+        </Flex>
+
+        <Button
+          size={"sm"}
+          mt={2}
+          variant={"ghost"}
+          leftIcon={<TbPlus size={20} />}
+          onClick={() =>
+            appendEvaluationTier({ label: "", range: [null, null] })
+          }
         >
-          Enable Custom Evaluation
-        </Checkbox>
-      </FormControl>
-
-      {isEnabled && (
-        <div>
-          <Flex gap={2}>
-            <Box flexGrow={1}>
-              <FormControl>
-                <FormLabel>Basis of Evaluation</FormLabel>
-                <Select {...register(`analysis.customEvaluation.basis`)}>
-                  <option value={"marks"}>Marks</option>
-                  <option value={"percentage"}>Percentage</option>
-                </Select>
-              </FormControl>
-            </Box>
-            <Box flexGrow={1}>
-              <FormControl>
-                <FormLabel>Evaluation Type</FormLabel>
-                <Select {...register(`analysis.customEvaluation.type`)}>
-                  <option value={"custom"}>Custom</option>
-                  <option value={"grade"}>Grade</option>
-                  <option value={"percentile"}>Percentile</option>
-                  <option value={"rank"}>Rank</option>
-                </Select>
-              </FormControl>
-            </Box>
-          </Flex>
-          <br />
-          <Flex flexDirection={"column"} gap={2}>
-            {evaluationTierFields.map((field, index) => {
-              const tierData = watch(`analysis.customEvaluation.data.${index}`);
-              return (
-                <Flex key={field.id} gap={2}>
-                  <Box flexGrow={1}>
-                    <FormControl>
-                      <FormLabel>Tier Label</FormLabel>
-                      <Input
-                        size={"sm"}
-                        {...register(
-                          `analysis.customEvaluation.data.${index}.label`,
-                          {
-                            required: "A tier name must be provided",
-                            shouldUnregister: true,
-                          }
-                        )}
-                      />
-                    </FormControl>
-                  </Box>
-                  <Box flexGrow={1}>
-                    <FormControl>
-                      <FormLabel>Tier Lower Limit</FormLabel>
-                      <Input
-                        size={"sm"}
-                        {...register(
-                          `analysis.customEvaluation.data.${index}.range[0]`,
-                          {
-                            valueAsNumber: true,
-                            min: {
-                              value: tierRangeMinMax[0],
-                              message:
-                                "Number cannot be lower than minimum possible value",
-                            },
-                            max: {
-                              value: tierRangeMinMax[1],
-                              message:
-                                "Number cannot be higher than maximum possible value",
-                            },
-                            shouldUnregister: true,
-                          }
-                        )}
-                      />
-                    </FormControl>
-                  </Box>
-                  <Box flexGrow={1}>
-                    <FormControl>
-                      <FormLabel>Tier Upper Limit</FormLabel>
-                      <Input
-                        size={"sm"}
-                        {...register(
-                          `analysis.customEvaluation.data.${index}.range[1]`,
-                          {
-                            valueAsNumber: true,
-                            min: {
-                              value: tierRangeMinMax[0],
-                              message:
-                                "Number cannot be lower than minimum possible value",
-                            },
-                            max: {
-                              value: tierRangeMinMax[1],
-                              message:
-                                "Number cannot be higher than maximum possible value",
-                            },
-                            shouldUnregister: true,
-                          }
-                        )}
-                      />
-                    </FormControl>
-                  </Box>
-
-                  <CloseButton
-                    mt={"auto"}
-                    onClick={() => {
-                      removeEvaluationTier(index);
-                    }}
-                  />
-                </Flex>
-              );
-            })}
-          </Flex>
-
-          <Button
-            size={"sm"}
-            mt={2}
-            variant={"ghost"}
-            leftIcon={<TbPlus size={20} />}
-            onClick={() =>
-              appendEvaluationTier({ label: "", range: [null, null] })
-            }
-          >
-            Add Tier
-          </Button>
-        </div>
-      )}
+          Add Tier
+        </Button>
+      </div>
     </div>
   );
 };

@@ -51,15 +51,24 @@ const Step2 = () => {
   };
 
   const createNewGroup = () => {
-    const final: TestPaperGroup = {
-      groupName: "New Group",
-      groupId: `tg${uniqueId(10)}`,
+    const newSection: TestPaperSection = {
+      sectionName: "New Section",
+      sectionId: `ts${uniqueId(10)}`,
       optional: false,
-      sections: [],
+      questions: [],
       constraints: {},
       instructions: [],
     };
-    return final;
+
+    const newGroup: TestPaperGroup = {
+      groupName: "New Group",
+      groupId: `tg${uniqueId(10)}`,
+      optional: false,
+      sections: [newSection],
+      constraints: {},
+      instructions: [],
+    };
+    return newGroup;
   };
 
   const handleDrag = (result: any) => {

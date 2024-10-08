@@ -49,8 +49,9 @@ const Step1Authors = () => {
                       <FormControl>
                         <FormLabel>Author Name</FormLabel>
                         <Input
+                          required
                           {...register(`authors.${index}.name`, {
-                            required: true,
+                            required: "Author name must be provided",
                           })}
                         />
                       </FormControl>

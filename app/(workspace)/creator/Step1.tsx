@@ -136,6 +136,7 @@ const Step1 = () => {
       ...dataCopy.analysis.postTestMessage,
       "",
     ]);
+    setValue("usefulData", [...dataCopy.usefulData, ""]);
     setValue(
       "body",
       dataCopy.body?.map((group) => {
@@ -196,6 +197,10 @@ const Step1 = () => {
       dataCopy.analysis.postTestMessage.filter((e, i) => i !== index)
     );
     setValue(
+      "usefulData",
+      dataCopy.usefulData.filter((e, i) => i !== index)
+    );
+    setValue(
       "body",
       dataCopy.body?.map((group) => {
         if (group.instructions !== undefined) {
@@ -242,6 +247,7 @@ const Step1 = () => {
           <FormControl>
             <FormLabel>Name of Test Paper</FormLabel>
             <Input
+              required
               isInvalid={errors.name ? true : false}
               placeholder="Enter a name between 3 and 40 characters"
               {...register("name", {
@@ -262,6 +268,7 @@ const Step1 = () => {
           <FormControl>
             <FormLabel>Test Duration (in minutes)</FormLabel>
             <Input
+              required
               isInvalid={errors.maxMetrics?.time ? true : false}
               type="number"
               {...register("maxMetrics.time", {
@@ -297,10 +304,12 @@ const Step1 = () => {
                         py={0}
                         ml={2}
                         px={1}
+                        placeholder="Enter a language"
                         size={"sm"}
                       >
                         <EditablePreview />
                         <Input
+                          required
                           as={EditableInput}
                           size={"sm"}
                           {...register(`languages.${index}`, {

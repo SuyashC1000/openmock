@@ -79,7 +79,7 @@ const Navbar = ({ page }: { page: string }) => {
           <PopoverTrigger>
             <Avatar
               size={"sm"}
-              name={userData?.profile.username ?? ""}
+              name={userData?.profile.name ?? ""}
               src={userData?.profile.imageSrc ?? ""}
               cursor={"pointer"}
             />
@@ -90,11 +90,11 @@ const Navbar = ({ page }: { page: string }) => {
                 <VStack gap={1} alignItems={"center"} w={"full"}>
                   <Avatar
                     size={"xl"}
-                    name={userData?.profile.username ?? ""}
+                    name={userData?.profile.name ?? ""}
                     src={userData?.profile.imageSrc ?? ""}
                   />
                   <Text fontSize={"lg"}>
-                    {userData?.profile.username ?? (
+                    {userData?.profile.name ?? (
                       <span className="italic">Anonymous User</span>
                     )}
                   </Text>

@@ -17,12 +17,13 @@ interface UserSaved {
 }
 
 interface UserProfile {
-  username: string;
+  name: string;
   imageSrc: string;
 }
 
 interface UserPreferences {
   displayMode: "light" | "dark" | null;
-  alwaysSaveResponses: boolean;
+  defaultLanguage: string;
   author: TestPaperAuthor | null;
+  showAnnouncements: boolean;
 }

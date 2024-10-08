@@ -44,7 +44,6 @@ const HomePage = () => {
   return (
     <div>
       <Heading>Welcome Home!</Heading>
-      <h1>Juice</h1>
       <Tabs variant={"line"}>
         <TabList>
           <Tab>All</Tab>
@@ -54,7 +53,7 @@ const HomePage = () => {
         </TabList>
         <TabPanels>
           <TabPanel>
-            <SimpleGrid minChildWidth={"200px"} gap={2}>
+            <SimpleGrid gap={2}>
               {availableTests?.map((e, i) => (
                 <GridItem key={i}>
                   <TestCard testPaper={e} />

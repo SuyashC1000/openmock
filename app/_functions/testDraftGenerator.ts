@@ -1,24 +1,52 @@
+import { SystemData } from "../_interface/systemData";
 import { TestPaper } from "../_interface/testData";
+import { UserData } from "../_interface/userData";
 import { uniqueId } from "./randomGenerator";
 
+const emptyUserData: UserData = {
+  id: "",
+  preferences: {
+    defaultLanguage: "English",
+    author: null,
+    displayMode: null,
+    showAnnouncements: true,
+  },
+  profile: {
+    name: "",
+    imageSrc: "",
+  },
+  saved: {
+    testPaperFolderIds: [],
+    testPaperIds: [],
+    testResponseIds: [],
+  },
+  timeCreated: 0,
+  version: "0",
+};
+
 export function testDraftGenerator(
-  date: number,
-  version: string
+  userData: UserData,
+  systemData: SystemData
 ): Partial<TestPaper> {
+  const userDataRef: UserData = userData ?? emptyUserData;
+
   const final: Partial<TestPaper> = {
     id: `td${uniqueId(10)}`,
     name: "",
-    authors: [],
+    authors:
+      userDataRef.preferences.author !== null
+        ? [userDataRef.preferences.author]
+        : [],
     body: [],
-    languages: ["English"],
-    timeCreated: date,
+    languages: [userDataRef.preferences.defaultLanguage],
+    timeCreated: Date.now(),
     instructions: [],
     // maxMetrics: {
     //   marks: 0,
     //   questions: 0,
     //   time: 1,
     // },
-    version: version,
+    version: systemData.version,
     tags: [],
     usefulData: [""],
     analysis: {

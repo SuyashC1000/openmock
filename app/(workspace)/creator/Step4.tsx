@@ -37,6 +37,10 @@ const Step4 = () => {
   );
   const usefulData = watch(`usefulData.${currentLanguage}`);
 
+  const isCustomTagStatEnabled = data.analysis.customTagStats !== undefined;
+  const isCustomEvaluationEnabled =
+    data.analysis.customEvaluation !== undefined;
+
   return (
     <div className="m-2">
       <Card>
@@ -136,9 +140,50 @@ const Step4 = () => {
             />
           </FormControl>
           <br />
-          <Step4TagStats />
+          {JSON.stringify(isCustomTagStatEnabled)}
+
+          <FormControl>
+            <FormLabel>Tag Stats Editor</FormLabel>
+
+            <Checkbox
+              isChecked={isCustomTagStatEnabled}
+              onChange={() => {
+                setValue(
+                  "analysis.customTagStats",
+                  isCustomTagStatEnabled ? undefined : []
+                );
+              }}
+            >
+              Enable Tag Stats
+            </Checkbox>
+          </FormControl>
+          {isCustomTagStatEnabled && <Step4TagStats />}
+
           <br />
-          <Step4CustomEvaluation />
+
+          <FormControl>
+            <FormLabel>Custom Evaluation</FormLabel>
+
+            <Checkbox
+              isChecked={isCustomEvaluationEnabled}
+              onChange={() => {
+                setValue(
+                  "analysis.customEvaluation",
+                  isCustomEvaluationEnabled
+                    ? undefined
+                    : {
+                        basis: "marks" as const,
+                        type: "custom" as const,
+                        data: [],
+                      }
+                );
+              }}
+            >
+              Enable Custom Evaluation
+            </Checkbox>
+          </FormControl>
+          {isCustomEvaluationEnabled && <Step4CustomEvaluation />}
+          <br />
         </CardBody>
       </Card>
     </div>

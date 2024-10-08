@@ -71,9 +71,12 @@ const Step1AuthorLinks = ({ authorIndex }: Props) => {
               <FormControl>
                 <FormLabel>Link URL</FormLabel>
                 <Input
+                  required
                   type={authorLinkTypeDataList[authorLinkData.type][1]}
                   size={"sm"}
-                  {...register(`authors.${authorIndex}.links.${index}.url`)}
+                  {...register(`authors.${authorIndex}.links.${index}.url`, {
+                    required: "A valid URL must be given",
+                  })}
                 />
               </FormControl>
             </Box>
