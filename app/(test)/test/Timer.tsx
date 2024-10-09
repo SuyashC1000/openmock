@@ -13,84 +13,95 @@ import {
 import useActiveElements from "@/lib/useActiveElements";
 import { groupConstraint } from "../../_functions/groupConstraint";
 import { questionConstraint } from "../../_functions/questionConstraint";
+import useSubmit from "@/lib/useSubmit";
 
 const Timer = () => {
   const state = React.useContext(TestStateContext);
   const testPaper = React.useContext(TestPaperContext);
   const dispatch = React.useContext(TestDispatchContext);
 
-  const [iterationCountdown, setIterationCountdown] = useState(0);
-
   const { activeQuestionCache, activeGroupCache, activeQuestion, activeGroup } =
     useActiveElements();
 
-  const timeLeftState = React.useState<[number, number]>([
-    testPaper.maxMetrics.time,
-    0,
-  ]);
-  const timeLeft = timeLeftState[0] as [number, number];
-  const setTimeLeft = timeLeftState[1] as (e: any) => {};
+  const initialTimeLeftState = testPaper.maxMetrics.time * 60;
+  const [timeLeft, setTimeLeft] = React.useState<number>(initialTimeLeftState);
+  const timeLeftRef = useRef(initialTimeLeftState);
 
-  function decrementCountdown(timeLeft: [number, number]) {
-    let newSeconds, newMinutes;
-    if (timeLeft[1] > 0 && timeLeft[0] >= 0) {
-      newSeconds = timeLeft[1] - 1;
-      newMinutes = timeLeft[0];
-      return [newMinutes, newSeconds] as [number, number];
-    } else if (timeLeft[1] === 0 && timeLeft[0] > 0) {
-      newSeconds = 59;
-      newMinutes = timeLeft[0] - 1;
-      return [newMinutes, newSeconds] as [number, number];
-    } else {
-      dispatch({ type: SET_TEST_STATUS, payload: "finished" });
-      return timeLeft;
-    }
-  }
+  const initlalTestStatusState = state.testStatus;
+  const [testStatus, setTestStatus] = React.useState<string>(
+    initlalTestStatusState
+  );
+  const testStatusRef = useRef(initlalTestStatusState);
+
+  const { submitTest } = useSubmit();
+
+  console.log(initialTimeLeftState);
+
+  // function decrementCountdown(timeLeft: [number, number]) {
+  //   let newSeconds, newMinutes;
+  //   if (timeLeft[1] > 0 && timeLeft[0] >= 0) {
+  //     newSeconds = timeLeft[1] - 1;
+  //     newMinutes = timeLeft[0];
+  //     return [newMinutes, newSeconds] as [number, number];
+  //   } else if (timeLeft[1] === 0 && timeLeft[0] > 0) {
+  //     newSeconds = 59;
+  //     newMinutes = timeLeft[0] - 1;
+  //     return [newMinutes, newSeconds] as [number, number];
+  //   } else {
+  //     dispatch({ type: SET_TEST_STATUS, payload: "finished" });
+  //     return timeLeft;
+  //   }
+  // }
 
   React.useEffect(() => {
-    const timer = setTimeout(() => {
-      if (iterationCountdown === 99) {
-        if (state.testStatus === "starting") {
-          if (timeLeft[0] !== testPaper.maxMetrics.time) {
-            setTimeLeft([testPaper.maxMetrics.time, 0]);
-          }
-        } else if (
-          state.testStatus === "ongoing" ||
-          state.testStatus === "submitting"
-        ) {
-          setTimeLeft(decrementCountdown(timeLeft));
-          if (groupConstraint(state, testPaper).canTickTime) {
-            dispatch({
-              type: UPDATE_GROUP_TIMESPENT,
-              payload: activeGroupCache.timeSpent + 1,
-            });
+    timeLeftRef.current = timeLeft;
+    testStatusRef.current = state.testStatus;
+  });
 
-            if (questionConstraint(state, testPaper).canTickTime) {
-              dispatch({
-                type: UPDATE_QUESTION_TIMESPENT,
-                payload: activeQuestionCache.timeSpent + 1,
-              });
-            }
+  React.useEffect(() => {
+    // setTimeLeft(testPaper.maxMetrics.time * 60);
+    const timer = setInterval(() => {
+      setTimeLeft(() => {
+        if (
+          testStatusRef.current === "ongoing" ||
+          testStatusRef.current === "submitting"
+        ) {
+          if (timeLeftRef.current > 0) {
+            return timeLeftRef.current - 1;
+          } else {
+            dispatch({ type: SET_TEST_STATUS, payload: "finished" });
+            submitTest();
           }
         }
-        setIterationCountdown(0);
-      } else {
-        setIterationCountdown((e) => e + 1);
-      }
-    }, 10);
+        return timeLeftRef.current;
+      });
+      if (groupConstraint(state, testPaper).canTickTime) {
+        dispatch({
+          type: UPDATE_GROUP_TIMESPENT,
+          payload: activeGroupCache.timeSpent + 1,
+        });
 
-    return () => clearTimeout(timer);
-  });
+        if (questionConstraint(state, testPaper).canTickTime) {
+          dispatch({
+            type: UPDATE_QUESTION_TIMESPENT,
+            payload: activeQuestionCache.timeSpent + 1,
+          });
+        }
+      }
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
 
   return (
     <div>
       <Text className="font-semibold">
         Time Left:{" "}
         <span className="bg-neutral-300 p-1 rounded-lg font-mono">
-          {timeLeft[0]}:{(timeLeft[1] < 10 ? "0" : "") + timeLeft[1]}
+          {Math.floor(timeLeft / 60)}:
+          {(timeLeft % 60 < 10 ? "0" : "") + (timeLeft % 60)}
         </span>
         {/* <span className="bg-red-300 p-1 rounded-lg font-mono ml-2">
-          {iterationCountdown}
         </span> */}
       </Text>
     </div>

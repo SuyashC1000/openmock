@@ -106,11 +106,16 @@ const TestPage = () => {
   return (
     <MultiProvider providers={providers}>
       <div className="bg-slate-800 flex flex-box flex-col h-screen max-h-screen select-none">
-        <Loader status={pageStatus} />
-        <OverlayCollection />
-        <TestHeader />
-        <TestMainWindow />
-        <TestBottombar />
+        {pageStatus !== "success" ? (
+          <Loader status={pageStatus} />
+        ) : (
+          <>
+            <OverlayCollection />
+            <TestHeader />
+            <TestMainWindow />
+            <TestBottombar />
+          </>
+        )}
       </div>
     </MultiProvider>
   );

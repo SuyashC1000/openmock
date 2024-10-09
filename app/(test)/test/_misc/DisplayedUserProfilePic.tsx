@@ -11,8 +11,14 @@ const DisplayedUserProfilePic = ({ size }: Props) => {
   const userData = useLiveQuery(async () => {
     return await db.userData.toArray();
   });
-  const username = userData?.[0].profile.name;
-  const profileImgSrc = userData?.[0].profile.imageSrc;
+  const username =
+    userData !== undefined && userData.length > 0
+      ? userData[0].profile.name
+      : "";
+  const profileImgSrc =
+    userData !== undefined && userData.length > 0
+      ? userData[0].profile.imageSrc
+      : "";
 
   return (
     <Avatar

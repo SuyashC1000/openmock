@@ -13,7 +13,10 @@ const DisplayedUserName = ({ limit, align }: Props) => {
   const userData = useLiveQuery(async () => {
     return await db.userData.toArray();
   });
-  const username = userData?.[0].profile.name;
+  const username =
+    userData !== undefined && userData.length > 0
+      ? userData[0].profile.name
+      : "";
 
   const finalLimit = limit ?? 1;
   return (
@@ -22,12 +25,11 @@ const DisplayedUserName = ({ limit, align }: Props) => {
       textAlign={align ?? "center"}
       noOfLines={finalLimit ? 1 : undefined}
     >
-      {username !== undefined ? (
+      {username !== "" ? (
         username
       ) : (
-        <span className="italic font-medium">User</span>
+        <span className="italic font-normal">User</span>
       )}
-      {/* Jonathan Cenathon Marathon The Junior */}
     </Text>
   );
 };
