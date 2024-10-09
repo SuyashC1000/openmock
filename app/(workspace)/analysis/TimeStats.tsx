@@ -147,7 +147,7 @@ const TimeStats = () => {
               {testResponse.body.map((e, i) => {
                 const grpMarks = e.scoreData.marks;
                 return (
-                  <>
+                  <React.Fragment key={e.groupId}>
                     {e.hasOpted !== false && (
                       <>
                         <Tr
@@ -160,7 +160,7 @@ const TimeStats = () => {
                         {e.sections.map((f, j) => {
                           const secMarks = f.scoreData.marks;
                           return (
-                            <>
+                            <React.Fragment key={f.sectionId}>
                               {f.selected !== false && (
                                 <Tr key={j}>
                                   <Td>{f.sectionName}</Td>
@@ -173,12 +173,12 @@ const TimeStats = () => {
                                   </Td>
                                 </Tr>
                               )}
-                            </>
+                            </React.Fragment>
                           );
                         })}
                       </>
                     )}
-                  </>
+                  </React.Fragment>
                 );
               })}
             </Tbody>

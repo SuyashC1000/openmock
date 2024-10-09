@@ -14,12 +14,12 @@ const GroupQuestionPaper = (props: {
     <div>
       {props.group.sections.map((e, i) => {
         return (
-          <div key={i} className="my-10">
+          <div key={e.sectionId} className="my-10">
             <Heading size={"md"}>{e.sectionName}</Heading>
             {e.questions.map((f, j) => {
               return (
                 <>
-                  <div key={j} className="my-8">
+                  <div key={f.id} className="my-8">
                     <div className="flex">
                       <Text className="flex-0 w-16">Q{j + 1})</Text>
                       <div>

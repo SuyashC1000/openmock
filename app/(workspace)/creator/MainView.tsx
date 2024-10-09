@@ -38,6 +38,7 @@ import { db } from "@/db/db";
 import useConfirm from "@/lib/useConfirm";
 import DraftErrorList from "./DraftErrorList";
 import Step4 from "./Step4";
+import { findTotalValidQuestionsAndMarks } from "@/app/_functions/findTotal";
 
 const MainView = () => {
   const state = React.useContext(DraftStateContext);
@@ -45,6 +46,7 @@ const MainView = () => {
     control,
     handleSubmit,
     watch,
+    setValue,
     register,
     formState: { errors, isValid },
   } = useFormContext<TestPaper>();
@@ -65,6 +67,18 @@ const MainView = () => {
     index: 0,
     count: steps.length,
   });
+
+  function updateMaxMetrics() {
+    const { validMarks, validQuestions } = findTotalValidQuestionsAndMarks(
+      "body",
+      data.body
+    );
+    setValue(`maxMetrics`, {
+      ...data.maxMetrics,
+      marks: validMarks,
+      questions: validQuestions,
+    });
+  }
 
   const onSubmitPaper: SubmitHandler<TestPaper> = (data: TestPaper) => {
     data.timeCreated = Date.now();

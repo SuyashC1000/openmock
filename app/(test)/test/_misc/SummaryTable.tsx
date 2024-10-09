@@ -21,7 +21,7 @@ const SummaryTable = () => {
     <>
       {state.body.map((e, i) => {
         return (
-          <div key={i} className="my-6 flex flex-col gap-1">
+          <div key={e.groupId} className="my-6 flex flex-col gap-1">
             <Heading size={"sm"}>
               {e.groupName}
               {e.status === "ongoing" && state.testStatus !== "finished" && (
@@ -83,7 +83,7 @@ const SummaryTable = () => {
                 <Tbody>
                   {e.sections.map((f, j) => {
                     return (
-                      <Tr key={j}>
+                      <Tr key={f.sectionId}>
                         <Td>
                           <Text>
                             {f.selected !== undefined && (

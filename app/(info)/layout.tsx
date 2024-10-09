@@ -11,8 +11,8 @@ export const metadata: Metadata = {
 };
 
 import { Providers } from "../providers";
-import Navbar from "../_components/Navbar";
 import Footer from "../_components/Footer";
+import Navbar from "../_components/Navbar";
 import SimpleNavbar from "../_components/SimpleNavbar";
 
 export default function WorkspaceLayout({

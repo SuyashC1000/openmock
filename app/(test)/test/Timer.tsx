@@ -1,5 +1,5 @@
 import { Text } from "@chakra-ui/react";
-import React from "react";
+import React, { useRef, useState } from "react";
 import {
   TestDispatchContext,
   TestStateContext,
@@ -18,6 +18,8 @@ const Timer = () => {
   const state = React.useContext(TestStateContext);
   const testPaper = React.useContext(TestPaperContext);
   const dispatch = React.useContext(TestDispatchContext);
+
+  const [iterationCountdown, setIterationCountdown] = useState(0);
 
   const { activeQuestionCache, activeGroupCache, activeQuestion, activeGroup } =
     useActiveElements();
@@ -47,30 +49,35 @@ const Timer = () => {
 
   React.useEffect(() => {
     const timer = setTimeout(() => {
-      if (state.testStatus === "starting") {
-        if (timeLeft[0] !== testPaper.maxMetrics.time) {
-          setTimeLeft([testPaper.maxMetrics.time, 0]);
-        }
-      } else if (
-        state.testStatus === "ongoing" ||
-        state.testStatus === "submitting"
-      ) {
-        setTimeLeft(decrementCountdown(timeLeft));
-        if (groupConstraint(state, testPaper).canTickTime) {
-          dispatch({
-            type: UPDATE_GROUP_TIMESPENT,
-            payload: activeGroupCache.timeSpent + 1,
-          });
-
-          if (questionConstraint(state, testPaper).canTickTime) {
+      if (iterationCountdown === 99) {
+        if (state.testStatus === "starting") {
+          if (timeLeft[0] !== testPaper.maxMetrics.time) {
+            setTimeLeft([testPaper.maxMetrics.time, 0]);
+          }
+        } else if (
+          state.testStatus === "ongoing" ||
+          state.testStatus === "submitting"
+        ) {
+          setTimeLeft(decrementCountdown(timeLeft));
+          if (groupConstraint(state, testPaper).canTickTime) {
             dispatch({
-              type: UPDATE_QUESTION_TIMESPENT,
-              payload: activeQuestionCache.timeSpent + 1,
+              type: UPDATE_GROUP_TIMESPENT,
+              payload: activeGroupCache.timeSpent + 1,
             });
+
+            if (questionConstraint(state, testPaper).canTickTime) {
+              dispatch({
+                type: UPDATE_QUESTION_TIMESPENT,
+                payload: activeQuestionCache.timeSpent + 1,
+              });
+            }
           }
         }
+        setIterationCountdown(0);
+      } else {
+        setIterationCountdown((e) => e + 1);
       }
-    }, 1000);
+    }, 10);
 
     return () => clearTimeout(timer);
   });
@@ -83,7 +90,7 @@ const Timer = () => {
           {timeLeft[0]}:{(timeLeft[1] < 10 ? "0" : "") + timeLeft[1]}
         </span>
         {/* <span className="bg-red-300 p-1 rounded-lg font-mono ml-2">
-          {activeQuestionCache.timeSpent + ":" + activeGroupCache.timeSpent}
+          {iterationCountdown}
         </span> */}
       </Text>
     </div>

@@ -62,17 +62,16 @@ const DashboardPopover = () => {
       arrowPadding={1}
       arrowSize={15}
     >
-      <PopoverAnchor>
-        <PopoverTrigger>
-          <div
-            className="w-64 bg-white flex-0 flex flex-box flex-col items-center justify-start
+      <PopoverTrigger>
+        <div
+          className="w-64 bg-white flex-0 flex flex-box flex-col items-center justify-start
             gap-3 p-2 outline outline-1 outline-neutral-400"
-          >
-            <DisplayedUserProfilePic />
-            <DisplayedUserName />
-          </div>
-        </PopoverTrigger>
-      </PopoverAnchor>
+        >
+          <DisplayedUserProfilePic />
+          <DisplayedUserName />
+        </div>
+      </PopoverTrigger>
+
       <PopoverContent>
         <PopoverArrow />
         <PopoverBody>

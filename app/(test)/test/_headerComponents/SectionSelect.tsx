@@ -71,7 +71,7 @@ function SectionSelect() {
       {activeGroupCache.sections.map((e, i) => {
         return (
           <SectionButton
-            key={i}
+            key={e.sectionId}
             optional={activeGroup.sections[i].optional}
             active={i == activeGroupCache.activeSectionIndex}
             isCheckboxSelected={e.selected!}

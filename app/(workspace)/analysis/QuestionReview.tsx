@@ -114,15 +114,13 @@ const ResponseReview = ({
               <Card key={i} variant={"outline"} className="my-4" size={"sm"}>
                 <CardBody>
                   <Radio value={`${i}`} readOnly>
-                    <Text>
-                      <Markdown
-                        className={"font-serif text-lg"}
-                        remarkPlugins={[remarkGfm, remarkMath]}
-                        rehypePlugins={[rehypeKatex]}
-                      >
-                        {e[languageIndex]}
-                      </Markdown>
-                    </Text>
+                    <Markdown
+                      className={"font-serif text-lg"}
+                      remarkPlugins={[remarkGfm, remarkMath]}
+                      rehypePlugins={[rehypeKatex]}
+                    >
+                      {e[languageIndex]}
+                    </Markdown>
                     <Badge colorScheme={isCorrect ? "green" : "red"}>
                       <Icon as={isCorrect ? TbCheck : TbX} />{" "}
                       {isCorrect ? "Correct" : "Incorrect"}
@@ -149,15 +147,13 @@ const ResponseReview = ({
               <Card key={i} variant={"outline"} className="my-4" size={"sm"}>
                 <CardBody>
                   <Checkbox value={`${i}`} readOnly>
-                    <Text>
-                      <Markdown
-                        className={"font-serif text-lg"}
-                        remarkPlugins={[remarkGfm, remarkMath]}
-                        rehypePlugins={[rehypeKatex]}
-                      >
-                        {e[languageIndex]}
-                      </Markdown>
-                    </Text>
+                    <Markdown
+                      className={"font-serif text-lg"}
+                      remarkPlugins={[remarkGfm, remarkMath]}
+                      rehypePlugins={[rehypeKatex]}
+                    >
+                      {e[languageIndex]}
+                    </Markdown>
                     <Badge colorScheme={isCorrect ? "green" : "red"}>
                       <Icon as={isCorrect ? TbCheck : TbX} />{" "}
                       {isCorrect ? "Correct" : "Incorrect"}

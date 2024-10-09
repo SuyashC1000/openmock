@@ -113,11 +113,11 @@ const MarksStats = () => {
               {testResponse.body.map((e, i) => {
                 const grpMarks = e.scoreData.marks;
                 return (
-                  <>
+                  <React.Fragment key={e.groupId}>
                     {e.hasOpted !== false && (
                       <>
                         <Tr
-                          key={e.groupName}
+                          key={e.groupId}
                           className="font-bold border-t-2 border-t-neutral-200"
                         >
                           <Td>{e.groupName}</Td>
@@ -134,9 +134,9 @@ const MarksStats = () => {
                         {e.sections.map((f, j) => {
                           const secMarks = f.scoreData.marks;
                           return (
-                            <>
+                            <React.Fragment key={f.sectionId}>
                               {f.selected !== false && (
-                                <Tr key={f.sectionName}>
+                                <Tr key={f.sectionId}>
                                   <Td>{f.sectionName}</Td>
                                   <Td>
                                     {Marks([secMarks.correct, 1], "element")}
@@ -158,12 +158,12 @@ const MarksStats = () => {
                                   </Td>
                                 </Tr>
                               )}
-                            </>
+                            </React.Fragment>
                           );
                         })}
                       </>
                     )}
-                  </>
+                  </React.Fragment>
                 );
               })}
             </Tbody>

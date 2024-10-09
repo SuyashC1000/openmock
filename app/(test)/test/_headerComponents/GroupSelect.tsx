@@ -51,7 +51,7 @@ function GroupSelect() {
             (e.status === "submitted" && e.permissions === "none");
           return (
             <GroupButton
-              key={i}
+              key={e.groupId}
               active={i == state.activeGroupIndex}
               optional={false}
               groupName={e.groupName}

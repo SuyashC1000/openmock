@@ -279,7 +279,7 @@ const Summary = () => {
 
                 <ModalFooter justifyContent={"left"}>
                   <Icon as={TbInfoCircle} mr={1} />
-                  <Text>
+                  <Text fontSize={"xs"}>
                     The evaluation tier has been manually created by the
                     author(s)
                   </Text>

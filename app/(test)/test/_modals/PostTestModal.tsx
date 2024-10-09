@@ -109,7 +109,7 @@ const PostTestModal = () => {
             <UnorderedList spacing={4}>
               {testPaper.authors.map((e, i) => {
                 return (
-                  <ListItem key={i} className="flex flex-col gap-1">
+                  <ListItem key={e.name} className="flex flex-col gap-1">
                     <div className="flex items-center gap-2">
                       <Avatar
                         name={e.name}

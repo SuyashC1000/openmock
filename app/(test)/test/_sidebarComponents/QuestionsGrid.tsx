@@ -36,7 +36,7 @@ const QuestionsGrid = () => {
           return (
             <button
               className={`h-12 w-12 ${!isDisabled ? "cursor-pointer" : "cursor-not-allowed"}`}
-              key={i}
+              key={e.id}
               disabled={isDisabled}
               onClick={() => {
                 if (activeSectionCache.qIndex !== i) {

@@ -965,13 +965,11 @@ const QuestionEditor = ({ step3Data, setStep3Data }: Props) => {
                 );
               })}
               <Popover trigger="hover" placement="bottom-end">
-                <PopoverAnchor>
-                  <PopoverTrigger>
-                    <Button>
-                      <TbPlus size={20} />
-                    </Button>
-                  </PopoverTrigger>
-                </PopoverAnchor>
+                <PopoverTrigger>
+                  <Button>
+                    <TbPlus size={20} />
+                  </Button>
+                </PopoverTrigger>
 
                 <PopoverContent>
                   <PopoverArrow />
