@@ -23,6 +23,7 @@ export function userDataGenerator(
     saved: {
       testPaperFolderIds: [],
       testPaperIds: [],
+      testDraftIds: [],
       testResponseIds: [],
     },
   };

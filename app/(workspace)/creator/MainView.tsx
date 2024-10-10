@@ -135,8 +135,6 @@ const MainView = () => {
     const isPresent = await db.testDrafts.where("id").equals(data.id!).count();
 
     if (isPresent > 0) {
-      console.log("jig jog");
-
       const isConfirmed = await confirm(
         "Discard draft?",
         "The last save of this test paper will be permanently deleted. \

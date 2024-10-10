@@ -68,16 +68,6 @@ const HomePage = () => {
             >
               Add Test
             </Button>
-
-            <Button
-              onClick={async () => {
-                if (await confirm("Are you sure?")) {
-                  console.log("Yum");
-                } else console.log("Goo");
-              }}
-            >
-              Yolo
-            </Button>
           </TabPanel>
           <TabPanel>
             <Button

@@ -46,6 +46,7 @@ export const groupConstraint = (
 
   if (
     activeGroup.constraints?.minimumTimeAllowed !== undefined &&
+    activeGroup.constraints?.minimumTimeAllowed !== null &&
     activeGroupCache.timeSpent <
       activeGroup.constraints?.minimumTimeAllowed * MIN_IN_SEC
   ) {
@@ -63,6 +64,7 @@ export const groupConstraint = (
   const maxTime = activeGroup.constraints?.maximumTimeAllowed;
   if (
     maxTime !== undefined &&
+    maxTime !== null &&
     activeGroupCache.timeSpent >= maxTime * MIN_IN_SEC &&
     activeGroupCache.status === "ongoing"
   ) {

@@ -8,8 +8,6 @@ const emptyUserData: UserData = {
   preferences: {
     defaultLanguage: "English",
     author: null,
-    displayMode: null,
-    showAnnouncements: true,
   },
   profile: {
     name: "",
@@ -17,6 +15,7 @@ const emptyUserData: UserData = {
   },
   saved: {
     testPaperFolderIds: [],
+    testDraftIds: [],
     testPaperIds: [],
     testResponseIds: [],
   },

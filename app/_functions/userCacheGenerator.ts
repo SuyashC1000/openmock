@@ -81,7 +81,7 @@ export default function userCacheGenerator(
       testLoginTime: 0,
     },
     userDetails: {
-      username: userData.profile.username,
+      username: userData.profile.name,
       imageSrc: userData.profile.imageSrc,
     },
   };

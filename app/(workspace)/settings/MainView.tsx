@@ -1,7 +1,9 @@
 import { UserData } from "@/app/_interface/userData";
 import {
   Button,
+  ButtonGroup,
   Container,
+  Flex,
   Heading,
   Tab,
   TabList,
@@ -10,10 +12,13 @@ import {
   Tabs,
 } from "@chakra-ui/react";
 import React from "react";
-import { useFormContext } from "react-hook-form";
+import { SubmitHandler, useFormContext } from "react-hook-form";
 import UserProfileEditor from "./UserProfileEditor";
 import UserPreferenceEditor from "./UserPreferenceEditor";
 import UserSavedTests from "./UserSavedTests";
+import { TbDeviceFloppy, TbTrack, TbTrash, TbUpload } from "react-icons/tb";
+import { db } from "@/db/db";
+import useDelete from "@/lib/useDelete";
 
 const MainView = () => {
   const {
@@ -25,9 +30,39 @@ const MainView = () => {
     formState: { errors, isValid },
   } = useFormContext<UserData>();
 
+  const onSubmitUserDataEdit: SubmitHandler<UserData> = async (
+    data: UserData
+  ) => {
+    await db.userData.put(data);
+  };
+
+  const { deleteUserData } = useDelete();
+
   return (
     <div>
-      <Heading>Settings</Heading>
+      <Flex>
+        <Heading>Settings</Heading>
+
+        <ButtonGroup variant={"outline"} ml={"auto"}>
+          <Button
+            colorScheme={"blue"}
+            leftIcon={<TbDeviceFloppy />}
+            onClick={handleSubmit(onSubmitUserDataEdit)}
+          >
+            Save
+          </Button>
+          <Button colorScheme={"yellow"} leftIcon={<TbUpload />}>
+            Export
+          </Button>
+          <Button
+            colorScheme={"red"}
+            leftIcon={<TbTrash />}
+            onClick={() => deleteUserData("/home")}
+          >
+            Delete
+          </Button>
+        </ButtonGroup>
+      </Flex>
 
       <Tabs>
         <TabList>

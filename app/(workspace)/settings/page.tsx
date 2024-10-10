@@ -35,6 +35,7 @@ const SettingsPage = () => {
         description="You need to create a user account to access the associated settings.
         Look for the profile icon on the top-right corner of the screen to create one."
         icon={TbMoodConfuzed}
+        iconColor="gray.400"
       />
     );
   } else

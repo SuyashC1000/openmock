@@ -231,8 +231,6 @@ const QuestionReview = () => {
       : "(Solution not provided)";
 
   function handleUpdateIndexList(newIndexList: [number, number, number]): void {
-    console.log(newIndexList);
-
     setactiveQIndex(newIndexList);
     setQPaper(
       getActivePaperElementByIndex(testPaper, newIndexList) as TestPaperQuestion

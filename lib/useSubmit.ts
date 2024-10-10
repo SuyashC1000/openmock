@@ -25,6 +25,7 @@ import { groupConstraint } from "@/app/_functions/groupConstraint";
 import { testResponseGenerator } from "@/app/_functions/testResponseGenerator";
 import { db } from "@/db/db";
 import { setActiveTestResponse } from "@/db/dbFunctions";
+import { useLiveQuery } from "dexie-react-hooks";
 
 export interface SubmitQuestionFunc {
   (
@@ -46,6 +47,11 @@ function useSubmit() {
   const { confirm } = useConfirm();
 
   let newIndex = getActiveIndex(state);
+
+  const hasAccount = useLiveQuery(async () => {
+    const count = (await db.userData.count()) ?? 0;
+    return count > 0;
+  });
 
   const submitQuestion: SubmitQuestionFunc = async (
     nextIndex?,
@@ -166,7 +172,10 @@ function useSubmit() {
     console.log(testResponse);
 
     await db.activeTestPaper.clear();
-    await db.testResponses.add(testResponse);
+
+    if (hasAccount) {
+      await db.testResponses.add(testResponse);
+    }
 
     setActiveTestResponse(testResponse);
   }

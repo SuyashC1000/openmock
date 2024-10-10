@@ -132,7 +132,6 @@ const Calculator = () => {
       } catch {
         setNumInput("Invalid expression!");
       }
-      console.log(finalOutput);
     } else if (isDone == 1) {
     }
 

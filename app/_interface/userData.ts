@@ -12,6 +12,7 @@ export interface UserData {
 
 interface UserSaved {
   testPaperIds: string[];
+  testDraftIds: string[];
   testResponseIds: string[];
   testPaperFolderIds: string[];
 }

@@ -35,8 +35,6 @@ const Timer = () => {
 
   const { submitTest } = useSubmit();
 
-  console.log(initialTimeLeftState);
-
   // function decrementCountdown(timeLeft: [number, number]) {
   //   let newSeconds, newMinutes;
   //   if (timeLeft[1] > 0 && timeLeft[0] >= 0) {

@@ -23,14 +23,29 @@ import TimeStats from "./TimeStats";
 import QuestionReview from "./QuestionReview";
 import TagStats from "./TagStats";
 import * as d3 from "d3";
-import { TbDeviceFloppy, TbReload } from "react-icons/tb";
+import { TbDeviceFloppy, TbReload, TbTrash } from "react-icons/tb";
 import { color } from "framer-motion";
 import TestPaperInfoModal from "../../_components/TestPaperInfoModal";
 import Footer from "../../_components/Footer";
+import { db } from "@/db/db";
+import { useLiveQuery } from "dexie-react-hooks";
+import useDelete from "@/lib/useDelete";
+import { useRouter } from "next/navigation";
 
 const MainView = () => {
   const testResponse = React.useContext(activeTestResponseContext);
   const testPaper = React.useContext(SuppliedTestPaperContext);
+
+  const { deleteTestResponse } = useDelete();
+  const router = useRouter();
+
+  const hasSaved = useLiveQuery(async () => {
+    const count = await db.testResponses
+      .where("attemptId")
+      .equals(testResponse.attemptId)
+      .count();
+    return count > 0;
+  });
 
   const formatTime = d3.utcFormat("%I:%M:%S %p • %d/%m/%G");
 
@@ -64,6 +79,18 @@ const MainView = () => {
           >
             Save
           </Button>
+          {hasSaved && (
+            <Button
+              leftIcon={<TbTrash />}
+              colorScheme="red"
+              variant={"outline"}
+              onClick={() =>
+                deleteTestResponse(testResponse.attemptId, "/home")
+              }
+            >
+              Delete
+            </Button>
+          )}
         </ButtonGroup>
       </div>
       <Tabs variant={"enclosed-colored"}>
