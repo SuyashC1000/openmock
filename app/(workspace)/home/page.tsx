@@ -22,6 +22,7 @@ import TestCard from "./TestCard";
 import { TbCopyPlus } from "react-icons/tb";
 import { useRouter } from "next/navigation";
 import Loading from "../loading";
+import { confirm } from "@/app/_components/Confirmation";
 
 const HomePage = () => {
   const [availableTests, availableDrafts, loading] = useLiveQuery(
@@ -35,8 +36,6 @@ const HomePage = () => {
     []
   );
   const sample = useLiveQuery(() => db.activeTestResponse.toArray());
-
-  console.log(sample);
 
   const router = useRouter();
 
@@ -68,6 +67,16 @@ const HomePage = () => {
               }}
             >
               Add Test
+            </Button>
+
+            <Button
+              onClick={async () => {
+                if (await confirm("Are you sure?")) {
+                  console.log("Yum");
+                } else console.log("Goo");
+              }}
+            >
+              Yolo
             </Button>
           </TabPanel>
           <TabPanel>

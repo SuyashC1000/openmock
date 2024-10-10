@@ -15,6 +15,7 @@ import Navbar from "../_components/Navbar";
 import Footer from "../_components/Footer";
 import { Suspense } from "react";
 import Loading from "./loading";
+import { MountPoint } from "@/lib/react-confirm";
 
 export default function WorkspaceLayout({
   children,
@@ -24,6 +25,7 @@ export default function WorkspaceLayout({
   return (
     <section lang="en" className={fonts.worksans.className}>
       <Providers>
+        <MountPoint />
         <div className="h-screen w-screen flex flex-col">
           <Navbar page="None" />
           <div className="flex flex-1 overflow-y-auto">

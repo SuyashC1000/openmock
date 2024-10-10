@@ -13,7 +13,7 @@ import React from "react";
 import { useFormContext } from "react-hook-form";
 import UserProfileEditor from "./UserProfileEditor";
 import UserPreferenceEditor from "./UserPreferenceEditor";
-import UserSavedTests from "./userSavedTests";
+import UserSavedTests from "./UserSavedTests";
 
 const MainView = () => {
   const {
