@@ -116,13 +116,7 @@ const UserRegisterModal = ({
                   <Input
                     type="url"
                     size={"sm"}
-                    {...register(`profileImgSrc`, {
-                      pattern: {
-                        value:
-                          /(http)?s?:?(\/\/[^"']*\.(?:png|jpg|jpeg|gif|png|svg))/i,
-                        message: "Given link must be a valid image UR:",
-                      },
-                    })}
+                    {...register(`profileImgSrc`)}
                   />
                   {errors.profileImgSrc && (
                     <p className="text-red-700 text-sm">

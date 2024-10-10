@@ -102,11 +102,12 @@ const Navbar = ({ page }: { page: string }) => {
                 <ButtonGroup w={"full"} className="flex">
                   {userData !== undefined ? (
                     <Button
-                      flex={1}
+                      w={"full"}
                       variant={"outline"}
-                      leftIcon={<TbTransferOut />}
+                      leftIcon={<TbSettings />}
+                      onClick={() => router.push("/settings")}
                     >
-                      Export
+                      Settings
                     </Button>
                   ) : (
                     <>
@@ -128,13 +129,6 @@ const Navbar = ({ page }: { page: string }) => {
                     </>
                   )}
                 </ButtonGroup>
-                <Button
-                  w={"full"}
-                  variant={"outline"}
-                  leftIcon={<TbSettings />}
-                >
-                  Settings
-                </Button>
               </VStack>
             </PopoverBody>
           </PopoverContent>

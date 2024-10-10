@@ -70,14 +70,12 @@ export interface TestPaperTag {
 
 export interface TestPaperAuthor {
   name: string;
-  avatarUrl: string | null;
-  links: [
-    {
-      type: AuthorLinkType;
-      label: string | null;
-      url: string;
-    },
-  ];
+  avatarUrl: string;
+  links: {
+    type: AuthorLinkType;
+    label: string | null;
+    url: string;
+  }[];
 }
 
 export enum AuthorLinkType {

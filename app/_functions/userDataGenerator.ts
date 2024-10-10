@@ -12,8 +12,7 @@ export function userDataGenerator(
     preferences: {
       author: null,
       defaultLanguage: "English",
-      showAnnouncements: true,
-      displayMode: null,
+      // showAnnouncements: true,
     },
     profile: {
       name: name,

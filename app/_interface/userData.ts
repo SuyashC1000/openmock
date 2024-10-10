@@ -22,8 +22,8 @@ interface UserProfile {
 }
 
 interface UserPreferences {
-  displayMode: "light" | "dark" | null;
+  // displayMode: "light" | "dark" | null;
   defaultLanguage: string;
   author: TestPaperAuthor | null;
-  showAnnouncements: boolean;
+  // showAnnouncements: boolean;
 }
