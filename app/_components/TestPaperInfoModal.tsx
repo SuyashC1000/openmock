@@ -12,6 +12,7 @@ import {
   Avatar,
   AvatarGroup,
   Button,
+  ButtonGroup,
   Flex,
   Heading,
   Icon,
@@ -34,8 +35,10 @@ import {
   TbEdit,
   TbHourglass,
   TbLanguage,
+  TbTransferOut,
 } from "react-icons/tb";
 import { db } from "@/db/db";
+import useExport from "@/lib/useExport";
 
 interface Props {
   testPaper: TestPaper;
@@ -49,6 +52,8 @@ const TestPaperInfoModal = ({ testPaper, isOpen, onClose }: Props) => {
   )?.sort((a, b) => a.timestamps.testStartTime - b.timestamps.testStartTime);
 
   const router = useRouter();
+  const { exportTestPaper } = useExport();
+
   const testPaperDate = new Date(testPaper.timeCreated);
   const [languageIndex, setLanguageIndex] = React.useState(0);
 
@@ -225,19 +230,28 @@ const TestPaperInfoModal = ({ testPaper, isOpen, onClose }: Props) => {
           >
             Attempt Paper
           </Button>
-          <Button
-            ml={"auto"}
-            colorScheme="yellow"
-            variant={"outline"}
-            leftIcon={<TbEdit />}
-            onClick={async () => {
-              await db.activeTestDraft.clear();
-              await db.activeTestDraft.add(testPaper);
-              router.push("/creator");
-            }}
-          >
-            Edit Paper
-          </Button>
+          <ButtonGroup ml={"auto"}>
+            <Button
+              colorScheme="yellow"
+              variant={"outline"}
+              leftIcon={<TbEdit />}
+              onClick={async () => {
+                await db.activeTestDraft.clear();
+                await db.activeTestDraft.add(testPaper);
+                router.push("/creator");
+              }}
+            >
+              Edit
+            </Button>
+            <Button
+              colorScheme="teal"
+              variant={"outline"}
+              leftIcon={<TbTransferOut />}
+              onClick={() => exportTestPaper(testPaper)}
+            >
+              Export
+            </Button>
+          </ButtonGroup>
         </ModalFooter>
       </ModalContent>
     </Modal>

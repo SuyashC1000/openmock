@@ -32,7 +32,14 @@ import Step1 from "./Step1";
 import { active } from "d3";
 import Step2 from "./Step2";
 import Step3 from "./Step3";
-import { TbChevronDown, TbCopy, TbDeviceFloppy, TbTrash } from "react-icons/tb";
+import {
+  TbCaretLeft,
+  TbCaretRight,
+  TbChevronDown,
+  TbCopy,
+  TbDeviceFloppy,
+  TbTrash,
+} from "react-icons/tb";
 import { uniqueId } from "@/app/_functions/randomGenerator";
 import { db } from "@/db/db";
 import useConfirm from "@/lib/useConfirm";
@@ -68,21 +75,20 @@ const MainView = () => {
     count: steps.length,
   });
 
-  function updateMaxMetrics() {
+  function updateMaxMetrics(data: TestPaper) {
     const { validMarks, validQuestions } = findTotalValidQuestionsAndMarks(
       "body",
       data.body
     );
-    setValue(`maxMetrics`, {
-      ...data.maxMetrics,
-      marks: validMarks,
-      questions: validQuestions,
-    });
+    data.maxMetrics.marks = validMarks;
+    data.maxMetrics.questions = validQuestions;
+    return data;
   }
 
   const onSubmitPaper: SubmitHandler<TestPaper> = (data: TestPaper) => {
     data.timeCreated = Date.now();
     data.id = `t${uniqueId(10)}`;
+    data = updateMaxMetrics(data);
 
     db.testPapers.add(data).then(() => {
       toast({
@@ -129,8 +135,8 @@ const MainView = () => {
     });
   };
 
-  const onSubmitRemoveDraft: SubmitHandler<Partial<TestPaper>> = async (
-    data: Partial<TestPaper>
+  const onSubmitRemoveDraft: SubmitHandler<TestPaper> = async (
+    data: TestPaper
   ) => {
     const isPresent = await db.testDrafts.where("id").equals(data.id!).count();
 
@@ -166,11 +172,20 @@ const MainView = () => {
   return (
     <div>
       <Heading>Creator page</Heading>
-      <div className="max-w-3xl mx-auto mb-5">
-        <Stepper index={activeStep}>
+      <div className="mx-auto flex gap-2">
+        <Button
+          size={"lg"}
+          variant={"ghost"}
+          colorScheme="blue"
+          isDisabled={activeStep <= 0}
+          onClick={() => setActiveStep((e) => e - 1)}
+        >
+          <TbCaretLeft size={30} />
+        </Button>
+        <Stepper flexGrow={1} index={activeStep} mx={3}>
           {steps.map((step, index) => (
-            <Step key={index} onClick={() => setActiveStep(index)}>
-              <StepIndicator cursor={"pointer"}>
+            <Step key={index}>
+              <StepIndicator>
                 <StepStatus
                   complete={<StepIcon />}
                   incomplete={<StepNumber />}
@@ -187,6 +202,15 @@ const MainView = () => {
             </Step>
           ))}
         </Stepper>
+        <Button
+          size={"lg"}
+          variant={"ghost"}
+          colorScheme="blue"
+          isDisabled={activeStep >= 3}
+          onClick={() => setActiveStep((e) => e + 1)}
+        >
+          <TbCaretRight size={30} />
+        </Button>
       </div>
       {activeStep === 0 && <Step1 />}
       {activeStep === 1 && <Step2 />}
@@ -196,47 +220,49 @@ const MainView = () => {
       {/* <DraftErrorList /> */}
       {/* {JSON.stringify(data)} */}
 
-      <Flex gap={3}>
-        <Button
-          type="submit"
-          colorScheme="green"
-          // isDisabled={!isValid}
-          onClick={handleSubmit(onSubmitPaper)}
-        >
-          Publish
-        </Button>
-
-        <Menu strategy="fixed">
-          <MenuButton
-            as={Button}
+      {activeStep === 3 && (
+        <Flex gap={3}>
+          <Button
+            type="submit"
+            colorScheme="green"
             // isDisabled={!isValid}
-            colorScheme="yellow"
-            rightIcon={<TbChevronDown />}
+            onClick={handleSubmit(onSubmitPaper)}
           >
-            Draft
-          </MenuButton>
-          <MenuList>
-            <MenuItem
-              icon={<TbDeviceFloppy size={20} />}
-              onClick={handleSubmit(onSubmitSaveDraft)}
+            Publish
+          </Button>
+
+          <Menu strategy="fixed">
+            <MenuButton
+              as={Button}
+              // isDisabled={!isValid}
+              colorScheme="yellow"
+              rightIcon={<TbChevronDown />}
             >
-              Save Draft
-            </MenuItem>
-            <MenuItem
-              icon={<TbCopy size={20} />}
-              onClick={handleSubmit(onSubmitCopyDraft)}
-            >
-              Make Copy
-            </MenuItem>
-            <MenuItem
-              icon={<TbTrash size={20} />}
-              onClick={handleSubmit(onSubmitRemoveDraft)}
-            >
-              Discard Draft
-            </MenuItem>
-          </MenuList>
-        </Menu>
-      </Flex>
+              Draft
+            </MenuButton>
+            <MenuList>
+              <MenuItem
+                icon={<TbDeviceFloppy size={20} />}
+                onClick={handleSubmit(onSubmitSaveDraft)}
+              >
+                Save Draft
+              </MenuItem>
+              <MenuItem
+                icon={<TbCopy size={20} />}
+                onClick={handleSubmit(onSubmitCopyDraft)}
+              >
+                Make Copy
+              </MenuItem>
+              <MenuItem
+                icon={<TbTrash size={20} />}
+                onClick={handleSubmit(onSubmitRemoveDraft)}
+              >
+                Discard Draft
+              </MenuItem>
+            </MenuList>
+          </Menu>
+        </Flex>
+      )}
     </div>
   );
 };

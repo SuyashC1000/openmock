@@ -94,7 +94,6 @@ const TestBottombar = () => {
           form="userResponseForm"
           type="submit"
           isDisabled={!questionConstraint(state, testPaper).canSkip}
-          // onClick={(e) => console.log(e.currentTarget)}
           onClick={async (e) => {
             handleSubmitQuestion(
               state,

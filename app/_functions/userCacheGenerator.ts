@@ -62,8 +62,6 @@ export default function userCacheGenerator(
     } as UserCacheGroup;
   });
 
-  // console.log(newBody);
-
   let foundation: UserCache = {
     attemptId: "a" + uniqueId().toString(),
     body: newBody,

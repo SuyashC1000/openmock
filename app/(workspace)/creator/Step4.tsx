@@ -140,8 +140,6 @@ const Step4 = () => {
             />
           </FormControl>
           <br />
-          {JSON.stringify(isCustomTagStatEnabled)}
-
           <FormControl>
             <FormLabel>Tag Stats Editor</FormLabel>
 

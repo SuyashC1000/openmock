@@ -168,9 +168,6 @@ function useSubmit() {
       testPaper,
       new Date().getTime()
     );
-
-    console.log(testResponse);
-
     await db.activeTestPaper.clear();
 
     await db.testPapers.put(testPaper);

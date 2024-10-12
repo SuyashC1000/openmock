@@ -31,6 +31,8 @@ import {
 } from "react-icons/tb";
 import { useRouter } from "next/navigation";
 import TestDraftCard from "./TestDraftCard";
+import useExport from "@/lib/useExport";
+import useImport from "@/lib/useImport";
 
 const MainView = () => {
   const availableTests =
@@ -41,6 +43,8 @@ const MainView = () => {
   const availableDrafts = useLiveQuery(() => db.testDrafts.toArray()) ?? [];
 
   const router = useRouter();
+
+  const { importTestPaper } = useImport();
 
   return (
     <div>
@@ -65,7 +69,12 @@ const MainView = () => {
             >
               Create Test
             </MenuItem>
-            <MenuItem icon={<TbFileDownload size={20} />}>Import Test</MenuItem>
+            <MenuItem
+              icon={<TbFileDownload size={20} />}
+              onClick={() => importTestPaper()}
+            >
+              Import Test
+            </MenuItem>
           </MenuList>
         </Menu>
       </Flex>
@@ -100,16 +109,20 @@ const MainView = () => {
       <Heading size={"lg"} fontWeight={"semibold"}>
         Test Drafts
       </Heading>
-      <SimpleGrid
-        gap={2}
-        templateColumns={"repeat(auto-fill, minmax(30rem, 1fr))"}
-      >
-        {availableDrafts.map((e, i) => (
-          <GridItem key={e.id}>
-            <TestDraftCard testDraft={e} />
-          </GridItem>
-        ))}
-      </SimpleGrid>
+      {availableDrafts.length > 0 ? (
+        <SimpleGrid
+          gap={2}
+          templateColumns={"repeat(auto-fill, minmax(30rem, 1fr))"}
+        >
+          {availableDrafts.map((e, i) => (
+            <GridItem key={e.id}>
+              <TestDraftCard testDraft={e} />
+            </GridItem>
+          ))}
+        </SimpleGrid>
+      ) : (
+        <Text color={"gray.500"}>Your test drafts will appear here</Text>
+      )}
     </div>
   );
 };

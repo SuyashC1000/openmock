@@ -42,7 +42,6 @@ export default function numberToWords(number: number): string {
         if (number > 0) result += " ";
       } else {
         let t = Math.floor(number / n.value);
-        // console.log(t);
         let d = number % n.value;
         if (d > 0) {
           return numberToWords(t) + " " + n.str + " " + numberToWords(d);

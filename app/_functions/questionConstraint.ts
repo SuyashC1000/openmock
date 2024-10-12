@@ -20,8 +20,6 @@ export const questionConstraint = (
   testPaper: TestPaper,
   indexList?: [number, number, number]
 ): Final => {
-  // console.log(state);
-
   const activeGroupCache = state.body[indexList?.[0] ?? state.activeGroupIndex];
   const activeSectionCache =
     activeGroupCache.sections[

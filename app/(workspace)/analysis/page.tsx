@@ -34,48 +34,6 @@ const AnalysisPage = () => {
     [] // default result: makes 'loaded' undefined while loading
   );
 
-  // const [suppliedTestPaper, setSuppliedTestPaper] =
-  //   React.useState(emptyTestPaper);
-  // const [activeTestResponse, setActiveTestResponse] =
-  //   React.useState(emptyTestResponse);
-
-  // console.log("Here it is:", fetchedData);
-
-  // const activeTestResponse: TestResponse = fetchedData![0];
-  // const suppliedTestPaper: TestPaper = useLiveQuery(() =>
-  //   db.testPapers.where("id").equals(activeTestResponse.testId).toArray()
-  // )![0];
-
-  const [status, setStatus] = React.useState<
-    "loading" | "success" | "failure" | "empty"
-  >("loading");
-
-  // React.useEffect(() => {
-  //   const fetchData = async () => {
-  //     const attemptResponse = await db.activeTestResponse.toArray();
-  //     console.log(attemptResponse);
-  //     if (attemptResponse.length === 1) {
-  //       const paperResponse = await db.testPapers
-  //         .where("id")
-  //         .equals(attemptResponse[0].testId)
-  //         .toArray();
-  //       if (paperResponse.length === 1) {
-  //         setActiveTestResponse(
-  //           calculateScoreData(paperResponse[0], attemptResponse[0])
-  //         );
-  //         setSuppliedTestPaper(paperResponse[0]);
-  //         setStatus("success");
-  //       } else {
-  //         setStatus("failure");
-  //       }
-  //     } else {
-  //       setStatus("empty");
-  //     }
-  //   };
-
-  //   fetchData();
-  // }, []);
-
   if (!loaded) {
     return <Loading />;
   } else if (!activeTestResponse || !suppliedTestPaper) {

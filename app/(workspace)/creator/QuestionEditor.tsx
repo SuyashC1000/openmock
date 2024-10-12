@@ -693,8 +693,6 @@ const QuestionEditor = ({ step3Data, setStep3Data }: Props) => {
                         fontStyle="serif"
                         onChange={(f) => {
                           setStep3Data((e): Step3DataProps => {
-                            console.log(e.questionData!.options!);
-
                             e.questionData!.options![+i][
                               +step3Data.currentLanguage
                             ] = f.target.value;
