@@ -16,7 +16,13 @@ import { SubmitHandler, useFormContext } from "react-hook-form";
 import UserProfileEditor from "./UserProfileEditor";
 import UserPreferenceEditor from "./UserPreferenceEditor";
 import UserSavedTests from "./UserSavedTests";
-import { TbDeviceFloppy, TbTrack, TbTrash, TbUpload } from "react-icons/tb";
+import {
+  TbDeviceFloppy,
+  TbTrack,
+  TbTransferOut,
+  TbTrash,
+  TbUpload,
+} from "react-icons/tb";
 import { db } from "@/db/db";
 import useDelete from "@/lib/useDelete";
 
@@ -44,14 +50,7 @@ const MainView = () => {
         <Heading>Settings</Heading>
 
         <ButtonGroup variant={"outline"} ml={"auto"}>
-          <Button
-            colorScheme={"blue"}
-            leftIcon={<TbDeviceFloppy />}
-            onClick={handleSubmit(onSubmitUserDataEdit)}
-          >
-            Save
-          </Button>
-          <Button colorScheme={"yellow"} leftIcon={<TbUpload />}>
+          <Button colorScheme={"blue"} leftIcon={<TbTransferOut />}>
             Export
           </Button>
           <Button
@@ -83,6 +82,13 @@ const MainView = () => {
           </TabPanel>
         </TabPanels>
       </Tabs>
+      <Button
+        colorScheme={"green"}
+        leftIcon={<TbDeviceFloppy />}
+        onClick={handleSubmit(onSubmitUserDataEdit)}
+      >
+        Save
+      </Button>
     </div>
   );
 };

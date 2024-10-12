@@ -9,6 +9,7 @@ import {
   FormLabel,
   Heading,
   Input,
+  Text,
 } from "@chakra-ui/react";
 import React from "react";
 import { Form, useFormContext } from "react-hook-form";
@@ -61,8 +62,20 @@ const UserProfileEditor = () => {
             </FormControl>
           </Box>
 
-          <Flex flexGrow={1} justifyContent={"center"}>
+          <Flex
+            flexGrow={1}
+            justifyContent={"center"}
+            alignItems={"center"}
+            flexDirection={"column"}
+            gap={1}
+          >
             <Avatar size={"2xl"} src={data.imageSrc} name={data.name} />
+            <Text fontSize={"lg"}>
+              {data.name}
+              {data.name.length === 0 && (
+                <span className="text-neutral-500">(Empty)</span>
+              )}
+            </Text>
           </Flex>
         </Flex>
       </CardBody>

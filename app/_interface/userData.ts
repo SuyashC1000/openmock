@@ -5,16 +5,8 @@ export interface UserData {
   id: string;
   profile: UserProfile;
   timeCreated: number;
-  saved: UserSaved;
   preferences: UserPreferences;
   version: string;
-}
-
-interface UserSaved {
-  testPaperIds: string[];
-  testDraftIds: string[];
-  testResponseIds: string[];
-  testPaperFolderIds: string[];
 }
 
 interface UserProfile {

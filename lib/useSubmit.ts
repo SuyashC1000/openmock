@@ -173,9 +173,8 @@ function useSubmit() {
 
     await db.activeTestPaper.clear();
 
-    if (hasAccount) {
-      await db.testResponses.add(testResponse);
-    }
+    await db.testPapers.put(testPaper);
+    await db.testResponses.add(testResponse);
 
     setActiveTestResponse(testResponse);
   }

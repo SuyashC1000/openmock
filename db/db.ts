@@ -10,7 +10,7 @@ const db = new Dexie("FriendsDatabase") as Dexie & {
   activeTestResponse: EntityTable<TestResponse, "attemptId">;
   testResponses: EntityTable<TestResponse, "attemptId">;
 
-  testDrafts: EntityTable<Partial<TestPaper>, "id">;
+  testDrafts: EntityTable<TestPaper, "id">;
   activeTestDraft: EntityTable<Partial<TestPaper>, "id">;
 
   userData: EntityTable<UserData, "id">;

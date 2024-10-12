@@ -20,12 +20,6 @@ export function userDataGenerator(
     },
     version: version,
     timeCreated: time,
-    saved: {
-      testPaperFolderIds: [],
-      testPaperIds: [],
-      testDraftIds: [],
-      testResponseIds: [],
-    },
   };
   return final;
 }

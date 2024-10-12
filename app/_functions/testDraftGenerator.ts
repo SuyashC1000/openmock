@@ -13,12 +13,6 @@ const emptyUserData: UserData = {
     name: "",
     imageSrc: "",
   },
-  saved: {
-    testPaperFolderIds: [],
-    testDraftIds: [],
-    testPaperIds: [],
-    testResponseIds: [],
-  },
   timeCreated: 0,
   version: "0",
 };
@@ -39,7 +33,7 @@ export function testDraftGenerator(
     body: [],
     languages: [userDataRef.preferences.defaultLanguage],
     timeCreated: Date.now(),
-    instructions: [],
+    instructions: [""],
     // maxMetrics: {
     //   marks: 0,
     //   questions: 0,

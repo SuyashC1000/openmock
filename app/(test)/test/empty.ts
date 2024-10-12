@@ -28,7 +28,10 @@ export const emptyTestPaper: TestPaper = {
   },
   tags: [],
   version: "",
-  analysis: {},
+  analysis: {
+    preTestMessage: [""],
+    postTestMessage: [""],
+  },
   maxMetrics: {
     marks: 0,
     questions: 0,
@@ -168,18 +171,12 @@ export const emptyUserData: UserData = {
   id: "",
   timeCreated: 0,
   preferences: {
-    alwaysSaveResponses: false,
+    defaultLanguage: "English",
     author: null,
-    displayMode: null,
   },
   version: "0",
-  saved: {
-    testPaperFolderIds: [],
-    testPaperIds: [],
-    testResponseIds: [],
-  },
   profile: {
     imageSrc: "",
-    username: "",
+    name: "",
   },
 };

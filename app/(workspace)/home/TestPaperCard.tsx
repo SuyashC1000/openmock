@@ -21,7 +21,11 @@ import TestPaperInfoModal from "../../_components/TestPaperInfoModal";
 import { useLiveQuery } from "dexie-react-hooks";
 import { db } from "@/db/db";
 
-const TestCard = ({ testPaper }: { testPaper: TestPaper }) => {
+interface Props {
+  testPaper: TestPaper;
+}
+
+const TestPaperCard = ({ testPaper }: Props) => {
   const attemptCount = useLiveQuery(() =>
     db.testResponses.where("testId").equals(testPaper.id).count()
   );
@@ -30,19 +34,25 @@ const TestCard = ({ testPaper }: { testPaper: TestPaper }) => {
 
   return (
     <div>
-      <Card onClick={onOpen} cursor={"pointer"} size={"sm"} maxWidth={"30rem"}>
+      <Card onClick={onOpen} cursor={"pointer"} size={"sm"}>
         <CardBody>
           <Flex
             w={"full"}
-            alignItems={"start"}
             flexDirection={"column"}
             gap={1}
             justifyContent={"space-between"}
           >
-            <Text size={"md"} fontWeight={"medium"} flex={1}>
+            <Text
+              size={"md"}
+              fontWeight={"medium"}
+              flex={1}
+              textOverflow={"ellipsis"}
+              maxW={"full"}
+              whiteSpace={"pre-line"}
+            >
               {testPaper.name}
             </Text>
-            <Flex gap={2} flex={0} flexDirection={"row"}>
+            <Flex ml={"auto"} gap={2} flex={0} flexDirection={"row"}>
               {attemptCount != 0 && (
                 <Tag w={"fit"} colorScheme="yellow" variant={"solid"}>
                   <TagLeftIcon as={TbCheck} />
@@ -74,4 +84,4 @@ const TestCard = ({ testPaper }: { testPaper: TestPaper }) => {
   );
 };
 
-export default TestCard;
+export default TestPaperCard;

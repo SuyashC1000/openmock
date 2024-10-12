@@ -58,7 +58,6 @@ const UserPreferenceEditor = () => {
     <Card>
       <CardBody>
         <Heading size={"md"}>Preferences</Heading>
-        <Text>{JSON.stringify(data)}</Text>
 
         <FormControl>
           <FormLabel>Default Language</FormLabel>

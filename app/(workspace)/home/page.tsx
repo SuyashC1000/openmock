@@ -3,7 +3,6 @@
 import { db } from "@/db/db";
 import { useLiveQuery } from "dexie-react-hooks";
 
-import testData from "../../../public/data/testData.json";
 import {
   Button,
   Card,
@@ -18,11 +17,12 @@ import {
   Tabs,
   Text,
 } from "@chakra-ui/react";
-import TestCard from "./TestCard";
+import TestPaperCard from "./TestPaperCard";
 import { TbCopyPlus } from "react-icons/tb";
 import { useRouter } from "next/navigation";
 import Loading from "../loading";
 import { confirm } from "@/app/_components/Confirmation";
+import MainView from "./MainView";
 
 const HomePage = () => {
   const [availableTests, availableDrafts, loading] = useLiveQuery(
@@ -35,15 +35,12 @@ const HomePage = () => {
     [],
     []
   );
-  const sample = useLiveQuery(() => db.activeTestResponse.toArray());
-
   const router = useRouter();
 
   if (!loading) return <Loading />;
   return (
     <div>
-      <Heading>Welcome Home!</Heading>
-      <Tabs variant={"line"}>
+      {/* <Tabs variant={"line"}>
         <TabList>
           <Tab>All</Tab>
           <Tab>Papers</Tab>
@@ -112,7 +109,9 @@ const HomePage = () => {
             ))}
           </TabPanel>
         </TabPanels>
-      </Tabs>
+      </Tabs> */}
+
+      <MainView />
     </div>
   );
 };
