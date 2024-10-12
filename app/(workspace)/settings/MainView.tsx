@@ -25,6 +25,7 @@ import {
 } from "react-icons/tb";
 import { db } from "@/db/db";
 import useDelete from "@/lib/useDelete";
+import useExport from "@/lib/useExport";
 
 const MainView = () => {
   const {
@@ -42,6 +43,7 @@ const MainView = () => {
     await db.userData.put(data);
   };
 
+  const { exportUserData } = useExport();
   const { deleteUserData } = useDelete();
 
   return (
@@ -50,7 +52,11 @@ const MainView = () => {
         <Heading>Settings</Heading>
 
         <ButtonGroup variant={"outline"} ml={"auto"}>
-          <Button colorScheme={"blue"} leftIcon={<TbTransferOut />}>
+          <Button
+            colorScheme={"blue"}
+            leftIcon={<TbTransferOut />}
+            onClick={() => exportUserData()}
+          >
             Export
           </Button>
           <Button

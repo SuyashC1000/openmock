@@ -18,7 +18,7 @@ const db = new Dexie("FriendsDatabase") as Dexie & {
 
 db.version(1).stores({
   activeTestPaper: "id",
-  testPapers: "id",
+  testPapers: "id, timeCreated",
 
   activeTestResponse: "attemptId",
   testResponses: "attemptId, testId",

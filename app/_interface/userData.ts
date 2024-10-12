@@ -20,3 +20,10 @@ interface UserPreferences {
   author: TestPaperAuthor | null;
   // showAnnouncements: boolean;
 }
+
+export interface ExportedUserData {
+  userData: UserData;
+  testPapers: TestPaper[];
+  testDrafts: TestPaper[];
+  testResponses: TestResponse[];
+}

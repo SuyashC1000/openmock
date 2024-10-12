@@ -34,6 +34,7 @@ import UserRegisterModal from "./UserRegisterModal";
 import { useLiveQuery } from "dexie-react-hooks";
 import { db } from "@/db/db";
 import { usePathname, useRouter } from "next/navigation";
+import useImport from "@/lib/useImport";
 
 const capitalize = (str: string, lower = false): string =>
   (lower ? str.toLowerCase() : str).replace(/(?:^|\s|["'([{])+\S/g, (match) =>
@@ -47,6 +48,8 @@ const Navbar = ({ page }: { page: string }) => {
 
   const router = useRouter();
   const pathnameList = usePathname().substring(1).split("/");
+
+  const { importUserData } = useImport();
 
   return (
     <div className="bg-slate-600 h-10 flex-0 py-2 px-4 text-white flex justify-between items-center">
@@ -123,6 +126,7 @@ const Navbar = ({ page }: { page: string }) => {
                         flex={1}
                         variant={"outline"}
                         leftIcon={<TbTransferIn />}
+                        onClick={() => importUserData()}
                       >
                         Import
                       </Button>
