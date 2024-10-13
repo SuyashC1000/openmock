@@ -2,14 +2,17 @@
 
 import { TbWriting } from "react-icons/tb";
 
-import { Button, ButtonGroup, Link, Text } from "@chakra-ui/react";
+import { Button, ButtonGroup, Flex, Link, Text } from "@chakra-ui/react";
 import React from "react";
+import SiteLogoBlock from "./_components/SiteLogoBlock";
 
 export default function AppPage() {
   const Navbar = () => {
     return (
       <div className="fixed top-0 left-0 h-12 p-2 px-10 flex justify-between items-center w-screen bg-slate-100 z-40">
-        <Text className="font-semibold text-xl">OpenMock</Text>
+        <Flex alignItems={"center"}>
+          <SiteLogoBlock />
+        </Flex>
         <Link href="/home">
           <Button colorScheme="green">Get Started</Button>
         </Link>

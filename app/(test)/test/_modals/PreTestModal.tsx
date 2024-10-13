@@ -141,7 +141,10 @@ export const PreTestModal = () => {
       <div className="flex flex-row">
         <div className="flex-1 flex flex-col h-screen max-h-screen flex-box">
           <div className="bg-sky-100 p-2 flex flex-0">
-            <Heading size={"md"}>{testPaper.name} - Instructions</Heading>
+            <Heading size={"md"}>
+              {testPaper.name}{" "}
+              <span className="text-sky-600">&bull; Instructions</span>
+            </Heading>
           </div>
           <Text className="text-center m-1 text-red-500 flex-0">
             Please read the following instructions very carefully

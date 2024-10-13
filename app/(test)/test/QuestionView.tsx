@@ -156,13 +156,15 @@ const QuestionView = () => {
             </Text>
 
             <ConstraintAlert />
+
             <Markdown
-              className={`font-serif text-${zoomLevel === 3 ? "xl" : zoomLevel === 2 ? "lg" : "base"}`}
+              className={`font-serif text-${zoomLevel === 3 ? "xl" : zoomLevel === 2 ? "lg" : "base"} whitespace-pre-wrap`}
               remarkPlugins={[remarkGfm, remarkMath]}
               rehypePlugins={[rehypeKatex]}
             >
               {markdown}
             </Markdown>
+
             <UserResponse />
 
             <span className="w-10 self-end h-0">

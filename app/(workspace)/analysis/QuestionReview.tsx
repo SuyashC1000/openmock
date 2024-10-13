@@ -115,7 +115,7 @@ const ResponseReview = ({
                 <CardBody>
                   <Radio value={`${i}`} readOnly>
                     <Markdown
-                      className={"font-serif text-lg"}
+                      className={"font-serif text-lg whitespace-pre-wrap"}
                       remarkPlugins={[remarkGfm, remarkMath]}
                       rehypePlugins={[rehypeKatex]}
                     >
@@ -148,7 +148,7 @@ const ResponseReview = ({
                 <CardBody>
                   <Checkbox value={`${i}`} readOnly>
                     <Markdown
-                      className={"font-serif text-lg"}
+                      className={"font-serif text-lg white whitespace-pre-wrap"}
                       remarkPlugins={[remarkGfm, remarkMath]}
                       rehypePlugins={[rehypeKatex]}
                     >
@@ -483,7 +483,7 @@ const QuestionReview = () => {
           <Heading size={"sm"}>Question:</Heading>
 
           <Markdown
-            className={"font-serif text-lg"}
+            className={"font-serif text-lg whitespace-pre-wrap"}
             remarkPlugins={[remarkGfm, remarkMath]}
             rehypePlugins={[rehypeKatex]}
           >
@@ -550,7 +550,7 @@ const QuestionReview = () => {
           <Heading size={"sm"}>Solution:</Heading>
 
           <Markdown
-            className={"font-serif text-lg"}
+            className={"font-serif text-lg whitespace-pre-wrap"}
             remarkPlugins={[remarkGfm, remarkMath]}
             rehypePlugins={[rehypeKatex]}
           >

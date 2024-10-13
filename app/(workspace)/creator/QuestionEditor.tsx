@@ -49,6 +49,7 @@ import "@uiw/react-markdown-preview/markdown.css";
 import MDEditor from "@/app/_components/MDEditor";
 import Head from "next/head";
 import { findTotalValidQuestionsAndMarks } from "@/app/_functions/findTotal";
+import { confirm } from "@/app/_components/Confirmation";
 
 interface Props {
   step3Data: Step3DataProps;
@@ -171,24 +172,37 @@ const QuestionEditor = ({ step3Data, setStep3Data }: Props) => {
         : type === QDataTypes.MultipleCorrectOptions
           ? [0]
           : 0;
+    copy.preferences.questionType = type;
+    copy;
 
     switch (type) {
       case QDataTypes.SingleCorrectOption: {
         if (!isAdvanced) {
           copy.questionData!.qTypeName = "Single Correct Option";
         }
+        copy.preferences.questionTypeName = "Single Correct Option";
+        copy.questionData!.options = Array(
+          copy.preferences.questionTypeProps[QDataTypes.SingleCorrectOption]
+        ).fill([""]);
+
         break;
       }
       case QDataTypes.MultipleCorrectOptions: {
         if (!isAdvanced) {
           copy.questionData!.qTypeName = "Multiple Correct Options";
         }
+        copy.preferences.questionTypeName = "Multiple Correct Options";
+        copy.questionData!.options = Array(
+          copy.preferences.questionTypeProps[QDataTypes.MultipleCorrectOptions]
+        ).fill([""]);
+
         break;
       }
       case QDataTypes.NumericalValue: {
         if (!isAdvanced) {
           copy.questionData!.qTypeName = "Numerical Value";
         }
+        copy.preferences.questionTypeName = "Numerical Value";
         copy.questionData!.options = null;
         break;
       }
@@ -334,7 +348,15 @@ const QuestionEditor = ({ step3Data, setStep3Data }: Props) => {
               colorScheme="red"
               leftIcon={<TbTrash />}
               isDisabled={step3Data.questionData === undefined}
-              onClick={handleDeleteQuestion}
+              onClick={async () => {
+                if (
+                  await confirm(
+                    "Are you sure you want to delete this question?"
+                  )
+                ) {
+                  handleDeleteQuestion();
+                }
+              }}
             >
               Delete Question
             </Button>
@@ -389,6 +411,7 @@ const QuestionEditor = ({ step3Data, setStep3Data }: Props) => {
 
             <MDEditor
               isPreview={isPreview}
+              placeholder="Enter question"
               content={
                 step3Data.questionData.question[step3Data.currentLanguage]
               }
@@ -441,6 +464,26 @@ const QuestionEditor = ({ step3Data, setStep3Data }: Props) => {
                           questionData: {
                             ...e.questionData!,
                             qTypeName: f.target.value,
+                          },
+                          preferences: {
+                            ...e.preferences,
+                            questionTypeName: f.target.value,
+                          },
+                        };
+                      });
+                      updateQuestion();
+                    }}
+                    onBlur={(f) => {
+                      setStep3Data((e) => {
+                        return {
+                          ...e,
+                          questionData: {
+                            ...e.questionData!,
+                            qTypeName: f.target.value,
+                          },
+                          preferences: {
+                            ...e.preferences,
+                            questionTypeName: f.target.value,
                           },
                         };
                       });
@@ -690,6 +733,7 @@ const QuestionEditor = ({ step3Data, setStep3Data }: Props) => {
                       <MDEditor
                         isPreview={isPreview}
                         content={option[step3Data.currentLanguage]}
+                        placeholder={`Enter option ${alphabet[i]}`}
                         fontStyle="serif"
                         onChange={(f) => {
                           setStep3Data((e): Step3DataProps => {
@@ -876,6 +920,7 @@ const QuestionEditor = ({ step3Data, setStep3Data }: Props) => {
             <MDEditor
               isPreview={isPreview}
               fontStyle="serif"
+              placeholder="Enter explanation of the answer to the questions"
               content={
                 step3Data?.questionData?.solution?.[
                   step3Data.currentLanguage

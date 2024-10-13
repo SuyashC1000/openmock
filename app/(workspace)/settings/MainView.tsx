@@ -79,22 +79,31 @@ const MainView = () => {
         <TabPanels>
           <TabPanel>
             <UserProfileEditor />
+            <Button
+              mt={2}
+              colorScheme={"green"}
+              leftIcon={<TbDeviceFloppy />}
+              onClick={handleSubmit(onSubmitUserDataEdit)}
+            >
+              Save
+            </Button>
           </TabPanel>
           <TabPanel>
             <UserPreferenceEditor />
+            <Button
+              mt={2}
+              colorScheme={"green"}
+              leftIcon={<TbDeviceFloppy />}
+              onClick={handleSubmit(onSubmitUserDataEdit)}
+            >
+              Save
+            </Button>
           </TabPanel>
           <TabPanel>
             <UserSavedTests />
           </TabPanel>
         </TabPanels>
       </Tabs>
-      <Button
-        colorScheme={"green"}
-        leftIcon={<TbDeviceFloppy />}
-        onClick={handleSubmit(onSubmitUserDataEdit)}
-      >
-        Save
-      </Button>
     </div>
   );
 };

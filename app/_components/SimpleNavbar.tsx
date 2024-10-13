@@ -35,6 +35,7 @@ import UserRegisterModal from "./UserRegisterModal";
 import { useLiveQuery } from "dexie-react-hooks";
 import { db } from "@/db/db";
 import { usePathname, useRouter } from "next/navigation";
+import SiteLogoBlock from "./SiteLogoBlock";
 
 const formatTitleText = (str: string, lower = false): string =>
   (lower ? str.toLowerCase() : str)
@@ -49,17 +50,7 @@ const Navbar = () => {
       <div className="flex items-center gap-2">
         <Breadcrumb separator={<TbChevronRight />}>
           <BreadcrumbItem>
-            <Heading
-              size={"md"}
-              cursor={"pointer"}
-              fontWeight={"semibold"}
-              onClick={() => router.push("/home")}
-            >
-              OpenMock
-            </Heading>
-            <Badge ml={2} colorScheme="red" variant={"subtle"}>
-              Alpha
-            </Badge>
+            <SiteLogoBlock />
           </BreadcrumbItem>
           {pathnameList[0] !== "home" &&
             pathnameList.map((e, i) => (

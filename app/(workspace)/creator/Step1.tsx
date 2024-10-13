@@ -401,6 +401,7 @@ const Step1 = () => {
                   f.target.value
                 );
               }}
+              placeholder="Enter an overview of the test"
             />
           </FormControl>
 
@@ -415,6 +416,7 @@ const Step1 = () => {
               onChange={(f) => {
                 setValue(`instructions.${currentLanguage}`, f.target.value);
               }}
+              placeholder="Enter additional instructions before the start of the test"
             />
           </FormControl>
 

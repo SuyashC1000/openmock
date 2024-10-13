@@ -124,6 +124,7 @@ const Step4 = () => {
                   f.target.value
                 );
               }}
+              placeholder="Enter insight on the test paper after attempt"
             />
           </FormControl>
           <br />
@@ -137,6 +138,7 @@ const Step4 = () => {
               onChange={(f) => {
                 setValue(`usefulData.${currentLanguage}`, f.target.value);
               }}
+              placeholder="Enter reference data for use during test"
             />
           </FormControl>
           <br />

@@ -180,7 +180,15 @@ const QuestionSelector = ({ step3Data, setStep3Data }: Props) => {
   };
 
   return (
-    <Card w={400} flexGrow={0}>
+    <Card
+      w={400}
+      flexGrow={0}
+      position={"sticky"}
+      top={3}
+      maxHeight={"82.5vh"}
+      overflowY={"auto"}
+      style={{ scrollbarWidth: "thin" }}
+    >
       <CardBody>
         <Heading size={"md"} fontWeight={"medium"}>
           Question Selector

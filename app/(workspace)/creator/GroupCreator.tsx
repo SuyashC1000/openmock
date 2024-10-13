@@ -48,6 +48,7 @@ import {
   findTotalValidQuestionsAndMarks,
 } from "@/app/_functions/findTotal";
 import { group } from "console";
+import { confirm } from "@/app/_components/Confirmation";
 
 interface Props {
   provided: DraggableProvided;
@@ -137,7 +138,7 @@ const GroupCreator = ({
                   fontWeight={"bold"}
                   py={0}
                 >
-                  <EditablePreview p={0} />
+                  <EditablePreview p={0} cursor={"pointer"} />
                   <Input
                     as={EditableInput}
                     {...register(`body.${grpIndex}.groupName`, {
@@ -214,7 +215,17 @@ const GroupCreator = ({
                 >
                   <TbSettings size={20} />
                 </Button>
-                <Button colorScheme="red" onClick={() => removeGroup(grpIndex)}>
+                <Button
+                  colorScheme="red"
+                  onClick={async () => {
+                    if (
+                      await confirm(
+                        "Are you sure you want to delete this group?"
+                      )
+                    )
+                      removeGroup(grpIndex);
+                  }}
+                >
                   <TbTrash size={20} />
                 </Button>
               </ButtonGroup>

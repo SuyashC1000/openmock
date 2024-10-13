@@ -14,7 +14,9 @@ function PaperOptionsGroup() {
     <div className="flex text-white gap-2">
       {groupConstraint(state, testPaper).canAccess && <PaperOptions type={1} />}
       <PaperOptions type={0} />
-      {testPaper.usefulData?.length > 0 && <PaperOptions type={2} />}
+      {testPaper.usefulData?.[state.currentLanguageIndex].length > 0 && (
+        <PaperOptions type={2} />
+      )}
       {activeGroup.instructions?.length !== undefined &&
         activeGroup.instructions?.length > 0 && <PaperOptions type={3} />}
       {activeSection.instructions?.length !== undefined &&

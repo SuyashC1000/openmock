@@ -46,6 +46,7 @@ import useConfirm from "@/lib/useConfirm";
 import DraftErrorList from "./DraftErrorList";
 import Step4 from "./Step4";
 import { findTotalValidQuestionsAndMarks } from "@/app/_functions/findTotal";
+import { useLiveQuery } from "dexie-react-hooks";
 
 const MainView = () => {
   const state = React.useContext(DraftStateContext);
@@ -65,7 +66,7 @@ const MainView = () => {
     { title: "Fourth", description: "Miscellaneous" },
   ];
 
-  const data = watch();
+  const name = watch(`name`, "");
 
   const toast = useToast();
   const { confirm } = useConfirm();
@@ -74,6 +75,11 @@ const MainView = () => {
     index: 0,
     count: steps.length,
   });
+
+  const isCurrentDraftSaved =
+    useLiveQuery(() => db.testDrafts.where("id").equals(name).count()) ?? 0;
+  const isCurrentDraftValidPaper =
+    useLiveQuery(() => db.testPapers.where("id").equals(name).count()) ?? 0;
 
   function updateMaxMetrics(data: TestPaper) {
     const { validMarks, validQuestions } = findTotalValidQuestionsAndMarks(
@@ -101,10 +107,11 @@ const MainView = () => {
     });
   };
 
-  const onSubmitSaveDraft: SubmitHandler<Partial<TestPaper>> = async (
-    data: Partial<TestPaper>
+  const onSubmitSaveDraft: SubmitHandler<TestPaper> = async (
+    data: TestPaper
   ) => {
     const isPresent = await db.testDrafts.where("id").equals(data.id!).count();
+    data = updateMaxMetrics(data);
 
     db.testDrafts.put(data).then(() => {
       toast({
@@ -117,12 +124,11 @@ const MainView = () => {
     });
   };
 
-  const onSubmitCopyDraft: SubmitHandler<Partial<TestPaper>> = (
-    data: Partial<TestPaper>
-  ) => {
+  const onSubmitCopyDraft: SubmitHandler<TestPaper> = (data: TestPaper) => {
     let newcopy = data;
     newcopy.id = `td${uniqueId(10)}`;
     newcopy.name += " (Copy)";
+    newcopy = updateMaxMetrics(newcopy);
 
     db.testDrafts.add(newcopy).then(() => {
       toast({
@@ -174,7 +180,6 @@ const MainView = () => {
       <Heading>Creator page</Heading>
       <div className="mx-auto flex gap-2">
         <Button
-          size={"lg"}
           variant={"ghost"}
           colorScheme="blue"
           isDisabled={activeStep <= 0}
@@ -203,7 +208,6 @@ const MainView = () => {
           ))}
         </Stepper>
         <Button
-          size={"lg"}
           variant={"ghost"}
           colorScheme="blue"
           isDisabled={activeStep >= 3}
@@ -220,7 +224,7 @@ const MainView = () => {
       {/* <DraftErrorList /> */}
       {/* {JSON.stringify(data)} */}
 
-      {activeStep === 3 && (
+      {(true || activeStep === 3) && (
         <Flex gap={3}>
           <Button
             type="submit"

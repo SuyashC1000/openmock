@@ -1,3 +1,4 @@
+import { uniqueId } from "@/app/_functions/randomGenerator";
 import { TestPaper } from "@/app/_interface/testData";
 import { ExportedUserData } from "@/app/_interface/userData";
 import { db } from "@/db/db";
@@ -10,7 +11,7 @@ function useExport() {
     const jsonURL = URL.createObjectURL(jsonData);
     const link = document.createElement("a");
     link.href = jsonURL;
-    link.download = `Paper_${testPaper.id}.json`;
+    link.download = `Paper_${testPaper.id}_${uniqueId(5)}.json`;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -34,7 +35,7 @@ function useExport() {
     const jsonURL = URL.createObjectURL(jsonData);
     const link = document.createElement("a");
     link.href = jsonURL;
-    link.download = `Complete_${userData.id}.json`;
+    link.download = `Complete_${userData.id}_${uniqueId(5)}.json`;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);

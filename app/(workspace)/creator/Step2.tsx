@@ -3,7 +3,18 @@ import {
   TestPaperGroup,
   TestPaperSection,
 } from "@/app/_interface/testData";
-import { Button, Card, CardBody, Heading, Icon, Text } from "@chakra-ui/react";
+import {
+  Button,
+  Card,
+  CardBody,
+  Flex,
+  Heading,
+  Icon,
+  Tag,
+  TagLabel,
+  TagLeftIcon,
+  Text,
+} from "@chakra-ui/react";
 import React from "react";
 import { useFieldArray, useFormContext, useWatch } from "react-hook-form";
 import {
@@ -18,10 +29,16 @@ import rehypeKatex from "rehype-katex";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 import "katex/dist/katex.min.css";
-import { TbMenuOrder, TbSquarePlus } from "react-icons/tb";
+import {
+  TbClipboard,
+  TbDiamonds,
+  TbMenuOrder,
+  TbSquarePlus,
+} from "react-icons/tb";
 import GroupCreator from "./GroupCreator";
 import { forceLink } from "d3";
 import { uniqueId } from "@/app/_functions/randomGenerator";
+import { findTotalValidQuestionsAndMarks } from "@/app/_functions/findTotal";
 
 const Step2 = () => {
   const {
@@ -49,6 +66,11 @@ const Step2 = () => {
 
     return result;
   };
+
+  const { validQuestions, validMarks } = findTotalValidQuestionsAndMarks(
+    "body",
+    fieldsData
+  );
 
   const createNewGroup = () => {
     const newSection: TestPaperSection = {
@@ -134,16 +156,36 @@ const Step2 = () => {
     <div className="m-2">
       <Card>
         <CardBody>
-          <Button
-            onClick={() => {
-              prepend(createNewGroup());
-            }}
-            colorScheme="cyan"
-            variant={"outline"}
-            leftIcon={<TbSquarePlus />}
-          >
-            Add Group
-          </Button>
+          <Flex>
+            <Button
+              onClick={() => {
+                prepend(createNewGroup());
+              }}
+              colorScheme="cyan"
+              variant={"outline"}
+              leftIcon={<TbSquarePlus />}
+            >
+              Add Group
+            </Button>
+
+            <Flex
+              bgColor={"gray.100"}
+              gap={2}
+              m={2}
+              px={1}
+              ml={"auto"}
+              rounded={"md"}
+            >
+              <Tag variant={"subtle"} size={"sm"}>
+                <TagLeftIcon as={TbDiamonds} fontSize={16} />
+                <TagLabel>{validMarks}</TagLabel>
+              </Tag>
+              <Tag variant={"subtle"} size={"sm"}>
+                <TagLeftIcon as={TbClipboard} fontSize={16} />
+                <TagLabel>{validQuestions}</TagLabel>
+              </Tag>
+            </Flex>
+          </Flex>
           <DragDropContext onDragEnd={handleDrag}>
             <Droppable droppableId="groups-container" type="GROUP">
               {(provided) => (

@@ -1,3 +1,4 @@
+import { confirm } from "@/app/_components/Confirmation";
 import {
   findTotalOptionalSections,
   findTotalValidQuestionsAndMarks,
@@ -116,7 +117,7 @@ const SectionCreator = ({
                   fontWeight={"bold"}
                   py={0}
                 >
-                  <EditablePreview p={0} />
+                  <EditablePreview p={0} cursor={"pointer"} />
                   <Input
                     as={EditableInput}
                     {...register(
@@ -165,7 +166,15 @@ const SectionCreator = ({
                 </Button>
                 <Button
                   colorScheme="red"
-                  onClick={() => removeSection(secIndex)}
+                  onClick={async () => {
+                    if (
+                      await confirm(
+                        "Are you sure you want to delete this section?"
+                      )
+                    ) {
+                      removeSection(secIndex);
+                    }
+                  }}
                 >
                   <TbTrash size={20} />
                 </Button>

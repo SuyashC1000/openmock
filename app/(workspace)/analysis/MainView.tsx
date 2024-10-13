@@ -72,13 +72,6 @@ const MainView = () => {
           >
             Reattempt
           </Button>
-          <Button
-            leftIcon={<TbDeviceFloppy />}
-            colorScheme="purple"
-            variant={"outline"}
-          >
-            Save
-          </Button>
           {hasSaved && (
             <Button
               leftIcon={<TbTrash />}
@@ -93,7 +86,7 @@ const MainView = () => {
           )}
         </ButtonGroup>
       </div>
-      <Tabs variant={"enclosed-colored"}>
+      <Tabs>
         <TabList>
           <Tab>Complete Overview</Tab>
           <Tab>Question Overview</Tab>

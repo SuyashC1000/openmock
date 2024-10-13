@@ -12,9 +12,16 @@ interface Props {
   content: string;
   onChange?: React.ChangeEventHandler<HTMLTextAreaElement> | undefined;
   fontStyle?: "serif" | "sans";
+  placeholder?: string;
 }
 
-const MDEditor = ({ isPreview, content, onChange, fontStyle }: Props) => {
+const MDEditor = ({
+  isPreview,
+  content,
+  onChange,
+  fontStyle,
+  placeholder,
+}: Props) => {
   return (
     <>
       {isPreview ? (
@@ -25,6 +32,7 @@ const MDEditor = ({ isPreview, content, onChange, fontStyle }: Props) => {
         </Card>
       ) : (
         <Textarea
+          placeholder={placeholder}
           value={content}
           onChange={onChange}
           // onBlur={(f) => {}}

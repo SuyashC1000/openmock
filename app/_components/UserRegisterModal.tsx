@@ -7,6 +7,7 @@ import {
   FormHelperText,
   FormLabel,
   Input,
+  Link,
   ListItem,
   Modal,
   ModalBody,
@@ -146,8 +147,15 @@ const UserRegisterModal = ({
                 onChange={() => setHasAgreed((e) => !e)}
               />
               <Text>
-                I have read and agree to the Terms of Conditions and the Privacy
-                Policy.
+                I have read and agree to the{" "}
+                <Link href="/legal/terms-of-service" color={"blue.600"}>
+                  Terms of Service
+                </Link>{" "}
+                and the{" "}
+                <Link color={"blue.600"} href="/legal/privacy">
+                  Privacy Policy
+                </Link>
+                .
               </Text>
             </div>
           </ModalBody>

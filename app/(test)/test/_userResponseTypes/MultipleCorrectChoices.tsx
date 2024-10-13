@@ -42,7 +42,7 @@ const MultipleCorrectChoices = (props: UserResponseInputProps) => {
               name="user_answer"
             >
               <Markdown
-                className={`p-4 font-serif text-${zoomLevel === 3 ? "xl" : zoomLevel === 2 ? "lg" : "base"}`}
+                className={`p-4 font-serif text-${zoomLevel === 3 ? "xl" : zoomLevel === 2 ? "lg" : "base"} whitespace-pre-wrap`}
                 remarkPlugins={[remarkGfm, remarkMath]}
                 rehypePlugins={[rehypeKatex]}
               >
