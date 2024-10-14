@@ -105,6 +105,7 @@ const TestPage = () => {
 
   return (
     <MultiProvider providers={providers}>
+      <title>Test - OpenMock</title>
       <div className="bg-slate-800 flex flex-box flex-col h-screen max-h-screen select-none">
         {pageStatus !== "success" ? (
           <Loader status={pageStatus} />

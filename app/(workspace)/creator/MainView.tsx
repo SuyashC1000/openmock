@@ -177,6 +177,7 @@ const MainView = () => {
 
   return (
     <div>
+      <title>Creator - OpenMock</title>
       <Heading>Creator page</Heading>
       <div className="mx-auto flex gap-2">
         <Button

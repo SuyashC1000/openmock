@@ -245,10 +245,11 @@ const GroupCreator = ({
                 <br />
                 {/* <Divider borderColor={"gray.700"}/> */}
                 <Flex gap={2}>
-                  <Box>
+                  <Box flexGrow={1}>
                     <FormControl>
                       <FormLabel>Max Optional Sections Attemptable</FormLabel>
                       <Input
+                        size={"sm"}
                         type="number"
                         {...register(
                           `body.${grpIndex}.constraints.maxOptionalSectionsAnswered`,
@@ -271,10 +272,11 @@ const GroupCreator = ({
                       </p>
                     </FormControl>
                   </Box>
-                  <Box>
+                  <Box flexGrow={1}>
                     <FormControl>
                       <FormLabel>Permission on Submit</FormLabel>
                       <Select
+                        size={"sm"}
                         {...register(
                           `body.${grpIndex}.constraints.permissionOnSubmit`
                         )}
@@ -287,10 +289,11 @@ const GroupCreator = ({
                   </Box>
                 </Flex>
                 <Flex gap={2}>
-                  <Box>
+                  <Box flexGrow={1}>
                     <FormControl>
                       <FormLabel>Minimum Time Allowed</FormLabel>
                       <Input
+                        size={"sm"}
                         placeholder="Enter time (in minutes)"
                         type="number"
                         {...register(
@@ -312,10 +315,11 @@ const GroupCreator = ({
                       />
                     </FormControl>
                   </Box>
-                  <Box>
+                  <Box flexGrow={1}>
                     <FormControl>
                       <FormLabel>Maximum Time Allowed</FormLabel>
                       <Input
+                        size={"sm"}
                         placeholder="Enter time (in minutes)"
                         type="number"
                         {...register(

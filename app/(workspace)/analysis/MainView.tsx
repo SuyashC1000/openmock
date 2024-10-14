@@ -58,6 +58,8 @@ const MainView = () => {
         onClose={onClose}
         testPaper={testPaper}
       />
+      <title>Analysis - OpenMock</title>
+
       <div className="flex justify-between items-center">
         <div className="p-2">
           <Heading fontWeight={"semibold"}>{testPaper.name}</Heading>

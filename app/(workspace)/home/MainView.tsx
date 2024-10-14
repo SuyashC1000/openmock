@@ -48,6 +48,7 @@ const MainView = () => {
 
   return (
     <div>
+      <title>Home - OpenMock</title>
       <Flex>
         <Heading>Home</Heading>
         <Menu>

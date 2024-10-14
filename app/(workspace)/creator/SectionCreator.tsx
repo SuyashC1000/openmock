@@ -206,10 +206,11 @@ const SectionCreator = ({
                 </Flex>
                 <br />
                 <Flex>
-                  <Box>
+                  <Box flexGrow={1}>
                     <FormControl>
                       <FormLabel>Max Questions Attemptable</FormLabel>
                       <Input
+                        size={"sm"}
                         type="number"
                         {...register(
                           `body.${grpIndex}.sections.${secIndex}.constraints.maxQuestionsAnswered`,

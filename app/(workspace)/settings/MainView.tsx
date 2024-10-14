@@ -48,6 +48,7 @@ const MainView = () => {
 
   return (
     <div>
+      <title>Settings - OpenMock</title>
       <Flex>
         <Heading>Settings</Heading>
 
