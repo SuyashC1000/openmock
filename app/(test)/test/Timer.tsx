@@ -35,22 +35,6 @@ const Timer = () => {
 
   const { submitTest } = useSubmit();
 
-  // function decrementCountdown(timeLeft: [number, number]) {
-  //   let newSeconds, newMinutes;
-  //   if (timeLeft[1] > 0 && timeLeft[0] >= 0) {
-  //     newSeconds = timeLeft[1] - 1;
-  //     newMinutes = timeLeft[0];
-  //     return [newMinutes, newSeconds] as [number, number];
-  //   } else if (timeLeft[1] === 0 && timeLeft[0] > 0) {
-  //     newSeconds = 59;
-  //     newMinutes = timeLeft[0] - 1;
-  //     return [newMinutes, newSeconds] as [number, number];
-  //   } else {
-  //     dispatch({ type: SET_TEST_STATUS, payload: "finished" });
-  //     return timeLeft;
-  //   }
-  // }
-
   React.useEffect(() => {
     timeLeftRef.current = timeLeft;
     testStatusRef.current = state.testStatus;
@@ -89,6 +73,7 @@ const Timer = () => {
     }, 1000);
 
     return () => clearInterval(timer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

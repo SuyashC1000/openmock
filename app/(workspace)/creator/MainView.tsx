@@ -44,6 +44,7 @@ import {
   TbCopy,
   TbDeviceFloppy,
   TbTrash,
+  TbUpload,
 } from "react-icons/tb";
 import { uniqueId } from "@/app/_functions/randomGenerator";
 import { db } from "@/db/db";
@@ -259,40 +260,39 @@ const MainView = () => {
             colorScheme="green"
             // isDisabled={!isValid}
             onClick={handleSubmit(onSubmitPaper)}
+            leftIcon={<TbUpload size={20} />}
           >
             Publish
           </Button>
 
-          <Menu strategy="fixed">
-            <MenuButton
-              as={Button}
-              // isDisabled={!isValid}
+          <ButtonGroup isAttached>
+            <Button
+              leftIcon={<TbDeviceFloppy size={20} />}
+              onClick={handleSubmit(onSubmitSaveDraft)}
               colorScheme="yellow"
-              rightIcon={<TbChevronDown />}
             >
-              Draft
-            </MenuButton>
-            <MenuList>
-              <MenuItem
-                icon={<TbDeviceFloppy size={20} />}
-                onClick={handleSubmit(onSubmitSaveDraft)}
-              >
-                Save Draft
-              </MenuItem>
-              <MenuItem
-                icon={<TbCopy size={20} />}
-                onClick={handleSubmit(onSubmitCopyDraft)}
-              >
-                Make Copy
-              </MenuItem>
-              <MenuItem
-                icon={<TbTrash size={20} />}
-                onClick={handleSubmit(onSubmitRemoveDraft)}
-              >
-                Discard Draft
-              </MenuItem>
-            </MenuList>
-          </Menu>
+              Save Draft
+            </Button>
+            <Menu strategy="fixed">
+              <MenuButton as={Button} colorScheme="yellow" px={1}>
+                <TbChevronDown size={20} />
+              </MenuButton>
+              <MenuList>
+                <MenuItem
+                  icon={<TbCopy size={20} />}
+                  onClick={handleSubmit(onSubmitCopyDraft)}
+                >
+                  Make Copy
+                </MenuItem>
+                <MenuItem
+                  icon={<TbTrash size={20} />}
+                  onClick={handleSubmit(onSubmitRemoveDraft)}
+                >
+                  Discard Draft
+                </MenuItem>
+              </MenuList>
+            </Menu>
+          </ButtonGroup>
         </Flex>
       )}
     </div>

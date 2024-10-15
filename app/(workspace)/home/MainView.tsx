@@ -124,7 +124,7 @@ const MainView = () => {
           ))}
         </SimpleGrid>
       ) : (
-        <Text size={"sm"} color={"gray.500"}>
+        <Text fontSize={"sm"} color={"gray.500"}>
           Your test drafts will appear here
         </Text>
       )}
