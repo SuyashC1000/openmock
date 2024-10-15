@@ -87,6 +87,7 @@ export default function AppPage() {
       </div>
       <main className="hidden">
         <p>This marks the beginning of the OpenMock Project</p>
+        {/* Hi */}
       </main>
     </section>
   );
