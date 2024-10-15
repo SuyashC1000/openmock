@@ -28,7 +28,7 @@
               ],
               "qTypeName": "Single Correct Choice",
               "question": [
-                "Consider the function $f : (0,2) \\to \\R$ defined by $f(x) = \\frac{x}{2} + \\frac{2}{x}$ and the function $g(x)$ defined by\n$$\ng(x) = \\begin{cases}\n\\min{\\{f(t)\\}} & , ~ 0 < t \\le x ~ \\text{and} ~ 0 < x \\le 1 \\\\\n\\frac{3}{2} + x & , ~ 1 < x < 2 \n\\end{cases}\n$$\nThen,"
+                "Consider the function $f : (0,2) \\to \\R$ defined by $f(x) = \\dfrac{x}{2} + \\dfrac{2}{x}$ and the function $g(x)$ defined by\n$$\ng(x) = \\begin{cases}\n\\min{\\{f(\text{t})\\}} & , ~ 0 < t \\le x ~ \\text{and} ~ 0 < x \\le 1 \\\\\n\\frac{3}{2} + x & , ~ 1 < x < 2 \n\\end{cases}\n$$\nThen,"
               ],
               "solution": [""],
               "answer": 3,

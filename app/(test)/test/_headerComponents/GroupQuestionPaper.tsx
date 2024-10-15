@@ -24,7 +24,7 @@ const GroupQuestionPaper = (props: {
                       <Text className="flex-0 w-16">Q{j + 1})</Text>
                       <div>
                         <Markdown
-                          className={`font-serif text-lg`}
+                          className={`font-serif text-lg whitespace-pre-wrap`}
                           remarkPlugins={[remarkGfm, remarkMath]}
                           rehypePlugins={[rehypeKatex]}
                         >
@@ -49,7 +49,7 @@ const GroupQuestionPaper = (props: {
                           return (
                             <ListItem key={k}>
                               <Markdown
-                                className={`font-serif text-lg`}
+                                className={`font-serif text-lg whitespace-pre-wrap`}
                                 remarkPlugins={[remarkGfm, remarkMath]}
                                 rehypePlugins={[rehypeKatex]}
                               >
