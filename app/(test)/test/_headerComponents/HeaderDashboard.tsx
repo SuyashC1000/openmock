@@ -41,7 +41,8 @@ const OptionalSectionNotice = () => {
     <Text>
       Sections
       <span className="text-xs font-medium">
-        {allowedOptionalSections !== undefined &&
+        {allowedOptionalSections !== null &&
+          allowedOptionalSections !== undefined &&
           ` (Attempt any ${allowedOptionalSections} of the ${totalOptionalSections} optional sections by clicking on the checkbox of the sections.)`}
       </span>
     </Text>
