@@ -162,7 +162,13 @@ const TestPaperInfoModal = ({ testPaper, isOpen, onClose, inBuilt }: Props) => {
                   })}
                 </select>
               </div>
-              <Text>{testPaper.analysis.preTestMessage![languageIndex]}</Text>
+              {testPaper.analysis.preTestMessage![languageIndex].length > 0 ? (
+                <Text>{testPaper.analysis.preTestMessage![languageIndex]}</Text>
+              ) : (
+                <Text fontSize={"sm"} color={"gray.500"}>
+                  No test description available
+                </Text>
+              )}
             </>
           )}
           <br />

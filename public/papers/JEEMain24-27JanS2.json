@@ -1,5 +1,5 @@
 {
-  "id": "t1699593780",
+  "id": "t7168014417",
   "name": "JEE Main 2024 - 27 Jan Shift 2",
   "authors": [
     {
@@ -28,7 +28,7 @@
               ],
               "qTypeName": "Single Correct Choice",
               "question": [
-                "Consider the function $f : (0,2) \\to \\R$ defined by $f(x) = \\dfrac{x}{2} + \\dfrac{2}{x}$ and the function $g(x)$ defined by\n$$\ng(x) = \\begin{cases}\n\\min{\\{f(\\text{t})\\}} & , ~ 0 < t \\le x ~ \\text{and} ~ 0 < x \\le 1 \\\\\n\\dfrac{3}{2} + x & , ~ 1 < x < 2 \n\\end{cases}\n$$\nThen,"
+                "Consider the function $f : (0,2) \\to \\R$ defined by $f(x) = \\frac{x}{2} + \\frac{2}{x}$ and the function $g(x)$ defined by\n$$\ng(x) = \\begin{cases}\n\\min{\\{f(t)\\}} & , ~ 0 < t \\le x ~ \\text{and} ~ 0 < x \\le 1 \\\\\n\\frac{3}{2} + x & , ~ 1 < x < 2 \n\\end{cases}\n$$\nThen,"
               ],
               "solution": [""],
               "answer": 3,
@@ -604,7 +604,7 @@
                 [4, 1],
                 [-1, 1]
               ],
-              "qTypeName": "Single Correct Option",
+              "qTypeName": "Single Correct Choice",
               "question": [
                 "Given below are two statements:\n**Statement (I) :** The limiting force of static friction depends on the area of contact and independent of materials.\n**Statement (II) :** The limiting force of kinetic friction is independent of the area of contact and depends on materials.\nIn light of the above statements, choose the **most appropriate** answer from the options given below :"
               ],
@@ -1223,7 +1223,7 @@
                 [4, 1],
                 [-1, 1]
               ],
-              "qTypeName": "Single Choice Question",
+              "qTypeName": "Single Correct Choice",
               "question": [
                 "The final product A, formed in the following reaction sequence is :\n![](https://i.ibb.co/V9PSbds/Q61.jpg)"
               ],
@@ -1244,7 +1244,7 @@
                 [4, 1],
                 [-1, 1]
               ],
-              "qTypeName": "Single Correct Option",
+              "qTypeName": "Single Correct Choice",
               "question": [
                 "The incorrect statement regarding conformations of ethane is :"
               ],
@@ -1269,7 +1269,7 @@
                 [4, 1],
                 [-1, 1]
               ],
-              "qTypeName": "Single Choice Question",
+              "qTypeName": "Single Correct Choice",
               "question": ["Bond line formula of $\\mathrm{HOCH(CN)_2}$ is :"],
               "solution": [""],
               "answer": 0,
@@ -1288,7 +1288,7 @@
                 [4, 1],
                 [-1, 1]
               ],
-              "qTypeName": "Single Choice Question",
+              "qTypeName": "Single Correct Choice",
               "question": [
                 "Match List - **I** with List - **II**.\n![](https://i.ibb.co/N9dMgDh/Q64-0.jpg)\nChoose the **correct** answer from the options given below :"
               ],
@@ -1309,7 +1309,7 @@
                 [4, 1],
                 [-1, 1]
               ],
-              "qTypeName": "Single Choice Question",
+              "qTypeName": "Single Correct Choice",
               "question": [
                 "Given below are two statements :\n**Statement (I)** : Oxygen being the first member of group $16$ exhibits only $-2$ oxidation state.\n**Statement (II)** : Down the group 16 stability of $+4$ oxidation state decreases and $+6$ oxidation state increases.\nIn the light of the above statements, choose the **most appropriate** answer from the options given below :"
               ],
@@ -1332,7 +1332,7 @@
                 [4, 1],
                 [-1, 1]
               ],
-              "qTypeName": "Single Choice Question",
+              "qTypeName": "Single Correct Choice",
               "question": [
                 "Major product formed in the following reaction is a mixture of :\n![](https://i.ibb.co/LN9jmW3/Q66.jpg)"
               ],
@@ -1353,7 +1353,7 @@
                 [4, 1],
                 [-1, 1]
               ],
-              "qTypeName": "Single Choice Question",
+              "qTypeName": "Single Correct Choice",
               "question": [
                 "The technique used for purification of steam volatile water immiscible substance is :"
               ],
@@ -1374,7 +1374,7 @@
                 [4, 1],
                 [-1, 1]
               ],
-              "qTypeName": "Single Choice Question",
+              "qTypeName": "Single Correct Choice",
               "question": [
                 "Identify from the following species in which $\\mathrm{d^2sp^3}$ hybridization is shown by central atom :"
               ],
@@ -1395,7 +1395,7 @@
                 [4, 1],
                 [-1, 1]
               ],
-              "qTypeName": "Single Choice Question",
+              "qTypeName": "Single Correct Choice",
               "question": [
                 "Identify B formed in the reaction.\n$$\\mathrm{ Cl \\text{---} (CH_2)_4 \\text{---} Cl  \\xrightarrow{\\mathrm{excess ~ NH_3}} A \\xrightarrow{\\mathrm{NaOH}} B + H_2O + NaCl }$$"
               ],
@@ -1416,7 +1416,7 @@
                 [4, 1],
                 [-1, 1]
               ],
-              "qTypeName": "Single Choice Question",
+              "qTypeName": "Single Correct Choice",
               "question": [
                 "Choose the correct option having all the elements with $\\mathrm{d^{10}}$ electronic configuration from the following :"
               ],
@@ -1437,7 +1437,7 @@
                 [4, 1],
                 [-1, 1]
               ],
-              "qTypeName": "Single Choice Question",
+              "qTypeName": "Single Correct Choice",
               "question": [
                 "The molecular formula of second homologous series of mono carboxylic acids is :"
               ],
@@ -1458,7 +1458,7 @@
                 [4, 1],
                 [-1, 1]
               ],
-              "qTypeName": "Single Choice Question",
+              "qTypeName": "Single Correct Choice",
               "question": ["Phenolic group can be identified by a positive :"],
               "solution": [""],
               "answer": 1,
@@ -1477,7 +1477,7 @@
                 [4, 1],
                 [-1, 1]
               ],
-              "qTypeName": "Single Choice Question",
+              "qTypeName": "Single Correct Choice",
               "question": [
                 "The order of relative stability of the contributing structure is :\n![](https://i.ibb.co/KjZ35Rm/Q73.jpg)\nChoose the **correct** answer from the options given below :"
               ],
@@ -1498,7 +1498,7 @@
                 [4, 1],
                 [-1, 1]
               ],
-              "qTypeName": "Single Choice Question",
+              "qTypeName": "Single Correct Choice",
               "question": ["The quantity which changes with temperature is :"],
               "solution": [""],
               "answer": 3,
@@ -1517,7 +1517,7 @@
                 [4, 1],
                 [-1, 1]
               ],
-              "qTypeName": "Single Choice Question",
+              "qTypeName": "Single Correct Choice",
               "question": [
                 "Identify the **incorrect** pair from the following :"
               ],
@@ -1538,7 +1538,7 @@
                 [4, 1],
                 [-1, 1]
               ],
-              "qTypeName": "Single Choice Question",
+              "qTypeName": "Single Correct Choice",
               "question": [
                 "Which structure of protein remains intact after coagulation of egg white on boiling ?"
               ],
@@ -1559,7 +1559,7 @@
                 [4, 1],
                 [-1, 1]
               ],
-              "qTypeName": "Single Choice Question",
+              "qTypeName": "Single Correct Choice",
               "question": [
                 "Which of the following statements is not correct about rusting of iron ?"
               ],
@@ -1588,7 +1588,7 @@
                 [4, 1],
                 [-1, 1]
               ],
-              "qTypeName": "Single Choice Question",
+              "qTypeName": "Single Correct Choice",
               "question": [
                 "Which among the following halide/s will not show $\\mathrm{S_N1}$ reaction :\n![](https://i.ibb.co/L8LNswj/Q87.jpg)\nChoose the **most appropriate** answer from the options given below :"
               ],
@@ -1609,7 +1609,7 @@
                 [4, 1],
                 [-1, 1]
               ],
-              "qTypeName": "Single Choice Question",
+              "qTypeName": "Single Correct Choice",
               "question": [
                 "Given below are two statements :\n**Statement (I)** : In the Lanthanoids, the formation $\\mathrm{Ce^{+4}}$ is favoured by its noble gas configuration.\n**Statement (II)** : $\\mathrm{Ce^{+4}}$ is a strong oxidant reverting to the common $+3$ state.\nIn the light of the above statements, choose the **most appropriate** answer from the options given below :"
               ],
@@ -1630,7 +1630,7 @@
                 [4, 1],
                 [-1, 1]
               ],
-              "qTypeName": "Single Choice Question",
+              "qTypeName": "Single Correct Choice",
               "question": [
                 "Which of the following cannot function as an oxidising agent?"
               ],
@@ -1818,12 +1818,17 @@
           "instructions": []
         }
       ],
-      "constraints": {},
+      "constraints": {
+        "maxOptionalSectionsAnswered": null,
+        "permissionOnSubmit": "all",
+        "minimumTimeAllowed": null,
+        "maximumTimeAllowed": null
+      },
       "instructions": []
     }
   ],
   "languages": ["English"],
-  "timeCreated": 1728924447052,
+  "timeCreated": 1728915363466,
   "instructions": [""],
   "version": "0.1",
   "tags": [
