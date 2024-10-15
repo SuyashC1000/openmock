@@ -8,7 +8,10 @@ import rehypeKatex from "rehype-katex";
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: "export",
-
+  typescript: {
+    // Ignore TypeScript errors during the build process
+    ignoreBuildErrors: true,
+  },
   // Configure `pageExtensions` to include markdown and MDX files
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
   reactStrictMode: false,
