@@ -8,7 +8,6 @@ import rehypeKatex from "rehype-katex";
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: "export",
-  basePath: "/openmock",
   typescript: {
     // Ignore TypeScript errors during the build process
     ignoreBuildErrors: true,
