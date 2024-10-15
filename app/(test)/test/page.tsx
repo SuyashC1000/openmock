@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { Suspense, useState } from "react";
 import TestHeader from "./TestHeader";
 import TestMainWindow from "./TestMainWindow";
 import TestBottombar from "./TestBottombar";

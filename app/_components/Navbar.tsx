@@ -89,7 +89,7 @@ const Navbar = ({ page }: { page: string }) => {
                   />
                   <Text fontSize={"lg"}>
                     {userData?.profile.name ?? (
-                      <span className="italic">Anonymous User</span>
+                      <span className="italic">User</span>
                     )}
                   </Text>
                 </VStack>

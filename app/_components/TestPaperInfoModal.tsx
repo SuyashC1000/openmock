@@ -44,9 +44,10 @@ interface Props {
   testPaper: TestPaper;
   isOpen: boolean;
   onClose: () => void;
+  inBuilt?: boolean;
 }
 
-const TestPaperInfoModal = ({ testPaper, isOpen, onClose }: Props) => {
+const TestPaperInfoModal = ({ testPaper, isOpen, onClose, inBuilt }: Props) => {
   const availableAttempts = useLiveQuery(() =>
     db.testResponses.where("testId").equals(testPaper.id).toArray()
   )?.sort((a, b) => a.timestamps.testStartTime - b.timestamps.testStartTime);
@@ -225,6 +226,11 @@ const TestPaperInfoModal = ({ testPaper, isOpen, onClose }: Props) => {
             onClick={async () => {
               await db.activeTestPaper.clear();
               await db.activeTestPaper.add(testPaper);
+
+              if (inBuilt === true) {
+                await db.testPapers.add(testPaper);
+              }
+
               router.push("/test");
             }}
           >

@@ -11,6 +11,7 @@ export const metadata: Metadata = {
 };
 
 import { Providers } from "./providers";
+import { useEffect } from "react";
 
 export default function RootLayout({
   children,

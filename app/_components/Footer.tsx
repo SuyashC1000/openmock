@@ -10,7 +10,10 @@ const Footer = () => {
       </Text>
       <Text textAlign={"center"} fontSize={"xs"}>
         <Link href="/home">Home</Link> &bull;{" "}
-        <Link href="/legal/terms-of-service">ToS</Link> &bull;{" "}
+        <Link href="https://github.com/SuyashC1000/openmock" isExternal>
+          GitHub
+        </Link>{" "}
+        &bull; <Link href="/legal/terms-of-service">ToS</Link> &bull;{" "}
         <Link href="/legal/privacy">Privacy</Link>
       </Text>
     </div>

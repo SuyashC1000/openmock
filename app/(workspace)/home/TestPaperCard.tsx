@@ -23,9 +23,10 @@ import { db } from "@/db/db";
 
 interface Props {
   testPaper: TestPaper;
+  inBuilt?: boolean;
 }
 
-const TestPaperCard = ({ testPaper }: Props) => {
+const TestPaperCard = ({ testPaper, inBuilt }: Props) => {
   const attemptCount = useLiveQuery(() =>
     db.testResponses.where("testId").equals(testPaper.id).count()
   );
@@ -76,6 +77,7 @@ const TestPaperCard = ({ testPaper }: Props) => {
           <TestPaperInfoModal
             testPaper={testPaper}
             isOpen={isOpen}
+            inBuilt={inBuilt}
             onClose={onClose}
           />
         </CardBody>

@@ -178,9 +178,9 @@ const QuestionEditor = ({ step3Data, setStep3Data }: Props) => {
     switch (type) {
       case QDataTypes.SingleCorrectOption: {
         if (!isAdvanced) {
-          copy.questionData!.qTypeName = "Single Correct Option";
+          copy.questionData!.qTypeName = "Single Correct Choice";
         }
-        copy.preferences.questionTypeName = "Single Correct Option";
+        copy.preferences.questionTypeName = "Single Correct Choice";
         copy.questionData!.options = Array(
           copy.preferences.questionTypeProps[QDataTypes.SingleCorrectOption]
         ).fill([""]);
@@ -189,9 +189,9 @@ const QuestionEditor = ({ step3Data, setStep3Data }: Props) => {
       }
       case QDataTypes.MultipleCorrectOptions: {
         if (!isAdvanced) {
-          copy.questionData!.qTypeName = "Multiple Correct Options";
+          copy.questionData!.qTypeName = "Multiple Correct Choices";
         }
-        copy.preferences.questionTypeName = "Multiple Correct Options";
+        copy.preferences.questionTypeName = "Multiple Correct Choices";
         copy.questionData!.options = Array(
           copy.preferences.questionTypeProps[QDataTypes.MultipleCorrectOptions]
         ).fill([""]);

@@ -33,6 +33,7 @@ import { useRouter } from "next/navigation";
 import TestDraftCard from "./TestDraftCard";
 import useExport from "@/lib/useExport";
 import useImport from "@/lib/useImport";
+import BuiltInTests from "./BuiltInTests";
 
 const MainView = () => {
   const availableTests =
@@ -86,26 +87,27 @@ const MainView = () => {
         Test Papers
       </Heading>
 
-      <SimpleGrid
-        gap={2}
-        templateColumns={"repeat(auto-fill, minmax(30rem, 1fr))"}
-      >
-        {availableTests.map((e, i) => (
-          <GridItem key={e.id}>
-            <TestPaperCard testPaper={e} />
-          </GridItem>
-        ))}
-      </SimpleGrid>
+      <BuiltInTests />
+
+      {availableTests.length > 0 ? (
+        <SimpleGrid
+          gap={2}
+          templateColumns={"repeat(auto-fill, minmax(30rem, 1fr))"}
+        >
+          {availableTests.map((e, i) => (
+            <GridItem key={e.id}>
+              <TestPaperCard testPaper={e} />
+            </GridItem>
+          ))}
+        </SimpleGrid>
+      ) : (
+        <Text fontSize={"sm"} color={"gray.500"}>
+          Your attempted and saved tests will appear here
+        </Text>
+      )}
 
       <br />
 
-      <Button
-        onClick={async () => {
-          await db.testPapers.add(testData);
-        }}
-      >
-        Add Test
-      </Button>
       <br />
       <Heading size={"lg"} fontWeight={"semibold"}>
         Test Drafts
@@ -122,7 +124,9 @@ const MainView = () => {
           ))}
         </SimpleGrid>
       ) : (
-        <Text color={"gray.500"}>Your test drafts will appear here</Text>
+        <Text size={"sm"} color={"gray.500"}>
+          Your test drafts will appear here
+        </Text>
       )}
     </div>
   );

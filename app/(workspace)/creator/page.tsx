@@ -62,21 +62,21 @@ const CreatorPage = () => {
 
   if (!loaded) {
     return <Loading />;
-  }
-  return (
-    <DraftStateContext.Provider value={state}>
-      <DraftDispatchContext.Provider value={dispatch}>
-        <DialogDataContext.Provider value={dialogData}>
-          <FormProvider {...methods}>
-            <ConfirmationModal />
-            <form>
-              <MainView />
-            </form>
-          </FormProvider>
-        </DialogDataContext.Provider>
-      </DraftDispatchContext.Provider>
-    </DraftStateContext.Provider>
-  );
+  } else
+    return (
+      <DraftStateContext.Provider value={state}>
+        <DraftDispatchContext.Provider value={dispatch}>
+          <DialogDataContext.Provider value={dialogData}>
+            <FormProvider {...methods}>
+              <ConfirmationModal />
+              <form>
+                <MainView />
+              </form>
+            </FormProvider>
+          </DialogDataContext.Provider>
+        </DraftDispatchContext.Provider>
+      </DraftStateContext.Provider>
+    );
 };
 
 export default CreatorPage;

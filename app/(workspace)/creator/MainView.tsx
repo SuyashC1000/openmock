@@ -26,7 +26,12 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import { DraftStateContext } from "./page";
-import { Controller, SubmitHandler, useFormContext } from "react-hook-form";
+import {
+  Controller,
+  SubmitHandler,
+  useFormContext,
+  useWatch,
+} from "react-hook-form";
 import { TestPaper } from "@/app/_interface/testData";
 import Step1 from "./Step1";
 import { active } from "d3";
@@ -48,6 +53,16 @@ import Step4 from "./Step4";
 import { findTotalValidQuestionsAndMarks } from "@/app/_functions/findTotal";
 import { useLiveQuery } from "dexie-react-hooks";
 
+const useFormValues = () => {
+  const { getValues } = useFormContext<TestPaper>();
+
+  return {
+    ...useWatch(), // subscribe to form value updates
+
+    ...getValues(), // always merge with latest form values
+  };
+};
+
 const MainView = () => {
   const state = React.useContext(DraftStateContext);
   const {
@@ -66,8 +81,6 @@ const MainView = () => {
     { title: "Fourth", description: "Miscellaneous" },
   ];
 
-  const name = watch(`name`, "");
-
   const toast = useToast();
   const { confirm } = useConfirm();
 
@@ -76,10 +89,22 @@ const MainView = () => {
     count: steps.length,
   });
 
-  const isCurrentDraftSaved =
-    useLiveQuery(() => db.testDrafts.where("id").equals(name).count()) ?? 0;
-  const isCurrentDraftValidPaper =
-    useLiveQuery(() => db.testPapers.where("id").equals(name).count()) ?? 0;
+  // const currentDraftId = currentDraft![0].id!;
+  const [isCurrentDraftSaved, isCurrentDraftValidPaper] = useLiveQuery(
+    async () => {
+      const [currentDraft] = await db.activeTestDraft.toArray();
+      if (currentDraft === undefined) return [-1, -1];
+      const one = await db.testDrafts
+        .where("id")
+        .equals(currentDraft.id!)
+        .count();
+      const two = await db.testPapers
+        .where("id")
+        .equals(currentDraft.id!)
+        .count();
+      return [one, two];
+    }
+  ) ?? [-1, -1];
 
   function updateMaxMetrics(data: TestPaper) {
     const { validMarks, validQuestions } = findTotalValidQuestionsAndMarks(
@@ -225,7 +250,9 @@ const MainView = () => {
       {/* <DraftErrorList /> */}
       {/* {JSON.stringify(data)} */}
 
-      {(true || activeStep === 3) && (
+      {(isCurrentDraftSaved > 0 ||
+        isCurrentDraftValidPaper > 0 ||
+        activeStep === 3) && (
         <Flex gap={3}>
           <Button
             type="submit"

@@ -17,21 +17,6 @@ const RawDataDisplay = () => {
           </Text>
         </CardBody>
       </Card>
-      <br />
-      <Card>
-        <CardBody>
-          <Heading size={"md"}>Response</Heading>
-          <Text>{JSON.stringify(testResponse)}</Text>
-        </CardBody>
-      </Card>
-      <br />
-      <Card>
-        <CardBody>
-          <Heading size={"md"}>Paper</Heading>
-          <Text>{JSON.stringify(testPaper)}</Text>
-        </CardBody>
-        <br />
-      </Card>
     </div>
   );
 };

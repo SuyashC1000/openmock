@@ -96,13 +96,13 @@ const MainView = () => {
         <TabPanels>
           <TabPanel>
             <div className="flex flex-col gap-6">
+              {/* <RawDataDisplay /> */}
               <Summary />
               <MarksStats />
               <QuestionsStats />
               <TimeStats />
               {testPaper.analysis.customTagStats !== undefined && <TagStats />}
               <EvalStats />
-              {/* <RawDataDisplay /> */}
             </div>
           </TabPanel>
           <TabPanel>

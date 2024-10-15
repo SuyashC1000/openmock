@@ -1,0 +1,1844 @@
+{
+  "id": "t1699593780",
+  "name": "JEE Main 2024 - 27 Jan Shift 2",
+  "authors": [
+    {
+      "name": "SuyashC1000",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/107310104?v=4",
+      "links": []
+    }
+  ],
+  "body": [
+    {
+      "groupName": "B.E. / B.Tech",
+      "groupId": "tg1256028478",
+      "optional": false,
+      "sections": [
+        {
+          "sectionName": "Mathematics Section A",
+          "sectionId": "ts1339576892",
+          "optional": false,
+          "questions": [
+            {
+              "id": "q1509685470",
+              "qDataType": [0, 4],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Single Correct Choice",
+              "question": [
+                "Consider the function $f : (0,2) \\to \\R$ defined by $f(x) = \\dfrac{x}{2} + \\dfrac{2}{x}$ and the function $g(x)$ defined by\n$$\ng(x) = \\begin{cases}\n\\min{\\{f(\\text{t})\\}} & , ~ 0 < t \\le x ~ \\text{and} ~ 0 < x \\le 1 \\\\\n\\dfrac{3}{2} + x & , ~ 1 < x < 2 \n\\end{cases}\n$$\nThen,"
+              ],
+              "solution": [""],
+              "answer": 3,
+              "options": [
+                ["$g$ is continuous and differentiable for all $x \\in (0,2)$"],
+                ["$g$ is neither continuous nor differentiable at $x = 1$"],
+                ["$g$ is not continuous for all $x \\in (0,2)$"],
+                ["$g$ is continuous but not differentiable at $x = 1$"]
+              ],
+              "tags": ["g43372"]
+            },
+            {
+              "id": "q1285041499",
+              "qDataType": [0, 4],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Single Correct Choice",
+              "question": [
+                "If $\\alpha, \\beta$ are the roots of the equation, $x^2 - x - 1 = 0$ and $S_n = 2023 \\alpha^n + 2024 \\beta^n $, then :"
+              ],
+              "solution": [""],
+              "answer": 3,
+              "options": [
+                ["$S_{11} = S_{10} + S_{12}$"],
+                ["$2S_{12} = S_{11} + S_{10}$"],
+                ["$2S_{11} = S_{12} + S_{10}$"],
+                ["$S_{12} = S_{11} + S_{10}$"]
+              ],
+              "tags": ["g43372"]
+            },
+            {
+              "id": "q1292411568",
+              "qDataType": [0, 4],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Single Correct Choice",
+              "question": [
+                "For $0 < \\mathrm{a} < 1$, the value of the integral $\\displaystyle\\int_0^{\\pi} \\frac{\\mathrm{d}x}{1 - 2\\mathrm{a} \\cos{x} + \\mathrm{a}^2}$ is :"
+              ],
+              "solution": [""],
+              "answer": 3,
+              "options": [
+                ["$\\dfrac{\\pi^2}{\\pi + \\mathrm{a}^2}$"],
+                ["$\\dfrac{\\pi}{1 + \\mathrm{a}^2}$"],
+                ["$\\dfrac{\\pi^2}{\\pi - \\mathrm{a}^2}$"],
+                ["$\\dfrac{\\pi}{1 - \\mathrm{a}^2}$"]
+              ],
+              "tags": ["g43372"]
+            },
+            {
+              "id": "q5068787175",
+              "qDataType": [0, 4],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Single Correct Choice",
+              "question": [
+                "If $\\displaystyle{\\lim\\limits_{x \\to 0} \\frac{3 + \\alpha \\sin{x} + \\beta \\cos{x} + \\log_e(1 - x)}{3 \\tan^2{x}} = \\frac{1}{3}}$, then $2\\alpha - \\beta$ is equal to :"
+              ],
+              "solution": [""],
+              "answer": 3,
+              "options": [["$2$"], ["$1$"], ["$7$"], ["$5$"]],
+              "tags": ["g43372"]
+            },
+            {
+              "id": "q1077448779",
+              "qDataType": [0, 4],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Single Correct Choice",
+              "question": [
+                "An urn contains 6 white and 9 black balls. Two successive draws of 4 balls are made without replacement. The probability, that the first draw gives all white balls and the second draw gives all black balls, is :"
+              ],
+              "solution": [""],
+              "answer": 1,
+              "options": [
+                ["$\\dfrac{5}{256}$"],
+                ["$\\dfrac{3}{715}$"],
+                ["$\\dfrac{5}{715}$"],
+                ["$\\dfrac{3}{256}$"]
+              ],
+              "tags": ["g43372"]
+            },
+            {
+              "id": "q1720395084",
+              "qDataType": [0, 4],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Single Correct Choice",
+              "question": [
+                "The $20^\\mathrm{th}$ term from the end of the progression $20, 19 \\frac{1}{4}, 18 \\frac{1}{2}, 17 \\frac{3}{4}, \\dots, -129 \\frac{1}{4}$ is :"
+              ],
+              "solution": [""],
+              "answer": 3,
+              "options": [["$-110$"], ["$-100$"], ["$-118$"], ["$-115$"]],
+              "tags": ["g43372"]
+            },
+            {
+              "id": "q8020082138",
+              "qDataType": [0, 4],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Single Correct Choice",
+              "question": [
+                "Let $\\displaystyle{g(x) = 3f\\left(\\frac{x}{3}\\right) + f(3 - x)}$ and $f''(x) > 0$ for all $x \\in (0,3)$. If $g$ is is decreasing in $(0, \\alpha)$ and increasing in $(\\alpha, 3)$, then $8\\alpha$ is :"
+              ],
+              "solution": [""],
+              "answer": 2,
+              "options": [["$0$"], ["$24$"], ["$18$"], ["$20$"]],
+              "tags": ["g43372"]
+            },
+            {
+              "id": "q6683632339",
+              "qDataType": [0, 4],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Single Correct Choice",
+              "question": [
+                "The values of $\\alpha$ for which $\\displaystyle{\\begin{vmatrix} 1 & \\dfrac{3}{2} & \\alpha + \\dfrac{3}{2} \\\\[0.3cm]  1 & \\dfrac{1}{3} & \\alpha + \\dfrac{1}{3} \\\\[0.3cm] 2\\alpha + 3 & 3\\alpha + 1 & 0 \\\\  \\end{vmatrix} = 0, } $ lie in the interval "
+              ],
+              "solution": [""],
+              "answer": 0,
+              "options": [
+                ["$(-3, 0)$"],
+                [
+                  "$\\displaystyle{\\left(-\\frac{3}{2}, \\frac{3}{2}\\right)}$"
+                ],
+                ["$(0, 3)$"],
+                ["$(-2, 1)$"]
+              ],
+              "tags": ["g43372"]
+            },
+            {
+              "id": "q1337786104",
+              "qDataType": [0, 4],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Single Correct Choice",
+              "question": [
+                "If $2 \\tan^2{\\theta} - 5 \\sec{\\theta} = 1$ has exactly 7 solutions in the interval $\\left[0, \\dfrac{n\\pi}{2}\\right]$, for the least value of $n \\in \\N$, then $\\displaystyle\\sum_{k=1}^{n} \\frac{k}{2^k}$ is equal to :"
+              ],
+              "solution": [""],
+              "answer": 2,
+              "options": [
+                ["$1 - \\dfrac{15}{2^{13}}$"],
+                ["$\\dfrac{1}{2^{15}}(2^{14}-14)$"],
+                ["$\\dfrac{1}{2^{13}}(2^{14}-15)$"],
+                ["$\\dfrac{1}{2^{14}}(2^{14}-14)$"]
+              ],
+              "tags": ["g43372"]
+            },
+            {
+              "id": "q1536834012",
+              "qDataType": [0, 4],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Single Correct Choice",
+              "question": [
+                "The position vectors of the vertices $\\text{A}$, $\\text{B}$ and $\\text{C}$ of a triangle are $2\\hat{i} - 3\\hat{j} + 3\\hat{k}$, $2\\hat{i} + 2\\hat{j} + 3\\hat{k}$ and $-\\hat{i} + \\hat{j} + 3\\hat{k}$ respectively. Let $l$ denotes the length of the angle bisector $\\text{AD}$ of $\\angle \\text{BAC}$ where $\\text{D}$ is on the line segment $\\text{BC}$, then $2l^2$ equals :"
+              ],
+              "solution": [""],
+              "answer": 2,
+              "options": [["$49$"], ["$50$"], ["$45$"], ["$42$"]],
+              "tags": ["g43372"]
+            },
+            {
+              "id": "q2836591233",
+              "qDataType": [0, 4],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Single Correct Choice",
+              "question": [
+                "Let $\\text{R}$ be the interior region between the lines $3x - y + 1 = 0$ and $x + 2y -5 = 0$ containing the origin. The set of all values of $\\text{a}$, for which the points $(\\text{a}^2, \\text{a}+1)$ lie in $\\text{R}$, is :"
+              ],
+              "solution": [""],
+              "answer": 2,
+              "options": [
+                ["$(-3,0) \\bigcup \\left(\\dfrac{2}{3},1\\right)$ "],
+                ["$(-3,-1) \\bigcup \\left(\\dfrac{1}{3},1\\right)$ "],
+                ["$(-3,0) \\bigcup \\left(\\dfrac{1}{3},1\\right)$ "],
+                ["$(-3,-1) \\bigcup \\left(-\\dfrac{1}{3},1\\right)$ "]
+              ],
+              "tags": ["g43372"]
+            },
+            {
+              "id": "q1040026156",
+              "qDataType": [0, 4],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Single Correct Choice",
+              "question": [
+                "Let $\\alpha = \\dfrac{(4!)!}{(4!)^{3!}}$ and $\\beta = \\dfrac{(5!)!}{(5!)^{4!}}$. Then :"
+              ],
+              "solution": [""],
+              "answer": 2,
+              "options": [
+                ["$\\alpha \\notin \\N$ and $\\beta \\notin \\N$"],
+                ["$\\alpha \\in \\N$ and $\\beta \\notin \\N$"],
+                ["$\\alpha \\in \\N$ and $\\beta \\in \\N$"],
+                ["$\\alpha \\notin \\N$ and $\\beta \\in \\N$"]
+              ],
+              "tags": ["g43372"]
+            },
+            {
+              "id": "q2226775108",
+              "qDataType": [0, 4],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Single Correct Choice",
+              "question": [
+                "Let $e_1$ be the eccentricity of the hyperbola $\\dfrac{x^2}{16} - \\dfrac{y^2}{9} = 1$ and $e_2$ be the eccentricity of the ellipse $\\dfrac{x^2}{\\text{a}^2} + \\dfrac{y^2}{\\text{b}^2} = 1, \\text{a} > \\text{b},$ which passes through the foci of the hyperbola. If $e_1 e_2 = 1$, then the length of the chord of the ellipse parallel to the $x$-axis and passing through $(0,2)$ is :"
+              ],
+              "solution": [""],
+              "answer": 3,
+              "options": [
+                ["$\\dfrac{8 \\sqrt{5}}{3}$"],
+                ["$3 \\sqrt{5}$"],
+                ["$4 \\sqrt{5}$"],
+                ["$\\dfrac{10 \\sqrt{5}}{3}$"]
+              ],
+              "tags": ["g43372"]
+            },
+            {
+              "id": "q5680883043",
+              "qDataType": [0, 4],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Single Correct Choice",
+              "question": [
+                "The integral $\\displaystyle{\\int \\frac{(x^8 - x^2)\\text{d}x}{(x^{12} + 3x^6 + 1) \\tan^{-1}{(x^3 + \\dfrac{1}{x^3}})}}$ is equal to :"
+              ],
+              "solution": [""],
+              "answer": 0,
+              "options": [
+                [
+                  "$\\displaystyle\\log_e{\\left( \\left| \\tan^{-1}{ \\left( x^3 + \\frac{1}{x^3} \\right) } \\right| \\right)}^{1/3} + \\text{C}$"
+                ],
+                [
+                  "$\\displaystyle\\log_e{\\left( \\left| \\tan^{-1}{ \\left( x^3 + \\frac{1}{x^3} \\right) } \\right| \\right)}^{3} + \\text{C}$"
+                ],
+                [
+                  "$\\displaystyle\\log_e{\\left( \\left| \\tan^{-1}{ \\left( x^3 + \\frac{1}{x^3} \\right) } \\right| \\right)} + \\text{C}$"
+                ],
+                [
+                  "$\\displaystyle\\log_e{\\left( \\left| \\tan^{-1}{ \\left( x^3 + \\frac{1}{x^3} \\right) } \\right| \\right)}^{1/2} + \\text{C}$"
+                ]
+              ],
+              "tags": ["g43372"]
+            },
+            {
+              "id": "q1112660872",
+              "qDataType": [0, 4],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Single Correct Choice",
+              "question": [
+                "Let the position vectors of the vertices $\\text{A}$, $\\text{B}$ and $\\text{C}$ of a triangle be $2\\hat{i} + 2\\hat{j} + \\hat{k}$, $\\hat{i} + 2\\hat{j} + 2\\hat{k}$ and $2\\hat{i} + \\hat{j} + 2\\hat{k}$ respectively. Let $l_1$, $l_2$ and $l_3$ be the lengths of perpendiculars drawn from the ortho center of the triangle on the sides $\\text{AB}$, $\\text{BC}$ and $\\text{CA}$ respectively, then $l_1^2 + l_2^2 + l_3^2$ equals :"
+              ],
+              "solution": [""],
+              "answer": 3,
+              "options": [
+                ["$\\dfrac{1}{3}$"],
+                ["$\\dfrac{1}{4}$"],
+                ["$\\dfrac{1}{5}$"],
+                ["$\\dfrac{1}{2}$"]
+              ],
+              "tags": ["g43372"]
+            },
+            {
+              "id": "q1769046558",
+              "qDataType": [0, 4],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Single Correct Choice",
+              "question": [
+                "Considering only the principal values of inverse trigonometric functions, the number of positive real values of $x$ satisfying $\\tan^{-1}{(x)} + \\tan^{-1}{(2x)} = \\dfrac{\\pi}{4}$ is :"
+              ],
+              "solution": [""],
+              "answer": 0,
+              "options": [["$1$"], ["more than $2$"], ["$0$"], ["$2$"]],
+              "tags": ["g43372"]
+            },
+            {
+              "id": "q1460418849",
+              "qDataType": [0, 4],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Single Correct Choice",
+              "question": [
+                "Let $f : \\R - \\left\\{ \\dfrac{-1}{2} \\right\\} \\to \\R$ and $g : \\R - \\left\\{ \\dfrac{-5}{2} \\right\\} \\to \\R$ be defined as $f(x) = \\dfrac{2x + 3}{2x + 1}$ and $g(x) = \\dfrac{|x| + 1}{2x + 5}$. Then, the domain of the function $\\text{fog}$ is :"
+              ],
+              "solution": [""],
+              "answer": 1,
+              "options": [
+                ["$\\R - \\left\\{ -\\dfrac{7}{4} \\right\\}$"],
+                ["$\\R - \\left\\{ -\\dfrac{5}{2} \\right\\}$"],
+                ["$\\R$"],
+                ["$\\R - \\left\\{ -\\dfrac{5}{2}, -\\dfrac{7}{4} \\right\\}$"]
+              ],
+              "tags": ["g43372"]
+            },
+            {
+              "id": "q1415789185",
+              "qDataType": [0, 4],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Single Correct Choice",
+              "question": [
+                "Let the image of the point $(1, 0, 7)$ in the line $\\dfrac{x}{1} = \\dfrac{y-1}{2} = \\dfrac{z-2}{3}$ be the point $(\\alpha, \\beta, \\gamma)$. Then which one of the following points lies on the line passing through $(\\alpha, \\beta, \\gamma)$ and making angles $\\dfrac{2\\pi}{3}$ and $\\dfrac{3\\pi}{4}$ with $y$-axis and $z$-axis respectively and an acute angle with $x$-axis ?"
+              ],
+              "solution": [""],
+              "answer": 3,
+              "options": [
+                ["$(1, 2, 1 - \\sqrt{2})$"],
+                ["$(1, -2, 1 + \\sqrt{2})$"],
+                ["$(3, -4, 3 + 2\\sqrt{2})$"],
+                ["$(3, 4, 3 - 2\\sqrt{2})$"]
+              ],
+              "tags": ["g43372"]
+            },
+            {
+              "id": "q6220945320",
+              "qDataType": [0, 4],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Single Correct Choice",
+              "question": [
+                "Let A and B be two finite sets with m and n elements respectively. The total number of subsets of the set A is 56 more than the number of subsets of B. Then the distance of the point P(m,n) from the point Q(-2, -3) is : "
+              ],
+              "solution": [""],
+              "answer": 1,
+              "options": [["$8$"], ["$10$"], ["$6$"], ["$4$"]],
+              "tags": ["g43372"]
+            },
+            {
+              "id": "q1036820244",
+              "qDataType": [0, 4],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Single Correct Choice",
+              "question": [
+                "If $y = y(x)$ is the solution curve of the differential equation $(x^2)\\text{d}y - (y^2 - 3y)\\text{d}x = 0, x > 2, y(4) = \\frac{3}{2}$ and the slope of the curve is never zero, then the value of $y(10)$ equals :"
+              ],
+              "solution": [""],
+              "answer": 1,
+              "options": [
+                ["$\\dfrac{3}{1 - (8)^{1/4}}$"],
+                ["$\\dfrac{3}{1 + (8)^{1/4}}$"],
+                ["$\\dfrac{3}{2 - 2\\sqrt{2}}$"],
+                ["$\\dfrac{3}{1 + 2\\sqrt{2}}$"]
+              ],
+              "tags": ["g43372"]
+            }
+          ],
+          "constraints": { "maxQuestionsAnswered": null },
+          "instructions": []
+        },
+        {
+          "sectionName": "Mathematics Section B",
+          "sectionId": "ts1572224046",
+          "optional": false,
+          "questions": [
+            {
+              "id": "q9715959054",
+              "qDataType": [2, 0],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Numerical Value",
+              "question": [
+                "If the solution curve, of the differential equation $\\displaystyle{\\frac{\\text{d}y}{\\text{d}x} = \\frac{x + y - 2}{x - y}}$ passing through the point ${2,1}$ is $\\displaystyle{\\tan^{-1}{\\left(\\frac{y - 1}{x - 1}\\right)} - \\frac{1}{\\beta}\\log_e{\\left(\\alpha + \\left(\\frac{y - 1}{x - 1}\\right)^2\\right)} = \\log_e{|x-1|}}$, then $5\\beta + \\alpha$ is equal to :"
+              ],
+              "solution": [""],
+              "answer": 11,
+              "options": null,
+              "tags": ["g43372"]
+            },
+            {
+              "id": "q1018151570",
+              "qDataType": [2, 0],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Numerical Value",
+              "question": [
+                "The lines $\\dfrac{x-2}{2} = \\dfrac{y}{-2} = \\dfrac{z-7}{16}$ and $\\dfrac{x+3}{4} = \\dfrac{y+2}{3} = \\dfrac{z+2}{1}$ intersect at the point $\\text{P}$. If the distance of $\\text{P}$ from the line $\\dfrac{x+1}{2} = \\dfrac{y-1}{3} = \\dfrac{z-1}{1}$ is $l$, then $14 l^2$ is equal to ________."
+              ],
+              "solution": [""],
+              "answer": 108,
+              "options": null,
+              "tags": ["g43372"]
+            },
+            {
+              "id": "q4583924431",
+              "qDataType": [2, 0],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Numerical Value",
+              "question": [
+                "The coefficient of $x^{2012}$ in the expansion of $(1-x)^{2008} (1+x+x^2)^{2007}$ is equal to ________."
+              ],
+              "solution": [""],
+              "answer": 0,
+              "options": null,
+              "tags": ["g43372"]
+            },
+            {
+              "id": "q9110826988",
+              "qDataType": [2, 0],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Numerical Value",
+              "question": [
+                "The mean and standard deviation of 15 observations were found to be 12 and 3 respectively. On rechecking it was found that an observation was read as 10 in place of 12. If $\\mu$ and $\\sigma^2$ denote the mean and variance of the correct observations respectively, then $15(\\mu + \\mu^2 + \\sigma^2)$ is equal to ________."
+              ],
+              "solution": [""],
+              "answer": 2521,
+              "options": null,
+              "tags": ["g43372"]
+            },
+            {
+              "id": "q9500209994",
+              "qDataType": [2, 0],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Numerical Value",
+              "question": [
+                "Let $A$ be a $2 \\times 2$ real matrix and $I$ be the identity matrix of order $2$. If the roots of the equation $|A - xI| = 0$ be $-1$ and $3$, then the sum of the diagonal elements of the matrix $A^2$ is ________."
+              ],
+              "solution": [""],
+              "answer": 10,
+              "options": null,
+              "tags": ["g43372"]
+            },
+            {
+              "id": "q1022369560",
+              "qDataType": [2, 0],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Numerical Value",
+              "question": [
+                "Let the complex numbers $\\alpha$ and $\\frac{1}{\\bar{\\alpha}}$ lie on the circles $|z - z_0|^2 = 4$ and $|z - z_0|^2 = 16$ respectively, where $z_0 = 1 + i$. Then, the value of $100 |\\alpha|^2$ is ________."
+              ],
+              "solution": [""],
+              "answer": 20,
+              "options": null,
+              "tags": ["g43372"]
+            },
+            {
+              "id": "q1284673467",
+              "qDataType": [2, 0],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Numerical Value",
+              "question": [
+                "If the area of the region $\\{ (x,y) : 0 \\le y \\le \\min{\\{ 2x, 6x - x^2 \\}} \\}$ is $A$, then $12A$ is equal to ________."
+              ],
+              "solution": [""],
+              "answer": 304,
+              "options": null,
+              "tags": ["g43372"]
+            },
+            {
+              "id": "q1506587346",
+              "qDataType": [2, 0],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Numerical Value",
+              "question": [
+                "If the sum of squares of all real values of $\\alpha$, for which the lines $2x - y + 3 = 0$, $6x + 3y + 1 = 0$ and $\\alpha x + 2y - 2 = 0$ **do not** form a triangle is p, then the greatest integer less than or equal to p is ________. "
+              ],
+              "solution": [""],
+              "answer": 34,
+              "options": null,
+              "tags": ["g43372"]
+            },
+            {
+              "id": "q1166654935",
+              "qDataType": [2, 0],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Numerical Value",
+              "question": [
+                "Let $f(x) = \\displaystyle\\int_0^x{g(\\text{t}) \\log_e{ \\left( \\frac{1-\\text{t}}{1+\\text{t}} \\right) }\\text{dt}}$, where $g$ is a continuous odd function. If $\\displaystyle\\int_{-\\pi/2}^{\\pi/2} \\left( f(x) + \\frac{x^2 \\cos{x}}{1 + e^x} \\right) \\text{d}x = \\left( \\dfrac{\\pi}{\\alpha} \\right) ^2 - \\alpha$, then $\\alpha$ is equal to ________."
+              ],
+              "solution": [""],
+              "answer": 2,
+              "options": null,
+              "tags": ["g43372"]
+            },
+            {
+              "id": "q4853740143",
+              "qDataType": [2, 0],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Numerical Value",
+              "question": [
+                "Consider a circle $(x - \\alpha)^2 + (y - \\beta)^2 = 50$, where $\\alpha, \\beta > 0$. If the circle touches the line $y + x = 0$ at the point , whose distance from the origin in $4\\sqrt{2}$, then $(\\alpha + \\beta)^2$ is equal to ________."
+              ],
+              "solution": [""],
+              "answer": 100,
+              "options": null,
+              "tags": ["g43372"]
+            }
+          ],
+          "constraints": { "maxQuestionsAnswered": 5 },
+          "instructions": []
+        },
+        {
+          "sectionName": "Physics Section A",
+          "sectionId": "ts1618500081",
+          "optional": false,
+          "questions": [
+            {
+              "id": "q1131443163",
+              "qDataType": [0, 4],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Single Correct Option",
+              "question": [
+                "Given below are two statements:\n**Statement (I) :** The limiting force of static friction depends on the area of contact and independent of materials.\n**Statement (II) :** The limiting force of kinetic friction is independent of the area of contact and depends on materials.\nIn light of the above statements, choose the **most appropriate** answer from the options given below :"
+              ],
+              "solution": [""],
+              "answer": 0,
+              "options": [
+                [
+                  "**Statement I** is incorrect but **Statement II** is correct"
+                ],
+                ["Both **Statement I** and **Statement II** are correct"],
+                ["Both **Statement I** and **Statement II** are incorrect"],
+                ["**Statement I** is correct but **Statement II** is incorrect"]
+              ],
+              "tags": ["g20432"]
+            },
+            {
+              "id": "q1239902601",
+              "qDataType": [0, 4],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Single Correct Choice",
+              "question": [
+                "A heavy iron bar of weight $12$ kg is having its one end on the ground and the other on the shoulder of a man. The rod makes an angle $60\\degree$ with the horizontal, the weight experienced by the man is :"
+              ],
+              "solution": [""],
+              "answer": 0,
+              "options": [
+                ["$6$ kg"],
+                ["$3$ kg"],
+                ["$6 \\sqrt{3}$ kg"],
+                ["$12$ kg"]
+              ],
+              "tags": ["g20432"]
+            },
+            {
+              "id": "q1716046408",
+              "qDataType": [0, 4],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Single Correct Choice",
+              "question": [
+                "The truth table of the given circuit diagram is:\n![](https://i.ibb.co/873xHgr/Q33.jpg)"
+              ],
+              "solution": [""],
+              "answer": 3,
+              "options": [
+                [
+                  "||||\n|---|---|---|\n| A | B | Y |\n| $0$ | $0$ | $0$ |\n| $0$ | $1$ | $0$ |\n| $1$ | $0$ | $0$ |\n| $1$ | $1$ | $1$ |"
+                ],
+                [
+                  "||||\n|---|---|---|\n| A | B | Y |\n| $0$ | $0$ | $1$ |\n| $0$ | $1$ | $1$ |\n| $1$ | $0$ | $1$ |\n| $1$ | $1$ | $0$ |"
+                ],
+                [
+                  "||||\n|---|---|---|\n| A | B | Y |\n| $0$ | $0$ | $1$ |\n| $0$ | $1$ | $0$ |\n| $1$ | $0$ | $0$ |\n| $1$ | $1$ | $1$ |"
+                ],
+                [
+                  "||||\n|---|---|---|\n| A | B | Y |\n| $0$ | $0$ | $0$ |\n| $0$ | $1$ | $1$ |\n| $1$ | $0$ | $1$ |\n| $1$ | $1$ | $0$ |"
+                ]
+              ],
+              "tags": ["g20432"]
+            },
+            {
+              "id": "q1554020818",
+              "qDataType": [0, 4],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Single Correct Choice",
+              "question": [
+                "When a polaroid sheet is rotated between two crossed polaroids then the transmitted light intensity will be maximum for a rotation of :"
+              ],
+              "solution": [""],
+              "answer": 3,
+              "options": [
+                ["$30\\degree$"],
+                ["$60\\degree$"],
+                ["$90\\degree$"],
+                ["$45\\degree$"]
+              ],
+              "tags": ["g20432"]
+            },
+            {
+              "id": "q8784587617",
+              "qDataType": [0, 4],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Single Correct Choice",
+              "question": [
+                "Wheatstone bridge principle is used to measure the specific resistance $\\mathrm{S_1}$ of given wire, having length $\\text{L}$, radius $\\text{r}$. If $\\text{X}$ is the resistance of wire, then specific resistance is ; $\\mathrm{S_1 = X \\left( \\dfrac{\\pi r^2}{L} \\right) }$. If the length of the wire gets double then the value of specific resistance will be:"
+              ],
+              "solution": [""],
+              "answer": 3,
+              "options": [
+                ["$\\dfrac{\\mathrm{S_1}}{4}$"],
+                ["$2\\mathrm{S_1}$"],
+                ["$\\dfrac{\\mathrm{S_1}}{2}$"],
+                ["$\\mathrm{S_1}$"]
+              ],
+              "tags": ["g20432"]
+            },
+            {
+              "id": "q1052931853",
+              "qDataType": [0, 4],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Single Correct Choice",
+              "question": [
+                "Given below are two statements: one is labelled as **Assertion (A)** and the other is labelled as **Reason (R)**.\n**Assertion (A) :** In Vernier calliper if positive zero error exists, then while taking measurements, the reading taken will be more than the actual reading.\n**Reason (R) :** The zero error in Vernier Calliper might have happened due to manufacturing defect or due to rough handling.\nIn light of the above statements, choose the **correct** answer from the options given below :"
+              ],
+              "solution": [""],
+              "answer": 0,
+              "options": [
+                [
+                  "Both **(A)** and **(R)** are correct but **(R)** is **not** the correct explanation of **(A)**"
+                ],
+                ["**(ְA)** is false but **(R)** is true"],
+                ["**(ְA)** is true but **(R)** is false"],
+                [
+                  "Both **(A)** and **(R)** are correct and **(R)** is the correct explanation of **(A)**"
+                ]
+              ],
+              "tags": ["g20432"]
+            },
+            {
+              "id": "q2358393728",
+              "qDataType": [0, 4],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Single Correct Choice",
+              "question": [
+                "The atomic mass of $_6\\text{C}^{12}$ is $12.000000 ~ \\text{u}$ and that of $_6\\text{C}^{13}$ is $13.003354 ~ \\text{u}$. The required energy to remove a neutron from $_6\\text{C}^{13}$, if mass of neutron is $1.008665 ~ \\text{u}$, will be :"
+              ],
+              "solution": [""],
+              "answer": 0,
+              "options": [
+                ["$4.95$ MeV"],
+                ["$62.5$ MeV"],
+                ["$6.25$ MeV"],
+                ["$49.5$ MeV"]
+              ],
+              "tags": ["g20432"]
+            },
+            {
+              "id": "q1290841308",
+              "qDataType": [0, 4],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Single Correct Choice",
+              "question": [
+                "An object is placed in a medium of refractive index 3. An electromagnetic wave of intensity  $6 \\times 10^8 \\mathrm{W / m^2}$ falls normally on the object and it is absorbed completely. The radiation pressure on the object would be (speed of light in free space $ = 3\\times 10^8 \\mathrm{m/s}$) :"
+              ],
+              "solution": [""],
+              "answer": 3,
+              "options": [
+                ["$36 ~ \\mathrm{Nm^{-2}}$"],
+                ["$2 ~ \\mathrm{Nm^{-2}}$"],
+                ["$18 ~ \\mathrm{Nm^{-2}}$"],
+                ["$6 ~ \\mathrm{Nm^{-2}}$"]
+              ],
+              "tags": ["g20432"]
+            },
+            {
+              "id": "q1232475712",
+              "qDataType": [0, 4],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Single Correct Choice",
+              "question": [
+                "A current of $200 \\mu \\mathrm{A}$ deflects the coil of a moving coil galvanometer through $60\\degree$. The current to cause deflection through $\\dfrac{\\pi}{10}$ radian is :"
+              ],
+              "solution": [""],
+              "answer": 1,
+              "options": [
+                ["$30 ~ \\mu \\text{A}$"],
+                ["$60 ~ \\mu \\text{A}$"],
+                ["$180 ~ \\mu \\text{A}$"],
+                ["$120 ~ \\mu \\text{A}$"]
+              ],
+              "tags": ["g20432"]
+            },
+            {
+              "id": "q4923069241",
+              "qDataType": [0, 4],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Single Correct Choice",
+              "question": [
+                "The threshold frequency of a metal with work function $6.63 ~ \\text{eV}$ is :"
+              ],
+              "solution": [""],
+              "answer": 2,
+              "options": [
+                ["$1.6 \\times 10^{12} ~ \\text{Hz}$"],
+                ["$16 \\times 10^{15} ~ \\text{Hz}$"],
+                ["$1.6 \\times 10^{15} ~ \\text{Hz}$"],
+                ["$16 \\times 10^{12} ~ \\text{Hz}$"]
+              ],
+              "tags": ["g20432"]
+            },
+            {
+              "id": "q1287580969",
+              "qDataType": [0, 4],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Single Correct Choice",
+              "question": [
+                "A bullet is fired into a fixed target looses one third of its velocity after travelling $4 ~ \\text{cm}$. It penetrates further $\\text{D} \\times 10^{-3} ~ \\text{m}$ before coming to rest. The value of $\\text{D}$ is :\n\n*This question was dropped in the official test paper. Please select the first option and proceed.*"
+              ],
+              "solution": [""],
+              "answer": 0,
+              "options": [["$3$"], ["$4$"], ["$2$"], ["$5$"]],
+              "tags": ["g20432"]
+            },
+            {
+              "id": "q1478188200",
+              "qDataType": [0, 4],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Single Correct Choice",
+              "question": [
+                "Given below are two statements: one is labelled as **Assertion (A)** and the other is labelled as **Reason (R)**.\n**Assertion (A) :** The property of body, by virtue of which it tends to regain its original shape when the external force is removed, is Elasticity.\n**Reason (R) :** The restoring force depends upon the bonded interatomic and inter molecular force of solid.\nIn light of the above statements, choose the **correct** answer from the options given below :"
+              ],
+              "solution": [""],
+              "answer": 3,
+              "options": [
+                ["**(ְA)** is true but **(R)** is false"],
+                [
+                  "Both **(A)** and **(R)** are correct but **(R)** is **not** the correct explanation of **(A)**"
+                ],
+                ["**(ְA)** is false but **(R)** is true"],
+                [
+                  "Both **(A)** and **(R)** are correct and **(R)** is the correct explanation of **(A)**"
+                ]
+              ],
+              "tags": ["g20432"]
+            },
+            {
+              "id": "q2149694451",
+              "qDataType": [0, 4],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Single Correct Choice",
+              "question": [
+                "During an adiabatic process, the pressure of a gas is found to be proportional to the cube of its absolute temperature. The ratio of $\\dfrac{\\mathrm{C_p}}{\\mathrm{C_v}}$ for the gas is :"
+              ],
+              "solution": [""],
+              "answer": 0,
+              "options": [
+                ["$\\dfrac{3}{2}$"],
+                ["$\\dfrac{5}{3}$"],
+                ["$\\dfrac{9}{7}$"],
+                ["$\\dfrac{7}{5}$"]
+              ],
+              "tags": ["g20432"]
+            },
+            {
+              "id": "q1208112743",
+              "qDataType": [0, 4],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Single Correct Choice",
+              "question": [
+                "Primary side of a transformer is connected to $230 \\text{V}, 50 \\text{Hz}$ supply. Turns ratio of primary to secondary winding is $10 : 1$. Load resistance connected to secondary side is $46 ~ \\Omega$. the power consumed in it is :"
+              ],
+              "solution": [""],
+              "answer": 3,
+              "options": [
+                ["$10.0 ~ \\text{W}$"],
+                ["$12.5 ~ \\text{W}$"],
+                ["$12.0 ~ \\text{W}$"],
+                ["$11.5 ~ \\text{W}$"]
+              ],
+              "tags": ["g20432"]
+            },
+            {
+              "id": "q1580251000",
+              "qDataType": [0, 4],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Single Correct Choice",
+              "question": [
+                "The equation of state of a real gas is given by $\\displaystyle\\mathrm{ \\left( P + \\frac{a}{V^2} \\right) (V - b) = RT }$, where $\\text{P}$, $\\text{V}$ and $\\text{T}$ are pressure, volume and temperature respectively and $\\text{R}$ is the universal gas constant. The dimensions of $\\displaystyle\\frac{a}{b^2}$ is similar to that of :"
+              ],
+              "solution": [""],
+              "answer": 2,
+              "options": [
+                ["$\\text{RT}$"],
+                ["$\\text{PV}$"],
+                ["$\\text{P}$"],
+                ["$\\text{R}$"]
+              ],
+              "tags": ["g20432"]
+            },
+            {
+              "id": "q1280630008",
+              "qDataType": [0, 4],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Single Correct Choice",
+              "question": [
+                "Given below are two statements: one is labelled as **Assertion (A)** and the other is labelled as **Reason (R)**.\n**Assertion (A) :** The angular speed of the moon in its orbit about the earth is more than the angular speed of the earth in its orbit about the sun.\n**Reason (R) :** The moon takes less time to move around the earth than the time taken by the earth to move around the sun.\nIn light of the above statements, choose the **correct** answer from the options given below :"
+              ],
+              "solution": [""],
+              "answer": 3,
+              "options": [
+                ["**(ְA)** is not correct but **(R)** is correct"],
+                ["**(ְA)** is correct but **(R)** is not correct"],
+                [
+                  "Both **(ְA)** and **(R)** are correct but **(R)** is **not** the correct explanation of **(A)**"
+                ],
+                [
+                  "Both **(ְA)** and **(R)** are correct and **(R)** is the correct explanation of **(A)**"
+                ]
+              ],
+              "tags": ["g20432"]
+            },
+            {
+              "id": "q1595856438",
+              "qDataType": [0, 4],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Single Correct Choice",
+              "question": [
+                "Three voltmeters, all having different internal resistances are joined as shown in figure. When some potential difference is applied across $\\text{A}$ and $\\text{B}$, their readings are $\\mathrm{V_1}$, $\\mathrm{V_2}$ and $\\mathrm{V_3}$. Choose the correct option.\n![](https://i.ibb.co/RY6MmmW/Q47.jpg)"
+              ],
+              "solution": [""],
+              "answer": 0,
+              "options": [
+                ["$\\mathrm{V_1 + V_2 = V_3}$"],
+                ["$\\mathrm{V_1 = V_2}$"],
+                ["$\\mathrm{V_1 + V_2 > V_3}$"],
+                ["$\\mathrm{V_1 \\not = V_3 - V_2}$"]
+              ],
+              "tags": ["g20432"]
+            },
+            {
+              "id": "q1426208956",
+              "qDataType": [0, 4],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Single Correct Choice",
+              "question": [
+                "A bell suspended by a thread swings in a vertical plane so that its magnitude of acceleration in the extreme position and lowest position are equal. The angle ($\\theta$) of thread deflection in the extreme position will be :"
+              ],
+              "solution": [""],
+              "answer": 2,
+              "options": [
+                ["$\\tan^{-1}{\\left( \\dfrac{1}{2} \\right)}$"],
+                ["$\\tan^{-1}{\\left( \\sqrt{2} \\right)}$"],
+                ["$2\\tan^{-1}{\\left( \\dfrac{1}{2} \\right)}$"],
+                ["$2\\tan^{-1}{\\left( \\dfrac{1}{\\sqrt{5}} \\right)}$"]
+              ],
+              "tags": ["g20432"]
+            },
+            {
+              "id": "q1391662051",
+              "qDataType": [0, 4],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Single Correct Choice",
+              "question": [
+                "Given below are two statements: one is labelled as **Assertion (A)** and the other is labelled as **Reason (R)**.\n**Assertion (A) :** Work done by electric field on moving a positive charge on an equipotential surface is always zero.\n**Reason (R) :** Electric lines of forces are always perpendicular to equipotential surfaces\nIn light of the above statements, choose the **correct** answer from the options given below :"
+              ],
+              "solution": [""],
+              "answer": 2,
+              "options": [
+                [
+                  "Both **(ְA)** and **(R)** are correct but **(R)** is **not** the correct explanation of **(A)**"
+                ],
+                ["**(ְA)** is correct but **(R)** is not correct"],
+                [
+                  "Both **(ְA)** and **(R)** are correct and **(R)** is the correct explanation of **(A)**"
+                ],
+                ["**(ְA)** is not correct but **(R)** is correct"]
+              ],
+              "tags": ["g20432"]
+            },
+            {
+              "id": "q1172297582",
+              "qDataType": [0, 4],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Single Correct Choice",
+              "question": [
+                "The total kinetic energy of $1$ mole of oxygen at $27\\degree\\text{C}$ is :\n[Use universal gas constant $(R) = 8.31 \\text{J/mole~K}$ ]"
+              ],
+              "solution": [""],
+              "answer": 1,
+              "options": [
+                ["$6845.5 ~ \\text{J}$"],
+                ["$6232.5 ~ \\text{J}$"],
+                ["$5942.0 ~ \\text{J}$"],
+                ["$5670.5 ~ \\text{J}$"]
+              ],
+              "tags": ["g20432"]
+            }
+          ],
+          "constraints": { "maxQuestionsAnswered": null },
+          "instructions": []
+        },
+        {
+          "sectionName": "Physics Section B",
+          "sectionId": "ts3153536607",
+          "optional": false,
+          "questions": [
+            {
+              "id": "q1504701061",
+              "qDataType": [2, 0],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Numerical Value",
+              "question": [
+                "The electric potential at the surface of an atomic nucleus ($z = 50$) of radius $9 \\times 10^{-13} ~ \\text{cm}$ is ________ $\\times 10^6 ~ \\text{V}$."
+              ],
+              "solution": [""],
+              "answer": 8,
+              "options": null,
+              "tags": ["g20432"]
+            },
+            {
+              "id": "q1477383833",
+              "qDataType": [2, 0],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Numerical Value",
+              "question": [
+                "A ring and a solid sphere toll down the same inclined plan without slipping. They start from rest. The radii of both bodies are identical and the ratio of their kinetic energies is $\\dfrac{7}{x}$, where x is ________."
+              ],
+              "solution": [""],
+              "answer": 7,
+              "options": null,
+              "tags": ["g20432"]
+            },
+            {
+              "id": "q5977560854",
+              "qDataType": [2, 0],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Numerical Value",
+              "question": [
+                "A series LCR circuit with $\\text{L} = \\dfrac{100}{\\pi}~\\text{mH}$, $\\text{C} = \\dfrac{10^{-3}}{\\pi}~\\text{F}$ and $\\text{R} = 10~\\Omega$, is connected across an ac source of $220 \\text{V}, 50 \\text{Hz}$ supply. The power factor of the circuit would be ________."
+              ],
+              "solution": [""],
+              "answer": 1,
+              "options": null,
+              "tags": ["g20432"]
+            },
+            {
+              "id": "q3714773684",
+              "qDataType": [2, 0],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Numerical Value",
+              "question": [
+                "Two charges of $-4 ~ \\mu C$ and $+4 ~ \\mu C$ are placed at the points $A(1,0,4) ~ \\text{m}$ and $B(2,-1,5) ~ \\text{m}$ located in an electric field $\\vec{E} = 0.20 ~ \\hat{i} ~ \\text{V/cm}$. The magnitude of the torque acting on the dipole is $8 \\sqrt{\\alpha} \\times 10^{-5} ~ \\text{Nm}$, where $\\alpha =$ ________."
+              ],
+              "solution": [""],
+              "answer": 2,
+              "options": null,
+              "tags": ["g20432"]
+            },
+            {
+              "id": "q1621621436",
+              "qDataType": [2, 0],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Numerical Value",
+              "question": [
+                "A body falling under gravity convers two points $A$ and $B$ separated by $80 ~ \\text{m}$ in $2 ~ \\text{s}$. The distance of upper point $A$ from the starting point is ________$\\text{m}$ (use $g = 10 ~ \\mathrm{ms^{-2}}$)."
+              ],
+              "solution": [""],
+              "answer": 45,
+              "options": null,
+              "tags": ["g20432"]
+            },
+            {
+              "id": "q5081655330",
+              "qDataType": [2, 0],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Numerical Value",
+              "question": [
+                "A closed organ pipe $150 ~ \\text{cm}$ long gives $7$ beats per second with an open organ pipe of length $350 ~ \\text{cm}$, both vibrating in fundamental mode. The velocity of sound is ________ $\\text{m/s}$."
+              ],
+              "solution": [""],
+              "answer": 294,
+              "options": null,
+              "tags": ["g20432"]
+            },
+            {
+              "id": "q9648399812",
+              "qDataType": [2, 0],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Numerical Value",
+              "question": [
+                "A parallel beam of light of wavelength $5000 ~ \\r{\\text{A}}$ is incident normally on a single narrow slit of width $0.001 ~ \\text{nm}$. The light is focused by convex lens on screen, placed on its focal plane. The minima will be formed for the angle of diffraction of _________ (degree)."
+              ],
+              "solution": [""],
+              "answer": 30,
+              "options": null,
+              "tags": ["g20432"]
+            },
+            {
+              "id": "q1420951833",
+              "qDataType": [2, 0],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Numerical Value",
+              "question": [
+                "The magnetic field at the centre of a wire loop formed by two semicircular wires of radii $\\mathrm{R_1 = 2 \\pi ~ m}$ and $\\mathrm{R_2 = 4 \\pi ~ m}$, carrying current $\\mathrm{I = 4A}$ as per figure given below is $\\alpha \\times 10^{-7} ~ \\text{T}$. The value of $\\alpha$ is ________. (Center $\\text{O}$ is common for all segments)\n![](https://i.ibb.co/kSZkWPv/Q58.jpg)"
+              ],
+              "solution": [""],
+              "answer": 4,
+              "options": null,
+              "tags": ["g20432"]
+            },
+            {
+              "id": "q8374589827",
+              "qDataType": [2, 0],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Numerical Value",
+              "question": [
+                "The reading of pressure metre attached with a closed pipe is $4.5 \\times 10^4 ~ \\mathrm{N/m^2}$. On opening the valve. water starts flowing and the reading of pressure metre falls to $2.0 \\times 10^4 ~ \\mathrm{N/m^2}$. The velocity of water is found to be $\\sqrt{V} \\text{m/s}$. The value of $V$ is ________."
+              ],
+              "solution": [""],
+              "answer": 50,
+              "options": null,
+              "tags": ["g20432"]
+            },
+            {
+              "id": "q1722465410",
+              "qDataType": [2, 0],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Numerical Value",
+              "question": [
+                "If Rydberg's constant is $\\text{R}$, the longest wavelength of radiation in Paschen series will be $\\dfrac{\\alpha}{7 \\text{R}}$, where $\\alpha =$ ________."
+              ],
+              "solution": [""],
+              "answer": 144,
+              "options": null,
+              "tags": ["g20432"]
+            }
+          ],
+          "constraints": { "maxQuestionsAnswered": 5 },
+          "instructions": []
+        },
+        {
+          "sectionName": "Chemistry Section A",
+          "sectionId": "ts1080600980",
+          "optional": false,
+          "questions": [
+            {
+              "id": "q6690651167",
+              "qDataType": [0, 4],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Single Choice Question",
+              "question": [
+                "The final product A, formed in the following reaction sequence is :\n![](https://i.ibb.co/V9PSbds/Q61.jpg)"
+              ],
+              "solution": [""],
+              "answer": 1,
+              "options": [
+                ["![](https://i.ibb.co/vQBkwhZ/Q61-1.jpg)"],
+                ["![](https://i.ibb.co/1629BMq/Q61-2.jpg)"],
+                ["![](https://i.ibb.co/Ykc0rRs/Q61-3.jpg)"],
+                ["![](https://i.ibb.co/cXdpy8s/Q61-4.jpg)"]
+              ],
+              "tags": ["g11804"]
+            },
+            {
+              "id": "q1264762000",
+              "qDataType": [0, 4],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Single Correct Option",
+              "question": [
+                "The incorrect statement regarding conformations of ethane is :"
+              ],
+              "solution": [""],
+              "answer": 3,
+              "options": [
+                [
+                  "The conformations of ethane are inter-convertible to one-another."
+                ],
+                ["Ethane has infinite number of conformations."],
+                [
+                  "The dihedral angle in staggered conformation is $60\\degree$."
+                ],
+                ["Eclipsed conformation is the most stable conformation."]
+              ],
+              "tags": ["g11804"]
+            },
+            {
+              "id": "q8758408097",
+              "qDataType": [0, 4],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Single Choice Question",
+              "question": ["Bond line formula of $\\mathrm{HOCH(CN)_2}$ is :"],
+              "solution": [""],
+              "answer": 0,
+              "options": [
+                ["![](https://i.ibb.co/d26Ngp0/Q63-1.jpg)"],
+                ["![](https://i.ibb.co/R99vk20/Q63-2.jpg)"],
+                ["![](https://i.ibb.co/fSRSfmv/Q63-3.jpg)"],
+                ["![](https://i.ibb.co/dfZ0Hk5/Q63-4.jpg)"]
+              ],
+              "tags": ["g11804"]
+            },
+            {
+              "id": "q2423226961",
+              "qDataType": [0, 4],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Single Choice Question",
+              "question": [
+                "Match List - **I** with List - **II**.\n![](https://i.ibb.co/N9dMgDh/Q64-0.jpg)\nChoose the **correct** answer from the options given below :"
+              ],
+              "solution": [""],
+              "answer": 0,
+              "options": [
+                ["(A)-(IV), (B)-(III), (C)-(I), (D)-(II)"],
+                ["(A)-(II), (B)-(III), (C)-(I), (D)-(IV)"],
+                ["(A)-(II), (B)-(I), (C)-(III), (D)-(IV)"],
+                ["(A)-(IV), (B)-(I), (C)-(III), (D)-(II)"]
+              ],
+              "tags": ["g11804"]
+            },
+            {
+              "id": "q5919113166",
+              "qDataType": [0, 4],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Single Choice Question",
+              "question": [
+                "Given below are two statements :\n**Statement (I)** : Oxygen being the first member of group $16$ exhibits only $-2$ oxidation state.\n**Statement (II)** : Down the group 16 stability of $+4$ oxidation state decreases and $+6$ oxidation state increases.\nIn the light of the above statements, choose the **most appropriate** answer from the options given below :"
+              ],
+              "solution": [""],
+              "answer": 0,
+              "options": [
+                ["Both **Statement I** and ***Statement II* are incorrect"],
+                ["Both **Statement I** and ***Statement II* are correct"],
+                [
+                  "**Statement I** is correct but **Statement II** is incorrect"
+                ],
+                ["**Statement I** is incorrect but **Statement II** is correct"]
+              ],
+              "tags": ["g11804"]
+            },
+            {
+              "id": "q8957043897",
+              "qDataType": [0, 4],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Single Choice Question",
+              "question": [
+                "Major product formed in the following reaction is a mixture of :\n![](https://i.ibb.co/LN9jmW3/Q66.jpg)"
+              ],
+              "solution": [""],
+              "answer": 1,
+              "options": [
+                ["![](https://i.ibb.co/QpbsRxR/Q66-1.jpg)"],
+                ["![](https://i.ibb.co/C6dv7vd/Q66-2.jpg)"],
+                ["![](https://i.ibb.co/p4tHX6B/Q66-3.jpg)"],
+                ["![](https://i.ibb.co/R9DbvHZ/Q66-4.jpg)"]
+              ],
+              "tags": ["g11804"]
+            },
+            {
+              "id": "q1362194747",
+              "qDataType": [0, 4],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Single Choice Question",
+              "question": [
+                "The technique used for purification of steam volatile water immiscible substance is :"
+              ],
+              "solution": [""],
+              "answer": 1,
+              "options": [
+                ["fractional distillation"],
+                ["steam distillation"],
+                ["distillation"],
+                ["fractional distillation under reduced pressure"]
+              ],
+              "tags": ["g11804"]
+            },
+            {
+              "id": "q1323281312",
+              "qDataType": [0, 4],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Single Choice Question",
+              "question": [
+                "Identify from the following species in which $\\mathrm{d^2sp^3}$ hybridization is shown by central atom :"
+              ],
+              "solution": [""],
+              "answer": 0,
+              "options": [
+                ["$\\mathrm{SF_6}$"],
+                ["$\\mathrm{BrF_5}$"],
+                ["$\\mathrm{[PtCl_4]^{2-}}$"],
+                ["$\\mathrm{[Co(NH_3)_6]^{3+}}$"]
+              ],
+              "tags": ["g11804"]
+            },
+            {
+              "id": "q3891332610",
+              "qDataType": [0, 4],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Single Choice Question",
+              "question": [
+                "Identify B formed in the reaction.\n$$\\mathrm{ Cl \\text{---} (CH_2)_4 \\text{---} Cl  \\xrightarrow{\\mathrm{excess ~ NH_3}} A \\xrightarrow{\\mathrm{NaOH}} B + H_2O + NaCl }$$"
+              ],
+              "solution": [""],
+              "answer": 3,
+              "options": [
+                ["![](https://i.ibb.co/mv6Zpxn/Q69-1.jpg)"],
+                ["![](https://i.ibb.co/dD6pn3s/Q69-2.jpg)"],
+                ["![](https://i.ibb.co/K0jZtfh/Q69-3.jpg)"],
+                ["![](https://i.ibb.co/cTGYwVN/Q69-4.jpg)"]
+              ],
+              "tags": ["g11804"]
+            },
+            {
+              "id": "q1618457874",
+              "qDataType": [0, 4],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Single Choice Question",
+              "question": [
+                "Choose the correct option having all the elements with $\\mathrm{d^{10}}$ electronic configuration from the following :"
+              ],
+              "solution": [""],
+              "answer": 2,
+              "options": [
+                ["$\\mathrm{ ^{27}Co ,~ ^{28}Ni ,~ ^{26}Fe ,~ ^{24}Cr }$"],
+                ["$\\mathrm{ ^{46}Pd ,~ ^{28}Ni ,~ ^{26}Fe ,~ ^{24}Cr }$"],
+                ["$\\mathrm{ ^{29}Cu ,~ ^{30}Zn ,~ ^{48}Cd ,~ ^{47}Ag }$"],
+                ["$\\mathrm{ ^{28}Ni ,~ ^{24}Cr ,~ ^{26}Fe ,~ ^{29}Cu }$"]
+              ],
+              "tags": ["g11804"]
+            },
+            {
+              "id": "q1680176318",
+              "qDataType": [0, 4],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Single Choice Question",
+              "question": [
+                "The molecular formula of second homologous series of mono carboxylic acids is :"
+              ],
+              "solution": [""],
+              "answer": 2,
+              "options": [
+                ["$\\mathrm{C_3H_6O_2}$"],
+                ["$\\mathrm{CH_2O}$"],
+                ["$\\mathrm{C_2H_4O_2}$"],
+                ["$\\mathrm{C_2H_2O_2}$"]
+              ],
+              "tags": ["g11804"]
+            },
+            {
+              "id": "q2953470549",
+              "qDataType": [0, 4],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Single Choice Question",
+              "question": ["Phenolic group can be identified by a positive :"],
+              "solution": [""],
+              "answer": 1,
+              "options": [
+                ["Tollen's test"],
+                ["Phthalein dye test"],
+                ["Lucas test"],
+                ["Carbylamine test"]
+              ],
+              "tags": ["g11804"]
+            },
+            {
+              "id": "q1073865160",
+              "qDataType": [0, 4],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Single Choice Question",
+              "question": [
+                "The order of relative stability of the contributing structure is :\n![](https://i.ibb.co/KjZ35Rm/Q73.jpg)\nChoose the **correct** answer from the options given below :"
+              ],
+              "solution": [""],
+              "answer": 1,
+              "options": [
+                ["II > I > III"],
+                ["I > II > III"],
+                ["I = II = III"],
+                ["III > II > I"]
+              ],
+              "tags": ["g11804"]
+            },
+            {
+              "id": "q1051757876",
+              "qDataType": [0, 4],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Single Choice Question",
+              "question": ["The quantity which changes with temperature is :"],
+              "solution": [""],
+              "answer": 3,
+              "options": [
+                ["Molality"],
+                ["Mas percentage"],
+                ["Mole fraction"],
+                ["Molarity"]
+              ],
+              "tags": ["g11804"]
+            },
+            {
+              "id": "q1488382748",
+              "qDataType": [0, 4],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Single Choice Question",
+              "question": [
+                "Identify the **incorrect** pair from the following :"
+              ],
+              "solution": [""],
+              "answer": 3,
+              "options": [
+                ["Haber process - Iron"],
+                ["Polythene preparation - $\\mathrm{TiCl_4,~Al(CH_3)_3}$"],
+                ["Photography - $\\mathrm{AgBr}$"],
+                ["Wacker process - $\\mathrm{PtCl_2}$"]
+              ],
+              "tags": ["g11804"]
+            },
+            {
+              "id": "q9264594362",
+              "qDataType": [0, 4],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Single Choice Question",
+              "question": [
+                "Which structure of protein remains intact after coagulation of egg white on boiling ?"
+              ],
+              "solution": [""],
+              "answer": 3,
+              "options": [
+                ["Tertiary"],
+                ["Secondary"],
+                ["Quaternary"],
+                ["Primary"]
+              ],
+              "tags": ["g11804"]
+            },
+            {
+              "id": "q1456548275",
+              "qDataType": [0, 4],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Single Choice Question",
+              "question": [
+                "Which of the following statements is not correct about rusting of iron ?"
+              ],
+              "solution": [""],
+              "answer": 1,
+              "options": [
+                [
+                  "When pH lies above 9 or 10, rusting of iron does not take place."
+                ],
+                [
+                  "Coating of iron surface by tin prevents rusting, even if the tin coating is peeling off."
+                ],
+                [
+                  "Rusting of iron is envisaged as setting up of electrochemical cell on the surface of iron object."
+                ],
+                [
+                  "Dissolved acidic oxides $\\mathrm{SO_2, NO_2}$ in water act as catalyst in the process of rusting."
+                ]
+              ],
+              "tags": ["g11804"]
+            },
+            {
+              "id": "q1349904032",
+              "qDataType": [0, 4],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Single Choice Question",
+              "question": [
+                "Which among the following halide/s will not show $\\mathrm{S_N1}$ reaction :\n![](https://i.ibb.co/L8LNswj/Q87.jpg)\nChoose the **most appropriate** answer from the options given below :"
+              ],
+              "solution": [""],
+              "answer": 0,
+              "options": [
+                ["(A) and (B) only"],
+                ["(B) only"],
+                ["(B) and (C) only"],
+                ["(A), (B) and (D) only"]
+              ],
+              "tags": ["g11804"]
+            },
+            {
+              "id": "q1701951036",
+              "qDataType": [0, 4],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Single Choice Question",
+              "question": [
+                "Given below are two statements :\n**Statement (I)** : In the Lanthanoids, the formation $\\mathrm{Ce^{+4}}$ is favoured by its noble gas configuration.\n**Statement (II)** : $\\mathrm{Ce^{+4}}$ is a strong oxidant reverting to the common $+3$ state.\nIn the light of the above statements, choose the **most appropriate** answer from the options given below :"
+              ],
+              "solution": [""],
+              "answer": 2,
+              "options": [
+                ["**Statement I** is false but **Statement II** is true"],
+                ["Both **Statement I** and **Statement II** are false"],
+                ["Both **Statement I** and **Statement II** are true"],
+                ["**Statement I** is true but **Statement II** is false"]
+              ],
+              "tags": ["g11804"]
+            },
+            {
+              "id": "q1654667042",
+              "qDataType": [0, 4],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Single Choice Question",
+              "question": [
+                "Which of the following cannot function as an oxidising agent?"
+              ],
+              "solution": [""],
+              "answer": 1,
+              "options": [
+                ["$\\mathrm{SO_4^{2-}}$"],
+                ["$\\mathrm{N^{3-}}$"],
+                ["$\\mathrm{MnO_4^{-}}$"],
+                ["$\\mathrm{BrO_3^{-}}$"]
+              ],
+              "tags": ["g11804"]
+            }
+          ],
+          "constraints": { "maxQuestionsAnswered": null },
+          "instructions": []
+        },
+        {
+          "sectionName": "Chemistry Section B",
+          "sectionId": "ts7148410733",
+          "optional": false,
+          "questions": [
+            {
+              "id": "q1004916519",
+              "qDataType": [2, 0],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Numerical Value",
+              "question": [
+                "Volume of $\\mathrm{3~M~NaOH}$ (formula weight $\\mathrm{40~g~mol^{-1}}$) which can be prepared from $\\mathrm{84~g}$ of $\\text{NaOH}$ is ________ $\\mathrm{\\times 10^{-1} ~ dm^{3}}$."
+              ],
+              "solution": [""],
+              "answer": 7,
+              "options": null,
+              "tags": ["g11804"]
+            },
+            {
+              "id": "q4321760160",
+              "qDataType": [2, 0],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Numerical Value",
+              "question": [
+                "For a certain thermochemical reaction $\\mathrm{M \\to N}$ at $\\mathrm{T = 400~K, \\Delta H^{\\circleddash} = 77.2~kJ~mol^{-1}, \\Delta S = 122~JK^{-1}}$, log equilibrium constant ($\\log{\\text{K}}$) is - ________ $\\times 10^{-1}$."
+              ],
+              "solution": [""],
+              "answer": 36,
+              "options": null,
+              "tags": ["g11804"]
+            },
+            {
+              "id": "q6325888383",
+              "qDataType": [2, 0],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Numerical Value",
+              "question": [
+                "The Spin only magnetic moment value of square planar complex $\\mathrm{ [Pt (NH_3)_2 Cl (NH_2CH_3)] Cl }$ is ________ $\\mathrm{B.M.}$ (Nearest integer)\n(Given atomic number for $\\mathrm{Pt = 78}$)"
+              ],
+              "solution": [""],
+              "answer": 0,
+              "options": null,
+              "tags": ["g11804"]
+            },
+            {
+              "id": "q9466222035",
+              "qDataType": [2, 0],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Numerical Value",
+              "question": [
+                "Time required for completion of $99.9 \\%$ of a First order reaction is ________ times of half life ($t_{1/2}$) of the reaction."
+              ],
+              "solution": [""],
+              "answer": 10,
+              "options": null,
+              "tags": ["g11804"]
+            },
+            {
+              "id": "q3718849255",
+              "qDataType": [2, 0],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Numerical Value",
+              "question": [
+                "Total number of ions from the following with noble gas configuration is ________.\n$\\mathrm{ Sr^{2+} (z=38) ,~ Cs^{+} (z=55) ,~ La^{2+} (z=57) ,~ Pb^{2+} (z=82) ,~ Yb^{2+} (z=70) ,~ Fe^{2+} (z=26) }$"
+              ],
+              "solution": [""],
+              "answer": 2,
+              "options": null,
+              "tags": ["g11804"]
+            },
+            {
+              "id": "q6490945302",
+              "qDataType": [2, 0],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Numerical Value",
+              "question": [
+                "$9.3 ~\\text{g}$ of aniline is subjected to reaction with excess of acetic anhydride to prepare acetanilide. The mass of acetanilide produced if the reaction is $100 \\%$ completed is ________ $\\times 10^{-1} \\text{g}$.\n(Given molar mass in $\\mathrm{g~mol^{-1}}$   $\\mathrm{~N: 14,~ O: 16,~ C: 12,~ H: 1}$)"
+              ],
+              "solution": [""],
+              "answer": 135,
+              "options": null,
+              "tags": ["g11804"]
+            },
+            {
+              "id": "q9173557301",
+              "qDataType": [2, 0],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Numerical Value",
+              "question": [
+                "Total number of compounds with Chiral carbon atoms from following is ________.\n![](https://i.ibb.co/L8LNswj/Q87.jpg)"
+              ],
+              "solution": [""],
+              "answer": 5,
+              "options": null,
+              "tags": ["g11804"]
+            },
+            {
+              "id": "q1661207769",
+              "qDataType": [2, 0],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Numerical Value",
+              "question": [
+                "The number of non-polar molecules from the following is ________.\n$\\mathrm{ HF ,~ H_2O ,~ SO_2 ,~ H_2 ,~ CO_2 ,~ CH_4 ,~ NH_3 ,~ HCl ,~ CHCl_3 ,~ BF }$"
+              ],
+              "solution": [""],
+              "answer": 4,
+              "options": null,
+              "tags": ["g11804"]
+            },
+            {
+              "id": "q9822277776",
+              "qDataType": [2, 0],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Numerical Value",
+              "question": [
+                "The hydrogen electrode is dipped in a solution of $\\mathrm{pH = 3}$ at $\\mathrm{25\\degree C}$. The potential of the electrode will be - ________ $\\mathrm{\\times 10^{-2} ~ V}$.\n$\\mathrm{ \\left( \\dfrac{2.303 RT}{F} = 0.059~V \\right) }$"
+              ],
+              "solution": [""],
+              "answer": 18,
+              "options": null,
+              "tags": ["g11804"]
+            },
+            {
+              "id": "q4498376193",
+              "qDataType": [2, 0],
+              "markingScheme": [
+                [4, 1],
+                [-1, 1]
+              ],
+              "qTypeName": "Numerical Value",
+              "question": [
+                "$1$ mole of $\\mathrm{PbS}$ is oxidised by \"$\\mathrm{X}$\" moles of $\\mathrm{O_3}$ to get \"$\\mathrm{Y}$\" moles of $\\mathrm{O_2}$. $\\mathrm{X + Y =}$ ________."
+              ],
+              "solution": [""],
+              "answer": 7,
+              "options": null,
+              "tags": ["g11804"]
+            }
+          ],
+          "constraints": { "maxQuestionsAnswered": 5 },
+          "instructions": []
+        }
+      ],
+      "constraints": {},
+      "instructions": []
+    }
+  ],
+  "languages": ["English"],
+  "timeCreated": 1728924447052,
+  "instructions": [""],
+  "version": "0.1",
+  "tags": [
+    { "id": "g43372", "label": "Maths", "color": "#67e8f9" },
+    { "id": "g20432", "label": "Physics", "color": "#d8b4fe" },
+    { "id": "g11804", "label": "Chemistry", "color": "#bef264" }
+  ],
+  "usefulData": [""],
+  "analysis": {
+    "preTestMessage": [""],
+    "postTestMessage": [""],
+    "customTagStats": [
+      { "title": "Subjects", "tags": ["g43372", "g20432", "g11804"] }
+    ]
+  },
+  "additionalTools": { "calculator": "none", "magnifyingGlass": false },
+  "maxMetrics": { "time": 180, "marks": 300, "questions": 75 }
+}

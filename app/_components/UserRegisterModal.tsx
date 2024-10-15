@@ -16,6 +16,8 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
+  Tag,
+  TagLabel,
   Text,
   UnorderedList,
 } from "@chakra-ui/react";
@@ -159,10 +161,20 @@ const UserRegisterModal = ({
               </Text>
             </div>
           </ModalBody>
-          <ModalFooter justifyContent={"start"}>
+          <ModalFooter
+            justifyContent={"start"}
+            flexDirection={"column"}
+            alignItems={"start"}
+            gap={2}
+          >
             <Button colorScheme="green" isDisabled={!hasAgreed} type="submit">
               Create
             </Button>
+
+            <Text fontSize={"sm"} color={"red.600"}>
+              The save feature is currently in experimental mode. Future updates
+              may cause data loss.
+            </Text>
           </ModalFooter>
         </form>
       </ModalContent>
