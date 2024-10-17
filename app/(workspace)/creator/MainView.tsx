@@ -253,7 +253,8 @@ const MainView = () => {
 
       {(isCurrentDraftSaved > 0 ||
         isCurrentDraftValidPaper > 0 ||
-        activeStep === 3) && (
+        activeStep === 3 ||
+        activeStep === 2) && (
         <Flex gap={3}>
           <Button
             type="submit"

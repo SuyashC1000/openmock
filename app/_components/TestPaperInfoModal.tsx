@@ -36,9 +36,11 @@ import {
   TbHourglass,
   TbLanguage,
   TbTransferOut,
+  TbTrash,
 } from "react-icons/tb";
 import { db } from "@/db/db";
 import useExport from "@/lib/useExport";
+import useDelete from "@/lib/useDelete";
 
 interface Props {
   testPaper: TestPaper;
@@ -54,6 +56,7 @@ const TestPaperInfoModal = ({ testPaper, isOpen, onClose, inBuilt }: Props) => {
 
   const router = useRouter();
   const { exportTestPaper } = useExport();
+  const { deleteTestPaper } = useDelete();
 
   const testPaperDate = new Date(testPaper.timeCreated);
   const [languageIndex, setLanguageIndex] = React.useState(0);
@@ -242,10 +245,9 @@ const TestPaperInfoModal = ({ testPaper, isOpen, onClose, inBuilt }: Props) => {
           >
             Attempt Paper
           </Button>
-          <ButtonGroup ml={"auto"}>
+          <ButtonGroup ml={"auto"} variant={"outline"}>
             <Button
               colorScheme="yellow"
-              variant={"outline"}
               leftIcon={<TbEdit />}
               onClick={async () => {
                 await db.activeTestDraft.clear();
@@ -257,12 +259,20 @@ const TestPaperInfoModal = ({ testPaper, isOpen, onClose, inBuilt }: Props) => {
             </Button>
             <Button
               colorScheme="teal"
-              variant={"outline"}
               leftIcon={<TbTransferOut />}
               onClick={() => exportTestPaper(testPaper)}
             >
               Export
             </Button>
+            {!inBuilt && (
+              <Button
+                colorScheme="red"
+                leftIcon={<TbTrash />}
+                onClick={() => deleteTestPaper(testPaper.id)}
+              >
+                Delete
+              </Button>
+            )}
           </ButtonGroup>
         </ModalFooter>
       </ModalContent>

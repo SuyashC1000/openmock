@@ -441,10 +441,10 @@ const QuestionEditor = ({ step3Data, setStep3Data }: Props) => {
                   }}
                 >
                   <option value={QDataTypes.SingleCorrectOption}>
-                    Single Correct Option
+                    Single Correct Choice
                   </option>
                   <option value={QDataTypes.MultipleCorrectOptions}>
-                    Multiple Correct Options
+                    Multiple Correct Choices
                   </option>
                   <option value={QDataTypes.NumericalValue}>
                     Numerical Value
@@ -509,7 +509,6 @@ const QuestionEditor = ({ step3Data, setStep3Data }: Props) => {
                   onChange={(f) => {
                     setStep3Data((e) => {
                       let copy = e;
-
                       e.questionData!.markingScheme[Evaluation.Correct][0] =
                         +f.target.value;
                       return copy;
